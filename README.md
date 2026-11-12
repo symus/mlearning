@@ -1,8 +1,8 @@
-# Wondergrove
+# Arivupulla
 
 An adaptive learning universe for children aged 3–12. Maths and reading adventures built on carefully designed original content, with clear, honest progress for parents. No ads, no chat, no public profiles.
 
-> "Wondergrove" is a working name. Change it in `src/config/brand.ts`.
+> "Arivupulla" is a working name. Change it in `src/config/brand.ts`.
 
 ## Documentation
 
@@ -58,7 +58,7 @@ Try it: log in → **Let a child play** → pick Mia → play an activity → **
 
 | Name | Required | Example | Purpose |
 |---|---|---|---|
-| `DATABASE_URL` | yes | `postgresql://app:app@localhost:5432/wondergrove?schema=public` | PostgreSQL connection |
+| `DATABASE_URL` | yes | `postgresql://app:app@localhost:5432/arivupulla?schema=public` | PostgreSQL connection |
 | `APP_URL` | no | `http://localhost:3000` | Public base URL (for future emails) |
 | `SESSION_TTL_DAYS` | no | `30` | Session lifetime |
 | `SEED_DEMO_EMAIL` / `SEED_DEMO_PASSWORD` | no | | Demo parent created by the seed |
@@ -108,8 +108,8 @@ The end-to-end journey covers: landing → sign-up validation → sign-up → ad
 The app is a standard container (`output: "standalone"`).
 
 ```bash
-docker build -t wondergrove .
-docker run -p 3000:3000 -e DATABASE_URL=postgresql://... wondergrove
+docker build -t arivupulla .
+docker run -p 3000:3000 -e DATABASE_URL=postgresql://... arivupulla
 ```
 
 The container runs `prisma migrate deploy` on start, then the server. Run the seed or `content:import` once from a job or a one-off container. Full local stack: `docker compose up --build` (the app plus Postgres), then `docker compose run --rm seed`.

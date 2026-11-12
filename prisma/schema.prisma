@@ -1,4 +1,4 @@
-// Wondergrove database schema
+// Arivupulla database schema
 // Design rules:
 //  - Parents own accounts. Children are profiles under a parent (no child email, no child password).
 //  - Collect the minimum about children: nickname + birth year only (no full name, no full date of birth).

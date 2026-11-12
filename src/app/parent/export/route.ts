@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/dal";
+import { brand } from "@/config/brand";
 
 /** GDPR data portability: the parent downloads all data held about the family. */
 export async function GET() {
@@ -24,6 +25,6 @@ export async function GET() {
   });
   await db.auditLog.create({ data: { userId: session.userId, action: "account.export" } });
   return new NextResponse(JSON.stringify({ exportedAt: new Date().toISOString(), ...user }, null, 2), {
-    headers: { "Content-Type": "application/json", "Content-Disposition": `attachment; filename="wondergrove-data-${new Date().toISOString().slice(0, 10)}.json"` },
+    headers: { "Content-Type": "application/json", "Content-Disposition": `attachment; filename="${brand.slug}-data-${new Date().toISOString().slice(0, 10)}.json"` },
   });
 }

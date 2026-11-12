@@ -1,11 +1,12 @@
 import { ProsePage } from "@/components/prose-page";
+import { brand } from "@/config/brand";
 
 export const metadata = { title: "Privacy notice" };
 
 export default function PrivacyPage() {
   return (
     <ProsePage title="Privacy notice" updated="12 November 2026">
-      <p>This notice explains, in plain language, what data Wondergrove processes and why. It is written for parents and guardians.</p>
+      <p>This notice explains, in plain language, what data {brand.name} processes and why. It is written for parents and guardians.</p>
       <h2>Who controls the account</h2>
       <p>Only adults (18+) can create an account. The parent or guardian gives consent for their child&apos;s learning data to be processed when they create the account and add a child profile.</p>
       <h2>Data we collect</h2>

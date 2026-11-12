@@ -1,6 +1,6 @@
 import clsx from "clsx";
 
-/** Pip: the Wondergrove guide. An original star-sprout character drawn in SVG. */
+/** Pip: the learning guide. An original star-sprout character drawn in SVG. */
 export function Pip({ className, mood = "happy" }: { className?: string; mood?: "happy" | "think" | "cheer" }) {
   return (
     <svg viewBox="0 0 120 120" className={clsx("drop-shadow-sm", className)} role="img" aria-label="Pip, your learning guide">

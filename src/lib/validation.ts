@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { allowedBirthYears } from "./age";
+import { brand } from "@/config/brand";
 
 export const COUNTRIES = [
   { code: "GB", name: "United Kingdom" },
@@ -72,7 +73,7 @@ export const childSchema = z.object({
   birthYear: z.coerce
     .number({ message: "Choose a birth year." })
     .int()
-    .refine((y) => allowedBirthYears().includes(y), { message: "Wondergrove is for ages 3–12." }),
+    .refine((y) => allowedBirthYears().includes(y), { message: `${brand.name} is for ages 3–12.` }),
   dailyGoalMinutes: z.coerce.number().int().refine((m) => [10, 15, 20, 30].includes(m), {
     message: "Choose a daily goal.",
   }),

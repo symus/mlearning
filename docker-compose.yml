@@ -6,18 +6,18 @@ services:
     environment:
       POSTGRES_USER: app
       POSTGRES_PASSWORD: app
-      POSTGRES_DB: wondergrove
+      POSTGRES_DB: arivupulla
     ports: ["5432:5432"]
     volumes: [pgdata:/var/lib/postgresql/data]
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U app -d wondergrove"]
+      test: ["CMD-SHELL", "pg_isready -U app -d arivupulla"]
       interval: 5s
       retries: 10
 
   app:
     build: .
     environment:
-      DATABASE_URL: postgresql://app:app@db:5432/wondergrove?schema=public
+      DATABASE_URL: postgresql://app:app@db:5432/arivupulla?schema=public
       APP_URL: http://localhost:3000
     ports: ["3000:3000"]
     depends_on:
@@ -28,7 +28,7 @@ services:
     working_dir: /app
     volumes: [".:/app"]
     environment:
-      DATABASE_URL: postgresql://app:app@db:5432/wondergrove?schema=public
+      DATABASE_URL: postgresql://app:app@db:5432/arivupulla?schema=public
     command: sh -c "apt-get update -qq && apt-get install -y -qq openssl >/dev/null && npm ci && npx prisma migrate deploy && npm run db:seed"
     depends_on:
       db: { condition: service_healthy }

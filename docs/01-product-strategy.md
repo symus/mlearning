@@ -1,6 +1,6 @@
 # 1. Product strategy
 
-> Working name: **Wondergrove** (rename in `src/config/brand.ts`). Mascot: **Pip**, an original star-sprout character.
+> Product name: **Arivupulla** (Tamil அறிவுப்புள்ள, "child of knowledge"). Change it in `src/config/brand.ts`. Mascot: **Pip**, an original star-sprout character.
 
 ## Vision
 
@@ -10,7 +10,7 @@ A learning universe for children aged 3–12 that children *want* to open, paren
 
 **"Every activity is designed like a lesson, and every mistake teaches us something."**
 
-Most platforms show a child a question and a score. Wondergrove links each answer to a learning objective and each wrong answer to a known misconception. That lets us:
+Most platforms show a child a question and a score. Arivupulla links each answer to a learning objective and each wrong answer to a known misconception. That lets us:
 
 1. Help the child with feedback that fits *why* they went wrong (e.g. "count the jumps, not the number you start on").
 2. Show parents *what* their child understands and *what* trips them up, in plain language.

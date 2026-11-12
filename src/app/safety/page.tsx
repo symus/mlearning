@@ -1,11 +1,12 @@
 import { ProsePage } from "@/components/prose-page";
+import { brand } from "@/config/brand";
 
 export const metadata = { title: "Child safety" };
 
 export default function SafetyPage() {
   return (
     <ProsePage title="Child safety" updated="12 November 2026">
-      <p>Wondergrove is built for children first. These rules are part of how the product works, not optional settings.</p>
+      <p>{brand.name} is built for children first. These rules are part of how the product works, not optional settings.</p>
       <h2>What children can never do</h2>
       <ul>
         <li>See advertisements of any kind.</li>
