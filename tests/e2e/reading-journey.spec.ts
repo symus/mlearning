@@ -17,7 +17,8 @@ test("a child takes the placement check, sees the lesson map and passing a lesso
   await page.getByRole("link", { name: /Let a child play/ }).click();
   await page.getByRole("button", { name: /Asha/ }).click();
   for (let i = 0; i < 3; i++) await page.getByRole("button", { name: "Next →" }).click();
-  await page.getByRole("button", { name: "Start exploring!" }).click();
+  // The page changes instantly after this click; wait for the universe rather than the click itself.
+  await Promise.all([page.waitForURL(/\/play\?welcome=1/), page.getByRole("button", { name: "Start exploring!" }).click({ timeout: 5000 }).catch(() => {})]);
 
   // Journey card on the universe -> choose "Find my level".
   await page.getByRole("link", { name: /Reading Journey/ }).click();
@@ -39,6 +40,8 @@ test("a child takes the placement check, sees the lesson map and passing a lesso
 
   // Play lesson 3 (free) and answer correctly using the known answers.
   await page.getByRole("link", { name: /Play now/ }).click();
+  await expect(page.getByText("Lesson 3", { exact: true })).toBeVisible();
+  await page.getByRole("button", { name: /Let's go!/ }).click();
   await page.getByRole("button", { name: "Skip" }).click(); // skip the song
   await page.getByRole("button", { name: "Let's practise!" }).click();
   const answers: Record<string, string> = {

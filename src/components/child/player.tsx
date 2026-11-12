@@ -12,6 +12,8 @@ import { Muchi } from "@/components/mascot";
 import { Visual } from "./visual";
 import { useSpeech } from "./use-speech";
 import { WatchPlayer } from "./watch-player";
+import { useChildPrefs, useSfx } from "./prefs";
+import { Confetti, StarRating } from "./celebration";
 
 export interface PlayerActivity {
   slug: string;
@@ -21,32 +23,47 @@ export interface PlayerActivity {
   /** Where "back" and "Back to the map" go (world path or lesson journey). */
   backHref: string;
   journeySlug?: string;
+  /** Learning objective, shown in Muchi's introduction. */
+  objective: { title: string; childTitle: string };
+  estimatedMinutes: number;
+  lessonNumber?: number;
   levels: { level: number; label: string; items: PublicItem[] }[];
   worldSlug: string;
 }
 
-type Phase = "watch" | "learn" | "item" | "summary" | "blocked";
+/** An unfinished attempt to continue (answers already given, in order). */
+export interface ResumeState {
+  attemptId: string;
+  results: (ItemResult & { itemId: string })[];
+}
+
+type Phase = "intro" | "watch" | "learn" | "item" | "summary" | "blocked";
 type Answer = string | number | string[];
 
 export function Player({
   activity,
   startLevel,
   itemsPerRound,
-  narration,
   young,
+  nickname,
+  resume,
 }: {
   activity: PlayerActivity;
   startLevel: number;
   itemsPerRound: number;
-  narration: boolean;
   young: boolean;
+  nickname: string;
+  resume?: ResumeState;
 }) {
+  const { prefs } = useChildPrefs();
+  const narration = prefs.narration;
+  const sfx = useSfx();
   const { speak, supported } = useSpeech();
   const maxLevel = activity.levels.length;
   const totalItems = activity.levels.reduce((n, l) => n + l.items.length, 0);
   const roundSize = Math.min(itemsPerRound, totalItems);
 
-  const [phase, setPhase] = useState<Phase>(activity.watch ? "watch" : "learn");
+  const [phase, setPhase] = useState<Phase>("intro");
   const [blocked, setBlocked] = useState<string>("");
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [level, setLevel] = useState(startLevel);
@@ -84,14 +101,46 @@ export function Player({
       setHintsShown(0);
       setFeedback(null);
       shownAt.current = Date.now();
-      if (next && narration && young) speak(next.say ?? next.prompt);
+      if (next && narration) speak(next.say ?? next.prompt);
     },
-    [narration, young, speak],
+    [narration, speak],
   );
 
   useEffect(() => {
-    if (phase === "learn" && narration && young) speak(activity.learn.say ?? activity.learn.text);
-  }, [phase, narration, young, speak, activity.learn]);
+    if (phase === "learn" && narration) speak(activity.learn.say ?? activity.learn.text);
+    if (phase === "intro" && narration) speak(`Hi ${nickname}! Today you will learn: ${activity.objective.childTitle}. Let's go!`);
+  }, [phase, narration, speak, activity.learn, activity.objective.childTitle, nickname]);
+
+  /** Continue an unfinished lesson exactly where it stopped. */
+  function continueLesson() {
+    if (!resume) return;
+    const usedSet = new Set(resume.results.map((r) => r.itemId));
+    let lvl = startLevel;
+    const rs: ItemResult[] = [];
+    for (const r of resume.results) {
+      rs.push(r);
+      lvl = nextLevel(lvl, rs, maxLevel);
+    }
+    setAttemptId(resume.attemptId);
+    setUsed(usedSet);
+    setResults(rs);
+    setLevel(lvl);
+    const candidate = rs.length < roundSize ? pickItem(lvl, usedSet) : null;
+    setPhase("item");
+    if (candidate) showItem(candidate);
+    else void finishNow(resume.attemptId);
+  }
+
+  async function finishNow(id: string) {
+    setBusy(true);
+    const s = await finishAttempt(id);
+    setBusy(false);
+    setSummary(s);
+    setPhase("summary");
+    sfx("celebrate");
+    if (s.newAchievements.length) setTimeout(() => sfx("reward"), 900);
+    if (narration) speak(s.message);
+  }
 
   async function begin() {
     setBusy(true);
@@ -113,12 +162,13 @@ export function Player({
     const fb = await submitAnswer({ attemptId, itemId: item.id, answer, hintsUsed: hintsShown, tryNumber, timeMs: Date.now() - shownAt.current });
     setBusy(false);
     setFeedback(fb);
+    sfx(fb.correct ? "correct" : "tryAgain");
     if (fb.final) {
       setResults((r) => [...r, { correct: fb.correct, hintsUsed: hintsShown + tryNumber - 1, level: item.level }]);
-      if (narration && young) speak(fb.correct ? "Well done! " + (fb.explanation ?? "") : "Let's look at it together. " + (fb.explanation ?? ""));
+      if (narration) speak(fb.correct ? "Well done! " + (fb.explanation ?? "") : "Let's look at it together. " + (fb.explanation ?? ""));
     } else {
       setTryNumber(2);
-      if (narration && young) speak("Not quite. " + (fb.remedy ?? "Try again!"));
+      if (narration) speak("Not quite. " + (fb.remedy ?? "Try again!"));
     }
   }
 
@@ -130,6 +180,7 @@ export function Player({
     const usedNow = new Set(used).add(item.id);
     setUsed(usedNow);
     const newLevel = nextLevel(level, results, maxLevel);
+    if (newLevel > level) sfx("levelUp");
     setLevel(newLevel);
     const candidate = results.length < roundSize ? pickItem(newLevel, usedNow) : null;
     if (candidate) {
@@ -137,12 +188,7 @@ export function Player({
       return;
     }
     if (!attemptId) return;
-    setBusy(true);
-    const s = await finishAttempt(attemptId);
-    setBusy(false);
-    setSummary(s);
-    setPhase("summary");
-    if (narration && young) speak(s.message);
+    await finishNow(attemptId);
   }
 
   const progress = phase === "summary" ? 1 : results.length / roundSize;
@@ -164,13 +210,60 @@ export function Player({
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: -16 }}
           transition={{ duration: 0.25 }}
-          className="rounded-[2rem] bg-surface p-5 text-ink shadow-xl sm:p-8"
+          className="relative rounded-[2rem] bg-surface p-5 text-ink shadow-xl sm:p-8"
         >
+          {phase === "intro" && (
+            <div className="flex flex-col items-center gap-5 text-center">
+              <div className="flex items-end gap-3">
+                <motion.div initial={{ y: 40, opacity: 0, rotate: -10 }} animate={{ y: 0, opacity: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 160, damping: 11 }}>
+                  <Muchi className="animate-float size-28 sm:size-32" mood="cheer" />
+                </motion.div>
+                <motion.div
+                  initial={{ scale: 0.6, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.35 }}
+                  className="relative mb-8 max-w-xs rounded-3xl bg-sun-soft px-5 py-3 text-left text-lg font-bold shadow-sm"
+                >
+                  {resume ? `Welcome back, ${nickname}! Let's finish what you started.` : `Hi ${nickname}! I'm Muchi. Let's learn together!`}
+                  <span aria-hidden className="absolute -left-2 bottom-4 size-4 rotate-45 bg-sun-soft" />
+                </motion.div>
+              </div>
+              {activity.lessonNumber && <p className="rounded-full bg-brand-soft px-4 py-1 text-sm font-bold text-brand">Lesson {activity.lessonNumber}</p>}
+              <h1 className="text-3xl font-bold sm:text-4xl">{activity.title}</h1>
+              <div className="w-full max-w-md rounded-3xl border-2 border-leaf/30 bg-leaf-soft p-4 text-left">
+                <p className="text-xs font-bold uppercase tracking-wider text-success">🎯 Today you will learn</p>
+                <p className="mt-1 text-xl font-bold">{activity.objective.childTitle}</p>
+                <p className="mt-1 text-sm text-ink-soft">{activity.objective.title}</p>
+              </div>
+              <ul className="flex flex-wrap justify-center gap-2 text-sm font-bold text-ink-soft">
+                <li className="rounded-full bg-paper px-3 py-1">⏱️ about {activity.estimatedMinutes} min</li>
+                {activity.watch && <li className="rounded-full bg-paper px-3 py-1">🎵 song</li>}
+                <li className="rounded-full bg-paper px-3 py-1">💡 hints to help you</li>
+                <li className="rounded-full bg-paper px-3 py-1">⭐ up to 3 stars</li>
+              </ul>
+              {resume ? (
+                <div className="flex flex-wrap justify-center gap-3">
+                  <button onClick={continueLesson} disabled={busy} className="btn-pop min-h-16 rounded-full bg-leaf px-10 font-display text-2xl font-bold text-white">
+                    Continue ({resume.results.length} done) ▶
+                  </button>
+                  <button onClick={() => setPhase(activity.watch ? "watch" : "learn")} className="min-h-16 rounded-full px-6 font-bold text-ink-soft underline">
+                    Start again
+                  </button>
+                </div>
+              ) : (
+                <button onClick={() => { sfx("tap"); setPhase(activity.watch ? "watch" : "learn"); }} className="btn-pop min-h-16 rounded-full bg-sun px-12 font-display text-2xl font-bold text-ink">
+                  Let&apos;s go! ▶
+                </button>
+              )}
+            </div>
+          )}
+
           {phase === "watch" && activity.watch && <WatchPlayer watch={activity.watch} onDone={() => setPhase("learn")} />}
 
           {phase === "learn" && (
             <div className="flex flex-col items-center gap-5 text-center">
-              <Muchi className="size-24" mood="think" />
+              <Muchi className="animate-float size-24" mood="think" />
+              <p className="rounded-full bg-leaf-soft px-4 py-1 text-sm font-bold text-success">🎯 {activity.objective.childTitle}</p>
               <h1 className="text-3xl font-bold sm:text-4xl">{activity.title}</h1>
               {activity.learn.visual && <Visual visual={activity.learn.visual} />}
               <p className="max-w-xl text-lg leading-relaxed sm:text-xl">{activity.learn.text}</p>
@@ -200,7 +293,7 @@ export function Player({
               onHint={() => {
                 const h = Math.min(item.hints.length, hintsShown + 1);
                 setHintsShown(h);
-                if (narration && young) speak(item.hints[h - 1]);
+                if (narration) speak(item.hints[h - 1]);
               }}
               onSpeak={supported ? () => speak(item.say ?? item.prompt) : undefined}
               onSubmit={submit}
@@ -427,12 +520,14 @@ function Summary({ summary, backHref, journeySlug }: { summary: AttemptSummary; 
   const nextHref = next ? `/play/activity/${next.slug}${j ? `?journey=${j.slug}` : ""}` : null;
   return (
     <div className="flex flex-col items-center gap-5 text-center">
+      <Confetti />
       <motion.div initial={{ scale: 0.6, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 200, damping: 12 }}>
-        <Muchi className="size-28" mood="cheer" />
+        <Muchi className="animate-cheer size-28" mood="cheer" />
       </motion.div>
       <h2 className="text-3xl font-bold">Adventure complete!</h2>
+      <StarRating accuracy={summary.total ? summary.correct / summary.total : 0} />
       <p className="text-xl">{summary.message}</p>
-      <p className="font-display text-5xl font-bold text-brand">{summary.correct} / {summary.total}</p>
+      <p className="font-display text-3xl font-bold text-brand">{summary.correct} of {summary.total} correct</p>
       {summary.masteredNow && <p className="rounded-2xl bg-leaf-soft px-5 py-3 text-lg font-bold text-success">⭐ You mastered this skill!</p>}
       {summary.newAchievements.length > 0 && (
         <div className="flex flex-wrap justify-center gap-3">
