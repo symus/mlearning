@@ -1,0 +1,281 @@
+{
+  "activities": [
+    {
+      "slug": "two-letters-one-sound",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Phonics", "subtopic": "Digraphs",
+      "objective": "RE.PHON.DIGRAPHS", "title": "Two Letters, One Sound", "pathOrder": 1, "estimatedMinutes": 5, "isFree": true,
+      "learn": {
+        "text": "Some letters team up to make one new sound. s + h makes 'sh' (ship). c + h makes 'ch' (chip). t + h makes 'th' (thin). n + g makes 'ng' (ring).",
+        "visual": { "kind": "bigText", "text": "sh  ch  th  ng" }
+      },
+      "misconceptions": [
+        { "code": "SPLIT_DIGRAPH", "description": "Reads each letter separately (s-h) instead of as one sound.", "remedy": "When you see sh, ch, th or ng together, say one sound." },
+        { "code": "SH_CH_SWAP", "description": "Confuses the sh and ch sounds.", "remedy": "sh is quiet and long like 'shhh'. ch is short like a sneeze: 'ch!'." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "detail-detective",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "dg1", "type": "choice", "prompt": "Which sound does 'ship' start with?", "say": "Ship. Which sound does ship start with?", "visual": { "kind": "objects", "emoji": "🚢", "count": 1 },
+            "options": [{ "id": "sh", "label": "sh" }, { "id": "ch", "label": "ch" }, { "id": "s", "label": "s" }], "answer": "sh",
+            "hints": ["Say it slowly: sh-i-p.", "It's the 'be quiet' sound."], "explanation": "Ship starts with 'sh': s and h team up to make one sound.",
+            "misconceptions": { "ch": "SH_CH_SWAP", "s": "SPLIT_DIGRAPH" } },
+          { "id": "dg2", "type": "choice", "prompt": "Which word has the 'ch' sound?", "say": "Which word has the ch sound?",
+            "options": [{ "id": "chin", "label": "chin" }, { "id": "shin", "label": "shin" }, { "id": "thin", "label": "thin" }], "answer": "chin",
+            "hints": ["ch is short, like a sneeze.", "Look for the letters c and h together."], "explanation": "Chin starts with ch.",
+            "misconceptions": { "shin": "SH_CH_SWAP", "thin": "SPLIT_DIGRAPH" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "dg3", "type": "choice", "prompt": "Finish the word: ri__ (a ring for your finger)", "visual": { "kind": "objects", "emoji": "💍", "count": 1 },
+            "options": [{ "id": "ng", "label": "ng" }, { "id": "n", "label": "n" }, { "id": "th", "label": "th" }], "answer": "ng",
+            "hints": ["Say ring slowly. The end sound comes from the back of your mouth.", "Two letters make that sound."], "explanation": "Ring ends with 'ng'.",
+            "misconceptions": { "n": "SPLIT_DIGRAPH", "th": "SPLIT_DIGRAPH" } },
+          { "id": "dg4", "type": "choice", "prompt": "How many sounds are in the word 'shop'?",
+            "options": [{ "id": "3", "label": "3 sounds" }, { "id": "4", "label": "4 sounds" }, { "id": "2", "label": "2 sounds" }], "answer": "3",
+            "hints": ["sh is one sound.", "sh - o - p"], "explanation": "Shop has 4 letters but only 3 sounds: sh - o - p.",
+            "misconceptions": { "4": "SPLIT_DIGRAPH" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "dg5", "type": "order", "prompt": "Build the word 'chest'.",
+            "tiles": [{ "id": "e", "label": "e" }, { "id": "t", "label": "t" }, { "id": "ch", "label": "ch" }, { "id": "s", "label": "s" }], "answer": ["ch", "e", "s", "t"],
+            "hints": ["The first sound is ch.", "ch - e - s - t"], "explanation": "ch - e - s - t makes chest." },
+          { "id": "dg6", "type": "choice", "prompt": "Which sentence has a word with 'th'?",
+            "options": [{ "id": "a", "label": "The cat sat on a mat." }, { "id": "b", "label": "A big dog ran fast." }, { "id": "c", "label": "Sam can hop and skip." }], "answer": "a",
+            "hints": ["Look for t and h side by side.", "Look at the very first word."], "explanation": "'The' has the th sound.",
+            "misconceptions": { "b": "SPLIT_DIGRAPH", "c": "SH_CH_SWAP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "detail-detective",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Comprehension", "subtopic": "Retrieval",
+      "objective": "RE.COMP.RETRIEVE", "title": "Detail Detective: The Night Garden", "pathOrder": 2, "estimatedMinutes": 6,
+      "learn": {
+        "text": "Detectives look for clues. When a question asks who, what, where or when, go back to the text and find the exact words that answer it.",
+        "visual": { "kind": "passage", "title": "The Night Garden", "text": "Every evening, Leo helped his aunt water the vegetable garden behind their flat. One warm night in June, Leo saw tiny green lights blinking between the bean plants. \"Fireflies!\" whispered Aunt Bea. \"They glow to find each other in the dark.\" Leo counted seven of them before they floated over the fence and disappeared. The next morning, he drew a picture of them in his nature notebook." }
+      },
+      "misconceptions": [
+        { "code": "GUESSED", "description": "Answered from general knowledge rather than the text.", "remedy": "Find the sentence in the story that gives the answer." },
+        { "code": "WRONG_SENTENCE", "description": "Used a detail from a different part of the text.", "remedy": "Find the key word from the question in the text, then read that sentence carefully." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "what-happened-next",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "dd1", "type": "choice", "prompt": "Who did Leo help?", "visual": { "kind": "passage", "text": "Every evening, Leo helped his aunt water the vegetable garden behind their flat." },
+            "options": [{ "id": "aunt", "label": "His aunt" }, { "id": "mum", "label": "His mum" }, { "id": "friend", "label": "His friend" }], "answer": "aunt",
+            "hints": ["Look at the first sentence.", "Leo helped his..."], "explanation": "The text says 'Leo helped his aunt'.",
+            "misconceptions": { "mum": "GUESSED", "friend": "GUESSED" } },
+          { "id": "dd2", "type": "choice", "prompt": "What colour were the lights?",
+            "options": [{ "id": "green", "label": "green" }, { "id": "yellow", "label": "yellow" }, { "id": "white", "label": "white" }], "answer": "green",
+            "hints": ["Find the word 'lights' in the story.", "tiny ... lights"], "explanation": "Leo saw 'tiny green lights blinking'.",
+            "misconceptions": { "yellow": "GUESSED", "white": "GUESSED" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "dd3", "type": "number", "prompt": "How many fireflies did Leo count?", "answer": 7,
+            "hints": ["Find the word 'counted'.", "Leo counted ... of them."], "explanation": "The text says 'Leo counted seven of them'.",
+            "misconceptions": { "6": "WRONG_SENTENCE", "8": "WRONG_SENTENCE" } },
+          { "id": "dd4", "type": "choice", "prompt": "In which month did this happen?",
+            "options": [{ "id": "june", "label": "June" }, { "id": "july", "label": "July" }, { "id": "may", "label": "May" }], "answer": "june",
+            "hints": ["Look for a time word.", "One warm night in..."], "explanation": "It happened 'one warm night in June'.",
+            "misconceptions": { "july": "GUESSED", "may": "GUESSED" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "dd5", "type": "choice", "prompt": "Why do fireflies glow, according to Aunt Bea?",
+            "options": [{ "id": "find", "label": "To find each other in the dark" }, { "id": "scare", "label": "To scare away birds" }, { "id": "warm", "label": "To keep warm" }], "answer": "find",
+            "hints": ["Find what Aunt Bea said.", "Look for 'They glow to...'"], "explanation": "Aunt Bea says 'They glow to find each other in the dark.'",
+            "misconceptions": { "scare": "GUESSED", "warm": "WRONG_SENTENCE" } },
+          { "id": "dd6", "type": "choice", "prompt": "What did Leo do the next morning?",
+            "options": [{ "id": "drew", "label": "He drew the fireflies" }, { "id": "water", "label": "He watered the garden" }, { "id": "catch", "label": "He caught a firefly" }], "answer": "drew",
+            "hints": ["Find the words 'next morning'.", "Read the last sentence."], "explanation": "'The next morning, he drew a picture of them in his nature notebook.'",
+            "misconceptions": { "water": "WRONG_SENTENCE", "catch": "GUESSED" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "what-happened-next",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Comprehension", "subtopic": "Sequencing",
+      "objective": "RE.COMP.SEQUENCE", "title": "What Happened Next?", "pathOrder": 3, "estimatedMinutes": 5,
+      "learn": {
+        "text": "Stories happen in order: beginning, middle and end. Time words like first, then, next, after that and finally are clues to the order.",
+        "visual": { "kind": "passage", "title": "Pancake Morning", "text": "First, Maya cracked two eggs into a bowl. Then she added milk and flour and stirred until the mixture was smooth. Next, Dad heated the pan and poured in a little batter. After two minutes, Maya flipped the pancake. It landed on the floor! Finally, they laughed and made another one." }
+      },
+      "misconceptions": [
+        { "code": "ORDER_OF_MENTION", "description": "Assumes events happen in the order a question lists them.", "remedy": "Use the time words in the text, not the order of the question." },
+        { "code": "MIDDLE_MIXUP", "description": "Gets the beginning and end right but mixes up middle events.", "remedy": "Ask: what had to happen before this could happen?" }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "naming-and-doing-words",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "sq1", "type": "choice", "prompt": "What did Maya do first?",
+            "options": [{ "id": "eggs", "label": "Cracked eggs" }, { "id": "flip", "label": "Flipped the pancake" }, { "id": "laugh", "label": "Laughed" }], "answer": "eggs",
+            "hints": ["Look for the word 'First'.", "It's the first sentence."], "explanation": "'First, Maya cracked two eggs into a bowl.'",
+            "misconceptions": { "flip": "MIDDLE_MIXUP", "laugh": "ORDER_OF_MENTION" } },
+          { "id": "sq2", "type": "choice", "prompt": "What happened when Maya flipped the pancake?",
+            "options": [{ "id": "floor", "label": "It landed on the floor" }, { "id": "plate", "label": "It landed on a plate" }, { "id": "burnt", "label": "It burnt" }], "answer": "floor",
+            "hints": ["Find 'flipped'.", "Read the sentence right after it."], "explanation": "'It landed on the floor!'",
+            "misconceptions": { "plate": "ORDER_OF_MENTION", "burnt": "MIDDLE_MIXUP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "sq3", "type": "order", "prompt": "Put these in order.",
+            "tiles": [{ "id": "heat", "label": "Dad heated the pan" }, { "id": "stir", "label": "Maya stirred the mixture" }, { "id": "flip", "label": "Maya flipped the pancake" }],
+            "answer": ["stir", "heat", "flip"], "hints": ["You need batter before you can cook.", "Look for 'Then', 'Next' and 'After'."],
+            "explanation": "Then she stirred, next Dad heated the pan, after two minutes she flipped." },
+          { "id": "sq4", "type": "choice", "prompt": "Which time word tells us the last event?",
+            "options": [{ "id": "finally", "label": "Finally" }, { "id": "first", "label": "First" }, { "id": "next", "label": "Next" }], "answer": "finally",
+            "hints": ["Which word means 'at the end'?", "It's in the last sentence."], "explanation": "'Finally' tells us this is the last thing that happened.",
+            "misconceptions": { "first": "ORDER_OF_MENTION", "next": "MIDDLE_MIXUP" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "sq5", "type": "order", "prompt": "Put the whole story in order.",
+            "tiles": [{ "id": "again", "label": "They made another one" }, { "id": "eggs", "label": "Cracked eggs" }, { "id": "floor", "label": "Pancake fell" }, { "id": "batter", "label": "Poured batter in pan" }],
+            "answer": ["eggs", "batter", "floor", "again"], "hints": ["Begin with 'First'.", "The fall happens before they make another."],
+            "explanation": "Eggs, batter in the pan, the pancake fell, then they made another one." },
+          { "id": "sq6", "type": "choice", "prompt": "Why did they make another pancake?",
+            "options": [{ "id": "fell", "label": "The first one fell on the floor" }, { "id": "hungry", "label": "Dad wanted two" }, { "id": "small", "label": "It was too small" }], "answer": "fell",
+            "hints": ["What went wrong?", "Look just before 'Finally'."], "explanation": "The first pancake landed on the floor, so they made another one.",
+            "misconceptions": { "hungry": "ORDER_OF_MENTION", "small": "MIDDLE_MIXUP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "naming-and-doing-words",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Grammar", "subtopic": "Word classes",
+      "objective": "RE.GRAM.NOUNVERB", "title": "Naming and Doing Words", "pathOrder": 4, "estimatedMinutes": 5,
+      "learn": {
+        "text": "A noun is a naming word: a person, place, animal or thing (girl, park, otter, ball). A verb is a doing word: an action (run, swim, eat, jump). In 'The otter swims', otter is the noun and swims is the verb.",
+        "example": "The otter (noun) swims (verb)."
+      },
+      "misconceptions": [
+        { "code": "NOUN_AS_VERB", "description": "Labels a naming word as a doing word.", "remedy": "Can you put 'a' or 'the' in front of it? Then it's probably a noun." },
+        { "code": "VERB_AS_NOUN", "description": "Labels a doing word as a naming word.", "remedy": "Can you do it? Try 'I can ___'. If it works, it's a verb." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "sentence-shapes",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "nv1", "type": "choice", "prompt": "Which word is a noun (naming word)?",
+            "options": [{ "id": "dog", "label": "dog" }, { "id": "run", "label": "run" }, { "id": "jump", "label": "jump" }], "answer": "dog",
+            "hints": ["Which one is a thing or animal?", "Can you say 'a ___'?"], "explanation": "Dog is a noun: it names an animal.",
+            "misconceptions": { "run": "VERB_AS_NOUN", "jump": "VERB_AS_NOUN" } },
+          { "id": "nv2", "type": "choice", "prompt": "Which word is a verb (doing word)?",
+            "options": [{ "id": "table", "label": "table" }, { "id": "sing", "label": "sing" }, { "id": "garden", "label": "garden" }], "answer": "sing",
+            "hints": ["Which one can you do?", "Try 'I can ___'."], "explanation": "Sing is a verb: 'I can sing.'",
+            "misconceptions": { "table": "NOUN_AS_VERB", "garden": "NOUN_AS_VERB" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "nv3", "type": "choice", "prompt": "Find the verb: 'The baby giggled loudly.'",
+            "options": [{ "id": "baby", "label": "baby" }, { "id": "giggled", "label": "giggled" }, { "id": "the", "label": "The" }], "answer": "giggled",
+            "hints": ["What did the baby do?", "The action word."], "explanation": "Giggled is what the baby did, so it's the verb.",
+            "misconceptions": { "baby": "NOUN_AS_VERB" } },
+          { "id": "nv4", "type": "choice", "prompt": "Find the noun: 'Krish kicked the ball.' (not Krish)",
+            "options": [{ "id": "kicked", "label": "kicked" }, { "id": "ball", "label": "ball" }, { "id": "the", "label": "the" }], "answer": "ball",
+            "hints": ["Which word names a thing?", "Krish kicked the..."], "explanation": "Ball names a thing, so it's a noun. (Krish is a noun too — a name!)",
+            "misconceptions": { "kicked": "VERB_AS_NOUN" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "nv5", "type": "choice", "prompt": "In 'We had a long swim', what is 'swim'?",
+            "options": [{ "id": "noun", "label": "A noun" }, { "id": "verb", "label": "A verb" }], "answer": "noun",
+            "hints": ["Look at the words before it: 'a long'.", "Here it names a thing we had."], "explanation": "'a long swim' names a thing, so here swim is a noun. Some words can be both!",
+            "misconceptions": { "verb": "VERB_AS_NOUN" } },
+          { "id": "nv6", "type": "choice", "prompt": "Which sentence uses 'paint' as a verb?",
+            "options": [{ "id": "a", "label": "We paint the fence." }, { "id": "b", "label": "The paint is wet." }, { "id": "c", "label": "I spilt the paint." }], "answer": "a",
+            "hints": ["Where is paint something someone does?", "Try 'We can paint'."], "explanation": "In 'We paint the fence', paint is the action we do.",
+            "misconceptions": { "b": "NOUN_AS_VERB", "c": "NOUN_AS_VERB" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "sentence-shapes",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Grammar", "subtopic": "Punctuation",
+      "objective": "RE.GRAM.PUNCT", "title": "Sentence Shapes", "pathOrder": 5, "estimatedMinutes": 5,
+      "learn": {
+        "text": "Sentences start with a capital letter. They end with a full stop (.), a question mark (?) if they ask something, or an exclamation mark (!) for strong feelings. Names like Poland and Zara always have capital letters too.",
+        "example": "Where is my hat? It is on the bed. Oh no, the dog has it!"
+      },
+      "misconceptions": [
+        { "code": "QUESTION_FULLSTOP", "description": "Ends a question with a full stop.", "remedy": "Question words like who, what, where, why, how usually need a question mark." },
+        { "code": "NO_CAPITAL", "description": "Misses a capital letter at the start or on a name.", "remedy": "Check the first letter and any names of people or places." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "word-twins-and-opposites",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "pu1", "type": "choice", "prompt": "Which ending is right? 'What time is it_'",
+            "options": [{ "id": "q", "label": "?" }, { "id": "fs", "label": "." }, { "id": "ex", "label": "!" }], "answer": "q",
+            "hints": ["Is it asking something?", "'What' is a question word."], "explanation": "It asks a question, so it ends with a question mark.",
+            "misconceptions": { "fs": "QUESTION_FULLSTOP" } },
+          { "id": "pu2", "type": "choice", "prompt": "Which sentence is written correctly?",
+            "options": [{ "id": "a", "label": "the sun is hot." }, { "id": "b", "label": "The sun is hot." }, { "id": "c", "label": "The sun is hot" }], "answer": "b",
+            "hints": ["Check the first letter.", "Check the end too."], "explanation": "It starts with a capital T and ends with a full stop.",
+            "misconceptions": { "a": "NO_CAPITAL" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "pu3", "type": "choice", "prompt": "Which word needs a capital letter? 'we visited warsaw in may.'",
+            "options": [{ "id": "all", "label": "we, warsaw and may" }, { "id": "we", "label": "only we" }, { "id": "visited", "label": "visited" }], "answer": "all",
+            "hints": ["The first word always needs one.", "Places and months are names."], "explanation": "We (first word), Warsaw (a place) and May (a month) all need capitals.",
+            "misconceptions": { "we": "NO_CAPITAL" } },
+          { "id": "pu4", "type": "choice", "prompt": "Pick the best ending: 'Watch out, a wave is coming_'",
+            "options": [{ "id": "ex", "label": "!" }, { "id": "q", "label": "?" }, { "id": "fs", "label": "." }], "answer": "ex",
+            "hints": ["Is it a warning?", "Strong feelings or warnings get a special mark."], "explanation": "It's an urgent warning, so an exclamation mark fits best." }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "pu5", "type": "number", "prompt": "How many sentences are here? 'I like pears. Do you? My sister likes plums!'", "answer": 3,
+            "hints": ["Count the end marks: . ? !", "Each one ends a sentence."], "explanation": "There are 3 end marks (. ? !), so there are 3 sentences.",
+            "misconceptions": { "1": "QUESTION_FULLSTOP", "2": "QUESTION_FULLSTOP" } },
+          { "id": "pu6", "type": "choice", "prompt": "Which sentence is a question?",
+            "options": [{ "id": "a", "label": "I wonder where the cat is." }, { "id": "b", "label": "Where is the cat?" }, { "id": "c", "label": "The cat is where it sleeps." }], "answer": "b",
+            "hints": ["A question needs an answer from someone.", "Look for the question mark."], "explanation": "'Where is the cat?' asks for an answer. The first one says what someone is thinking.",
+            "misconceptions": { "a": "QUESTION_FULLSTOP", "c": "QUESTION_FULLSTOP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "word-twins-and-opposites",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Vocabulary", "subtopic": "Synonyms and antonyms",
+      "objective": "RE.VOCAB.SYNONYM", "title": "Word Twins and Opposites", "pathOrder": 6, "estimatedMinutes": 5,
+      "learn": {
+        "text": "Word twins (synonyms) mean nearly the same thing: big and large. Opposites (antonyms) mean the reverse: big and small. Choosing the right word makes writing more interesting.",
+        "example": "happy → glad (twin), sad (opposite)"
+      },
+      "misconceptions": [
+        { "code": "TWIN_OPPOSITE_SWAP", "description": "Picks an opposite when asked for a similar word, or the reverse.", "remedy": "Read the question again: twin = same, opposite = reverse." },
+        { "code": "RELATED_NOT_SAME", "description": "Picks a related word that doesn't mean the same (e.g. rain for cold).", "remedy": "Try swapping the words in a sentence. Does it still mean the same?" }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": null,
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "sy1", "type": "choice", "prompt": "Which word is a twin of 'big'?",
+            "options": [{ "id": "large", "label": "large" }, { "id": "small", "label": "small" }, { "id": "tall", "label": "tall" }], "answer": "large",
+            "hints": ["A twin means the same.", "'A ___ elephant'"], "explanation": "Large means nearly the same as big.",
+            "misconceptions": { "small": "TWIN_OPPOSITE_SWAP", "tall": "RELATED_NOT_SAME" } },
+          { "id": "sy2", "type": "choice", "prompt": "What is the opposite of 'hot'?",
+            "options": [{ "id": "warm", "label": "warm" }, { "id": "cold", "label": "cold" }, { "id": "sun", "label": "sun" }], "answer": "cold",
+            "hints": ["Opposite means the reverse.", "Think of ice."], "explanation": "Cold is the opposite of hot.",
+            "misconceptions": { "warm": "TWIN_OPPOSITE_SWAP", "sun": "RELATED_NOT_SAME" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "sy3", "type": "choice", "prompt": "Swap the underlined word: 'The puppy was very TIRED.'",
+            "options": [{ "id": "sleepy", "label": "sleepy" }, { "id": "lively", "label": "lively" }, { "id": "bed", "label": "bed" }], "answer": "sleepy",
+            "hints": ["Which word keeps the same meaning?", "Try each one in the sentence."], "explanation": "'The puppy was very sleepy' means the same.",
+            "misconceptions": { "lively": "TWIN_OPPOSITE_SWAP", "bed": "RELATED_NOT_SAME" } },
+          { "id": "sy4", "type": "choice", "prompt": "What is the opposite of 'ancient'?",
+            "options": [{ "id": "old", "label": "old" }, { "id": "modern", "label": "modern" }, { "id": "castle", "label": "castle" }], "answer": "modern",
+            "hints": ["Ancient means very, very old.", "What is the reverse of very old?"], "explanation": "Ancient means very old. Modern means new, from now.",
+            "misconceptions": { "old": "TWIN_OPPOSITE_SWAP", "castle": "RELATED_NOT_SAME" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "sy5", "type": "choice", "prompt": "Which word best shows the runner was VERY fast?",
+            "options": [{ "id": "quick", "label": "quick" }, { "id": "speedy", "label": "speedy" }, { "id": "lightning", "label": "lightning-fast" }], "answer": "lightning",
+            "hints": ["All three are twins of 'fast'.", "Which one is the strongest?"], "explanation": "All three mean fast, but 'lightning-fast' is the strongest. Writers choose words carefully!" },
+          { "id": "sy6", "type": "choice", "prompt": "Which pair are opposites?",
+            "options": [{ "id": "a", "label": "shout / yell" }, { "id": "b", "label": "whisper / shout" }, { "id": "c", "label": "quiet / silent" }], "answer": "b",
+            "hints": ["Two pairs are twins.", "Which pair are a quiet sound and a loud sound?"], "explanation": "Whisper and shout are opposites. The other pairs are twins.",
+            "misconceptions": { "a": "TWIN_OPPOSITE_SWAP", "c": "TWIN_OPPOSITE_SWAP" } }
+        ]}
+      ]
+    }
+  ]
+}

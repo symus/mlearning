@@ -1,0 +1,238 @@
+{
+  "activities": [
+    {
+      "slug": "read-between-the-lines",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "reading", "topic": "Comprehension", "subtopic": "Inference",
+      "objective": "RE.COMP.INFERENCE", "title": "Read Between the Lines", "pathOrder": 1, "estimatedMinutes": 8, "isFree": true,
+      "learn": {
+        "text": "Authors don't always tell us everything. Inference means using clues in the text plus what you already know to work out what is not said directly. Always point to the evidence.",
+        "visual": { "kind": "passage", "title": "The Audition", "text": "Ines stood outside the hall door for the third time, her violin case gripped so tightly that her knuckles turned white. Inside, someone was playing the piece she had practised every evening for a month. She checked her watch, smoothed her hair, and took a long, slow breath. When the door finally opened and a voice called, \"Next!\", she didn't move for a moment. Then she lifted her chin and walked in." }
+      },
+      "misconceptions": [
+        { "code": "LITERAL_ONLY", "description": "Only accepts what is stated directly, missing implied meaning.", "remedy": "Ask: what do these actions suggest about how the character feels?" },
+        { "code": "NO_EVIDENCE", "description": "Picks an inference that sounds possible but isn't supported by the text.", "remedy": "Every inference needs a clue you can point to." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "the-big-idea",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "in1", "type": "choice", "prompt": "How is Ines feeling at the start?",
+            "options": [{ "id": "nervous", "label": "Nervous" }, { "id": "bored", "label": "Bored" }, { "id": "angry", "label": "Angry" }], "answer": "nervous",
+            "hints": ["Look at how she holds the violin case.", "Why would knuckles turn white?"], "explanation": "Gripping the case so tightly her knuckles turned white, and standing outside 'for the third time', suggest she is nervous.",
+            "misconceptions": { "bored": "NO_EVIDENCE", "angry": "NO_EVIDENCE" } },
+          { "id": "in2", "type": "choice", "prompt": "Which clue shows Ines has worked hard to prepare?",
+            "options": [{ "id": "a", "label": "She practised every evening for a month" }, { "id": "b", "label": "She checked her watch" }, { "id": "c", "label": "She smoothed her hair" }], "answer": "a",
+            "hints": ["Which clue is about practice?", "Preparation takes time."], "explanation": "Practising every evening for a month shows real effort and preparation.",
+            "misconceptions": { "b": "NO_EVIDENCE", "c": "NO_EVIDENCE" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "in3", "type": "choice", "prompt": "Why does she take 'a long, slow breath'?",
+            "options": [{ "id": "calm", "label": "To calm herself down" }, { "id": "tired", "label": "Because she ran there" }, { "id": "smell", "label": "To smell the room" }], "answer": "calm",
+            "hints": ["What do people do when they feel nervous?", "There's no mention of running."], "explanation": "People often take slow breaths to calm nerves. It fits the other clues that she is nervous.",
+            "misconceptions": { "tired": "NO_EVIDENCE", "smell": "LITERAL_ONLY" } },
+          { "id": "in4", "type": "choice", "prompt": "What is most likely happening in the hall?",
+            "options": [{ "id": "audition", "label": "People are performing to try to be chosen" }, { "id": "concert", "label": "A concert for the public" }, { "id": "lesson", "label": "A violin lesson" }], "answer": "audition",
+            "hints": ["Think about the title.", "Someone calls 'Next!'."], "explanation": "The title 'The Audition' and the call of 'Next!' show people are taking turns to be judged.",
+            "misconceptions": { "concert": "NO_EVIDENCE", "lesson": "NO_EVIDENCE" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "in5", "type": "choice", "prompt": "What does 'she lifted her chin and walked in' suggest?",
+            "options": [{ "id": "brave", "label": "She chose to be brave despite her nerves" }, { "id": "proud", "label": "She thinks she is better than everyone" }, { "id": "neck", "label": "Her neck hurt" }], "answer": "brave",
+            "hints": ["She didn't move at first. Then what changed?", "Lifting your chin can show determination."], "explanation": "After hesitating, she lifts her chin — a sign of gathering courage, not arrogance.",
+            "misconceptions": { "proud": "NO_EVIDENCE", "neck": "LITERAL_ONLY" } },
+          { "id": "in6", "type": "choice", "prompt": "Which word best describes Ines overall?",
+            "options": [{ "id": "determined", "label": "Determined" }, { "id": "careless", "label": "Careless" }, { "id": "lazy", "label": "Lazy" }], "answer": "determined",
+            "hints": ["Think about her month of practice and her final action.", "She is nervous but does it anyway."], "explanation": "She practised for a month and walked in despite her nerves: she is determined.",
+            "misconceptions": { "careless": "NO_EVIDENCE", "lazy": "NO_EVIDENCE" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "the-big-idea",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "reading", "topic": "Comprehension", "subtopic": "Main idea",
+      "objective": "RE.COMP.MAINIDEA", "title": "The Big Idea", "pathOrder": 2, "estimatedMinutes": 8,
+      "learn": {
+        "text": "The main idea is what a paragraph is mostly about. Details support it. A good test: could the main idea be a title for the whole paragraph? A detail only covers one part.",
+        "visual": { "kind": "passage", "title": "City Bees", "text": "Bees are not only found in the countryside. In many European cities, beekeepers now keep hives on rooftops, balconies and even on top of hotels. City parks, gardens and street trees provide a surprising variety of flowers. Some studies have found that city bees can produce as much honey as country bees, partly because cities often use fewer pesticides on gardens. However, experts warn that too many hives in one area can leave too little food for wild bees." }
+      },
+      "misconceptions": [
+        { "code": "DETAIL_AS_MAIN", "description": "Chooses a single detail as the main idea.", "remedy": "Does it cover the whole paragraph, or just one sentence?" },
+        { "code": "TOO_BROAD", "description": "Chooses an idea far bigger than the text (e.g. 'All about insects').", "remedy": "The main idea should match this text, not the whole topic." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "fact-or-opinion",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "mi1", "type": "choice", "prompt": "What is the paragraph mostly about?",
+            "options": [{ "id": "main", "label": "Bees can live and do well in cities" }, { "id": "hotel", "label": "Hotels have rooftops" }, { "id": "insects", "label": "All insects in Europe" }], "answer": "main",
+            "hints": ["What does the first sentence say?", "Which answer could be a title?"], "explanation": "The whole paragraph is about bees living in cities. Hotels are one detail; 'all insects' is too broad.",
+            "misconceptions": { "hotel": "DETAIL_AS_MAIN", "insects": "TOO_BROAD" } },
+          { "id": "mi2", "type": "choice", "prompt": "Which is a supporting detail?",
+            "options": [{ "id": "a", "label": "Hives are kept on rooftops and balconies" }, { "id": "b", "label": "Bees are not only found in the countryside" }, { "id": "c", "label": "Cities are big" }], "answer": "a",
+            "hints": ["A detail gives an example.", "Which one is a specific fact?"], "explanation": "Rooftop and balcony hives are an example supporting the main idea.",
+            "misconceptions": { "b": "DETAIL_AS_MAIN", "c": "TOO_BROAD" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "mi3", "type": "choice", "prompt": "According to the text, why might city bees make as much honey?",
+            "options": [{ "id": "pest", "label": "Gardens often use fewer pesticides, and there's a variety of flowers" }, { "id": "warm", "label": "Cities are warmer" }, { "id": "keepers", "label": "City beekeepers are better" }], "answer": "pest",
+            "hints": ["Find the word 'because'.", "Which reason is actually in the text?"], "explanation": "The text mentions a variety of flowers and fewer pesticides.",
+            "misconceptions": { "warm": "TOO_BROAD", "keepers": "TOO_BROAD" } },
+          { "id": "mi4", "type": "choice", "prompt": "What is the purpose of the last sentence?",
+            "options": [{ "id": "warn", "label": "To add a warning or other side" }, { "id": "repeat", "label": "To repeat the main idea" }, { "id": "end", "label": "To say bees should leave cities" }], "answer": "warn",
+            "hints": ["Look at the first word: 'However'.", "'However' signals a contrast."], "explanation": "'However' introduces a caution: too many hives can harm wild bees.",
+            "misconceptions": { "repeat": "DETAIL_AS_MAIN", "end": "TOO_BROAD" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "mi5", "type": "choice", "prompt": "Which is the best one-sentence summary?",
+            "options": [
+              { "id": "a", "label": "City beekeeping can be successful, but too many hives may harm wild bees." },
+              { "id": "b", "label": "Bees live on hotels." },
+              { "id": "c", "label": "Honey is made by bees from flowers in many places around the world." }], "answer": "a",
+            "hints": ["A summary includes the main idea and the key twist.", "Which one mentions both success and the warning?"],
+            "explanation": "Option A covers the main idea and the warning. B is a detail; C is too broad.",
+            "misconceptions": { "b": "DETAIL_AS_MAIN", "c": "TOO_BROAD" } },
+          { "id": "mi6", "type": "choice", "prompt": "Which title fits best?",
+            "options": [{ "id": "a", "label": "Buzzing Above the Streets" }, { "id": "b", "label": "How to Make Honey" }, { "id": "c", "label": "The Hotel Roof" }], "answer": "a",
+            "hints": ["The title should match the main idea.", "Where are these bees?"], "explanation": "'Buzzing Above the Streets' captures bees living in cities.",
+            "misconceptions": { "b": "TOO_BROAD", "c": "DETAIL_AS_MAIN" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "fact-or-opinion",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "reading", "topic": "Critical reading", "subtopic": "Fact and opinion",
+      "objective": "RE.CRIT.FACTOPINION", "title": "Fact or Opinion?", "pathOrder": 3, "estimatedMinutes": 6,
+      "learn": {
+        "text": "A fact can be checked and proved true or false. An opinion is what someone thinks or feels; people can disagree. Opinion clues: best, worst, beautiful, boring, should, I think. Adverts often mix both!",
+        "example": "Fact: The Vistula is the longest river in Poland. Opinion: The Vistula is the most beautiful river."
+      },
+      "misconceptions": [
+        { "code": "AGREE_MEANS_FACT", "description": "Labels an opinion as fact because they agree with it.", "remedy": "Could someone reasonably disagree? Then it's an opinion, even if you agree." },
+        { "code": "NUMBER_MEANS_FACT", "description": "Thinks any sentence with a number is a fact.", "remedy": "Look for judgement words. 'The 3 best games' is still an opinion." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "picture-words",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "fo1", "type": "choice", "prompt": "'Water freezes at 0 °C.' Fact or opinion?", "options": [{ "id": "fact", "label": "Fact" }, { "id": "opinion", "label": "Opinion" }], "answer": "fact",
+            "hints": ["Can you test it?", "Try it with a thermometer."], "explanation": "It can be tested and proved, so it's a fact." },
+          { "id": "fo2", "type": "choice", "prompt": "'Pizza is the best food in the world.' Fact or opinion?", "options": [{ "id": "fact", "label": "Fact" }, { "id": "opinion", "label": "Opinion" }], "answer": "opinion",
+            "hints": ["Look for a judgement word.", "Would everyone agree?"], "explanation": "'Best' is a judgement. Others might prefer pierogi or dosa!",
+            "misconceptions": { "fact": "AGREE_MEANS_FACT" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "fo3", "type": "choice", "prompt": "'These are the 3 most exciting films of the year.' Fact or opinion?", "options": [{ "id": "fact", "label": "Fact" }, { "id": "opinion", "label": "Opinion" }], "answer": "opinion",
+            "hints": ["Ignore the number for a moment.", "Is 'exciting' something everyone agrees on?"], "explanation": "Even with a number, 'most exciting' is a judgement, so it's an opinion.",
+            "misconceptions": { "fact": "NUMBER_MEANS_FACT" } },
+          { "id": "fo4", "type": "choice", "prompt": "Which sentence is a fact?",
+            "options": [{ "id": "a", "label": "Our school was built in 1998." }, { "id": "b", "label": "Our school has the friendliest teachers." }, { "id": "c", "label": "Everyone should love our school." }], "answer": "a",
+            "hints": ["Which could be checked in records?", "Avoid judgement words."], "explanation": "The building date can be checked. The others are opinions.",
+            "misconceptions": { "b": "AGREE_MEANS_FACT", "c": "AGREE_MEANS_FACT" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "fo5", "type": "choice", "prompt": "Advert: 'SuperCrunch has 12 g of sugar per bowl. It's the tastiest breakfast ever!' Which part is a fact?",
+            "options": [{ "id": "a", "label": "12 g of sugar per bowl" }, { "id": "b", "label": "The tastiest breakfast ever" }, { "id": "c", "label": "Both parts" }], "answer": "a",
+            "hints": ["Which part could you check on the box?", "'Tastiest' is a judgement."], "explanation": "The sugar amount can be checked. 'Tastiest ever' is an opinion designed to persuade.",
+            "misconceptions": { "b": "AGREE_MEANS_FACT", "c": "NUMBER_MEANS_FACT" } },
+          { "id": "fo6", "type": "choice", "prompt": "Why do adverts mix facts and opinions?",
+            "options": [{ "id": "a", "label": "Facts build trust, opinions persuade you to buy" }, { "id": "b", "label": "By accident" }, { "id": "c", "label": "Because opinions are always true" }], "answer": "a",
+            "hints": ["What is an advert trying to do?", "Facts make the opinions sound more believable."], "explanation": "Real facts make the advert seem trustworthy, so the opinions feel more convincing. Spotting this makes you a critical reader.",
+            "misconceptions": { "c": "AGREE_MEANS_FACT" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "picture-words",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "reading", "topic": "Vocabulary", "subtopic": "Figurative language",
+      "objective": "RE.VOCAB.FIGURATIVE", "title": "Picture Words", "pathOrder": 4, "estimatedMinutes": 7,
+      "learn": {
+        "text": "Writers paint pictures with words. A simile compares using 'like' or 'as' (as quiet as a mouse). A metaphor says something IS something else (the classroom was a zoo). Personification gives human actions to things (the wind whispered).",
+        "example": "Simile: Her smile was like sunshine. Metaphor: Her smile was sunshine. Personification: The sun smiled down."
+      },
+      "misconceptions": [
+        { "code": "LITERAL_READING", "description": "Takes figurative language literally.", "remedy": "Ask: is this really possible? If not, what picture is the writer creating?" },
+        { "code": "SIMILE_METAPHOR_SWAP", "description": "Mixes up similes and metaphors.", "remedy": "Look for 'like' or 'as'. If it's there, it's a simile." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "word-builders",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "fg1", "type": "choice", "prompt": "'The baby slept like a log.' What is this?",
+            "options": [{ "id": "simile", "label": "Simile" }, { "id": "metaphor", "label": "Metaphor" }, { "id": "person", "label": "Personification" }], "answer": "simile",
+            "hints": ["Look for 'like' or 'as'.", "It compares the baby to a log."], "explanation": "It uses 'like' to compare, so it's a simile.",
+            "misconceptions": { "metaphor": "SIMILE_METAPHOR_SWAP" } },
+          { "id": "fg2", "type": "choice", "prompt": "'The old door groaned as it opened.' What is this?",
+            "options": [{ "id": "simile", "label": "Simile" }, { "id": "metaphor", "label": "Metaphor" }, { "id": "person", "label": "Personification" }], "answer": "person",
+            "hints": ["Can a door really groan?", "Groaning is something people do."], "explanation": "The door is given a human action (groaning), so it's personification.",
+            "misconceptions": { "simile": "SIMILE_METAPHOR_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "fg3", "type": "choice", "prompt": "'Dad is a bear in the morning.' What does it mean?",
+            "options": [{ "id": "grumpy", "label": "Dad is grumpy in the morning" }, { "id": "furry", "label": "Dad turns into a bear" }, { "id": "hungry", "label": "Dad eats honey" }], "answer": "grumpy",
+            "hints": ["It's a metaphor, not real.", "What are bears like when woken up?"], "explanation": "It's a metaphor: Dad acts grumpy, like a woken bear.",
+            "misconceptions": { "furry": "LITERAL_READING", "hungry": "LITERAL_READING" } },
+          { "id": "fg4", "type": "choice", "prompt": "Which is a metaphor?",
+            "options": [{ "id": "a", "label": "The snow was a white blanket." }, { "id": "b", "label": "The snow was like a white blanket." }, { "id": "c", "label": "The snow fell all night." }], "answer": "a",
+            "hints": ["A metaphor says something IS something else.", "No 'like' or 'as'."], "explanation": "'The snow was a white blanket' says the snow IS a blanket. B is a simile; C is literal.",
+            "misconceptions": { "b": "SIMILE_METAPHOR_SWAP", "c": "LITERAL_READING" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "fg5", "type": "choice", "prompt": "'Time crawled during the long maths test.' What effect does 'crawled' create?",
+            "options": [{ "id": "slow", "label": "Time felt very slow" }, { "id": "baby", "label": "There was a baby in the room" }, { "id": "fast", "label": "The test went quickly" }], "answer": "slow",
+            "hints": ["How fast does something crawl?", "This is personification of time."], "explanation": "Crawling is slow, so the writer shows that time seemed to pass very slowly.",
+            "misconceptions": { "baby": "LITERAL_READING", "fast": "LITERAL_READING" } },
+          { "id": "fg6", "type": "choice", "prompt": "Which sentence best shows a nervous character using a simile?",
+            "options": [{ "id": "a", "label": "Her heart raced like a galloping horse." }, { "id": "b", "label": "She was nervous." }, { "id": "c", "label": "Her heart was a drum." }], "answer": "a",
+            "hints": ["It must be a simile: like or as.", "It should show nerves, not just tell."], "explanation": "A uses 'like' and shows nerves through a vivid image. C is a metaphor; B just tells.",
+            "misconceptions": { "c": "SIMILE_METAPHOR_SWAP", "b": "LITERAL_READING" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "word-builders",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "reading", "topic": "Vocabulary", "subtopic": "Prefixes and suffixes",
+      "objective": "RE.VOCAB.AFFIXES", "title": "Word Builders", "pathOrder": 5, "estimatedMinutes": 6,
+      "learn": {
+        "text": "A prefix goes at the start of a word and changes its meaning: un- (not), re- (again), pre- (before), mis- (wrongly). A suffix goes at the end: -ful (full of), -less (without), -able (can be). Knowing these unlocks thousands of words.",
+        "example": "un + believ(e) + able = unbelievable: cannot be believed"
+      },
+      "misconceptions": [
+        { "code": "WRONG_AFFIX_MEANING", "description": "Applies the wrong meaning to a prefix or suffix.", "remedy": "Learn the core meanings: un = not, re = again, less = without." },
+        { "code": "FULL_LESS_SWAP", "description": "Mixes up -ful and -less.", "remedy": "-ful means full of; -less means without. They are often opposites." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": null,
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "wb1", "type": "choice", "prompt": "What does 'rebuild' mean?",
+            "options": [{ "id": "again", "label": "Build again" }, { "id": "not", "label": "Not build" }, { "id": "before", "label": "Build before" }], "answer": "again",
+            "hints": ["re- means...", "Think of 'replay'."], "explanation": "re- means again, so rebuild means build again.",
+            "misconceptions": { "not": "WRONG_AFFIX_MEANING", "before": "WRONG_AFFIX_MEANING" } },
+          { "id": "wb2", "type": "choice", "prompt": "Which prefix makes 'happy' mean 'not happy'?",
+            "options": [{ "id": "un", "label": "un-" }, { "id": "re", "label": "re-" }, { "id": "pre", "label": "pre-" }], "answer": "un",
+            "hints": ["Which prefix means 'not'?", "un... happy"], "explanation": "un- means not: unhappy.",
+            "misconceptions": { "re": "WRONG_AFFIX_MEANING", "pre": "WRONG_AFFIX_MEANING" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "wb3", "type": "choice", "prompt": "A 'fearless' explorer is...",
+            "options": [{ "id": "brave", "label": "without fear" }, { "id": "scared", "label": "full of fear" }, { "id": "again", "label": "afraid again" }], "answer": "brave",
+            "hints": ["-less means without.", "Fear + less"], "explanation": "Fearless means without fear: very brave.",
+            "misconceptions": { "scared": "FULL_LESS_SWAP", "again": "WRONG_AFFIX_MEANING" } },
+          { "id": "wb4", "type": "choice", "prompt": "What does 'misread' mean?",
+            "options": [{ "id": "wrong", "label": "Read wrongly" }, { "id": "again", "label": "Read again" }, { "id": "miss", "label": "Not read at all" }], "answer": "wrong",
+            "hints": ["mis- means wrongly.", "Think of 'mistake'."], "explanation": "mis- means wrongly, so misread means to read something wrongly.",
+            "misconceptions": { "again": "WRONG_AFFIX_MEANING", "miss": "WRONG_AFFIX_MEANING" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "wb5", "type": "order", "prompt": "Build a word meaning 'cannot be predicted'.",
+            "tiles": [{ "id": "able", "label": "able" }, { "id": "un", "label": "un" }, { "id": "predict", "label": "predict" }], "answer": ["un", "predict", "able"],
+            "hints": ["Start with the 'not' prefix.", "un + predict + able"], "explanation": "un (not) + predict + able (can be) = unpredictable." },
+          { "id": "wb6", "type": "choice", "prompt": "'The medieval town was pre-industrial.' What does pre-industrial mean?",
+            "options": [{ "id": "before", "label": "Before factories and industry" }, { "id": "after", "label": "After industry" }, { "id": "full", "label": "Full of factories" }], "answer": "before",
+            "hints": ["pre- means before.", "Think of 'preview'."], "explanation": "pre- means before, so pre-industrial means before industry developed.",
+            "misconceptions": { "after": "WRONG_AFFIX_MEANING", "full": "FULL_LESS_SWAP" } }
+        ]}
+      ]
+    }
+  ]
+}

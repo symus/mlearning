@@ -1,0 +1,270 @@
+{
+  "activities": [
+    {
+      "slug": "equivalent-fractions",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "maths", "topic": "Fractions", "subtopic": "Equivalent fractions",
+      "objective": "MA.FRAC.EQUIV", "title": "Same Amount, Different Names", "pathOrder": 1, "estimatedMinutes": 7, "isFree": true,
+      "learn": {
+        "text": "Equivalent fractions show the same amount. If you cut each piece of 1/2 into 2 smaller pieces, you get 2/4 — the same amount of the bar. Multiply (or divide) the top and bottom by the same number to find equivalent fractions.",
+        "visual": { "kind": "fractionBar", "parts": 4, "shaded": 2 },
+        "example": "1/2 = 2/4 = 3/6 = 4/8 (×2, ×3, ×4 on top and bottom)"
+      },
+      "misconceptions": [
+        { "code": "ADD_SAME", "description": "Adds the same number to top and bottom (1/2 → 2/3).", "remedy": "Adding changes the amount. Multiply top and bottom by the same number instead." },
+        { "code": "ONLY_ONE_PART", "description": "Changes only the numerator or only the denominator.", "remedy": "Whatever you do to the bottom, do to the top." },
+        { "code": "BIGGER_NUMBERS_BIGGER", "description": "Thinks a fraction with bigger numbers is a bigger amount.", "remedy": "Compare the shaded part of the bars: same shading = same amount." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "comparing-fractions",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "ef1", "type": "choice", "prompt": "The bar shows 2/4. Which fraction is the same amount?", "visual": { "kind": "fractionBar", "parts": 4, "shaded": 2 },
+            "options": [{ "id": "12", "label": "1/2" }, { "id": "13", "label": "1/3" }, { "id": "24", "label": "2/3" }], "answer": "12",
+            "hints": ["How much of the bar is shaded?", "Half the bar is shaded."], "explanation": "2 out of 4 equal parts is half the bar: 2/4 = 1/2.",
+            "misconceptions": { "13": "BIGGER_NUMBERS_BIGGER", "24": "ADD_SAME" } },
+          { "id": "ef2", "type": "number", "prompt": "1/3 = ?/6", "visual": { "kind": "fractionBar", "parts": 6, "shaded": 2 }, "answer": 2,
+            "hints": ["3 × 2 = 6 on the bottom.", "Do the same to the top: 1 × 2."], "explanation": "Multiply top and bottom by 2: 1/3 = 2/6.",
+            "misconceptions": { "4": "ADD_SAME", "1": "ONLY_ONE_PART" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "ef3", "type": "number", "prompt": "3/4 = ?/12", "answer": 9,
+            "hints": ["What do you multiply 4 by to get 12?", "4 × 3 = 12, so multiply the top by 3."], "explanation": "4 × 3 = 12 and 3 × 3 = 9, so 3/4 = 9/12.",
+            "misconceptions": { "11": "ADD_SAME", "3": "ONLY_ONE_PART" } },
+          { "id": "ef4", "type": "choice", "prompt": "Which fraction is NOT equivalent to 1/2?",
+            "options": [{ "id": "a", "label": "5/10" }, { "id": "b", "label": "4/8" }, { "id": "c", "label": "3/5" }, { "id": "d", "label": "6/12" }], "answer": "c",
+            "hints": ["For a half, the top is half of the bottom.", "Is 3 half of 5?"], "explanation": "3/5 is more than a half (half of 5 is 2.5). The others all equal 1/2.",
+            "misconceptions": { "a": "BIGGER_NUMBERS_BIGGER", "b": "BIGGER_NUMBERS_BIGGER", "d": "BIGGER_NUMBERS_BIGGER" } },
+          { "id": "ef5", "type": "number", "prompt": "Simplify 8/10 = 4/?", "answer": 5,
+            "hints": ["8 ÷ 2 = 4.", "Divide the bottom by 2 as well."], "explanation": "Divide top and bottom by 2: 8/10 = 4/5.",
+            "misconceptions": { "6": "ADD_SAME", "10": "ONLY_ONE_PART" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "ef6", "type": "number", "prompt": "Write 12/18 in its simplest form: 2/?", "answer": 3,
+            "hints": ["Find the biggest number that divides 12 and 18.", "Both are in the 6 times table."], "explanation": "Divide top and bottom by 6: 12/18 = 2/3.",
+            "misconceptions": { "8": "ADD_SAME", "9": "ONLY_ONE_PART" } },
+          { "id": "ef7", "type": "choice", "prompt": "Nina ate 2/8 of a pizza. Oskar ate 1/4 of the same-sized pizza. Who ate more?",
+            "options": [{ "id": "same", "label": "They ate the same" }, { "id": "nina", "label": "Nina" }, { "id": "oskar", "label": "Oskar" }], "answer": "same",
+            "hints": ["Make the denominators the same.", "1/4 = ?/8"], "explanation": "1/4 = 2/8, so they ate exactly the same amount.",
+            "misconceptions": { "nina": "BIGGER_NUMBERS_BIGGER" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "comparing-fractions",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "maths", "topic": "Fractions", "subtopic": "Comparing fractions",
+      "objective": "MA.FRAC.COMPARE", "title": "Bigger Piece, Smaller Piece", "pathOrder": 2, "estimatedMinutes": 7,
+      "learn": {
+        "text": "With the same denominator, compare the numerators: 5/8 > 3/8. With the same numerator, the smaller denominator wins, because the whole is cut into fewer, bigger pieces: 1/3 > 1/5.",
+        "visual": { "kind": "fractionBar", "parts": 3, "shaded": 1 },
+        "example": "1/3 of a cake is bigger than 1/5 of the same cake."
+      },
+      "misconceptions": [
+        { "code": "BIGGER_DENOMINATOR_BIGGER", "description": "Thinks 1/8 > 1/4 because 8 > 4.", "remedy": "More pieces means each piece is smaller. Picture sharing a cake with 8 people versus 4." },
+        { "code": "IGNORE_DENOMINATOR", "description": "Compares numerators only, even when denominators differ.", "remedy": "Change to a common denominator before comparing numerators." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "decimal-detectives",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "cf1", "type": "choice", "prompt": "Which is bigger?", "options": [{ "id": "a", "label": "5/8" }, { "id": "b", "label": "3/8" }], "answer": "a",
+            "hints": ["The pieces are the same size (eighths).", "Which has more pieces?"], "explanation": "Both are eighths. 5 eighths is more than 3 eighths." },
+          { "id": "cf2", "type": "choice", "prompt": "Which is bigger?", "options": [{ "id": "a", "label": "1/4" }, { "id": "b", "label": "1/8" }], "answer": "a",
+            "hints": ["Imagine one pizza cut into 4 and another into 8.", "Which slice is bigger?"], "explanation": "Cutting into 4 makes bigger pieces than cutting into 8. 1/4 > 1/8.",
+            "misconceptions": { "b": "BIGGER_DENOMINATOR_BIGGER" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "cf3", "type": "order", "prompt": "Order from smallest to largest.",
+            "tiles": [{ "id": "12", "label": "1/2" }, { "id": "110", "label": "1/10" }, { "id": "15", "label": "1/5" }], "answer": ["110", "15", "12"],
+            "hints": ["All have 1 on top.", "The bigger the bottom number, the smaller the piece."], "explanation": "1/10 < 1/5 < 1/2. Tenths are the smallest pieces." },
+          { "id": "cf4", "type": "choice", "prompt": "Which is bigger: 2/3 or 3/6?",
+            "options": [{ "id": "a", "label": "2/3" }, { "id": "b", "label": "3/6" }, { "id": "c", "label": "They are equal" }], "answer": "a",
+            "hints": ["Change 2/3 into sixths.", "2/3 = 4/6"], "explanation": "2/3 = 4/6, and 4/6 > 3/6.",
+            "misconceptions": { "b": "IGNORE_DENOMINATOR", "c": "IGNORE_DENOMINATOR" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "cf5", "type": "choice", "prompt": "Which is closest to 1 whole?",
+            "options": [{ "id": "a", "label": "7/8" }, { "id": "b", "label": "3/4" }, { "id": "c", "label": "5/6" }], "answer": "a",
+            "hints": ["How far is each from 1?", "7/8 is 1/8 away; 3/4 is 1/4 away; 5/6 is 1/6 away."], "explanation": "7/8 is only 1/8 away from 1, and 1/8 is the smallest gap.",
+            "misconceptions": { "b": "IGNORE_DENOMINATOR", "c": "BIGGER_DENOMINATOR_BIGGER" } },
+          { "id": "cf6", "type": "choice", "prompt": "Jas ran 3/5 of a track. Ewa ran 7/10 of it. Who ran further?",
+            "options": [{ "id": "ewa", "label": "Ewa" }, { "id": "jas", "label": "Jas" }, { "id": "same", "label": "Same distance" }], "answer": "ewa",
+            "hints": ["Change fifths into tenths.", "3/5 = 6/10"], "explanation": "3/5 = 6/10, and 7/10 > 6/10, so Ewa ran further.",
+            "misconceptions": { "jas": "BIGGER_DENOMINATOR_BIGGER", "same": "IGNORE_DENOMINATOR" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "decimal-detectives",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "maths", "topic": "Decimals", "subtopic": "Place value",
+      "objective": "MA.DEC.PV", "title": "Decimal Detectives", "pathOrder": 3, "estimatedMinutes": 7,
+      "learn": {
+        "text": "The decimal point separates whole numbers from parts. The first digit after the point is tenths, the second is hundredths. 0.7 = 7/10. 0.25 = 25/100. 0.5 is bigger than 0.45, because 5 tenths is more than 4 tenths.",
+        "visual": { "kind": "fractionBar", "parts": 10, "shaded": 7 },
+        "example": "3.42 = 3 ones + 4 tenths + 2 hundredths"
+      },
+      "misconceptions": [
+        { "code": "LONGER_IS_BIGGER", "description": "Thinks a decimal with more digits is bigger (0.45 > 0.5).", "remedy": "Compare tenths first. Write 0.5 as 0.50 to compare fairly." },
+        { "code": "PLACE_CONFUSION", "description": "Mixes up tenths and hundredths.", "remedy": "Tenths come straight after the point, hundredths next." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "percent-power",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "dc1", "type": "number", "prompt": "Write 7/10 as a decimal.", "visual": { "kind": "fractionBar", "parts": 10, "shaded": 7 }, "answer": 0.7,
+            "hints": ["Tenths go straight after the point.", "0.?"], "explanation": "7 tenths = 0.7.",
+            "misconceptions": { "0.07": "PLACE_CONFUSION", "7": "PLACE_CONFUSION" } },
+          { "id": "dc2", "type": "choice", "prompt": "What is the value of the 4 in 2.48?",
+            "options": [{ "id": "t", "label": "4 tenths" }, { "id": "h", "label": "4 hundredths" }, { "id": "o", "label": "4 ones" }], "answer": "t",
+            "hints": ["Which place comes straight after the point?", "First after the point is tenths."], "explanation": "The 4 is straight after the point, so it means 4 tenths (0.4).",
+            "misconceptions": { "h": "PLACE_CONFUSION", "o": "PLACE_CONFUSION" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "dc3", "type": "choice", "prompt": "Which is bigger?", "options": [{ "id": "a", "label": "0.5" }, { "id": "b", "label": "0.45" }], "answer": "a",
+            "hints": ["Compare the tenths digit first.", "0.5 = 0.50"], "explanation": "0.50 > 0.45 because 5 tenths > 4 tenths.",
+            "misconceptions": { "b": "LONGER_IS_BIGGER" } },
+          { "id": "dc4", "type": "number", "prompt": "Write 35/100 as a decimal.", "answer": 0.35,
+            "hints": ["Hundredths need two digits after the point.", "0.??"], "explanation": "35 hundredths = 0.35.",
+            "misconceptions": { "3.5": "PLACE_CONFUSION", "0.035": "PLACE_CONFUSION" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "dc5", "type": "order", "prompt": "Order from smallest to largest.",
+            "tiles": [{ "id": "a", "label": "0.6" }, { "id": "b", "label": "0.09" }, { "id": "c", "label": "0.35" }, { "id": "d", "label": "0.351" }],
+            "answer": ["b", "c", "d", "a"], "hints": ["Compare tenths first: 0, 3, 3, 6.", "0.35 vs 0.351: add a zero to compare."],
+            "explanation": "0.09 < 0.35 < 0.351 < 0.6. Length doesn't decide size; place value does." },
+          { "id": "dc6", "type": "number", "prompt": "A runner's time is 12.4 seconds. The next runner is 0.15 seconds slower. What is their time?", "answer": 12.55,
+            "hints": ["12.4 = 12.40", "12.40 + 0.15"], "explanation": "12.40 + 0.15 = 12.55 seconds.",
+            "misconceptions": { "12.19": "PLACE_CONFUSION", "13.9": "PLACE_CONFUSION" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "percent-power",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "maths", "topic": "Percentages", "subtopic": "Percent as parts of 100",
+      "objective": "MA.PCT.BASICS", "title": "Percent Power", "pathOrder": 4, "estimatedMinutes": 7,
+      "learn": {
+        "text": "Per cent means 'out of 100'. 50% = 50/100 = 1/2. 25% = 1/4. 10% = 1/10. To find 10% of an amount, divide by 10. Then build others: 20% is double 10%; 5% is half of 10%.",
+        "visual": { "kind": "grid", "rows": 10, "cols": 10 },
+        "example": "10% of 60 = 6, so 30% of 60 = 18"
+      },
+      "misconceptions": [
+        { "code": "PERCENT_AS_NUMBER", "description": "Treats 'x% of y' as just x (e.g. 25% of 80 = 25).", "remedy": "A percentage is a part of the amount. 25% of 80 means one quarter of 80." },
+        { "code": "DIVIDE_BY_PERCENT", "description": "Divides by the percentage number (20% of 50 → 50 ÷ 20).", "remedy": "Find 10% first by dividing by 10, then scale up." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "area-and-perimeter",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "pc1", "type": "choice", "prompt": "50% is the same as...", "options": [{ "id": "a", "label": "1/2" }, { "id": "b", "label": "1/5" }, { "id": "c", "label": "5/10 of 50" }], "answer": "a",
+            "hints": ["50 out of 100.", "Simplify 50/100."], "explanation": "50% = 50/100 = 1/2.",
+            "misconceptions": { "b": "PERCENT_AS_NUMBER", "c": "PERCENT_AS_NUMBER" } },
+          { "id": "pc2", "type": "number", "prompt": "10% of 70 = ?", "answer": 7,
+            "hints": ["10% = 1/10.", "70 ÷ 10"], "explanation": "10% means one tenth: 70 ÷ 10 = 7.",
+            "misconceptions": { "10": "PERCENT_AS_NUMBER", "700": "DIVIDE_BY_PERCENT" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "pc3", "type": "number", "prompt": "25% of 80 = ?", "answer": 20,
+            "hints": ["25% = 1/4.", "Halve 80, then halve again."], "explanation": "25% is a quarter. 80 ÷ 4 = 20.",
+            "misconceptions": { "25": "PERCENT_AS_NUMBER", "3.2": "DIVIDE_BY_PERCENT" } },
+          { "id": "pc4", "type": "number", "prompt": "30% of 60 = ?", "answer": 18,
+            "hints": ["First find 10% of 60.", "10% = 6, so 30% = 3 × 6."], "explanation": "10% of 60 = 6, and 30% = 3 × 6 = 18.",
+            "misconceptions": { "30": "PERCENT_AS_NUMBER", "2": "DIVIDE_BY_PERCENT" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "pc5", "type": "number", "prompt": "A class of 30 voted. 40% chose football. How many pupils chose football?", "answer": 12,
+            "hints": ["10% of 30 = 3.", "40% = 4 × 10%"], "explanation": "10% of 30 = 3, so 40% = 4 × 3 = 12 pupils.",
+            "misconceptions": { "40": "PERCENT_AS_NUMBER", "0.75": "DIVIDE_BY_PERCENT" } },
+          { "id": "pc6", "type": "number", "prompt": "15% of 200 = ?", "answer": 30,
+            "hints": ["10% of 200 = 20. 5% is half of that.", "20 + 10"], "explanation": "10% = 20 and 5% = 10, so 15% = 30.",
+            "misconceptions": { "15": "PERCENT_AS_NUMBER" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "area-and-perimeter",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "maths", "topic": "Measurement", "subtopic": "Area and perimeter",
+      "objective": "MA.MEAS.AREA", "title": "Around and Inside", "pathOrder": 5, "estimatedMinutes": 7, "isFree": true,
+      "learn": {
+        "text": "Perimeter is the distance all the way AROUND a shape: add all the sides. Area is the space INSIDE: for a rectangle, multiply length × width. A 4 cm by 3 cm rectangle has perimeter 14 cm and area 12 cm².",
+        "visual": { "kind": "grid", "rows": 3, "cols": 4, "unit": "cm" },
+        "example": "Perimeter = 4 + 3 + 4 + 3 = 14 cm. Area = 4 × 3 = 12 cm²."
+      },
+      "misconceptions": [
+        { "code": "AREA_PERIMETER_SWAP", "description": "Calculates area when asked for perimeter or the reverse.", "remedy": "Perimeter = around (a fence). Area = inside (a carpet)." },
+        { "code": "TWO_SIDES_ONLY", "description": "Adds only two sides for perimeter.", "remedy": "A rectangle has 4 sides. Add length + width, then double it." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": "factor-finders",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "ap1", "type": "number", "prompt": "Count the squares. What is the area?", "visual": { "kind": "grid", "rows": 2, "cols": 5, "unit": "cm" }, "unit": "cm²", "answer": 10,
+            "hints": ["Count the squares in one row.", "2 rows of 5."], "explanation": "2 rows of 5 squares = 10 squares, so the area is 10 cm².",
+            "misconceptions": { "14": "AREA_PERIMETER_SWAP", "7": "TWO_SIDES_ONLY" } },
+          { "id": "ap2", "type": "number", "prompt": "A square has sides of 5 cm. What is its perimeter?", "unit": "cm", "answer": 20,
+            "hints": ["A square has 4 equal sides.", "5 + 5 + 5 + 5"], "explanation": "4 × 5 = 20 cm.",
+            "misconceptions": { "25": "AREA_PERIMETER_SWAP", "10": "TWO_SIDES_ONLY" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "ap3", "type": "number", "prompt": "A rectangle is 7 m long and 4 m wide. What is its area?", "unit": "m²", "answer": 28,
+            "hints": ["Area = length × width.", "7 × 4"], "explanation": "7 × 4 = 28 m².",
+            "misconceptions": { "22": "AREA_PERIMETER_SWAP", "11": "TWO_SIDES_ONLY" } },
+          { "id": "ap4", "type": "number", "prompt": "The same 7 m × 4 m rectangle needs a fence around it. How long is the fence?", "unit": "m", "answer": 22,
+            "hints": ["Fence = perimeter.", "(7 + 4) × 2"], "explanation": "7 + 4 + 7 + 4 = 22 m.",
+            "misconceptions": { "28": "AREA_PERIMETER_SWAP", "11": "TWO_SIDES_ONLY" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "ap5", "type": "number", "prompt": "A rectangle has an area of 36 cm² and a length of 9 cm. How wide is it?", "unit": "cm", "answer": 4,
+            "hints": ["9 × ? = 36", "Divide the area by the length."], "explanation": "36 ÷ 9 = 4 cm.",
+            "misconceptions": { "27": "AREA_PERIMETER_SWAP", "9": "TWO_SIDES_ONLY" } },
+          { "id": "ap6", "type": "choice", "prompt": "Two rectangles: A is 6 × 2, B is 4 × 3. Which is true?",
+            "options": [{ "id": "a", "label": "Same area, different perimeters" }, { "id": "b", "label": "Same perimeter, different areas" }, { "id": "c", "label": "Same area and same perimeter" }], "answer": "a",
+            "hints": ["Work out both areas.", "Then work out both perimeters: (6+2)×2 and (4+3)×2."],
+            "explanation": "Both areas are 12. Perimeters are 16 and 14. Shapes with the same area can have different perimeters!",
+            "misconceptions": { "b": "AREA_PERIMETER_SWAP", "c": "TWO_SIDES_ONLY" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "factor-finders",
+      "ageBand": "FUTURE_INNOVATORS", "subject": "maths", "topic": "Number", "subtopic": "Factors and multiples",
+      "objective": "MA.MUL.FACTORS", "title": "Factor Finders", "pathOrder": 6, "estimatedMinutes": 7,
+      "learn": {
+        "text": "Factors are numbers that divide exactly into a number. Factors of 12: 1, 2, 3, 4, 6, 12 (they come in pairs: 1×12, 2×6, 3×4). Multiples are in a number's times table: multiples of 4 are 4, 8, 12... A prime number has exactly two factors: 1 and itself.",
+        "visual": { "kind": "array", "rows": 3, "cols": 4 },
+        "example": "7 is prime (1 × 7 only). 9 is not prime (1 × 9 and 3 × 3)."
+      },
+      "misconceptions": [
+        { "code": "FACTOR_MULTIPLE_SWAP", "description": "Mixes up factors and multiples.", "remedy": "Factors fit INTO the number (smaller or equal). Multiples are the times table (equal or bigger)." },
+        { "code": "ONE_IS_PRIME", "description": "Thinks 1 is a prime number.", "remedy": "A prime has exactly two different factors. 1 has only one factor." },
+        { "code": "ODD_IS_PRIME", "description": "Thinks all odd numbers are prime (e.g. 9, 15).", "remedy": "Check for factors other than 1 and itself: 9 = 3 × 3." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 6, "atLevel": 2 },
+      "followUp": null,
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "fa1", "type": "choice", "prompt": "Which is a factor of 12?", "options": [{ "id": "5", "label": "5" }, { "id": "6", "label": "6" }, { "id": "24", "label": "24" }], "answer": "6",
+            "hints": ["Which divides 12 exactly?", "2 × 6 = 12"], "explanation": "12 ÷ 6 = 2 exactly, so 6 is a factor of 12.",
+            "misconceptions": { "24": "FACTOR_MULTIPLE_SWAP" } },
+          { "id": "fa2", "type": "choice", "prompt": "Which is a multiple of 5?", "options": [{ "id": "35", "label": "35" }, { "id": "52", "label": "52" }, { "id": "1", "label": "1" }], "answer": "35",
+            "hints": ["Multiples of 5 end in 0 or 5.", "5 × 7"], "explanation": "35 = 5 × 7, so it's a multiple of 5.",
+            "misconceptions": { "1": "FACTOR_MULTIPLE_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "fa3", "type": "number", "prompt": "How many factors does 18 have?", "answer": 6,
+            "hints": ["Find factor pairs: 1 × 18, 2 × 9...", "Is 3 a factor? 4? 5?"], "explanation": "1, 2, 3, 6, 9, 18 — six factors (pairs 1×18, 2×9, 3×6).",
+            "misconceptions": { "4": "FACTOR_MULTIPLE_SWAP", "5": "FACTOR_MULTIPLE_SWAP" } },
+          { "id": "fa4", "type": "choice", "prompt": "Which number is prime?", "options": [{ "id": "9", "label": "9" }, { "id": "1", "label": "1" }, { "id": "13", "label": "13" }, { "id": "21", "label": "21" }], "answer": "13",
+            "hints": ["A prime has exactly two factors.", "Can 13 be split into equal rows (other than 1 row)?"], "explanation": "13 has only the factors 1 and 13. 9 = 3 × 3, 21 = 3 × 7, and 1 has just one factor.",
+            "misconceptions": { "9": "ODD_IS_PRIME", "21": "ODD_IS_PRIME", "1": "ONE_IS_PRIME" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "fa5", "type": "number", "prompt": "Buses leave every 4 minutes and trams every 6 minutes. Both leave at 9:00. After how many minutes do they next leave together?", "answer": 12,
+            "hints": ["List multiples of 4 and of 6.", "Find the first number in both lists."], "explanation": "Multiples of 4: 4, 8, 12... Multiples of 6: 6, 12... The first common multiple is 12.",
+            "misconceptions": { "24": "FACTOR_MULTIPLE_SWAP", "2": "FACTOR_MULTIPLE_SWAP", "10": "FACTOR_MULTIPLE_SWAP" } },
+          { "id": "fa6", "type": "number", "prompt": "What is the largest number that is a factor of both 24 and 36?", "answer": 12,
+            "hints": ["List the factors of each.", "24 = 2 × 12 and 36 = 3 × 12"], "explanation": "Common factors are 1, 2, 3, 4, 6, 12. The largest is 12.",
+            "misconceptions": { "6": "FACTOR_MULTIPLE_SWAP", "72": "FACTOR_MULTIPLE_SWAP" } }
+        ]}
+      ]
+    }
+  ]
+}

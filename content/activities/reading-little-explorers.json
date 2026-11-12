@@ -1,0 +1,290 @@
+{
+  "activities": [
+    {
+      "slug": "sounds-s-a-t-p",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.SATP", "title": "Sound Seeds: s a t p", "pathOrder": 1, "estimatedMinutes": 4, "isFree": true,
+      "learn": {
+        "text": "Letters make sounds. s says ssss like a snake. a says a like in apple. t says t like a ticking clock. p says p like popping bubbles.",
+        "say": "Letters make sounds. S says sss, like a snake. A says a, like apple. T says t, like a tick. P says p, like pop!",
+        "visual": { "kind": "bigText", "text": "s  a  t  p" }
+      },
+      "misconceptions": [
+        { "code": "LETTER_NAME", "description": "Uses the letter name (e.g. 'ess') instead of the sound ('sss').", "remedy": "We say the sound, not the name: s is 'sss', like a snake." },
+        { "code": "SIMILAR_SOUND", "description": "Confuses sounds that are made in a similar way (e.g. p and b, t and d).", "remedy": "Put your hand in front of your mouth. p makes a little puff of air." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "sounds-i-n-m-d",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "snake", "type": "choice", "prompt": "Snake starts with sss. Which letter says sss?", "say": "Snake. Ssssnake. Which letter says sss?", "visual": { "kind": "objects", "emoji": "🐍", "count": 1 },
+            "options": [{ "id": "s", "label": "s" }, { "id": "t", "label": "t" }, { "id": "p", "label": "p" }], "answer": "s",
+            "hints": ["Listen: sss-nake.", "It looks like a wiggly snake!"], "explanation": "s says sss, like the start of snake.",
+            "misconceptions": { "t": "SIMILAR_SOUND", "p": "SIMILAR_SOUND" } },
+          { "id": "apple", "type": "choice", "prompt": "Which letter does apple start with?", "say": "Apple. A, a, apple. Which letter?", "visual": { "kind": "objects", "emoji": "🍎", "count": 1 },
+            "options": [{ "id": "p", "label": "p" }, { "id": "a", "label": "a" }, { "id": "s", "label": "s" }], "answer": "a",
+            "hints": ["Say it slowly: a-pple.", "The first sound is a."], "explanation": "Apple starts with the a sound.",
+            "misconceptions": { "p": "LETTER_NAME", "s": "SIMILAR_SOUND" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "tiger", "type": "choice", "prompt": "Which letter does tiger start with?", "say": "Tiger. T, t, tiger.", "visual": { "kind": "objects", "emoji": "🐯", "count": 1 },
+            "options": [{ "id": "t", "label": "t" }, { "id": "p", "label": "p" }, { "id": "a", "label": "a" }], "answer": "t",
+            "hints": ["Listen to the first sound: t-iger.", "It sounds like a clock: t, t, t."], "explanation": "Tiger starts with t.",
+            "misconceptions": { "p": "SIMILAR_SOUND", "a": "LETTER_NAME" } },
+          { "id": "pig", "type": "choice", "prompt": "Which letter does pig start with?", "say": "Pig. P, p, pig.", "visual": { "kind": "objects", "emoji": "🐷", "count": 1 },
+            "options": [{ "id": "s", "label": "s" }, { "id": "t", "label": "t" }, { "id": "p", "label": "p" }], "answer": "p",
+            "hints": ["Feel the little puff of air: p.", "p-ig"], "explanation": "Pig starts with p. Feel the puff of air!",
+            "misconceptions": { "t": "SIMILAR_SOUND", "s": "LETTER_NAME" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "pick-sun", "type": "choice", "prompt": "Which picture starts with s?", "say": "Which picture starts with sss?",
+            "options": [{ "id": "sun", "label": "sun", "emoji": "☀️" }, { "id": "pan", "label": "pan", "emoji": "🍳" }, { "id": "tap", "label": "tap", "emoji": "🚰" }], "answer": "sun",
+            "hints": ["Say each word slowly.", "sss-un"], "explanation": "Sun starts with sss.",
+            "misconceptions": { "pan": "SIMILAR_SOUND", "tap": "SIMILAR_SOUND" } },
+          { "id": "pick-tent", "type": "choice", "prompt": "Which picture starts with t?", "say": "Which picture starts with t?",
+            "options": [{ "id": "ant", "label": "ant", "emoji": "🐜" }, { "id": "tent", "label": "tent", "emoji": "⛺" }, { "id": "pear", "label": "pear", "emoji": "🍐" }], "answer": "tent",
+            "hints": ["Ant ends with t, but how does it start?", "t-ent"], "explanation": "Tent starts with t. Ant has a t sound at the end, not the start.",
+            "misconceptions": { "ant": "SIMILAR_SOUND", "pear": "SIMILAR_SOUND" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "sounds-i-n-m-d",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.INMD", "title": "Sound Seeds: i n m d", "pathOrder": 2, "estimatedMinutes": 4,
+      "learn": {
+        "text": "Four new sounds! i like in insect. n like a buzzing nnn. m like mmm, yummy! d like a drum: d, d, d.",
+        "say": "Four new sounds! I, like insect. Nnn, like net. Mmm, like yummy. D, like drum.",
+        "visual": { "kind": "bigText", "text": "i  n  m  d" }
+      },
+      "misconceptions": [
+        { "code": "M_N_SWAP", "description": "Mixes up m and n, which look and sound alike.", "remedy": "m has two humps and you close your lips: mmm. n has one hump and your lips stay open: nnn." },
+        { "code": "D_B_SWAP", "description": "Confuses d with b (reversal).", "remedy": "d: the round part comes first, then the line, like a drum and a drumstick." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "blend-and-read",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "moon", "type": "choice", "prompt": "Which letter does moon start with?", "say": "Moon. Mmm, moon.", "visual": { "kind": "objects", "emoji": "🌕", "count": 1 },
+            "options": [{ "id": "m", "label": "m" }, { "id": "n", "label": "n" }, { "id": "d", "label": "d" }], "answer": "m",
+            "hints": ["Close your lips and hum: mmm.", "m-oon"], "explanation": "Moon starts with m. Lips together: mmm.",
+            "misconceptions": { "n": "M_N_SWAP", "d": "D_B_SWAP" } },
+          { "id": "dog", "type": "choice", "prompt": "Which letter does dog start with?", "say": "Dog. D, d, dog.", "visual": { "kind": "objects", "emoji": "🐕", "count": 1 },
+            "options": [{ "id": "i", "label": "i" }, { "id": "d", "label": "d" }, { "id": "m", "label": "m" }], "answer": "d",
+            "hints": ["Tap your tongue behind your teeth: d.", "d-og"], "explanation": "Dog starts with d, like a drum beat.",
+            "misconceptions": { "m": "M_N_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "nest", "type": "choice", "prompt": "Which letter does nest start with?", "say": "Nest. Nnn, nest.", "visual": { "kind": "objects", "emoji": "🪺", "count": 1 },
+            "options": [{ "id": "m", "label": "m" }, { "id": "n", "label": "n" }, { "id": "i", "label": "i" }], "answer": "n",
+            "hints": ["Your lips stay open: nnn.", "n has one hump."], "explanation": "Nest starts with n. Lips open: nnn.",
+            "misconceptions": { "m": "M_N_SWAP" } },
+          { "id": "insect", "type": "choice", "prompt": "Which letter does insect start with?", "say": "Insect. I, i, insect.", "visual": { "kind": "objects", "emoji": "🐞", "count": 1 },
+            "options": [{ "id": "i", "label": "i" }, { "id": "n", "label": "n" }, { "id": "d", "label": "d" }], "answer": "i",
+            "hints": ["i-nsect", "It's a short sound, like the start of 'itchy'."], "explanation": "Insect starts with i.",
+            "misconceptions": { "n": "M_N_SWAP", "d": "D_B_SWAP" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "pick-m", "type": "choice", "prompt": "Which picture starts with m?",
+            "options": [{ "id": "nut", "label": "nut", "emoji": "🥜" }, { "id": "mouse", "label": "mouse", "emoji": "🐭" }, { "id": "duck", "label": "duck", "emoji": "🦆" }], "answer": "mouse",
+            "hints": ["Close your lips for mmm.", "mmm-ouse"], "explanation": "Mouse starts with m.",
+            "misconceptions": { "nut": "M_N_SWAP", "duck": "D_B_SWAP" } },
+          { "id": "pick-d", "type": "choice", "prompt": "Which word starts with d?",
+            "options": [{ "id": "dig", "label": "dig" }, { "id": "big", "label": "big" }, { "id": "nip", "label": "nip" }], "answer": "dig",
+            "hints": ["d has its round part first, then the line.", "b has the line first."], "explanation": "dig starts with d. big starts with b, which looks like d turned round.",
+            "misconceptions": { "big": "D_B_SWAP", "nip": "M_N_SWAP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "first-sounds",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Phonological awareness",
+      "objective": "RE.PHON.INITIAL", "title": "First Sounds", "pathOrder": 3, "estimatedMinutes": 4, "isFree": true,
+      "learn": {
+        "text": "Every word starts with a sound. Say the word slowly and listen to the very first sound. Ball starts with b!",
+        "say": "Every word starts with a sound. Say the word slowly. Ball. B, ball.",
+        "visual": { "kind": "objects", "emoji": "⚽", "count": 1 }
+      },
+      "misconceptions": [
+        { "code": "LAST_SOUND", "description": "Picks the last sound of the word instead of the first.", "remedy": "Listen to the very beginning of the word." },
+        { "code": "MEANING_MATCH", "description": "Matches by meaning (e.g. cat with dog) rather than by sound.", "remedy": "We are listening to sounds, not thinking about what the words mean." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "rhyme-time",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "f1", "type": "choice", "prompt": "Which one starts the same as bear?", "say": "Bear. Which one starts with the same sound as bear?",
+            "options": [{ "id": "bus", "label": "bus", "emoji": "🚌" }, { "id": "cat", "label": "cat", "emoji": "🐈" }, { "id": "sun", "label": "sun", "emoji": "☀️" }], "answer": "bus",
+            "hints": ["Bear starts with b.", "Listen: b-us."], "explanation": "Bear and bus both start with b.",
+            "misconceptions": { "cat": "MEANING_MATCH", "sun": "LAST_SOUND" } },
+          { "id": "f2", "type": "choice", "prompt": "Which one starts the same as fish?", "say": "Fish. Which one starts like fish?",
+            "options": [{ "id": "frog", "label": "frog", "emoji": "🐸" }, { "id": "boat", "label": "boat", "emoji": "⛵" }, { "id": "shark", "label": "shark", "emoji": "🦈" }], "answer": "frog",
+            "hints": ["Fish starts with fff.", "f-rog"], "explanation": "Fish and frog both start with f.",
+            "misconceptions": { "shark": "MEANING_MATCH", "boat": "LAST_SOUND" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "f3", "type": "choice", "prompt": "Which one does NOT start with r?", "say": "Rabbit, rain, lemon. Which one does not start with r?",
+            "options": [{ "id": "rabbit", "label": "rabbit", "emoji": "🐇" }, { "id": "rain", "label": "rain", "emoji": "🌧️" }, { "id": "lemon", "label": "lemon", "emoji": "🍋" }], "answer": "lemon",
+            "hints": ["Say each word. Listen for rrr.", "Which one starts with lll?"], "explanation": "Rabbit and rain start with r. Lemon starts with l.",
+            "misconceptions": { "rabbit": "LAST_SOUND", "rain": "LAST_SOUND" } },
+          { "id": "f4", "type": "choice", "prompt": "Goat starts with...", "say": "Goat. What sound does goat start with?", "visual": { "kind": "objects", "emoji": "🐐", "count": 1 },
+            "options": [{ "id": "g", "label": "g" }, { "id": "t", "label": "t" }, { "id": "o", "label": "o" }], "answer": "g",
+            "hints": ["g-oat", "t is at the end."], "explanation": "Goat starts with g. The t sound is at the end.",
+            "misconceptions": { "t": "LAST_SOUND" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "f5", "type": "choice", "prompt": "Which two start with the same sound?", "say": "Which two start with the same sound?",
+            "options": [{ "id": "a", "label": "hat and hen", "emoji": "🎩" }, { "id": "b", "label": "hat and cat", "emoji": "🐈" }, { "id": "c", "label": "hen and pen", "emoji": "🖊️" }], "answer": "a",
+            "hints": ["Listen to the start of each word, not the end.", "h-at, h-en"], "explanation": "Hat and hen both start with h. Hat and cat sound the same at the end, which is a rhyme.",
+            "misconceptions": { "b": "LAST_SOUND", "c": "LAST_SOUND" } },
+          { "id": "f6", "type": "choice", "prompt": "Wolf starts with...", "say": "Wolf. What sound does wolf start with?", "visual": { "kind": "objects", "emoji": "🐺", "count": 1 },
+            "options": [{ "id": "w", "label": "w" }, { "id": "f", "label": "f" }, { "id": "l", "label": "l" }], "answer": "w",
+            "hints": ["Make your lips round: w.", "f is the last sound."], "explanation": "Wolf starts with w.",
+            "misconceptions": { "f": "LAST_SOUND" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "rhyme-time",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Phonological awareness",
+      "objective": "RE.PHON.RHYME", "title": "Rhyme Time", "pathOrder": 4, "estimatedMinutes": 4,
+      "learn": {
+        "text": "Rhyming words sound the same at the end. Cat, hat and bat all end in 'at'. They rhyme!",
+        "say": "Rhyming words sound the same at the end. Cat, hat, bat. They all rhyme!",
+        "visual": { "kind": "pattern", "items": ["🐈", "🎩", "🦇"] }
+      },
+      "misconceptions": [
+        { "code": "SAME_START", "description": "Picks a word with the same first sound rather than the same ending.", "remedy": "Rhymes match at the end of the word, not the start." },
+        { "code": "MEANING_MATCH", "description": "Picks a word with a related meaning.", "remedy": "Listen to how the word sounds, not what it means." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "blend-and-read",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "r1", "type": "choice", "prompt": "What rhymes with cat?", "say": "Cat. What rhymes with cat?",
+            "options": [{ "id": "hat", "label": "hat", "emoji": "🎩" }, { "id": "dog", "label": "dog", "emoji": "🐕" }, { "id": "cup", "label": "cup", "emoji": "🥤" }], "answer": "hat",
+            "hints": ["Cat ends with 'at'.", "Which one ends with 'at' too?"], "explanation": "Cat and hat both end in 'at'.",
+            "misconceptions": { "dog": "MEANING_MATCH", "cup": "SAME_START" } },
+          { "id": "r2", "type": "choice", "prompt": "What rhymes with bee?", "say": "Bee. What rhymes with bee?",
+            "options": [{ "id": "ball", "label": "ball", "emoji": "⚽" }, { "id": "tree", "label": "tree", "emoji": "🌳" }, { "id": "flower", "label": "flower", "emoji": "🌸" }], "answer": "tree",
+            "hints": ["Bee ends with 'ee'.", "Tr-ee"], "explanation": "Bee and tree both end in 'ee'.",
+            "misconceptions": { "ball": "SAME_START", "flower": "MEANING_MATCH" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "r3", "type": "choice", "prompt": "What rhymes with snake?", "say": "Snake. What rhymes with snake?",
+            "options": [{ "id": "sock", "label": "sock", "emoji": "🧦" }, { "id": "cake", "label": "cake", "emoji": "🍰" }, { "id": "lizard", "label": "lizard", "emoji": "🦎" }], "answer": "cake",
+            "hints": ["Snake ends with 'ake'.", "c-ake"], "explanation": "Snake and cake both end in 'ake'.",
+            "misconceptions": { "sock": "SAME_START", "lizard": "MEANING_MATCH" } },
+          { "id": "r4", "type": "choice", "prompt": "Which one does NOT rhyme? log, frog, sun", "say": "Log, frog, sun. Which one does not rhyme?",
+            "options": [{ "id": "log", "label": "log", "emoji": "🪵" }, { "id": "frog", "label": "frog", "emoji": "🐸" }, { "id": "sun", "label": "sun", "emoji": "☀️" }], "answer": "sun",
+            "hints": ["Two words end in 'og'.", "Which one has a different ending?"], "explanation": "Log and frog rhyme. Sun ends in 'un', so it doesn't rhyme with them.",
+            "misconceptions": { "log": "SAME_START", "frog": "SAME_START" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "r5", "type": "choice", "prompt": "Finish the rhyme: The fox sat in a ...", "say": "Finish the rhyme. The fox sat in a...",
+            "options": [{ "id": "box", "label": "box", "emoji": "📦" }, { "id": "bed", "label": "bed", "emoji": "🛏️" }, { "id": "field", "label": "field", "emoji": "🌾" }], "answer": "box",
+            "hints": ["Fox ends with 'ox'.", "Which one ends with 'ox' too?"], "explanation": "Fox and box rhyme.",
+            "misconceptions": { "bed": "MEANING_MATCH", "field": "MEANING_MATCH" } },
+          { "id": "r6", "type": "choice", "prompt": "Which pair rhymes?", "say": "Which pair of words rhyme?",
+            "options": [{ "id": "a", "label": "moon and spoon" }, { "id": "b", "label": "moon and mouse" }, { "id": "c", "label": "moon and star" }], "answer": "a",
+            "hints": ["Listen to the ends of the words.", "m-oon, sp-oon"], "explanation": "Moon and spoon both end in 'oon'. Moon and mouse only start the same.",
+            "misconceptions": { "b": "SAME_START", "c": "MEANING_MATCH" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "blend-and-read",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Blending",
+      "objective": "RE.PHON.CVC", "title": "Blend and Read", "pathOrder": 5, "estimatedMinutes": 5,
+      "learn": {
+        "text": "To read a word, say each sound, then push them together fast. s - a - t ... sat! This is called blending.",
+        "say": "To read a word, say each sound, then push them together. S, a, t. Sat!",
+        "visual": { "kind": "bigText", "text": "s · a · t → sat" }
+      },
+      "misconceptions": [
+        { "code": "FIRST_LETTER_GUESS", "description": "Reads the first sound then guesses a word.", "remedy": "Say every sound, all the way to the end." },
+        { "code": "VOWEL_SWAP", "description": "Reads the middle vowel wrongly (e.g. pin for pan).", "remedy": "Look carefully at the middle letter and say its sound." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "story-listening-lost-kite",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "b-sat", "type": "choice", "prompt": "s - a - t. Which picture?", "say": "S. A. T. Push the sounds together.", "visual": { "kind": "bigText", "text": "s a t" },
+            "options": [{ "id": "sat", "label": "sat", "emoji": "🪑" }, { "id": "sun", "label": "sun", "emoji": "☀️" }], "answer": "sat",
+            "hints": ["Say each sound, then say them faster.", "s-a-t, sat!"], "explanation": "s, a, t blends to make sat, like sitting on a chair.",
+            "misconceptions": { "sun": "FIRST_LETTER_GUESS" } },
+          { "id": "b-pin", "type": "choice", "prompt": "Read the word: pin", "say": "P. I. N. What does it say?", "visual": { "kind": "bigText", "text": "pin" },
+            "options": [{ "id": "pin", "label": "a pin", "emoji": "📌" }, { "id": "pan", "label": "a pan", "emoji": "🍳" }], "answer": "pin",
+            "hints": ["The middle sound is i.", "p-i-n"], "explanation": "p, i, n blends to pin.",
+            "misconceptions": { "pan": "VOWEL_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "b-map", "type": "choice", "prompt": "Read the word and pick the picture.", "say": "Read the word, then pick the picture.", "visual": { "kind": "bigText", "text": "map" },
+            "options": [{ "id": "map", "label": "map", "emoji": "🗺️" }, { "id": "mop", "label": "mop", "emoji": "🧹" }, { "id": "man", "label": "man", "emoji": "🧍" }], "answer": "map",
+            "hints": ["Say all three sounds.", "m-a-p"], "explanation": "m, a, p makes map.",
+            "misconceptions": { "mop": "VOWEL_SWAP", "man": "FIRST_LETTER_GUESS" } },
+          { "id": "b-dig", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "dig" },
+            "options": [{ "id": "dog", "label": "dog", "emoji": "🐕" }, { "id": "dig", "label": "dig", "emoji": "⛏️" }, { "id": "duck", "label": "duck", "emoji": "🦆" }], "answer": "dig",
+            "hints": ["The middle sound is i.", "d-i-g"], "explanation": "d, i, g blends to dig.",
+            "misconceptions": { "dog": "VOWEL_SWAP", "duck": "FIRST_LETTER_GUESS" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "b-build", "type": "order", "prompt": "Build the word 'tap'.", "say": "Build the word tap. T, a, p.",
+            "tiles": [{ "id": "p", "label": "p" }, { "id": "t", "label": "t" }, { "id": "a", "label": "a" }], "answer": ["t", "a", "p"],
+            "hints": ["What is the first sound in tap?", "t... a... p"], "explanation": "t, a, p makes tap." },
+          { "id": "b-build2", "type": "order", "prompt": "Build the word 'man'.", "say": "Build the word man. M, a, n.",
+            "tiles": [{ "id": "n", "label": "n" }, { "id": "a", "label": "a" }, { "id": "m", "label": "m" }], "answer": ["m", "a", "n"],
+            "hints": ["Lips together for the first sound.", "m... a... n"], "explanation": "m, a, n makes man." }
+        ]}
+      ]
+    },
+    {
+      "slug": "story-listening-lost-kite",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Comprehension", "subtopic": "Listening",
+      "objective": "RE.LISTEN.STORY", "title": "Story: The Lost Kite", "pathOrder": 6, "estimatedMinutes": 5, "isFree": true,
+      "learn": {
+        "text": "Listen to the story. Think about who is in it, where they are and what happens.",
+        "visual": { "kind": "passage", "title": "The Lost Kite", "text": "Zara had a red kite. She went to the park with Grandpa. The wind blew and blew. Whoosh! The kite flew up into a tall tree. Grandpa got a long stick. He tapped the branch, and the kite fell down. Zara gave Grandpa a big hug." },
+        "say": "Zara had a red kite. She went to the park with Grandpa. The wind blew and blew. Whoosh! The kite flew up into a tall tree. Grandpa got a long stick. He tapped the branch, and the kite fell down. Zara gave Grandpa a big hug."
+      },
+      "misconceptions": [
+        { "code": "NOT_IN_STORY", "description": "Picks something that sounds likely but was not in the story.", "remedy": "Think back: what did the story actually say?" },
+        { "code": "WRONG_DETAIL", "description": "Remembers the event but confuses a detail.", "remedy": "Listen to the story again and look for that part." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": null,
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "k1", "type": "choice", "prompt": "What colour was Zara's kite?", "say": "What colour was Zara's kite?",
+            "options": [{ "id": "red", "label": "red", "emoji": "🟥" }, { "id": "blue", "label": "blue", "emoji": "🟦" }, { "id": "yellow", "label": "yellow", "emoji": "🟨" }], "answer": "red",
+            "hints": ["Think about the very first sentence.", "Zara had a ... kite."], "explanation": "The story says: Zara had a red kite.",
+            "misconceptions": { "blue": "WRONG_DETAIL", "yellow": "WRONG_DETAIL" } },
+          { "id": "k2", "type": "choice", "prompt": "Who went to the park with Zara?", "say": "Who went to the park with Zara?",
+            "options": [{ "id": "grandpa", "label": "Grandpa", "emoji": "👴" }, { "id": "mum", "label": "Mum", "emoji": "👩" }, { "id": "dog", "label": "her dog", "emoji": "🐕" }], "answer": "grandpa",
+            "hints": ["She went to the park with...", "Who did she hug at the end?"], "explanation": "Zara went to the park with Grandpa.",
+            "misconceptions": { "mum": "NOT_IN_STORY", "dog": "NOT_IN_STORY" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "k3", "type": "choice", "prompt": "Where did the kite get stuck?", "say": "Where did the kite get stuck?",
+            "options": [{ "id": "tree", "label": "in a tree", "emoji": "🌳" }, { "id": "roof", "label": "on a roof", "emoji": "🏠" }, { "id": "pond", "label": "in a pond", "emoji": "💧" }], "answer": "tree",
+            "hints": ["Whoosh! The kite flew up into a...", "It was tall."], "explanation": "The kite flew up into a tall tree.",
+            "misconceptions": { "roof": "NOT_IN_STORY", "pond": "NOT_IN_STORY" } },
+          { "id": "k4", "type": "choice", "prompt": "What made the kite fly away?", "say": "What made the kite fly away?",
+            "options": [{ "id": "wind", "label": "the wind", "emoji": "💨" }, { "id": "bird", "label": "a bird", "emoji": "🐦" }, { "id": "rain", "label": "the rain", "emoji": "🌧️" }], "answer": "wind",
+            "hints": ["The ... blew and blew.", "Whoosh!"], "explanation": "The wind blew and blew, and the kite flew away.",
+            "misconceptions": { "bird": "NOT_IN_STORY", "rain": "NOT_IN_STORY" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "k5", "type": "order", "prompt": "Put the story in order.", "say": "Put the story in order. What happened first?",
+            "tiles": [{ "id": "hug", "label": "Zara hugs Grandpa", "emoji": "🤗" }, { "id": "park", "label": "They go to the park", "emoji": "🏞️" }, { "id": "stuck", "label": "Kite stuck in tree", "emoji": "🌳" }],
+            "answer": ["park", "stuck", "hug"], "hints": ["What happened at the very start?", "The hug was at the end."],
+            "explanation": "First they went to the park, then the kite got stuck, and at the end Zara hugged Grandpa." },
+          { "id": "k6", "type": "choice", "prompt": "How do you think Zara felt at the end?", "say": "How do you think Zara felt at the end?",
+            "options": [{ "id": "happy", "label": "happy and thankful", "emoji": "😊" }, { "id": "cross", "label": "cross", "emoji": "😠" }, { "id": "sleepy", "label": "sleepy", "emoji": "😴" }], "answer": "happy",
+            "hints": ["She got her kite back.", "What did she give Grandpa?"], "explanation": "Zara got her kite back and gave Grandpa a big hug, so she felt happy and thankful.",
+            "misconceptions": { "cross": "WRONG_DETAIL", "sleepy": "NOT_IN_STORY" } }
+        ]}
+      ]
+    }
+  ]
+}

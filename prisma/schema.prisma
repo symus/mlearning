@@ -1,0 +1,324 @@
+// Wondergrove database schema
+// Design rules:
+//  - Parents own accounts. Children are profiles under a parent (no child email, no child password).
+//  - Collect the minimum about children: nickname + birth year only (no full name, no full date of birth).
+//  - Educational content (objectives, activities) is data, imported from /content, not hard-coded.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ---------- Accounts & access ----------
+
+enum Role {
+  PARENT
+  REVIEWER // can review and publish content
+  ADMIN
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique // stored lower-case
+  passwordHash   String
+  displayName    String
+  role           Role      @default(PARENT)
+  country        String    @default("GB") // ISO 3166-1 alpha-2, drives pricing + default curriculum
+  locale         String    @default("en")
+  parentPinHash  String? // 4-digit PIN that lets an adult leave child mode
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  sessions      Session[]
+  children      ChildProfile[]
+  consents      ConsentRecord[]
+  subscription  Subscription?
+  auditLogs     AuditLog[]
+  reviewedItems Activity[]     @relation("ActivityReviewer")
+}
+
+model Session {
+  id            String   @id @default(cuid())
+  tokenHash     String   @unique // SHA-256 of the cookie token; raw token never stored
+  userId        String
+  activeChildId String? // set when a child profile is "playing" on this device
+  childMode     Boolean  @default(false)
+  expiresAt     DateTime
+  createdAt     DateTime @default(now())
+
+  user        User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  activeChild ChildProfile? @relation(fields: [activeChildId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+}
+
+enum ConsentType {
+  TERMS
+  PRIVACY
+  PARENTAL_CONSENT // parent confirms they are the parent/guardian and consents to processing child data
+}
+
+model ConsentRecord {
+  id        String      @id @default(cuid())
+  userId    String
+  type      ConsentType
+  version   String
+  grantedAt DateTime    @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@index([userId])
+}
+
+model AuditLog {
+  id        String   @id @default(cuid())
+  userId    String?
+  action    String // e.g. "child.created", "account.export", "content.published"
+  targetId  String?
+  createdAt DateTime @default(now())
+
+  user User? @relation(fields: [userId], references: [id], onDelete: SetNull)
+
+  @@index([userId])
+}
+
+// ---------- Children ----------
+
+enum AgeBand {
+  LITTLE_EXPLORERS // 3-5
+  YOUNG_THINKERS // 6-8
+  FUTURE_INNOVATORS // 9-12
+}
+
+model ChildProfile {
+  id               String    @id @default(cuid())
+  parentId         String
+  nickname         String // shown only inside the family account
+  birthYear        Int
+  ageBand          AgeBand
+  curriculumCode   String    @default("uk-nc")
+  avatar           Json // { character, colour, accessory }
+  interests        String[]  @default([])
+  dailyGoalMinutes Int       @default(15)
+  narration        Boolean   @default(true) // read instructions aloud
+  onboardedAt      DateTime?
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+
+  parent       User                @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  sessions     Session[]
+  attempts     Attempt[]
+  masteries    ObjectiveMastery[]
+  achievements ChildAchievement[]
+
+  @@index([parentId])
+}
+
+// ---------- Curriculum & content ----------
+
+model Curriculum {
+  code    String @id // "uk-nc", "pl-core", "in-ncert"
+  name    String
+  country String
+
+  mappings CurriculumMapping[]
+}
+
+model Subject {
+  slug  String @id // "maths", "reading"
+  name  String
+  world String // learning-universe destination slug, e.g. "number-nebula"
+
+  objectives Objective[]
+  activities Activity[]
+}
+
+model Objective {
+  code             String   @id // e.g. "MA.ADD.WITHIN10"
+  subjectSlug      String
+  ageBand          AgeBand
+  topic            String
+  subtopic         String
+  title            String // "Add two numbers with a total up to 10"
+  childTitle       String // "Put groups together"
+  prerequisites    String[] @default([]) // objective codes
+  masteryThreshold Float    @default(0.8)
+
+  subject    Subject             @relation(fields: [subjectSlug], references: [slug])
+  activities Activity[]
+  mappings   CurriculumMapping[]
+  masteries  ObjectiveMastery[]
+
+  @@index([subjectSlug, ageBand])
+}
+
+model CurriculumMapping {
+  id             String @id @default(cuid())
+  curriculumCode String
+  objectiveCode  String
+  reference      String // e.g. "Year 1 - Number: addition and subtraction"
+
+  curriculum Curriculum @relation(fields: [curriculumCode], references: [code])
+  objective  Objective  @relation(fields: [objectiveCode], references: [code], onDelete: Cascade)
+
+  @@unique([curriculumCode, objectiveCode])
+}
+
+enum ContentStatus {
+  DRAFT
+  IN_REVIEW
+  PUBLISHED
+  ARCHIVED
+}
+
+model Activity {
+  id               String        @id @default(cuid())
+  slug             String
+  locale           String        @default("en")
+  version          Int           @default(1)
+  status           ContentStatus @default(DRAFT)
+  ageBand          AgeBand
+  subjectSlug      String
+  objectiveCode    String
+  topic            String
+  subtopic         String
+  title            String
+  pathOrder        Int // position on the world's learning path
+  estimatedMinutes Int           @default(5)
+  isFree           Boolean       @default(false) // available on the free plan
+  body             Json // validated ActivityBody (explanation, levels, items, hints, misconceptions, mastery)
+  contentHash      String // detects edits so re-import bumps version and resets review
+  reviewedById     String?
+  reviewedAt       DateTime?
+  createdAt        DateTime      @default(now())
+  updatedAt        DateTime      @updatedAt
+
+  subject    Subject   @relation(fields: [subjectSlug], references: [slug])
+  objective  Objective @relation(fields: [objectiveCode], references: [code])
+  reviewedBy User?     @relation("ActivityReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  attempts   Attempt[]
+
+  @@unique([slug, locale])
+  @@index([subjectSlug, ageBand, status])
+}
+
+// ---------- Learning records ----------
+
+model Attempt {
+  id           String    @id @default(cuid())
+  childId      String
+  activityId   String
+  startedAt    DateTime  @default(now())
+  completedAt  DateTime?
+  startLevel   Int
+  endLevel     Int?
+  correctCount Int       @default(0)
+  totalCount   Int       @default(0)
+  hintsUsed    Int       @default(0)
+  durationSec  Int       @default(0)
+
+  child     ChildProfile      @relation(fields: [childId], references: [id], onDelete: Cascade)
+  activity  Activity          @relation(fields: [activityId], references: [id], onDelete: Cascade)
+  responses AttemptResponse[]
+
+  @@index([childId, startedAt])
+}
+
+model AttemptResponse {
+  id               String   @id @default(cuid())
+  attemptId        String
+  itemId           String
+  level            Int
+  answer           Json
+  isCorrect        Boolean
+  hintsUsed        Int      @default(0)
+  misconception    String? // code from the activity's misconception list
+  timeMs           Int      @default(0)
+  createdAt        DateTime @default(now())
+
+  attempt Attempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+
+  @@index([attemptId])
+}
+
+enum MasteryStatus {
+  NOT_STARTED
+  LEARNING
+  PRACTISING
+  MASTERED
+}
+
+model ObjectiveMastery {
+  id             String        @id @default(cuid())
+  childId        String
+  objectiveCode  String
+  score          Float         @default(0) // 0..1 weighted recent accuracy
+  status         MasteryStatus @default(NOT_STARTED)
+  itemsSeen      Int           @default(0)
+  itemsCorrect   Int           @default(0)
+  bestLevel      Int           @default(0)
+  reviewStep     Int           @default(0) // spaced-repetition step index
+  lastPracticed  DateTime?
+  nextReviewAt   DateTime?
+  misconceptions Json          @default("{}") // { code: count }
+
+  child     ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  objective Objective    @relation(fields: [objectiveCode], references: [code], onDelete: Cascade)
+
+  @@unique([childId, objectiveCode])
+}
+
+model ChildAchievement {
+  id          String   @id @default(cuid())
+  childId     String
+  code        String // defined in src/lib/achievements.ts
+  earnedAt    DateTime @default(now())
+
+  child ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([childId, code])
+}
+
+// ---------- Plans & billing (payments land in Phase 4) ----------
+
+enum PlanCode {
+  FREE
+  PREMIUM
+  FAMILY
+}
+
+enum SubscriptionStatus {
+  ACTIVE
+  TRIALING
+  PAST_DUE
+  CANCELED
+}
+
+model Price {
+  id          String   @id @default(cuid())
+  plan        PlanCode
+  country     String // ISO code or "*" for default
+  currency    String // ISO 4217
+  amountMinor Int // pence/grosze/paise
+  interval    String // "month" | "year"
+  active      Boolean  @default(true)
+
+  @@unique([plan, country, interval])
+}
+
+model Subscription {
+  id                 String             @id @default(cuid())
+  userId             String             @unique
+  plan               PlanCode           @default(FREE)
+  status             SubscriptionStatus @default(ACTIVE)
+  provider           String? // "stripe" later
+  providerCustomerId String?
+  currentPeriodEnd   DateTime?
+  updatedAt          DateTime           @updatedAt
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}

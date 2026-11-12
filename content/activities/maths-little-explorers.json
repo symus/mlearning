@@ -1,0 +1,340 @@
+{
+  "activities": [
+    {
+      "slug": "count-the-stars-to-5",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Number", "subtopic": "Counting",
+      "objective": "MA.COUNT.TO5", "title": "Count the Stars", "pathOrder": 1, "estimatedMinutes": 4, "isFree": true,
+      "learn": {
+        "text": "When we count, we touch each thing once and say one number for it. The last number we say tells us how many there are!",
+        "say": "When we count, we touch each thing once and say one number. The last number tells us how many!",
+        "visual": { "kind": "objects", "emoji": "⭐", "count": 3 },
+        "example": "Touch and count: 1, 2, 3. There are 3 stars."
+      },
+      "misconceptions": [
+        { "code": "SKIPPED_OBJECT", "description": "Missed an object while counting, so the count is one too few.", "remedy": "Touch each star with your finger as you say the number." },
+        { "code": "DOUBLE_COUNTED", "description": "Counted an object twice, so the count is one too many.", "remedy": "Move each star to a 'counted' pile in your mind so you only count it once." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "count-the-planets-to-10",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "s2", "type": "choice", "prompt": "How many stars?", "visual": { "kind": "objects", "emoji": "⭐", "count": 2 },
+            "options": [{ "id": "1", "label": "1" }, { "id": "2", "label": "2" }, { "id": "3", "label": "3" }], "answer": "2",
+            "hints": ["Touch each star and count out loud.", "Say 1 for the first star, 2 for the next."],
+            "explanation": "1, 2. The last number we said is 2, so there are 2 stars.",
+            "misconceptions": { "1": "SKIPPED_OBJECT", "3": "DOUBLE_COUNTED" } },
+          { "id": "s3", "type": "choice", "prompt": "How many moons?", "visual": { "kind": "objects", "emoji": "🌙", "count": 3 },
+            "options": [{ "id": "2", "label": "2" }, { "id": "3", "label": "3" }, { "id": "4", "label": "4" }], "answer": "3",
+            "hints": ["Point to each moon one at a time.", "1, 2... what comes after 2?"],
+            "explanation": "1, 2, 3. There are 3 moons.",
+            "misconceptions": { "2": "SKIPPED_OBJECT", "4": "DOUBLE_COUNTED" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "s4", "type": "choice", "prompt": "How many rockets?", "visual": { "kind": "objects", "emoji": "🚀", "count": 4 },
+            "options": [{ "id": "3", "label": "3" }, { "id": "4", "label": "4" }, { "id": "5", "label": "5" }], "answer": "4",
+            "hints": ["Count slowly. Touch each rocket once.", "1, 2, 3... one more rocket!"],
+            "explanation": "1, 2, 3, 4. There are 4 rockets.",
+            "misconceptions": { "3": "SKIPPED_OBJECT", "5": "DOUBLE_COUNTED" } },
+          { "id": "s5", "type": "choice", "prompt": "How many planets?", "visual": { "kind": "objects", "emoji": "🪐", "count": 5 },
+            "options": [{ "id": "4", "label": "4" }, { "id": "5", "label": "5" }, { "id": "6", "label": "6" }], "answer": "5",
+            "hints": ["Start at one end and count to the other end.", "You can count on your fingers: one finger for each planet."],
+            "explanation": "1, 2, 3, 4, 5. There are 5 planets.",
+            "misconceptions": { "4": "SKIPPED_OBJECT", "6": "DOUBLE_COUNTED" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "s-show4", "type": "choice", "prompt": "Which picture shows 4 stars?",
+            "options": [{ "id": "a", "label": "⭐⭐⭐" }, { "id": "b", "label": "⭐⭐⭐⭐" }, { "id": "c", "label": "⭐⭐⭐⭐⭐" }], "answer": "b",
+            "hints": ["Count the stars in each picture.", "Stop when you find the picture where you say 4 last."],
+            "explanation": "The middle picture has 1, 2, 3, 4 stars.",
+            "misconceptions": { "a": "SKIPPED_OBJECT", "c": "DOUBLE_COUNTED" } },
+          { "id": "s-one-more", "type": "choice", "prompt": "There are 3 stars. One more star comes. How many now?", "visual": { "kind": "objects", "emoji": "⭐", "count": 3 },
+            "options": [{ "id": "3", "label": "3" }, { "id": "4", "label": "4" }, { "id": "5", "label": "5" }], "answer": "4",
+            "hints": ["Count the 3 stars, then count one more.", "What number comes after 3?"],
+            "explanation": "3 stars and 1 more makes 4. One more is the next counting number.",
+            "misconceptions": { "3": "SKIPPED_OBJECT", "5": "DOUBLE_COUNTED" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "count-the-planets-to-10",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Number", "subtopic": "Counting",
+      "objective": "MA.COUNT.TO10", "title": "Planet Counting to 10", "pathOrder": 2, "estimatedMinutes": 5, "isFree": true,
+      "learn": {
+        "text": "A ten frame has 10 boxes in two rows of 5. A full top row is 5. Then we keep counting: 6, 7, 8, 9, 10!",
+        "visual": { "kind": "tenFrame", "filled": 7 },
+        "example": "The top row is full (5), and there are 2 more: 6, 7. That makes 7."
+      },
+      "misconceptions": [
+        { "code": "RESTART_COUNT", "description": "Starts counting again from 1 on the second row instead of carrying on from 5.", "remedy": "The top row is already 5. Carry on: 6, 7, 8..." },
+        { "code": "OFF_BY_ONE", "description": "Count is one away from the correct number.", "remedy": "Count again slowly, touching each one." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "number-match",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "p6", "type": "choice", "prompt": "How many counters?", "visual": { "kind": "tenFrame", "filled": 6 },
+            "options": [{ "id": "5", "label": "5" }, { "id": "6", "label": "6" }, { "id": "1", "label": "1" }], "answer": "6",
+            "hints": ["The top row is full. That is 5.", "5 and 1 more is..."],
+            "explanation": "The full row is 5. One more makes 6.",
+            "misconceptions": { "5": "OFF_BY_ONE", "1": "RESTART_COUNT" } },
+          { "id": "p7", "type": "choice", "prompt": "How many planets?", "visual": { "kind": "objects", "emoji": "🪐", "count": 7 },
+            "options": [{ "id": "6", "label": "6" }, { "id": "7", "label": "7" }, { "id": "8", "label": "8" }], "answer": "7",
+            "hints": ["Touch each planet as you count.", "Count: 1, 2, 3, 4, 5, 6..."],
+            "explanation": "1, 2, 3, 4, 5, 6, 7. There are 7 planets.",
+            "misconceptions": { "6": "OFF_BY_ONE", "8": "OFF_BY_ONE" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "p8", "type": "choice", "prompt": "How many counters?", "visual": { "kind": "tenFrame", "filled": 8 },
+            "options": [{ "id": "3", "label": "3" }, { "id": "8", "label": "8" }, { "id": "9", "label": "9" }], "answer": "8",
+            "hints": ["Top row is 5. Count on along the bottom row.", "5... 6, 7, 8."],
+            "explanation": "5 on top and 3 on the bottom. Counting on from 5: 6, 7, 8.",
+            "misconceptions": { "3": "RESTART_COUNT", "9": "OFF_BY_ONE" } },
+          { "id": "p9", "type": "choice", "prompt": "How many comets?", "visual": { "kind": "objects", "emoji": "☄️", "count": 9 },
+            "options": [{ "id": "8", "label": "8" }, { "id": "9", "label": "9" }, { "id": "10", "label": "10" }], "answer": "9",
+            "hints": ["Count slowly, one comet at a time.", "It is one less than 10."],
+            "explanation": "There are 9 comets, one less than 10.",
+            "misconceptions": { "8": "OFF_BY_ONE", "10": "OFF_BY_ONE" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "p10", "type": "choice", "prompt": "Is the ten frame full? How many counters?", "visual": { "kind": "tenFrame", "filled": 10 },
+            "options": [{ "id": "5", "label": "5" }, { "id": "9", "label": "9" }, { "id": "10", "label": "10" }], "answer": "10",
+            "hints": ["Two full rows of 5.", "5 and 5 more."],
+            "explanation": "Both rows are full. 5 and 5 make 10.",
+            "misconceptions": { "5": "RESTART_COUNT", "9": "OFF_BY_ONE" } },
+          { "id": "p-order", "type": "order", "prompt": "Put the numbers in counting order.",
+            "tiles": [{ "id": "7", "label": "7" }, { "id": "5", "label": "5" }, { "id": "8", "label": "8" }, { "id": "6", "label": "6" }],
+            "answer": ["5", "6", "7", "8"],
+            "hints": ["Which is the smallest number?", "Start with 5. What comes next?"],
+            "explanation": "We count 5, 6, 7, 8. Each number is one more than the one before." }
+        ]}
+      ]
+    },
+    {
+      "slug": "number-match",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Number", "subtopic": "Numerals",
+      "objective": "MA.NUM.RECOGNISE", "title": "Number Match", "pathOrder": 3, "estimatedMinutes": 4,
+      "learn": {
+        "text": "Numbers have their own shapes. The number 3 is how we write three things. Let's match numbers to groups!",
+        "visual": { "kind": "bigText", "text": "3" },
+        "example": "3 means 🍎🍎🍎"
+      },
+      "misconceptions": [
+        { "code": "REVERSED_DIGIT", "description": "Confuses digits that look alike when flipped, like 6 and 9.", "remedy": "6 has its round tummy at the bottom. 9 has its round head at the top." },
+        { "code": "WRONG_AMOUNT", "description": "Matched the numeral to the wrong amount.", "remedy": "Count the group first, then find that number." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "more-or-fewer",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "n2", "type": "choice", "prompt": "Find the number two.", "options": [{ "id": "2", "label": "2" }, { "id": "5", "label": "5" }, { "id": "7", "label": "7" }], "answer": "2",
+            "hints": ["Two looks like a swan swimming.", "Count: 1, 2. Find that number."],
+            "explanation": "This is 2. It shows two things, like 🍎🍎.", "misconceptions": { "5": "WRONG_AMOUNT", "7": "WRONG_AMOUNT" } },
+          { "id": "n4", "type": "choice", "prompt": "Which number shows how many apples?", "visual": { "kind": "objects", "emoji": "🍎", "count": 4 },
+            "options": [{ "id": "4", "label": "4" }, { "id": "3", "label": "3" }, { "id": "1", "label": "1" }], "answer": "4",
+            "hints": ["Count the apples first.", "1, 2, 3, 4."], "explanation": "There are 4 apples, and we write four as 4.",
+            "misconceptions": { "3": "WRONG_AMOUNT", "1": "WRONG_AMOUNT" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "n6", "type": "choice", "prompt": "Which number shows how many fish?", "visual": { "kind": "objects", "emoji": "🐟", "count": 6 },
+            "options": [{ "id": "9", "label": "9" }, { "id": "6", "label": "6" }, { "id": "5", "label": "5" }], "answer": "6",
+            "hints": ["Count the fish carefully.", "6 has a round tummy at the bottom."], "explanation": "There are 6 fish. 6 has its round part at the bottom.",
+            "misconceptions": { "9": "REVERSED_DIGIT", "5": "WRONG_AMOUNT" } },
+          { "id": "n0", "type": "choice", "prompt": "The basket is empty. Which number shows nothing?",
+            "options": [{ "id": "0", "label": "0" }, { "id": "1", "label": "1" }, { "id": "10", "label": "10" }], "answer": "0",
+            "hints": ["How many things are in an empty basket?", "The number for none looks like a circle."], "explanation": "Zero (0) means none at all.",
+            "misconceptions": { "1": "WRONG_AMOUNT", "10": "WRONG_AMOUNT" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "n9", "type": "choice", "prompt": "Which group has 9?",
+            "options": [{ "id": "a", "label": "🐞🐞🐞🐞🐞🐞" }, { "id": "b", "label": "🐞🐞🐞🐞🐞🐞🐞🐞🐞" }, { "id": "c", "label": "🐞🐞🐞🐞🐞🐞🐞" }], "answer": "b",
+            "hints": ["Count each group.", "9 is one less than 10."], "explanation": "The middle group has 9 ladybirds.",
+            "misconceptions": { "a": "REVERSED_DIGIT", "c": "WRONG_AMOUNT" } },
+          { "id": "n-order", "type": "order", "prompt": "Put the numbers in order, smallest first.",
+            "tiles": [{ "id": "9", "label": "9" }, { "id": "2", "label": "2" }, { "id": "6", "label": "6" }],
+            "answer": ["2", "6", "9"], "hints": ["Which number is the smallest?", "Count up: 1, 2, 3... which do you meet first?"],
+            "explanation": "When we count up we meet 2 first, then 6, then 9." }
+        ]}
+      ]
+    },
+    {
+      "slug": "more-or-fewer",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Number", "subtopic": "Comparing",
+      "objective": "MA.COMPARE.MORE", "title": "More or Fewer?", "pathOrder": 4, "estimatedMinutes": 4,
+      "learn": {
+        "text": "To see which group has more, we can count both groups, or line them up side by side. The group with things left over has more.",
+        "visual": { "kind": "groups", "groups": [{ "emoji": "🐶", "count": 4 }, { "emoji": "🐱", "count": 2 }], "operator": "and" },
+        "example": "4 dogs and 2 cats. 4 is more than 2, so there are more dogs."
+      },
+      "misconceptions": [
+        { "code": "BIGGER_LOOKS_MORE", "description": "Thinks the group that is spread out or has bigger objects has more.", "remedy": "Size and spacing don't matter. Count each group." },
+        { "code": "CONFUSE_FEWER", "description": "Mixes up 'more' and 'fewer'.", "remedy": "Fewer means not as many. It is the smaller group." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "add-together-to-5",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "m1", "type": "choice", "prompt": "Which has more?", "visual": { "kind": "groups", "groups": [{ "emoji": "🍓", "count": 5 }, { "emoji": "🍌", "count": 2 }], "operator": "and" },
+            "options": [{ "id": "straw", "label": "Strawberries", "emoji": "🍓" }, { "id": "ban", "label": "Bananas", "emoji": "🍌" }], "answer": "straw",
+            "hints": ["Count the strawberries. Count the bananas.", "Which number is bigger, 5 or 2?"], "explanation": "5 strawberries is more than 2 bananas.",
+            "misconceptions": { "ban": "CONFUSE_FEWER" } },
+          { "id": "m2", "type": "choice", "prompt": "Which has fewer?", "visual": { "kind": "groups", "groups": [{ "emoji": "🐸", "count": 1 }, { "emoji": "🦆", "count": 3 }], "operator": "and" },
+            "options": [{ "id": "frog", "label": "Frogs", "emoji": "🐸" }, { "id": "duck", "label": "Ducks", "emoji": "🦆" }], "answer": "frog",
+            "hints": ["Fewer means not as many.", "1 frog or 3 ducks: which is less?"], "explanation": "1 frog is fewer than 3 ducks.",
+            "misconceptions": { "duck": "CONFUSE_FEWER" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "m3", "type": "choice", "prompt": "Which has more?", "visual": { "kind": "groups", "groups": [{ "emoji": "🐘", "count": 3 }, { "emoji": "🐭", "count": 4 }], "operator": "and" },
+            "options": [{ "id": "ele", "label": "Elephants", "emoji": "🐘" }, { "id": "mouse", "label": "Mice", "emoji": "🐭" }], "answer": "mouse",
+            "hints": ["Elephants are big, but are there more of them?", "Count: 3 elephants, 4 mice."], "explanation": "4 mice is more than 3 elephants. Size doesn't change how many!",
+            "misconceptions": { "ele": "BIGGER_LOOKS_MORE" } },
+          { "id": "m4", "type": "choice", "prompt": "Which number is more?", "options": [{ "id": "6", "label": "6" }, { "id": "4", "label": "4" }], "answer": "6",
+            "hints": ["When we count, which comes later?", "1, 2, 3, 4, 5, 6..."], "explanation": "6 comes after 4 when we count, so 6 is more.",
+            "misconceptions": { "4": "CONFUSE_FEWER" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "m5", "type": "choice", "prompt": "Are there the same number of cups and plates?", "visual": { "kind": "groups", "groups": [{ "emoji": "☕", "count": 4 }, { "emoji": "🍽️", "count": 4 }], "operator": "and" },
+            "options": [{ "id": "same", "label": "Yes, the same" }, { "id": "cups", "label": "More cups" }, { "id": "plates", "label": "More plates" }], "answer": "same",
+            "hints": ["Count both groups.", "4 and 4: is one bigger?"], "explanation": "4 cups and 4 plates. They are equal: the same amount.",
+            "misconceptions": { "cups": "BIGGER_LOOKS_MORE", "plates": "BIGGER_LOOKS_MORE" } },
+          { "id": "m6", "type": "choice", "prompt": "Mo has 5 shells. Ava has 3 shells. Who has fewer?",
+            "options": [{ "id": "mo", "label": "Mo" }, { "id": "ava", "label": "Ava" }], "answer": "ava",
+            "hints": ["Fewer means the smaller amount.", "Which is smaller, 5 or 3?"], "explanation": "3 is fewer than 5, so Ava has fewer shells.",
+            "misconceptions": { "mo": "CONFUSE_FEWER" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "shape-spotters",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Geometry", "subtopic": "2D shapes",
+      "objective": "MA.SHAPE.2D", "title": "Shape Spotters", "pathOrder": 5, "estimatedMinutes": 4, "isFree": true,
+      "learn": {
+        "text": "Flat shapes have sides and corners. A triangle has 3 straight sides. A square has 4 sides that are all the same length. A circle is round with no corners.",
+        "visual": { "kind": "shape", "shape": "triangle" }
+      },
+      "misconceptions": [
+        { "code": "ORIENTATION", "description": "Thinks a shape stops being the same shape when turned.", "remedy": "Turning a shape doesn't change it. Count its sides." },
+        { "code": "SQUARE_RECTANGLE", "description": "Mixes up squares and rectangles.", "remedy": "A square has 4 equal sides. A rectangle has 2 long sides and 2 short sides." },
+        { "code": "COUNT_SIDES", "description": "Counted the sides incorrectly.", "remedy": "Trace around the shape with your finger and count each straight side." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "pattern-parade",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "sh1", "type": "choice", "prompt": "Which shape is a circle?",
+            "options": [{ "id": "circle", "label": "Circle", "emoji": "🔵" }, { "id": "square", "label": "Square", "emoji": "🟦" }, { "id": "tri", "label": "Triangle", "emoji": "🔺" }], "answer": "circle",
+            "hints": ["A circle is round like a ball.", "It has no corners at all."], "explanation": "The circle is round, with no straight sides and no corners.",
+            "misconceptions": { "square": "COUNT_SIDES", "tri": "COUNT_SIDES" } },
+          { "id": "sh2", "type": "choice", "prompt": "What is this shape?", "visual": { "kind": "shape", "shape": "triangle" },
+            "options": [{ "id": "tri", "label": "Triangle" }, { "id": "square", "label": "Square" }, { "id": "circle", "label": "Circle" }], "answer": "tri",
+            "hints": ["Count the straight sides.", "It has 3 sides."], "explanation": "It has 3 straight sides and 3 corners. It is a triangle.",
+            "misconceptions": { "square": "COUNT_SIDES" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "sh3", "type": "number", "prompt": "How many sides does a square have?", "visual": { "kind": "shape", "shape": "square" }, "answer": 4,
+            "hints": ["Trace the edges with your finger.", "Top, side, bottom, side."], "explanation": "A square has 4 sides, all the same length.",
+            "misconceptions": { "3": "COUNT_SIDES", "5": "COUNT_SIDES" } },
+          { "id": "sh4", "type": "choice", "prompt": "This shape has 2 long sides and 2 short sides. What is it?", "visual": { "kind": "shape", "shape": "rectangle" },
+            "options": [{ "id": "square", "label": "Square" }, { "id": "rect", "label": "Rectangle" }, { "id": "tri", "label": "Triangle" }], "answer": "rect",
+            "hints": ["Are all the sides the same length?", "A shape with 2 long and 2 short sides is a rectangle."], "explanation": "A rectangle has 4 sides: 2 long and 2 short.",
+            "misconceptions": { "square": "SQUARE_RECTANGLE", "tri": "COUNT_SIDES" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "sh5", "type": "number", "prompt": "Count the sides of this hexagon.", "visual": { "kind": "shape", "shape": "hexagon" }, "answer": 6,
+            "hints": ["Start at the top and go round.", "It has more sides than a pentagon, which has 5."], "explanation": "A hexagon has 6 sides, like a honeycomb cell.",
+            "misconceptions": { "5": "COUNT_SIDES", "7": "COUNT_SIDES" } },
+          { "id": "sh6", "type": "choice", "prompt": "A triangle is turned upside down. What shape is it now?",
+            "options": [{ "id": "tri", "label": "Still a triangle" }, { "id": "new", "label": "A new shape" }], "answer": "tri",
+            "hints": ["Does turning change the number of sides?", "Count: it still has 3 sides."], "explanation": "Turning a shape doesn't change it. It still has 3 sides, so it is still a triangle.",
+            "misconceptions": { "new": "ORIENTATION" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "pattern-parade",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Patterns", "subtopic": "Repeating patterns",
+      "objective": "MA.PATTERN.REPEAT", "title": "Pattern Parade", "pathOrder": 6, "estimatedMinutes": 4,
+      "learn": {
+        "text": "A pattern repeats the same part again and again. Say it out loud: red, blue, red, blue. What comes next? Red!",
+        "visual": { "kind": "pattern", "items": ["🔴", "🔵", "🔴", "🔵", "🔴", "?"] }
+      },
+      "misconceptions": [
+        { "code": "LAST_REPEATED", "description": "Repeats the last item instead of following the pattern.", "remedy": "Say the pattern out loud from the start, then keep going." },
+        { "code": "UNIT_MISSED", "description": "Doesn't see the full repeating part (e.g. ABB treated as AB).", "remedy": "Find the part that repeats. Draw a line after it each time." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": null,
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "pa1", "type": "choice", "prompt": "What comes next?", "visual": { "kind": "pattern", "items": ["🍎", "🍌", "🍎", "🍌", "?"] },
+            "options": [{ "id": "apple", "label": "Apple", "emoji": "🍎" }, { "id": "banana", "label": "Banana", "emoji": "🍌" }], "answer": "apple",
+            "hints": ["Say it: apple, banana, apple, banana...", "After banana comes..."], "explanation": "The pattern is apple, banana. After banana comes apple.",
+            "misconceptions": { "banana": "LAST_REPEATED" } },
+          { "id": "pa2", "type": "choice", "prompt": "What comes next?", "visual": { "kind": "pattern", "items": ["🟢", "🟡", "🟢", "🟡", "🟢", "?"] },
+            "options": [{ "id": "green", "label": "Green", "emoji": "🟢" }, { "id": "yellow", "label": "Yellow", "emoji": "🟡" }], "answer": "yellow",
+            "hints": ["Green, yellow, green, yellow, green...", "What always comes after green?"], "explanation": "Yellow always comes after green.",
+            "misconceptions": { "green": "LAST_REPEATED" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "pa3", "type": "choice", "prompt": "What is missing?", "visual": { "kind": "pattern", "items": ["⭐", "🌙", "⭐", "?", "⭐", "🌙"] },
+            "options": [{ "id": "star", "label": "Star", "emoji": "⭐" }, { "id": "moon", "label": "Moon", "emoji": "🌙" }], "answer": "moon",
+            "hints": ["The pattern is star, moon.", "What comes after a star?"], "explanation": "Star, moon, star, MOON, star, moon.",
+            "misconceptions": { "star": "LAST_REPEATED" } },
+          { "id": "pa4", "type": "choice", "prompt": "What comes next?", "visual": { "kind": "pattern", "items": ["🐱", "🐶", "🐶", "🐱", "🐶", "?"] },
+            "options": [{ "id": "cat", "label": "Cat", "emoji": "🐱" }, { "id": "dog", "label": "Dog", "emoji": "🐶" }], "answer": "dog",
+            "hints": ["The part that repeats is cat, dog, dog.", "Cat, dog, dog, cat, dog..."], "explanation": "The repeating part is cat, dog, dog. So after cat, dog comes another dog.",
+            "misconceptions": { "cat": "UNIT_MISSED" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "pa5", "type": "order", "prompt": "Make the pattern: big, small, big, small.",
+            "tiles": [{ "id": "s1", "label": "small", "emoji": "🐭" }, { "id": "b1", "label": "big", "emoji": "🐘" }, { "id": "s2", "label": "small", "emoji": "🐜" }, { "id": "b2", "label": "big", "emoji": "🦒" }],
+            "answer": ["b1", "s1", "b2", "s2"], "hints": ["Start with a big animal.", "Big, then small, then big again."],
+            "explanation": "Elephant (big), mouse (small), giraffe (big), ant (small). Big, small, big, small!" },
+          { "id": "pa6", "type": "choice", "prompt": "What comes next?", "visual": { "kind": "pattern", "items": ["🔺", "🔺", "🟦", "🔺", "🔺", "?"] },
+            "options": [{ "id": "tri", "label": "Triangle", "emoji": "🔺" }, { "id": "sq", "label": "Square", "emoji": "🟦" }], "answer": "sq",
+            "hints": ["The repeating part has 3 shapes.", "Triangle, triangle, square..."], "explanation": "The pattern is triangle, triangle, square. After two triangles comes a square.",
+            "misconceptions": { "tri": "UNIT_MISSED" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "add-together-to-5",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "maths", "topic": "Number", "subtopic": "Combining",
+      "objective": "MA.ADD.TO5", "title": "Put Them Together", "pathOrder": 7, "estimatedMinutes": 5,
+      "learn": {
+        "text": "When we put two groups together, we find how many altogether. Count the first group, then keep counting the second group.",
+        "visual": { "kind": "groups", "groups": [{ "emoji": "🐥", "count": 2 }, { "emoji": "🐥", "count": 1 }], "operator": "+" },
+        "example": "2 chicks and 1 more chick: 1, 2... 3! That's 3 altogether."
+      },
+      "misconceptions": [
+        { "code": "COUNTED_ONE_GROUP", "description": "Gave the size of only one group instead of both together.", "remedy": "Altogether means count every one in both groups." },
+        { "code": "OFF_BY_ONE", "description": "Total is one away from correct, often from recounting the first number.", "remedy": "Say the first number, then count on: 3... 4, 5." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "number-bonds-to-10",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "a1", "type": "choice", "prompt": "1 bird and 1 bird. How many altogether?", "visual": { "kind": "groups", "groups": [{ "emoji": "🐦", "count": 1 }, { "emoji": "🐦", "count": 1 }], "operator": "+" },
+            "options": [{ "id": "1", "label": "1" }, { "id": "2", "label": "2" }, { "id": "3", "label": "3" }], "answer": "2",
+            "hints": ["Count all the birds.", "1... 2!"], "explanation": "1 and 1 make 2.", "misconceptions": { "1": "COUNTED_ONE_GROUP", "3": "OFF_BY_ONE" } },
+          { "id": "a2", "type": "choice", "prompt": "2 cars and 1 car. How many altogether?", "visual": { "kind": "groups", "groups": [{ "emoji": "🚗", "count": 2 }, { "emoji": "🚗", "count": 1 }], "operator": "+" },
+            "options": [{ "id": "2", "label": "2" }, { "id": "3", "label": "3" }, { "id": "4", "label": "4" }], "answer": "3",
+            "hints": ["Count both groups.", "2... and one more is 3."], "explanation": "2 and 1 more make 3.", "misconceptions": { "2": "COUNTED_ONE_GROUP", "4": "OFF_BY_ONE" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "a3", "type": "number", "prompt": "3 fish and 2 fish. How many fish altogether?", "visual": { "kind": "groups", "groups": [{ "emoji": "🐠", "count": 3 }, { "emoji": "🐠", "count": 2 }], "operator": "+" }, "answer": 5,
+            "hints": ["Start at 3. Count on 2 more.", "3... 4, 5."], "explanation": "3 and 2 make 5.", "misconceptions": { "3": "COUNTED_ONE_GROUP", "2": "COUNTED_ONE_GROUP", "4": "OFF_BY_ONE", "6": "OFF_BY_ONE" } },
+          { "id": "a4", "type": "number", "prompt": "2 bees and 2 bees. How many bees?", "visual": { "kind": "groups", "groups": [{ "emoji": "🐝", "count": 2 }, { "emoji": "🐝", "count": 2 }], "operator": "+" }, "answer": 4,
+            "hints": ["Count all the bees.", "2... 3, 4."], "explanation": "2 and 2 make 4. That's a double!", "misconceptions": { "2": "COUNTED_ONE_GROUP", "3": "OFF_BY_ONE", "5": "OFF_BY_ONE" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "a5", "type": "number", "prompt": "Ola has 4 grapes. She gets 1 more. How many grapes now?", "answer": 5,
+            "hints": ["Start at 4.", "One more than 4 is..."], "explanation": "4 and 1 more is 5.", "misconceptions": { "4": "COUNTED_ONE_GROUP", "6": "OFF_BY_ONE" } },
+          { "id": "a6", "type": "choice", "prompt": "Which makes 5?",
+            "options": [{ "id": "a", "label": "2 + 2" }, { "id": "b", "label": "3 + 2" }, { "id": "c", "label": "1 + 2" }], "answer": "b",
+            "hints": ["Work out each one.", "Try 3 and count on 2."], "explanation": "3 and 2 make 5. (2 and 2 make 4. 1 and 2 make 3.)",
+            "misconceptions": { "a": "OFF_BY_ONE", "c": "COUNTED_ONE_GROUP" } }
+        ]}
+      ]
+    }
+  ]
+}

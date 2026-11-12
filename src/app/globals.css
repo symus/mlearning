@@ -1,0 +1,110 @@
+@import "tailwindcss";
+
+/*
+ * Wondergrove design tokens. One palette, two moods:
+ *  - Parent area: calm, trustworthy (paper + ink + brand violet).
+ *  - Child area: playful (world colours, bigger radii, larger targets).
+ */
+@theme {
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display-face), var(--font-body), ui-rounded, system-ui, sans-serif;
+
+  --color-ink: #1e1b3a;
+  --color-ink-soft: #4b4768;
+  --color-ink-muted: #6f6b8a;
+  --color-paper: #fffbf3;
+  --color-surface: #ffffff;
+  --color-line: #ebe5d8;
+
+  --color-brand: #5b3fd9;
+  --color-brand-dark: #4429b8;
+  --color-brand-soft: #efeaff;
+
+  --color-sun: #ffc23d;
+  --color-sun-soft: #fff4d6;
+  --color-coral: #ff7a59;
+  --color-coral-soft: #ffe9e2;
+  --color-leaf: #23a565;
+  --color-leaf-soft: #e1f6ea;
+  --color-sky: #2f8fef;
+  --color-sky-soft: #e2f0fe;
+  --color-berry: #c8458e;
+  --color-berry-soft: #fbe6f1;
+  --color-sand: #d7b072;
+  --color-sand-soft: #f8eedc;
+
+  --color-success: #1e8f57;
+  --color-warning: #b86e00;
+  --color-danger: #c8323c;
+  --color-danger-soft: #fde8e9;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.25rem;
+  --radius-3xl: 1.75rem;
+
+  --shadow-card: 0 1px 2px rgb(30 27 58 / 0.06), 0 4px 16px rgb(30 27 58 / 0.06);
+  --shadow-pop: 0 6px 0 rgb(30 27 58 / 0.18);
+}
+
+/* World colours are referenced dynamically (var(--color-world-<slug>)), so they live outside
+   @theme where Tailwind would strip "unused" variables. */
+:root {
+  --color-world-nebula: #5b3fd9;
+  --color-world-grove: #1f9d6b;
+  --color-world-lab: #0e8fa0;
+  --color-world-peaks: #d9652a;
+  --color-world-harbour: #2f6fe0;
+  --color-world-atlas: #a86c12;
+  --color-world-studio: #c8458e;
+  --color-world-cove: #b08700;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+}
+
+h1, h2, h3, .font-display {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* Child area background: soft starfield made with gradients (no image download). */
+.bg-universe {
+  background-color: #241a5c;
+  background-image:
+    radial-gradient(circle at 20% 15%, rgb(255 255 255 / 0.5) 0 1px, transparent 2px),
+    radial-gradient(circle at 70% 35%, rgb(255 255 255 / 0.4) 0 1px, transparent 2px),
+    radial-gradient(circle at 40% 80%, rgb(255 255 255 / 0.35) 0 1px, transparent 2px),
+    radial-gradient(circle at 85% 75%, rgb(255 255 255 / 0.45) 0 1px, transparent 2px),
+    radial-gradient(1200px 600px at 10% -10%, #5b3fd9 0, transparent 60%),
+    radial-gradient(900px 500px at 110% 110%, #1f9d6b 0, transparent 55%);
+  background-size: 180px 180px, 240px 240px, 200px 200px, 260px 260px, auto, auto;
+}
+
+.btn-pop {
+  box-shadow: var(--shadow-pop);
+  transition: transform 0.08s ease, box-shadow 0.08s ease;
+}
+.btn-pop:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 rgb(30 27 58 / 0.18);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}

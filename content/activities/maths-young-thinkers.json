@@ -1,0 +1,302 @@
+{
+  "activities": [
+    {
+      "slug": "number-bonds-to-10",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Number bonds",
+      "objective": "MA.BONDS.TEN", "title": "Rocket Bonds to 10", "pathOrder": 1, "estimatedMinutes": 5, "isFree": true,
+      "learn": {
+        "text": "Number bonds are pairs that make a number. On a ten frame, the filled boxes and the empty boxes always make 10 together. 7 filled + 3 empty = 10.",
+        "visual": { "kind": "tenFrame", "filled": 7 },
+        "example": "7 + 3 = 10, so 3 + 7 = 10 too."
+      },
+      "misconceptions": [
+        { "code": "ADDED_INSTEAD", "description": "Added the given numbers instead of finding the missing part.", "remedy": "We know the total is 10. Find the part that is missing." },
+        { "code": "OFF_BY_ONE", "description": "Answer is one away; often from counting the starting number again.", "remedy": "Count the empty boxes in the ten frame." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "adding-within-20",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "b1", "type": "number", "prompt": "6 + ? = 10", "visual": { "kind": "tenFrame", "filled": 6 }, "answer": 4,
+            "hints": ["Count the empty boxes.", "6, then count on to 10: 7, 8, 9, 10."], "explanation": "6 boxes are filled and 4 are empty. 6 + 4 = 10.",
+            "misconceptions": { "16": "ADDED_INSTEAD", "3": "OFF_BY_ONE", "5": "OFF_BY_ONE" } },
+          { "id": "b2", "type": "number", "prompt": "8 + ? = 10", "visual": { "kind": "tenFrame", "filled": 8 }, "answer": 2,
+            "hints": ["How many empty boxes?", "8... 9, 10. That's two jumps."], "explanation": "8 + 2 = 10.",
+            "misconceptions": { "18": "ADDED_INSTEAD", "1": "OFF_BY_ONE", "3": "OFF_BY_ONE" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "b3", "type": "number", "prompt": "? + 3 = 10", "answer": 7,
+            "hints": ["What do you add to 3 to make 10?", "Picture a ten frame with 3 filled. How many empty?"], "explanation": "7 + 3 = 10. Bonds work in either order.",
+            "misconceptions": { "13": "ADDED_INSTEAD", "6": "OFF_BY_ONE", "8": "OFF_BY_ONE" } },
+          { "id": "b4", "type": "choice", "prompt": "Which pair makes 10?",
+            "options": [{ "id": "a", "label": "4 and 5" }, { "id": "b", "label": "5 and 5" }, { "id": "c", "label": "6 and 3" }], "answer": "b",
+            "hints": ["Add each pair.", "Double 5 is..."], "explanation": "5 + 5 = 10. (4 + 5 = 9 and 6 + 3 = 9.)",
+            "misconceptions": { "a": "OFF_BY_ONE", "c": "OFF_BY_ONE" } },
+          { "id": "b5", "type": "number", "prompt": "10 − 1 = ?", "answer": 9,
+            "hints": ["10 is made of 9 and 1.", "One less than 10."], "explanation": "9 + 1 = 10, so 10 − 1 = 9.",
+            "misconceptions": { "11": "ADDED_INSTEAD", "8": "OFF_BY_ONE" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "b6", "type": "number", "prompt": "Lena needs 10 stickers to fill a page. She has 4. How many more does she need?", "answer": 6,
+            "hints": ["4 + ? = 10", "Count on from 4 to 10."], "explanation": "4 + 6 = 10, so she needs 6 more.",
+            "misconceptions": { "14": "ADDED_INSTEAD", "5": "OFF_BY_ONE", "7": "OFF_BY_ONE" } },
+          { "id": "b7", "type": "number", "prompt": "If 3 + 7 = 10, what is 30 + 70?", "answer": 100,
+            "hints": ["3 tens + 7 tens = ? tens", "10 tens is..."], "explanation": "3 tens and 7 tens make 10 tens, which is 100. Bonds to 10 help with bonds to 100!",
+            "misconceptions": { "10": "OFF_BY_ONE" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "adding-within-20",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Addition",
+      "objective": "MA.ADD.WITHIN20", "title": "Bridge Through 10", "pathOrder": 2, "estimatedMinutes": 6,
+      "learn": {
+        "text": "To add numbers that cross 10, make a 10 first. For 8 + 5: take 2 from the 5 to fill up to 10, then add the 3 left over. 10 + 3 = 13.",
+        "visual": { "kind": "numberLine", "from": 0, "to": 20, "mark": 8, "jumps": [10, 13] },
+        "example": "8 + 5 = 8 + 2 + 3 = 10 + 3 = 13"
+      },
+      "misconceptions": [
+        { "code": "COUNT_ALL_SLIP", "description": "Answer is one off from counting the starting number as a step.", "remedy": "On a number line, count the jumps, not the starting number." },
+        { "code": "DIGIT_CONCAT", "description": "Writes digits side by side (e.g. 1 and 5 makes 15) rather than adding.", "remedy": "Adding means combining amounts. Use a ten frame to check." },
+        { "code": "SUBTRACTED", "description": "Subtracted instead of adding.", "remedy": "Look at the sign: + means put together." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "subtracting-within-20",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "ad1", "type": "number", "prompt": "10 + 4 = ?", "visual": { "kind": "placeValue", "tens": 1, "ones": 4 }, "answer": 14,
+            "hints": ["1 ten and 4 ones.", "Teen numbers start with 1 ten."], "explanation": "10 + 4 = 14: one ten and four ones.",
+            "misconceptions": { "13": "COUNT_ALL_SLIP", "15": "COUNT_ALL_SLIP", "6": "SUBTRACTED" } },
+          { "id": "ad2", "type": "number", "prompt": "7 + 3 = ?", "answer": 10,
+            "hints": ["It's a bond to 10!", "7... 8, 9, 10"], "explanation": "7 + 3 = 10.",
+            "misconceptions": { "9": "COUNT_ALL_SLIP", "11": "COUNT_ALL_SLIP", "4": "SUBTRACTED" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "ad3", "type": "number", "prompt": "8 + 5 = ?", "visual": { "kind": "numberLine", "from": 0, "to": 20, "mark": 8 }, "answer": 13,
+            "hints": ["Make 10 first: 8 + 2 = 10.", "You still have 3 left from the 5. 10 + 3 = ?"], "explanation": "8 + 2 = 10, then 10 + 3 = 13.",
+            "misconceptions": { "12": "COUNT_ALL_SLIP", "14": "COUNT_ALL_SLIP", "3": "SUBTRACTED", "85": "DIGIT_CONCAT" } },
+          { "id": "ad4", "type": "number", "prompt": "9 + 6 = ?", "answer": 15,
+            "hints": ["9 needs 1 more to make 10.", "10 + 5 = ?"], "explanation": "9 + 1 = 10, then add the other 5: 15.",
+            "misconceptions": { "14": "COUNT_ALL_SLIP", "16": "COUNT_ALL_SLIP", "3": "SUBTRACTED" } },
+          { "id": "ad5", "type": "number", "prompt": "6 + 7 = ?", "answer": 13,
+            "hints": ["Use a double: 6 + 6 = 12.", "One more than 12."], "explanation": "6 + 6 = 12 and 7 is one more than 6, so 6 + 7 = 13.",
+            "misconceptions": { "12": "COUNT_ALL_SLIP", "14": "COUNT_ALL_SLIP", "1": "SUBTRACTED" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "ad6", "type": "number", "prompt": "Tomasz scored 7 goals on Monday and 8 on Tuesday. How many goals altogether?", "answer": 15,
+            "hints": ["7 + 8. Make a 10 first.", "7 + 3 = 10, and 5 more is 15."], "explanation": "7 + 8 = 15.",
+            "misconceptions": { "14": "COUNT_ALL_SLIP", "16": "COUNT_ALL_SLIP", "1": "SUBTRACTED" } },
+          { "id": "ad7", "type": "number", "prompt": "5 + 4 + 5 = ?", "answer": 14,
+            "hints": ["Look for a pair that makes 10.", "5 + 5 = 10, then add 4."], "explanation": "Add the 5s first to make 10, then 10 + 4 = 14.",
+            "misconceptions": { "13": "COUNT_ALL_SLIP", "15": "COUNT_ALL_SLIP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "subtracting-within-20",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Subtraction",
+      "objective": "MA.SUB.WITHIN20", "title": "Moon Jumps Back", "pathOrder": 3, "estimatedMinutes": 6,
+      "learn": {
+        "text": "Subtraction can mean taking away, or finding the difference. To take away, jump back on a number line. For 14 − 6: jump back 4 to reach 10, then 2 more to reach 8.",
+        "visual": { "kind": "numberLine", "from": 0, "to": 20, "mark": 14, "jumps": [10, 8] },
+        "example": "14 − 4 = 10, then 10 − 2 = 8"
+      },
+      "misconceptions": [
+        { "code": "SMALLER_FROM_LARGER", "description": "Subtracts the smaller digit from the larger in each place (e.g. 13 − 5 → 12).", "remedy": "You can't take 5 ones from 3 ones. Break a ten: 13 − 3 = 10, then 10 − 2 = 8." },
+        { "code": "COUNT_BACK_SLIP", "description": "Answer is one off from counting the starting number as a jump.", "remedy": "Count the jumps back, not the number you start on." },
+        { "code": "ADDED", "description": "Added instead of subtracting.", "remedy": "Look at the sign: − means take away." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "tens-and-ones",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "sb1", "type": "number", "prompt": "9 − 4 = ?", "visual": { "kind": "objects", "emoji": "🍪", "count": 9 }, "answer": 5,
+            "hints": ["Imagine eating 4 cookies.", "Count back: 8, 7, 6, 5."], "explanation": "9 − 4 = 5.",
+            "misconceptions": { "4": "COUNT_BACK_SLIP", "6": "COUNT_BACK_SLIP", "13": "ADDED" } },
+          { "id": "sb2", "type": "number", "prompt": "15 − 5 = ?", "visual": { "kind": "placeValue", "tens": 1, "ones": 5 }, "answer": 10,
+            "hints": ["Take away all the ones.", "1 ten and 0 ones."], "explanation": "15 is 10 and 5. Take away 5 and 10 is left.",
+            "misconceptions": { "9": "COUNT_BACK_SLIP", "11": "COUNT_BACK_SLIP", "20": "ADDED" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "sb3", "type": "number", "prompt": "13 − 5 = ?", "visual": { "kind": "numberLine", "from": 0, "to": 20, "mark": 13 }, "answer": 8,
+            "hints": ["Jump back 3 to get to 10.", "You need 2 more jumps back from 10."], "explanation": "13 − 3 = 10, then 10 − 2 = 8.",
+            "misconceptions": { "12": "SMALLER_FROM_LARGER", "7": "COUNT_BACK_SLIP", "9": "COUNT_BACK_SLIP", "18": "ADDED" } },
+          { "id": "sb4", "type": "number", "prompt": "16 − 9 = ?", "answer": 7,
+            "hints": ["16 − 6 = 10.", "Then take away 3 more."], "explanation": "16 − 6 = 10 and 10 − 3 = 7.",
+            "misconceptions": { "13": "SMALLER_FROM_LARGER", "6": "COUNT_BACK_SLIP", "8": "COUNT_BACK_SLIP", "25": "ADDED" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "sb5", "type": "number", "prompt": "Amara has 17 marbles. Kai has 9. How many more marbles does Amara have?", "answer": 8,
+            "hints": ["'How many more' means find the difference: 17 − 9.", "Count up from 9 to 17."], "explanation": "From 9 to 10 is 1, from 10 to 17 is 7. 1 + 7 = 8.",
+            "misconceptions": { "12": "SMALLER_FROM_LARGER", "26": "ADDED", "7": "COUNT_BACK_SLIP", "9": "COUNT_BACK_SLIP" } },
+          { "id": "sb6", "type": "number", "prompt": "? − 6 = 8", "answer": 14,
+            "hints": ["Subtraction and addition are opposites.", "What is 8 + 6?"], "explanation": "8 + 6 = 14, so 14 − 6 = 8.",
+            "misconceptions": { "2": "ADDED", "13": "COUNT_BACK_SLIP", "15": "COUNT_BACK_SLIP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "tens-and-ones",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Place value",
+      "objective": "MA.PV.TENSONES", "title": "Tens and Ones", "pathOrder": 4, "estimatedMinutes": 5, "isFree": true,
+      "learn": {
+        "text": "In a two-digit number, the left digit tells us how many tens and the right digit tells us how many ones. 46 is 4 tens and 6 ones: 40 + 6.",
+        "visual": { "kind": "placeValue", "tens": 4, "ones": 6 }
+      },
+      "misconceptions": [
+        { "code": "FACE_VALUE", "description": "Treats the tens digit as its face value (the 4 in 46 means 4, not 40).", "remedy": "The 4 is in the tens place, so it means 4 tens: 40." },
+        { "code": "REVERSED_DIGITS", "description": "Swaps tens and ones (writes 64 for 46).", "remedy": "Tens go on the left, ones on the right." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "skip-counting",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "pv1", "type": "number", "prompt": "What number is shown?", "visual": { "kind": "placeValue", "tens": 3, "ones": 2 }, "answer": 32,
+            "hints": ["Count the tens rods: 10, 20, 30.", "Then add the ones."], "explanation": "3 tens and 2 ones is 32.",
+            "misconceptions": { "23": "REVERSED_DIGITS", "5": "FACE_VALUE" } },
+          { "id": "pv2", "type": "number", "prompt": "How many tens are in 57?", "answer": 5,
+            "hints": ["The tens digit is on the left.", "57 = 50 + 7"], "explanation": "57 has 5 tens (50) and 7 ones.",
+            "misconceptions": { "7": "REVERSED_DIGITS", "50": "FACE_VALUE" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "pv3", "type": "choice", "prompt": "What is the value of the 8 in 84?",
+            "options": [{ "id": "8", "label": "8" }, { "id": "80", "label": "80" }, { "id": "4", "label": "4" }], "answer": "80",
+            "hints": ["Which place is the 8 in?", "8 tens = ?"], "explanation": "The 8 is in the tens place, so it is worth 80.",
+            "misconceptions": { "8": "FACE_VALUE", "4": "REVERSED_DIGITS" } },
+          { "id": "pv4", "type": "number", "prompt": "60 + 9 = ?", "answer": 69,
+            "hints": ["6 tens and 9 ones.", "Write the tens then the ones."], "explanation": "60 + 9 = 69.",
+            "misconceptions": { "96": "REVERSED_DIGITS", "15": "FACE_VALUE" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "pv5", "type": "number", "prompt": "2 tens and 15 ones. What number is that?", "answer": 35,
+            "hints": ["15 ones is 1 ten and 5 ones.", "So that is 3 tens and 5 ones."], "explanation": "20 + 15 = 35. Ten ones can be swapped for one ten.",
+            "misconceptions": { "215": "FACE_VALUE", "17": "FACE_VALUE" } },
+          { "id": "pv6", "type": "order", "prompt": "Order from smallest to largest.",
+            "tiles": [{ "id": "71", "label": "71" }, { "id": "17", "label": "17" }, { "id": "70", "label": "70" }, { "id": "27", "label": "27" }],
+            "answer": ["17", "27", "70", "71"], "hints": ["Compare the tens first.", "70 and 71 have the same tens. Then compare ones."],
+            "explanation": "17 (1 ten), 27 (2 tens), 70 (7 tens, 0 ones), 71 (7 tens, 1 one)." }
+        ]}
+      ]
+    },
+    {
+      "slug": "skip-counting",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Counting in steps",
+      "objective": "MA.COUNT.STEPS", "title": "Skip Counting Comets", "pathOrder": 5, "estimatedMinutes": 5,
+      "learn": {
+        "text": "Skip counting means jumping by the same amount each time. Counting in 2s: 2, 4, 6, 8. In 5s: 5, 10, 15, 20. In 10s: 10, 20, 30, 40.",
+        "visual": { "kind": "numberLine", "from": 0, "to": 20, "jumps": [5, 10, 15, 20] }
+      },
+      "misconceptions": [
+        { "code": "COUNTS_IN_ONES", "description": "Adds 1 instead of the step size.", "remedy": "Check the jump size: each number is the same distance from the last." },
+        { "code": "WRONG_STEP", "description": "Uses a different step size from the pattern.", "remedy": "Work out the gap between two numbers, then keep using it." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "equal-groups",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "sk1", "type": "number", "prompt": "2, 4, 6, 8, ?", "answer": 10, "hints": ["Each jump is 2.", "8 + 2 = ?"], "explanation": "Counting in 2s: 8 + 2 = 10.", "misconceptions": { "9": "COUNTS_IN_ONES" } },
+          { "id": "sk2", "type": "number", "prompt": "10, 20, 30, ?", "answer": 40, "hints": ["Each jump is 10.", "3 tens, then 4 tens."], "explanation": "Counting in 10s: 30 + 10 = 40.", "misconceptions": { "31": "COUNTS_IN_ONES", "35": "WRONG_STEP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "sk3", "type": "number", "prompt": "5, 10, 15, 20, ?", "answer": 25, "hints": ["Each jump is 5.", "Numbers in the 5s end in 5 or 0."], "explanation": "20 + 5 = 25.", "misconceptions": { "21": "COUNTS_IN_ONES", "30": "WRONG_STEP" } },
+          { "id": "sk4", "type": "number", "prompt": "Count the hands in 5s. How many fingers?", "visual": { "kind": "objects", "emoji": "🖐️", "count": 4 }, "answer": 20,
+            "hints": ["Each hand has 5 fingers.", "5, 10, 15, ..."], "explanation": "5, 10, 15, 20. Four hands have 20 fingers.", "misconceptions": { "4": "COUNTS_IN_ONES", "8": "WRONG_STEP" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "sk5", "type": "number", "prompt": "40, 35, 30, 25, ?", "answer": 20, "hints": ["The numbers are getting smaller.", "Each jump goes back 5."], "explanation": "Counting back in 5s: 25 − 5 = 20.", "misconceptions": { "24": "COUNTS_IN_ONES", "30": "WRONG_STEP", "15": "WRONG_STEP" } },
+          { "id": "sk6", "type": "number", "prompt": "Socks come in pairs. How many socks in 7 pairs?", "visual": { "kind": "objects", "emoji": "🧦", "count": 7 }, "answer": 14,
+            "hints": ["A pair is 2.", "Count in 2s seven times: 2, 4, 6..."], "explanation": "2, 4, 6, 8, 10, 12, 14. Seven pairs is 14 socks.", "misconceptions": { "7": "COUNTS_IN_ONES", "9": "COUNTS_IN_ONES", "35": "WRONG_STEP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "equal-groups",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Multiplication",
+      "objective": "MA.MUL.ARRAYS", "title": "Equal Groups and Arrays", "pathOrder": 6, "estimatedMinutes": 6,
+      "learn": {
+        "text": "Multiplication is a fast way to add equal groups. An array shows rows that are all the same. 3 rows of 5 is 3 × 5 = 15. Turn it around and it's 5 × 3 — still 15!",
+        "visual": { "kind": "array", "rows": 3, "cols": 5, "emoji": "🍩" },
+        "example": "5 + 5 + 5 = 3 × 5 = 15"
+      },
+      "misconceptions": [
+        { "code": "ADDED_FACTORS", "description": "Adds the two numbers instead of multiplying (3 × 5 → 8).", "remedy": "× means 'groups of'. 3 groups of 5 is 5 + 5 + 5." },
+        { "code": "ONE_GROUP_OFF", "description": "Answer is one group too many or too few.", "remedy": "Count how many groups as you skip count, using your fingers." },
+        { "code": "UNEQUAL_GROUPS", "description": "Thinks any groups can be multiplied, even if they are not equal.", "remedy": "Multiplication only works when every group is the same size." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "fair-shares",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "mu1", "type": "number", "prompt": "2 rows of 4. How many altogether?", "visual": { "kind": "array", "rows": 2, "cols": 4, "emoji": "🍎" }, "answer": 8,
+            "hints": ["Count one row: 4.", "4 + 4 = ?"], "explanation": "2 rows of 4 is 4 + 4 = 8. We write 2 × 4 = 8.",
+            "misconceptions": { "6": "ADDED_FACTORS", "4": "ONE_GROUP_OFF", "12": "ONE_GROUP_OFF" } },
+          { "id": "mu2", "type": "choice", "prompt": "Which shows 3 equal groups of 2?",
+            "options": [{ "id": "a", "label": "🐟🐟  🐟🐟  🐟🐟" }, { "id": "b", "label": "🐟  🐟🐟🐟  🐟🐟" }, { "id": "c", "label": "🐟🐟🐟  🐟🐟🐟" }], "answer": "a",
+            "hints": ["Equal groups are all the same size.", "Look for 3 groups with 2 in each."], "explanation": "The first picture has 3 groups and each has 2 fish.",
+            "misconceptions": { "b": "UNEQUAL_GROUPS", "c": "ONE_GROUP_OFF" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "mu3", "type": "number", "prompt": "5 × 3 = ?", "visual": { "kind": "array", "rows": 5, "cols": 3 }, "answer": 15,
+            "hints": ["5 groups of 3, or 3 groups of 5.", "Count in 5s: 5, 10, 15."], "explanation": "5 × 3 = 15. You can count in 3s five times, or 5s three times.",
+            "misconceptions": { "8": "ADDED_FACTORS", "10": "ONE_GROUP_OFF", "20": "ONE_GROUP_OFF" } },
+          { "id": "mu4", "type": "number", "prompt": "10 × 4 = ?", "answer": 40,
+            "hints": ["Count in 10s, four times.", "10, 20, 30, ..."], "explanation": "10 × 4 = 40: four tens.",
+            "misconceptions": { "14": "ADDED_FACTORS", "30": "ONE_GROUP_OFF", "50": "ONE_GROUP_OFF" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "mu5", "type": "number", "prompt": "A spider has 8 legs. Two spiders sit on a web. How many legs?", "answer": 16,
+            "hints": ["Double 8.", "8 + 8 = ?"], "explanation": "2 × 8 = 16. Doubling is the same as multiplying by 2.",
+            "misconceptions": { "10": "ADDED_FACTORS", "8": "ONE_GROUP_OFF", "24": "ONE_GROUP_OFF" } },
+          { "id": "mu6", "type": "choice", "prompt": "If 6 × 5 = 30, what is 5 × 6?",
+            "options": [{ "id": "30", "label": "30" }, { "id": "11", "label": "11" }, { "id": "35", "label": "35" }], "answer": "30",
+            "hints": ["Turn the array around.", "The rows become columns but the total is the same."], "explanation": "Multiplication can be done in any order. 5 × 6 = 6 × 5 = 30.",
+            "misconceptions": { "11": "ADDED_FACTORS", "35": "ONE_GROUP_OFF" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "fair-shares",
+      "ageBand": "YOUNG_THINKERS", "subject": "maths", "topic": "Number", "subtopic": "Division",
+      "objective": "MA.DIV.SHARE", "title": "Fair Shares", "pathOrder": 7, "estimatedMinutes": 6,
+      "learn": {
+        "text": "Dividing means sharing equally so everyone gets the same. 12 strawberries shared by 3 friends: give one each, again and again, until none are left. Each friend gets 4. 12 ÷ 3 = 4.",
+        "visual": { "kind": "array", "rows": 3, "cols": 4, "emoji": "🍓" },
+        "example": "12 ÷ 3 = 4 because 3 × 4 = 12"
+      },
+      "misconceptions": [
+        { "code": "SUBTRACTED", "description": "Subtracts the divisor instead of dividing (12 ÷ 3 → 9).", "remedy": "÷ means share into equal groups. Deal them out one at a time." },
+        { "code": "UNEQUAL_SHARE", "description": "Shares unequally or leaves items unshared.", "remedy": "Keep going until everyone has the same amount." },
+        { "code": "INVERSE_CONFUSION", "description": "Gives the number of groups instead of the size of each group.", "remedy": "Read the question: are we finding how many each, or how many groups?" }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": null,
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "dv1", "type": "number", "prompt": "Share 6 cookies equally between 2 children. How many each?", "visual": { "kind": "objects", "emoji": "🍪", "count": 6 }, "answer": 3,
+            "hints": ["Give one to each child, then again.", "What number doubled is 6?"], "explanation": "6 ÷ 2 = 3. Each child gets 3.",
+            "misconceptions": { "4": "SUBTRACTED", "2": "INVERSE_CONFUSION" } },
+          { "id": "dv2", "type": "number", "prompt": "10 ÷ 5 = ?", "answer": 2,
+            "hints": ["How many 5s make 10?", "5 + 5 = 10"], "explanation": "10 shared into 5 groups gives 2 in each. 5 × 2 = 10.",
+            "misconceptions": { "5": "INVERSE_CONFUSION", "15": "SUBTRACTED" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "dv3", "type": "number", "prompt": "20 ÷ 4 = ?", "visual": { "kind": "array", "rows": 4, "cols": 5 }, "answer": 5,
+            "hints": ["4 rows. How many in each row?", "4 × ? = 20"], "explanation": "20 ÷ 4 = 5 because 4 × 5 = 20.",
+            "misconceptions": { "16": "SUBTRACTED", "4": "INVERSE_CONFUSION" } },
+          { "id": "dv4", "type": "number", "prompt": "There are 18 pupils. They make teams of 2. How many teams?", "answer": 9,
+            "hints": ["This is grouping: how many 2s in 18?", "Count in 2s to 18 and count your jumps."], "explanation": "18 ÷ 2 = 9 teams. Counting in 2s to 18 takes 9 jumps.",
+            "misconceptions": { "16": "SUBTRACTED", "2": "INVERSE_CONFUSION" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "dv5", "type": "number", "prompt": "Pencils come in boxes of 10. Ms Novak needs 60 pencils. How many boxes?", "answer": 6,
+            "hints": ["How many 10s make 60?", "10 × ? = 60"], "explanation": "60 ÷ 10 = 6 boxes.",
+            "misconceptions": { "50": "SUBTRACTED", "10": "INVERSE_CONFUSION" } },
+          { "id": "dv6", "type": "choice", "prompt": "Can 7 sweets be shared equally between 2 friends with none left?",
+            "options": [{ "id": "no", "label": "No, 1 is left over" }, { "id": "yes", "label": "Yes, 3 each" }, { "id": "yes4", "label": "Yes, 4 each" }], "answer": "no",
+            "hints": ["Is 7 in the 2 times table?", "2 × 3 = 6. What is left?"], "explanation": "Each friend gets 3 and 1 sweet is left over. 7 is an odd number.",
+            "misconceptions": { "yes": "UNEQUAL_SHARE", "yes4": "UNEQUAL_SHARE" } }
+        ]}
+      ]
+    }
+  ]
+}
