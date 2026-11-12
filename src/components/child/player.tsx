@@ -13,7 +13,7 @@ import { Visual } from "./visual";
 import { useSpeech } from "./use-speech";
 import { WatchPlayer } from "./watch-player";
 import { useChildPrefs, useSfx } from "./prefs";
-import { Confetti, StarRating } from "./celebration";
+import { Confetti, GiftBox, StarRating } from "./celebration";
 
 export interface PlayerActivity {
   slug: string;
@@ -147,7 +147,7 @@ export function Player({
     const res = await startAttempt(activity.slug, startLevel);
     setBusy(false);
     if ("error" in res) {
-      setBlocked(res.error === "limit" ? "limit" : res.error === "locked" ? "locked" : res.error);
+      setBlocked(["limit", "locked", "daily-limit"].includes(res.error) ? res.error : res.error);
       setPhase("blocked");
       return;
     }
@@ -304,12 +304,17 @@ export function Player({
             />
           )}
 
-          {phase === "summary" && summary && <Summary summary={summary} backHref={activity.backHref} journeySlug={activity.journeySlug} />}
+          {phase === "summary" && summary && <Summary summary={summary} backHref={activity.backHref} journeySlug={activity.journeySlug} onGift={() => sfx("reward")} />}
 
           {phase === "blocked" && (
             <div className="flex flex-col items-center gap-4 py-6 text-center">
               <Muchi className="size-24" />
-              {blocked === "limit" ? (
+              {blocked === "daily-limit" ? (
+                <>
+                  <h2 className="text-2xl font-bold">🌙 That&apos;s all for today!</h2>
+                  <p className="max-w-md text-lg">You&apos;ve done your learning time for today. Muchi will be here tomorrow with more adventures!</p>
+                </>
+              ) : blocked === "limit" ? (
                 <>
                   <h2 className="text-2xl font-bold">That&apos;s all the adventures for today!</h2>
                   <p className="max-w-md text-lg">You did brilliant learning. Your brain needs time to grow — come back tomorrow for more.</p>
@@ -512,8 +517,9 @@ function hash(s: string) {
   return h;
 }
 
-function Summary({ summary, backHref, journeySlug }: { summary: AttemptSummary; backHref: string; journeySlug?: string }) {
-  const goalMet = summary.todayMinutes >= summary.dailyGoalMinutes;
+function Summary({ summary, backHref, journeySlug, onGift }: { summary: AttemptSummary; backHref: string; journeySlug?: string; onGift: () => void }) {
+  // Reaching the parent's daily limit works like reaching the goal: suggest stopping, no "next" pressure.
+  const goalMet = summary.todayMinutes >= summary.dailyGoalMinutes || summary.limit === "reached";
   const j = journeySlug && summary.journey?.slug === journeySlug ? summary.journey : null;
   // In a journey, "next" is the next lesson; otherwise the activity's follow-up.
   const next = j ? (j.next ? { slug: j.next.slug, title: `Lesson ${j.next.n}: ${j.next.title}` } : null) : summary.followUp;
@@ -549,13 +555,20 @@ function Summary({ summary, backHref, journeySlug }: { summary: AttemptSummary; 
             : `🗺️ Nearly there! Play lesson ${j.lesson} again to open the next one.`}
         </p>
       )}
-      {goalMet && <p className="rounded-2xl bg-sky-soft px-5 py-3 font-bold">🌙 You reached today&apos;s learning goal! This is a great time for a break.</p>}
+      {summary.newSticker && <GiftBox sticker={summary.newSticker} onOpen={onGift} />}
+      {summary.limit === "reached" ? (
+        <p className="rounded-2xl bg-sky-soft px-5 py-3 font-bold">🌙 That&apos;s your learning time for today. See you tomorrow!</p>
+      ) : summary.limit === "lastOne" ? (
+        <p className="rounded-2xl bg-sky-soft px-5 py-3 font-bold">⏳ Time for one last adventure today.</p>
+      ) : (
+        goalMet && <p className="rounded-2xl bg-sky-soft px-5 py-3 font-bold">🌙 You reached today&apos;s learning goal! This is a great time for a break.</p>
+      )}
       <div className="flex flex-wrap justify-center gap-3">
         {nextHref && next && !goalMet && (!j || j.passed) && (
           <Link href={nextHref} className="btn-pop rounded-full bg-leaf px-8 py-4 font-display text-xl font-bold text-white">Next: {next.title} →</Link>
         )}
         <Link href={backHref} className="btn-pop rounded-full bg-brand px-8 py-4 font-display text-xl font-bold text-white">{j ? "Back to my map" : "Back to the map"}</Link>
-        {nextHref && next && goalMet && (!j || j.passed) && <Link href={nextHref} className="rounded-full px-6 py-4 font-bold text-ink-soft underline">One more?</Link>}
+        {nextHref && next && goalMet && summary.limit !== "reached" && (!j || j.passed) && <Link href={nextHref} className="rounded-full px-6 py-4 font-bold text-ink-soft underline">One more?</Link>}
       </div>
     </div>
   );

@@ -9,6 +9,7 @@ import { Muchi } from "@/components/mascot";
 import { WorldArt } from "@/components/art/worlds";
 import { Starfield } from "@/components/child/starfield";
 import { journeysForBand, getJourneyView } from "@/lib/learning/journey";
+import { limitStatus } from "@/lib/learning/limits";
 
 export const metadata = { title: "Learning universe" };
 
@@ -23,6 +24,8 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
     db.childAchievement.findMany({ where: { childId: child.id }, orderBy: { earnedAt: "desc" } }),
   ]);
   const goalMet = today.minutes >= child.dailyGoalMinutes;
+  const limit = limitStatus(today.minutes, child.dailyLimitMinutes);
+  const stickerCount = await db.childSticker.count({ where: { childId: child.id } });
   const journeyViews = await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)));
   // Sing-along shelf: activities in this age group that open with a song or video.
   const songs = (
@@ -39,6 +42,14 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
 
   return (
     <div className="space-y-10">
+      {limit === "reached" && (
+        <p role="status" className="rounded-[2rem] bg-sky-soft px-6 py-4 text-center text-lg font-bold text-ink">
+          🌙 That&apos;s your learning time for today. Rest and play — new adventures open tomorrow! You can still visit your map and Sticker Book.
+        </p>
+      )}
+      {limit === "lastOne" && (
+        <p role="status" className="rounded-[2rem] bg-sun-soft px-6 py-4 text-center text-lg font-bold text-ink">⏳ Nearly time to stop. Pick one last adventure for today!</p>
+      )}
       <section className="flex flex-col items-center gap-4 rounded-[2rem] bg-white/10 p-6 text-center ring-1 ring-white/15 sm:flex-row sm:text-left">
         <Muchi className="size-24 shrink-0" mood={goalMet ? "cheer" : "happy"} />
         <div className="flex-1">
@@ -139,7 +150,10 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
       </section>
 
       <section aria-labelledby="trophy-title" className="pt-10">
-        <h2 id="trophy-title" className="mb-3 text-2xl font-bold">My trophy shelf</h2>
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 id="trophy-title" className="text-2xl font-bold">My trophy shelf</h2>
+          <Link href="/play/stickers" className="btn-pop rounded-full bg-sun px-5 py-2.5 font-display text-lg font-bold text-ink">📒 My Sticker Book ({stickerCount})</Link>
+        </div>
         <ul className="flex flex-wrap gap-3">
           {Object.entries(ACHIEVEMENTS).map(([code, a]) => {
             const earned = achievements.some((x) => x.code === code);

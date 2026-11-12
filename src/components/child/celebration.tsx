@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { motion } from "framer-motion";
 
 const COLOURS = ["#ffc23d", "#ff7a59", "#2fb873", "#4a9ff5", "#d6589c", "#ffffff"];
@@ -42,6 +43,56 @@ export function StarRating({ accuracy }: { accuracy: number }) {
           ⭐
         </motion.span>
       ))}
+    </div>
+  );
+}
+
+/** Tap-to-open sticker gift. The sticker is fixed for the activity (no chance involved). */
+export function GiftBox({ sticker, onOpen }: { sticker: { emoji: string; name: string }; onOpen?: () => void }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex flex-col items-center gap-2">
+      {!open ? (
+        <motion.button
+          onClick={() => {
+            setOpen(true);
+            onOpen?.();
+          }}
+          className="flex flex-col items-center gap-1 rounded-3xl bg-berry-soft px-6 py-4 font-bold text-berry"
+          animate={{ rotate: [0, -6, 6, -4, 4, 0] }}
+          transition={{ duration: 1.2, repeat: Infinity, repeatDelay: 1.2 }}
+          aria-label="Open your sticker gift"
+        >
+          <span className="text-6xl" aria-hidden>🎁</span>
+          Tap to open your sticker!
+        </motion.button>
+      ) : (
+        <motion.div
+          initial={{ scale: 0, rotateY: 180 }}
+          animate={{ scale: 1, rotateY: 0 }}
+          transition={{ type: "spring", stiffness: 200, damping: 14 }}
+          className="flex flex-col items-center gap-1 rounded-3xl bg-sun-soft px-6 py-4"
+          role="status"
+        >
+          <span className="text-7xl drop-shadow" aria-hidden>{sticker.emoji}</span>
+          <span className="font-display text-xl font-bold">{sticker.name}</span>
+          <span className="text-sm text-ink-soft">Added to your Sticker Book!</span>
+        </motion.div>
+      )}
+    </div>
+  );
+}
+
+/** Friendly end-of-day screen when the parent's daily limit is reached. */
+export function DailyLimitScreen({ nickname }: { nickname: string }) {
+  return (
+    <div className="mx-auto flex max-w-lg flex-col items-center gap-4 rounded-[2rem] bg-surface p-8 text-center text-ink shadow-xl" role="status">
+      <span className="text-6xl" aria-hidden>🌙</span>
+      <h1 className="text-3xl font-bold">That&apos;s all for today, {nickname}!</h1>
+      <p className="text-lg text-ink-soft">
+        You&apos;ve done your learning time for today. Brains grow while you rest and play — Muchi will be here tomorrow!
+      </p>
+      <p className="text-sm text-ink-muted">You can still look at your map and your Sticker Book.</p>
     </div>
   );
 }

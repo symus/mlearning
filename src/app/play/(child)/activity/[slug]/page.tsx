@@ -12,6 +12,9 @@ import { worldForSubject } from "@/lib/worlds";
 import { getResumeState } from "@/lib/learning/resume";
 import { Player, type PlayerActivity } from "@/components/child/player";
 import { Muchi } from "@/components/mascot";
+import { DailyLimitScreen } from "@/components/child/celebration";
+import { getToday } from "@/lib/learning/queries";
+import { limitStatus } from "@/lib/learning/limits";
 
 export default async function ActivityPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ journey?: string }> }) {
   const { slug } = await params;
@@ -44,6 +47,10 @@ export default async function ActivityPage({ params, searchParams }: { params: P
   }
 
   const resume = await getResumeState(child.id, activity.id);
+  // Daily limit reached: no new lessons today, but an unfinished one can still be completed.
+  if (!resume && limitStatus((await getToday(child.id)).minutes, child.dailyLimitMinutes) === "reached") {
+    return <DailyLimitScreen nickname={child.nickname} />;
+  }
 
   const mastery = await db.objectiveMastery.findUnique({ where: { childId_objectiveCode: { childId: child.id, objectiveCode: activity.objectiveCode } } });
 

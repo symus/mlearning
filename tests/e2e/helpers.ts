@@ -47,3 +47,46 @@ export async function finishItem(page: Page) {
     await page.waitForTimeout(500);
   }
 }
+
+import { loadContent } from "../../src/lib/content/load";
+import type { Item } from "../../src/lib/content/schema";
+
+const library = loadContent();
+
+/** Find the item on screen by its prompt and answer it correctly (test-only: uses the content files). */
+export async function answerCorrectly(page: Page, activitySlug: string) {
+  const activity = library.activities.find((a) => a.slug === activitySlug);
+  if (!activity) throw new Error(`No activity ${activitySlug}`);
+  const prompt = (await page.locator("section h2").first().innerText()).trim();
+  const item = activity.levels.flatMap((l) => l.items).find((i: Item) => i.prompt.trim() === prompt);
+  if (!item) throw new Error(`No item with prompt "${prompt}"`);
+  if (item.type === "choice") {
+    const label = item.options.find((o) => o.id === item.answer)!.label;
+    await page.locator("section .grid > button").filter({ hasText: label }).first().click();
+  } else if (item.type === "number") {
+    await page.getByLabel("Your answer").fill(String(item.answer));
+    await page.getByRole("button", { name: "Check" }).click();
+  } else {
+    for (const id of item.answer) {
+      const label = item.tiles.find((t) => t.id === id)!.label;
+      await page.locator("section .flex-wrap.gap-2 > button").filter({ hasText: label }).first().click();
+    }
+    await page.getByRole("button", { name: "Check" }).click();
+  }
+}
+
+/** Play a whole activity correctly from the practise screen to the summary. */
+export async function passActivity(page: Page, activitySlug: string) {
+  for (let step = 0; step < 12; step++) {
+    if (await page.getByRole("heading", { name: "Adventure complete!" }).isVisible()) return;
+    const next = page.getByRole("button", { name: /^Next →$/ });
+    if (await next.isVisible()) {
+      await next.click({ timeout: 2000 }).catch(() => {});
+      await page.waitForTimeout(450);
+      continue;
+    }
+    await answerCorrectly(page, activitySlug);
+    await expect(next).toBeVisible();
+  }
+  await expect(page.getByRole("heading", { name: "Adventure complete!" })).toBeVisible();
+}
