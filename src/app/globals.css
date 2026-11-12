@@ -93,6 +93,22 @@ h1, h2, h3, .font-display {
   background-size: 180px 180px, 240px 240px, 200px 200px, 260px 260px, auto, auto;
 }
 
+/* Gentle floating for world islands and the mascot. Disabled by reduced-motion below. */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+.animate-float {
+  animation: float 5s ease-in-out infinite;
+}
+@keyframes twinkle {
+  0%, 100% { opacity: 0.35; }
+  50% { opacity: 1; }
+}
+.animate-twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
 .btn-pop {
   box-shadow: var(--shadow-pop);
   transition: transform 0.08s ease, box-shadow 0.08s ease;

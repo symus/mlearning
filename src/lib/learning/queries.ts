@@ -76,6 +76,14 @@ export async function getChildReport(childId: string) {
     db.attempt.count({ where: { childId, completedAt: { not: null } } }),
   ]);
 
+  // Minutes per day for the last 7 days (oldest first), for the weekly chart.
+  const daily = Array.from({ length: 7 }, (_, i) => {
+    const day = startOfToday(new Date(Date.now() - (6 - i) * DAY));
+    const next = new Date(day.getTime() + DAY);
+    const secs = attempts.filter((a) => a.startedAt >= day && a.startedAt < next).reduce((s, a) => s + a.durationSec, 0);
+    return { date: day, minutes: Math.round(secs / 60) };
+  });
+
   const minutesThisWeek = Math.round(attempts.reduce((s, a) => s + a.durationSec, 0) / 60);
   const activeDays = new Set(attempts.map((a) => a.startedAt.toDateString())).size;
   const answered = attempts.reduce((s, a) => s + a.totalCount, 0);
@@ -106,6 +114,7 @@ export async function getChildReport(childId: string) {
 
   return {
     minutesThisWeek,
+    daily,
     activeDays,
     activitiesThisWeek: attempts.length,
     totalCompleted,

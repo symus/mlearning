@@ -9,6 +9,7 @@
         "visual": { "kind": "tenFrame", "filled": 7 },
         "example": "7 + 3 = 10, so 3 + 7 = 10 too."
       },
+      "watch": {"kind": "song", "title": "Make Ten!", "lines": [{"text": "One and nine, that's fine!", "visual": {"kind": "tenFrame", "filled": 1}}, {"text": "Two and eight, that's great!", "visual": {"kind": "tenFrame", "filled": 2}}, {"text": "Three and seven, we're counting to heaven!", "visual": {"kind": "tenFrame", "filled": 3}}, {"text": "Four and six, a magic trick!", "visual": {"kind": "tenFrame", "filled": 4}}, {"text": "Five and five, give me a high five!", "visual": {"kind": "tenFrame", "filled": 5}}]},
       "misconceptions": [
         { "code": "ADDED_INSTEAD", "description": "Added the given numbers instead of finding the missing part.", "remedy": "We know the total is 10. Find the part that is missing." },
         { "code": "OFF_BY_ONE", "description": "Answer is one away; often from counting the starting number again.", "remedy": "Count the empty boxes in the ten frame." }
@@ -186,6 +187,7 @@
         "text": "Skip counting means jumping by the same amount each time. Counting in 2s: 2, 4, 6, 8. In 5s: 5, 10, 15, 20. In 10s: 10, 20, 30, 40.",
         "visual": { "kind": "numberLine", "from": 0, "to": 20, "jumps": [5, 10, 15, 20] }
       },
+      "watch": {"kind": "song", "title": "Jump in Fives", "lines": [{"text": "Five, ten, fifteen, twenty, jumping fives, we've got plenty!", "visual": {"kind": "numberLine", "from": 0, "to": 20, "jumps": [5, 10, 15, 20]}}, {"text": "Twenty-five and thirty, our space boots are dirty!", "visual": {"kind": "numberLine", "from": 0, "to": 30, "jumps": [5, 10, 15, 20, 25, 30]}}, {"text": "Count in twos: two, four, six, eight, counting in twos is really great!", "visual": {"kind": "numberLine", "from": 0, "to": 10, "jumps": [2, 4, 6, 8]}}]},
       "misconceptions": [
         { "code": "COUNTS_IN_ONES", "description": "Adds 1 instead of the step size.", "remedy": "Check the jump size: each number is the same distance from the last." },
         { "code": "WRONG_STEP", "description": "Uses a different step size from the pattern.", "remedy": "Work out the gap between two numbers, then keep using it." }

@@ -45,3 +45,15 @@ describe("content library", () => {
     expect(activitySchema.safeParse(bad).success).toBe(false);
   });
 });
+
+describe("Watch & Sing", () => {
+  it("has songs for young learners", () => {
+    expect(lib.activities.filter((a) => a.watch?.kind === "song").length).toBeGreaterThanOrEqual(6);
+  });
+
+  it("requires captions for every video", async () => {
+    const { watchSchema } = await import("@/lib/content/schema");
+    expect(watchSchema.safeParse({ kind: "video", title: "Phonics s", src: "/media/s.mp4", credit: "Studio" }).success).toBe(false);
+    expect(watchSchema.safeParse({ kind: "video", title: "Phonics s", src: "/media/s.mp4", captions: "/media/s.vtt", credit: "Studio" }).success).toBe(true);
+  });
+});

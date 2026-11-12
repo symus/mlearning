@@ -21,6 +21,7 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
     slug: activity.slug,
     title: activity.title,
     learn: body.learn,
+    watch: body.watch,
     levels: body.levels.map((l) => ({ level: l.level, label: l.label, items: l.items.map(publicItem) })),
     worldSlug: worldForSubject(activity.subjectSlug)?.slug ?? "",
   };

@@ -6,6 +6,8 @@ import { WORLDS } from "@/lib/worlds";
 import { getPlan, getToday, getWorldPath } from "@/lib/learning/queries";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import { Pip } from "@/components/mascot";
+import { WorldArt } from "@/components/art/worlds";
+import { Starfield } from "@/components/child/starfield";
 
 export const metadata = { title: "Learning universe" };
 
@@ -20,6 +22,12 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
     db.childAchievement.findMany({ where: { childId: child.id }, orderBy: { earnedAt: "desc" } }),
   ]);
   const goalMet = today.minutes >= child.dailyGoalMinutes;
+  // Sing-along shelf: activities in this age group that open with a song or video.
+  const songs = (
+    await db.activity.findMany({ where: { ageBand: child.ageBand, status: "PUBLISHED" }, select: { slug: true, title: true, body: true, subjectSlug: true }, orderBy: { pathOrder: "asc" } })
+  )
+    .map((a) => ({ slug: a.slug, subject: a.subjectSlug, watch: (a.body as { watch?: { title: string; kind: string } }).watch }))
+    .filter((a) => a.watch);
   // Alternate subjects day by day so both get attention.
   const preferReading = new Date().getDate() % 2 === 0;
   const picks = (preferReading ? [reading, maths] : [maths, reading]).map((p) => p.nodes.find((n) => n.slug === p.nextSlug)).filter(Boolean);
@@ -53,25 +61,50 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
         )}
       </section>
 
-      <section aria-labelledby="worlds-title">
-        <h1 id="worlds-title" className="mb-4 text-3xl font-bold">Your learning universe</h1>
-        <ul className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+      {songs.length > 0 && (
+        <section aria-labelledby="sing-title">
+          <h2 id="sing-title" className="mb-3 text-2xl font-bold">🎵 Sing along</h2>
+          <ul className="-mx-4 flex gap-3 overflow-x-auto px-4 pb-2">
+            {songs.map((s) => (
+              <li key={s.slug} className="shrink-0">
+                <Link href={`/play/activity/${s.slug}`} className="flex w-44 flex-col gap-2 rounded-3xl bg-white/10 p-4 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15">
+                  <span className="grid size-12 place-items-center rounded-2xl bg-berry text-2xl" aria-hidden>{s.watch!.kind === "video" ? "🎬" : "🎵"}</span>
+                  <span className="font-display text-lg font-bold leading-tight">{s.watch!.title}</span>
+                  <span className="text-xs font-bold text-white/70">{s.subject === "maths" ? "Maths song" : "Reading song"}</span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
+
+      <section aria-labelledby="worlds-title" className="relative">
+        <Starfield />
+        <h1 id="worlds-title" className="relative mb-2 text-3xl font-bold">Your learning universe</h1>
+        <p className="relative mb-6 text-white/75">Tap a world to explore. Stars show the skills you have mastered.</p>
+        <ul className="relative grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
           {WORLDS.map((w, i) => {
             const path = w.subject === "maths" ? maths : w.subject === "reading" ? reading : null;
+            const total = path?.nodes.length ?? 0;
             const mastered = path?.nodes.filter((n) => n.state === "mastered").length ?? 0;
+            const open = w.status === "open";
             return (
-              <li key={w.slug} className={clsx(i % 2 === 1 && "sm:translate-y-6")}>
+              <li key={w.slug} className={clsx(i % 2 === 1 && "sm:translate-y-8")}>
                 <Link
                   href={`/play/world/${w.slug}`}
-                  className={clsx("flex aspect-square flex-col items-center justify-center gap-2 rounded-[2rem] p-4 text-center shadow-lg transition hover:-translate-y-1 hover:scale-[1.02]", w.status === "soon" && "opacity-60 grayscale-[40%]")}
-                  style={{ background: `radial-gradient(circle at 30% 25%, rgb(255 255 255 / 0.35), transparent 45%), var(--color-world-${w.colour})` }}
+                  className="group flex flex-col items-center rounded-[2rem] p-2 text-center transition hover:bg-white/5 focus-visible:bg-white/10"
                 >
-                  <span className="text-5xl sm:text-6xl" aria-hidden>{w.emoji}</span>
-                  <span className="font-display text-lg font-bold leading-tight sm:text-xl">{w.name}</span>
-                  {w.status === "soon" ? (
-                    <span className="rounded-full bg-black/25 px-2 py-0.5 text-xs font-bold">Coming soon</span>
+                  <WorldArt slug={w.slug} float={open} className={clsx("w-full max-w-44 transition group-hover:scale-105", !open && "opacity-50 saturate-50")} />
+                  <span className="mt-1 font-display text-lg font-bold leading-tight sm:text-xl">{w.name}</span>
+                  {open ? (
+                    <span className="mt-1 flex items-center gap-2 text-sm font-bold">
+                      <span className="h-2 w-16 overflow-hidden rounded-full bg-white/20" aria-hidden>
+                        <span className="block h-full rounded-full bg-sun" style={{ width: `${total ? (mastered / total) * 100 : 0}%` }} />
+                      </span>
+                      ⭐ {mastered}/{total}
+                    </span>
                   ) : (
-                    <span className="rounded-full bg-black/25 px-2 py-0.5 text-xs font-bold">⭐ {mastered} / {path?.nodes.length ?? 0}</span>
+                    <span className="mt-1 rounded-full bg-white/10 px-2 py-0.5 text-xs font-bold text-white/70">Coming soon</span>
                   )}
                 </Link>
               </li>
@@ -80,7 +113,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
         </ul>
       </section>
 
-      <section aria-labelledby="trophy-title" className="pt-4">
+      <section aria-labelledby="trophy-title" className="pt-10">
         <h2 id="trophy-title" className="mb-3 text-2xl font-bold">My trophy shelf</h2>
         <ul className="flex flex-wrap gap-3">
           {Object.entries(ACHIEVEMENTS).map(([code, a]) => {

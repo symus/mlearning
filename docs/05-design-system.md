@@ -66,4 +66,13 @@ Tokens live in [`src/app/globals.css`](../src/app/globals.css) (`@theme`) and ar
 
 ## Illustration and sound
 
-The MVP uses an original SVG mascot, CSS-drawn worlds and system emoji for avatars and objects. Phase 3 replaces the emoji with a commissioned, original illustration set and adds optional sound effects (off by default in parent settings).
+All key art is original SVG drawn in code (no external assets, works offline, scales to any size):
+
+| Art | File |
+|---|---|
+| Pip, the guide | `components/mascot.tsx` |
+| 6 avatar characters × 6 colours (fox, owl, bear, cat, dragon, robot) | `components/art/characters.tsx` |
+| 8 world islands, one landmark each | `components/art/worlds.tsx` |
+
+Shared style: round shapes, dot eyes with a white highlight, rosy cheeks, soft shadow under floating islands, gentle `animate-float`.
+System emoji are still used for small objects inside questions (apples, stars). A commissioned illustration set and optional sound effects come later.

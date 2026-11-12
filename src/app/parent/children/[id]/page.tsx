@@ -11,6 +11,7 @@ import { Avatar } from "@/components/avatar";
 import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChildForm } from "@/components/parent/child-form";
+import { MasteryBars, WeeklyMinutesChart } from "@/components/parent/charts";
 
 export const metadata = { title: "Child progress" };
 
@@ -75,6 +76,23 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       </section>
 
       <div className="grid gap-5 lg:grid-cols-2">
+        <Card><WeeklyMinutesChart daily={report.daily} goal={child.dailyGoalMinutes} /></Card>
+        <Card>
+          <MasteryBars
+            rows={(["maths", "reading"] as const).map((subject) => {
+              const objs = objectives.filter((o) => o.subjectSlug === subject);
+              const counts: Record<string, number> = {};
+              for (const o of objs) {
+                const st = masteryByCode.get(o.code)?.status ?? "NOT_STARTED";
+                counts[st] = (counts[st] ?? 0) + 1;
+              }
+              return { label: subject === "maths" ? "Maths" : "Reading", counts, total: Math.max(objs.length, 1) };
+            })}
+          />
+        </Card>
+      </div>
+
+      <div className="grid gap-5 lg:grid-cols-2">
         <Card>
           <h2 className="text-xl font-bold">Strengths</h2>
           {report.strengths.length ? (
@@ -129,7 +147,7 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
                           </div>
                           <Badge tone={st.tone}>{st.label}</Badge>
                         </div>
-                        {m && <ProgressBar className="mt-1.5 h-2" value={m.score} label={`${o.title} progress`} colour={m.status === "MASTERED" ? "bg-leaf" : "bg-brand"} />}
+                        {m && <ProgressBar className="mt-1.5 h-2" value={m.score} label={`${o.title} progress`} colour={m.status === "MASTERED" ? "bg-[#1e8f57]" : m.status === "PRACTISING" ? "bg-[#4cbb82]" : "bg-[#a6e0bf]"} />}
                       </li>
                     );
                   })}

@@ -8,6 +8,7 @@ import { Avatar } from "@/components/avatar";
 import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button";
 import { Pip } from "@/components/mascot";
+import { WeeklyMinutesChart } from "@/components/parent/charts";
 
 export const metadata = { title: "Parent overview" };
 
@@ -60,8 +61,9 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
                   <div className="rounded-xl bg-paper p-3"><dt className="text-xs font-bold text-ink-muted">Skills mastered</dt><dd className="font-display text-2xl font-bold">{r.mastered}</dd></div>
                 </dl>
                 <div>
-                  <div className="mb-1 flex justify-between text-sm"><span className="font-bold">Weekly goal</span><span className="text-ink-muted">{r.minutesThisWeek} of {goal} min</span></div>
-                  <ProgressBar value={r.minutesThisWeek / goal} label={`${child.nickname}'s weekly goal`} colour="bg-leaf" />
+                  <div className="mb-2 flex justify-between text-sm"><span className="font-bold">Last 7 days</span><span className="text-ink-muted">{r.minutesThisWeek} of {goal} min weekly goal</span></div>
+                  <WeeklyMinutesChart daily={r.daily} goal={child.dailyGoalMinutes} compact />
+                  <ProgressBar className="mt-3 h-2" value={r.minutesThisWeek / goal} label={`${child.nickname}'s weekly goal`} colour="bg-leaf" />
                 </div>
                 {r.needsAttention.length > 0 ? (
                   <p className="rounded-xl bg-sun-soft px-4 py-3 text-sm">

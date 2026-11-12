@@ -9,6 +9,9 @@ import { ButtonLink } from "@/components/ui/button";
 import { Pip } from "@/components/mascot";
 import { Logo } from "@/components/logo";
 import { SiteFooter } from "@/components/site-footer";
+import { WorldArt } from "@/components/art/worlds";
+import { CharacterArt } from "@/components/art/characters";
+import { Visual } from "@/components/child/visual";
 
 export default async function Home({ searchParams }: { searchParams: Promise<{ country?: string; accountDeleted?: string }> }) {
   const sp = await searchParams;
@@ -49,81 +52,137 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ c
         )}
 
         {/* Hero */}
-        <section className="relative overflow-hidden">
-          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-14 md:grid-cols-2 md:py-20">
+        <section className="bg-universe relative overflow-hidden text-white">
+          <div aria-hidden className="pointer-events-none absolute inset-0">
+            {Array.from({ length: 24 }, (_, i) => (
+              <span key={i} className="animate-twinkle absolute rounded-full bg-white" style={{ left: `${(i * 37.3) % 100}%`, top: `${(i * 61.7) % 100}%`, width: 2 + (i % 3), height: 2 + (i % 3), animationDelay: `${(i % 7) * 0.4}s` }} />
+            ))}
+          </div>
+          <div className="relative mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-[1.05fr_1fr] md:py-24">
             <div>
-              <p className="mb-4 inline-flex items-center gap-2 rounded-full bg-brand-soft px-3 py-1 text-sm font-bold text-brand">
-                Ages 3–12 · Maths & reading · No ads, ever
+              <p className="mb-5 inline-flex items-center gap-2 rounded-full bg-white/10 px-3 py-1 text-sm font-bold ring-1 ring-white/20">
+                Ages 3–12 · Maths &amp; reading · No ads, ever
               </p>
-              <h1 className="text-4xl font-bold leading-tight text-ink sm:text-5xl md:text-6xl">
-                Learning that feels like <span className="text-brand">an adventure</span>.
+              <h1 className="text-4xl font-bold leading-[1.08] sm:text-5xl md:text-6xl">
+                Where every child becomes a <span className="text-sun">child of knowledge</span>.
               </h1>
-              <p className="mt-5 max-w-xl text-lg text-ink-soft">
-                {brand.name} is a learning universe where children explore worlds, solve real challenges and build lasting understanding.
-                Every activity is carefully designed, adapts to your child, and shows you exactly what they&apos;ve learned.
+              <p className="mt-5 max-w-xl text-lg text-white/80">
+                <strong className="text-white">{brand.name}</strong> (அறிவுப்புள்ள) is a learning universe of worlds to explore, songs to sing and real challenges to solve.
+                Every activity is written by educators, adapts to your child, and shows you exactly what they&apos;ve learned.
               </p>
               <div className="mt-8 flex flex-wrap gap-3">
-                <ButtonLink href="/signup" size="lg">Create a free family account</ButtonLink>
-                <ButtonLink href="#how" variant="secondary" size="lg">See how it works</ButtonLink>
+                <ButtonLink href="/signup" size="lg" variant="sun">Create a free family account</ButtonLink>
+                <a href="#how" className="inline-flex min-h-14 items-center rounded-full px-6 text-lg font-bold text-white ring-2 ring-white/30 hover:bg-white/10">See how it works</a>
               </div>
-              <p className="mt-4 text-sm text-ink-muted">No card needed. Parents create the account; children never see ads or chat.</p>
+              <p className="mt-4 text-sm text-white/65">No card needed · Parents stay in control · Children never see ads or chat</p>
             </div>
-            <div className="relative">
-              <div className="bg-universe relative mx-auto aspect-square max-w-md rounded-[2.5rem] p-6 shadow-2xl">
-                <div className="grid h-full grid-cols-2 gap-4">
-                  {WORLDS.slice(0, 4).map((w, i) => (
-                    <div key={w.slug} className={`flex flex-col justify-end rounded-3xl p-4 text-white ${i % 3 === 0 ? "translate-y-4" : ""}`} style={{ background: `var(--color-world-${w.colour})` }}>
-                      <span className="text-4xl" aria-hidden>{w.emoji}</span>
-                      <span className="mt-2 font-display text-lg font-bold leading-tight">{w.name}</span>
-                    </div>
-                  ))}
-                </div>
-                <Pip className="absolute -bottom-8 -left-6 size-28" mood="cheer" />
+            <div className="relative mx-auto aspect-square w-full max-w-md" aria-hidden>
+              <WorldArt slug="number-nebula" float className="absolute left-0 top-2 w-[46%]" />
+              <WorldArt slug="story-grove" float className="absolute right-0 top-10 w-[44%] [animation-delay:1.2s]" />
+              <WorldArt slug="discovery-lab" float className="absolute bottom-0 left-[10%] w-[36%] opacity-80 [animation-delay:2s]" />
+              <WorldArt slug="coin-cove" float className="absolute bottom-6 right-[6%] w-[34%] opacity-80 [animation-delay:.6s]" />
+              <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-end">
+                <Pip className="animate-float size-32 drop-shadow-xl" mood="cheer" />
+                <CharacterArt character="fox" colour="coral" className="-ml-4 size-20 drop-shadow-xl" />
               </div>
             </div>
           </div>
         </section>
 
+        {/* Trust strip */}
+        <section aria-label="Our promises" className="border-b border-line bg-surface">
+          <ul className="mx-auto grid max-w-6xl grid-cols-2 gap-4 px-4 py-5 text-sm font-bold text-ink-soft md:grid-cols-4">
+            {[
+              ["🚫", "No ads, no chat, no strangers"],
+              ["🧑‍🏫", `${activityCount} educator-written activities`],
+              ["🎯", `${objectiveCount} objectives mapped to curriculum`],
+              ["🔐", "Parent PIN · GDPR-minded design"],
+            ].map(([e, t]) => (
+              <li key={t} className="flex items-center gap-2"><span aria-hidden className="text-xl">{e}</span>{t}</li>
+            ))}
+          </ul>
+        </section>
+
         {/* Age bands */}
-        <section className="bg-surface py-16" aria-labelledby="ages-title">
+        <section className="py-20" aria-labelledby="ages-title">
           <div className="mx-auto max-w-6xl px-4">
-            <h2 id="ages-title" className="text-3xl font-bold">Three experiences, designed for how children grow</h2>
-            <p className="mt-2 max-w-2xl text-ink-soft">Each age group has its own pace, visual style and way of interacting — not just harder questions.</p>
-            <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {Object.values(AGE_BANDS).map((b, i) => (
-                <div key={b.band} className="rounded-3xl border-2 border-line p-6">
-                  <span className="text-4xl" aria-hidden>{["🎈", "🧩", "🚀"][i]}</span>
-                  <h3 className="mt-3 text-xl font-bold">{b.name} <span className="text-ink-muted">· {b.ages}</span></h3>
-                  <p className="mt-2 text-ink-soft">{b.description}</p>
-                  <p className="mt-3 text-sm font-semibold text-ink-muted">Suggested session: about {b.sessionMinutes} minutes</p>
-                </div>
-              ))}
+            <p className="text-sm font-bold uppercase tracking-wider text-brand">Grows with your child</p>
+            <h2 id="ages-title" className="mt-1 text-3xl font-bold sm:text-4xl">Three experiences, designed for how children grow</h2>
+            <p className="mt-3 max-w-2xl text-lg text-ink-soft">Each age group has its own pace, look and way of interacting — not just harder questions.</p>
+            <div className="mt-10 grid gap-6 md:grid-cols-3">
+              {Object.values(AGE_BANDS).map((b, i) => {
+                const look = [
+                  { character: "bear", colour: "sun", bg: "bg-sun-soft", detail: "Voice-led · big picture buttons · songs" },
+                  { character: "owl", colour: "sky", bg: "bg-sky-soft", detail: "Read & listen · keypad · puzzles" },
+                  { character: "robot", colour: "berry", bg: "bg-berry-soft", detail: "Text-first · reasoning · projects" },
+                ][i];
+                return (
+                  <div key={b.band} className="group rounded-[2rem] border border-line bg-surface p-6 shadow-[var(--shadow-card)] transition hover:-translate-y-1">
+                    <div className={`grid h-36 place-items-center rounded-3xl ${look.bg}`}>
+                      <CharacterArt character={look.character} colour={look.colour} className="size-28 transition group-hover:scale-110" />
+                    </div>
+                    <h3 className="mt-5 text-2xl font-bold">{b.name}</h3>
+                    <p className="text-sm font-bold text-ink-muted">Ages {b.ages} · about {b.sessionMinutes} min a day</p>
+                    <p className="mt-3 text-ink-soft">{b.description}</p>
+                    <p className="mt-4 text-sm font-semibold text-brand">{look.detail}</p>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
 
         {/* Worlds */}
-        <section id="worlds" className="bg-universe py-16 text-white" aria-labelledby="worlds-title">
+        <section id="worlds" className="bg-universe py-20 text-white" aria-labelledby="worlds-title">
           <div className="mx-auto max-w-6xl px-4">
-            <h2 id="worlds-title" className="text-3xl font-bold">Explore the learning universe</h2>
-            <p className="mt-2 max-w-2xl text-white/80">Every world has learning paths, missions and achievements. Two worlds are open now; more arrive as each is carefully built and reviewed.</p>
-            <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            <p className="text-sm font-bold uppercase tracking-wider text-sun">The learning universe</p>
+            <h2 id="worlds-title" className="mt-1 text-3xl font-bold sm:text-4xl">Not a list of lessons. A universe to explore.</h2>
+            <p className="mt-3 max-w-2xl text-lg text-white/80">Every world has learning paths, songs and achievements. Two worlds are open now; more arrive as each is carefully built and reviewed.</p>
+            <div className="mt-10 grid grid-cols-2 gap-6 lg:grid-cols-4">
               {WORLDS.map((w) => (
-                <div key={w.slug} className="rounded-3xl bg-white/10 p-5 ring-1 ring-white/15">
-                  <div className="flex items-center justify-between">
-                    <span className="grid size-14 place-items-center rounded-2xl text-3xl" style={{ background: `var(--color-world-${w.colour})` }} aria-hidden>{w.emoji}</span>
-                    <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${w.status === "open" ? "bg-leaf text-white" : "bg-white/20"}`}>{w.status === "open" ? "Open now" : "Coming soon"}</span>
-                  </div>
-                  <h3 className="mt-4 text-lg font-bold">{w.name}</h3>
-                  <p className="mt-1 text-sm text-white/75">{w.tagline}</p>
+                <div key={w.slug} className="text-center">
+                  <WorldArt slug={w.slug} float={w.status === "open"} className={`mx-auto w-full max-w-40 ${w.status === "soon" ? "opacity-60 saturate-50" : ""}`} />
+                  <h3 className="mt-2 font-display text-xl font-bold">{w.name}</h3>
+                  <p className="text-sm text-white/70">{w.tagline}</p>
+                  <span className={`mt-2 inline-block rounded-full px-2.5 py-0.5 text-xs font-bold ${w.status === "open" ? "bg-leaf text-white" : "bg-white/15"}`}>{w.status === "open" ? "Open now" : "Coming soon"}</span>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
+        {/* Watch & Sing */}
+        <section className="py-20" aria-labelledby="sing-title">
+          <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 md:grid-cols-2">
+            <div className="order-2 rounded-[2rem] border border-line bg-surface p-6 shadow-[var(--shadow-card)] md:order-1">
+              <p className="inline-block rounded-full bg-berry-soft px-3 py-1 text-sm font-bold text-berry">🎵 Watch &amp; Sing · Make Ten!</p>
+              <div className="mt-4 grid place-items-center rounded-3xl bg-gradient-to-b from-sky-soft to-paper p-6">
+                <Visual visual={{ kind: "tenFrame", filled: 7 }} />
+              </div>
+              <ol className="mt-4 space-y-1.5 text-lg">
+                <li className="text-ink-muted">Two and eight, that&apos;s great!</li>
+                <li className="rounded-xl bg-sun-soft px-3 py-1 font-bold">Three and <span className="rounded bg-sun px-1">seven</span>, we&apos;re counting to heaven!</li>
+                <li className="text-ink-soft">Four and six, a magic trick!</li>
+              </ol>
+            </div>
+            <div className="order-1 md:order-2">
+              <p className="text-sm font-bold uppercase tracking-wider text-berry">Songs that teach</p>
+              <h2 id="sing-title" className="mt-1 text-3xl font-bold sm:text-4xl">Rhymes and phonics songs, then practice</h2>
+              <p className="mt-3 text-lg text-ink-soft">
+                Original sing-alongs open many activities: counting songs, shape songs, letter-sound songs and rhyme raps. Words light up as they are read aloud,
+                so pre-readers follow along — and then put the idea straight into practice.
+              </p>
+              <ul className="mt-5 space-y-2 text-ink-soft">
+                <li>✔ Original lyrics written for each learning objective</li>
+                <li>✔ Karaoke-style highlighting builds early reading</li>
+                <li>✔ Never autoplays — children press play</li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         {/* How it works */}
-        <section id="how" className="py-16" aria-labelledby="how-title">
+        <section id="how" className="bg-surface py-20" aria-labelledby="how-title">
           <div className="mx-auto grid max-w-6xl gap-10 px-4 md:grid-cols-2">
             <div>
               <h2 id="how-title" className="text-3xl font-bold">Built by educators, not generated in bulk</h2>
@@ -167,7 +226,7 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ c
         </section>
 
         {/* Parents */}
-        <section id="parents" className="bg-surface py-16" aria-labelledby="parents-title">
+        <section id="parents" className="py-20" aria-labelledby="parents-title">
           <div className="mx-auto max-w-6xl px-4">
             <h2 id="parents-title" className="text-3xl font-bold">See real progress, not just scores</h2>
             <div className="mt-8 grid gap-5 md:grid-cols-3">

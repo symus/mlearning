@@ -5,7 +5,8 @@ import { motion } from "framer-motion";
 import clsx from "clsx";
 import { saveOnboarding } from "@/app/actions/children";
 import { AVATAR_CHARACTERS, AVATAR_COLOURS } from "@/lib/validation";
-import { Avatar, CHARACTER_EMOJI, COLOUR_CLASS } from "@/components/avatar";
+import { Avatar, COLOUR_CLASS } from "@/components/avatar";
+import { CharacterArt, CHARACTER_NAMES, type CharacterId } from "@/components/art/characters";
 import { Pip } from "@/components/mascot";
 import { useSpeech } from "@/components/child/use-speech";
 
@@ -35,8 +36,8 @@ export function OnboardingForm({ nickname, narration }: { nickname: string; narr
       {step === 1 && (
         <div className="grid grid-cols-3 gap-3">
           {AVATAR_CHARACTERS.map((c) => (
-            <button key={c} type="button" onClick={() => setCharacter(c)} aria-pressed={character === c} aria-label={c} className={clsx("grid size-24 place-items-center rounded-3xl bg-white/10 text-5xl ring-4", character === c ? "ring-sun" : "ring-transparent")}>
-              {CHARACTER_EMOJI[c]}
+            <button key={c} type="button" onClick={() => setCharacter(c)} aria-pressed={character === c} aria-label={CHARACTER_NAMES[c as CharacterId]} className={clsx("grid size-24 place-items-center rounded-3xl bg-white/10 p-2 ring-4 transition", character === c ? "scale-105 ring-sun" : "ring-transparent")}>
+              <CharacterArt character={c} colour={colour} />
             </button>
           ))}
         </div>

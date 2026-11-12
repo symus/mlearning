@@ -37,6 +37,29 @@ export const visualSchema = z.discriminatedUnion("kind", [
 ]);
 export type Visual = z.infer<typeof visualSchema>;
 
+/**
+ * Optional "Watch & Sing" step shown before the explanation.
+ * - song: original lyrics read aloud line by line with karaoke highlighting and a picture per line.
+ * - video: a recorded video file (self-hosted or CDN) with a required captions file for accessibility.
+ */
+export const watchSchema = z.discriminatedUnion("kind", [
+  z.object({
+    kind: z.literal("song"),
+    title: z.string().min(3),
+    lines: z.array(z.object({ text: z.string().min(2).max(90), visual: visualSchema.optional() })).min(2).max(12),
+    credit: z.string().default("Original lyrics"),
+  }),
+  z.object({
+    kind: z.literal("video"),
+    title: z.string().min(3),
+    src: z.string().regex(/^(\/|https:\/\/)/, "Use a site path (/media/...) or an https URL"),
+    captions: z.string().regex(/^(\/|https:\/\/).+\.vtt$/, "Captions (.vtt) are required for accessibility"),
+    poster: z.string().optional(),
+    credit: z.string(),
+  }),
+]);
+export type Watch = z.infer<typeof watchSchema>;
+
 const option = z.object({ id: z.string(), label: z.string(), emoji: z.string().optional() });
 
 const itemBase = {
@@ -101,6 +124,7 @@ export const activitySchema = z
       visual: visualSchema.optional(),
       example: z.string().optional(),
     }),
+    watch: watchSchema.optional(),
     misconceptions: z
       .array(z.object({ code: z.string().regex(/^[A-Z_]+$/), description: z.string(), remedy: z.string() }))
       .min(1),
@@ -138,7 +162,7 @@ export const activitySchema = z
 
 export type ActivityFile = z.infer<typeof activitySchema>;
 /** What is stored in Activity.body (the parts not kept in their own columns). */
-export type ActivityBody = Pick<ActivityFile, "learn" | "misconceptions" | "mastery" | "followUp" | "levels">;
+export type ActivityBody = Pick<ActivityFile, "learn" | "watch" | "misconceptions" | "mastery" | "followUp" | "levels">;
 
 export const objectiveSchema = z.object({
   code: z.string().regex(/^[A-Z]{2}\.[A-Z0-9.]+$/),

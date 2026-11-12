@@ -32,7 +32,7 @@ test("a parent signs up, adds a child, the child learns, and progress appears", 
 
   // Landing → signup (with validation)
   await page.goto("/");
-  await expect(page.getByRole("heading", { name: /Learning that feels like/ })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /child of knowledge/ })).toBeVisible();
   await page.getByRole("link", { name: "Start free" }).first().click();
   await page.getByRole("button", { name: "Create free account" }).click();
   await expect(page.getByText("Please enter your name.")).toBeVisible();
@@ -70,6 +70,9 @@ test("a parent signs up, adds a child, the child learns, and progress appears", 
   // Play a free maths activity
   await page.getByRole("link", { name: /Number Nebula/ }).click();
   await page.getByRole("link", { name: /Rocket Bonds to 10/ }).click();
+  // This activity opens with a sing-along; it can be skipped.
+  await expect(page.getByRole("heading", { name: "Make Ten!" })).toBeVisible();
+  await page.getByRole("button", { name: "Skip" }).click();
   await page.getByRole("button", { name: "Let's practise!" }).click();
   await playThrough(page);
   await expect(page.getByText(/\d+ \/ \d+/)).toBeVisible();

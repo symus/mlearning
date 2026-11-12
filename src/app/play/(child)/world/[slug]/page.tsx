@@ -5,6 +5,7 @@ import { requireChild } from "@/lib/auth/dal";
 import { getWorld } from "@/lib/worlds";
 import { getPlan, getWorldPath, type PathNodeState } from "@/lib/learning/queries";
 import { Pip } from "@/components/mascot";
+import { WorldArt } from "@/components/art/worlds";
 
 const STATE_UI: Record<PathNodeState, { icon: string; label: string; ring: string }> = {
   mastered: { icon: "⭐", label: "Mastered", ring: "ring-sun" },
@@ -23,7 +24,7 @@ export default async function WorldPage({ params }: { params: Promise<{ slug: st
   if (world.status === "soon") {
     return (
       <div className="flex flex-col items-center gap-5 rounded-[2rem] p-8 text-center" style={{ background: `var(--color-world-${world.colour})` }}>
-        <span className="text-7xl" aria-hidden>{world.emoji}</span>
+        <WorldArt slug={world.slug} float className="w-48 opacity-80 saturate-50" />
         <h1 className="text-4xl font-bold">{world.name}</h1>
         <p className="max-w-lg text-lg text-white/90">{world.description}</p>
         <div className="flex items-center gap-3 rounded-2xl bg-black/20 p-4 text-left">
@@ -40,8 +41,8 @@ export default async function WorldPage({ params }: { params: Promise<{ slug: st
 
   return (
     <div className="space-y-6">
-      <div className="flex items-center gap-4 rounded-[2rem] p-5" style={{ background: `var(--color-world-${world.colour})` }}>
-        <span className="grid size-16 place-items-center rounded-2xl bg-white/20 text-4xl" aria-hidden>{world.emoji}</span>
+      <div className="relative flex items-center gap-4 overflow-hidden rounded-[2rem] p-5" style={{ background: `linear-gradient(135deg, var(--color-world-${world.colour}), color-mix(in oklab, var(--color-world-${world.colour}) 55%, #1e1b3a))` }}>
+        <WorldArt slug={world.slug} float className="size-24 shrink-0 sm:size-32" />
         <div className="flex-1">
           <h1 className="text-3xl font-bold">{world.name}</h1>
           <p className="text-white/85">{world.tagline}</p>

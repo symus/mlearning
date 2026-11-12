@@ -10,6 +10,7 @@
         "visual": { "kind": "objects", "emoji": "⭐", "count": 3 },
         "example": "Touch and count: 1, 2, 3. There are 3 stars."
       },
+      "watch": {"kind": "song", "title": "Five Little Stars", "lines": [{"text": "One little star says hello in the night,", "visual": {"kind": "objects", "emoji": "⭐", "count": 1}}, {"text": "Two little stars, shining twinkly bright.", "visual": {"kind": "objects", "emoji": "⭐", "count": 2}}, {"text": "Three little stars, all sitting in a row,", "visual": {"kind": "objects", "emoji": "⭐", "count": 3}}, {"text": "Four little stars, putting on a show!", "visual": {"kind": "objects", "emoji": "⭐", "count": 4}}, {"text": "Five little stars, now count them with me:", "visual": {"kind": "objects", "emoji": "⭐", "count": 5}}, {"text": "One, two, three, four, five, as bright as can be!", "visual": {"kind": "objects", "emoji": "🌟", "count": 5}}]},
       "misconceptions": [
         { "code": "SKIPPED_OBJECT", "description": "Missed an object while counting, so the count is one too few.", "remedy": "Touch each star with your finger as you say the number." },
         { "code": "DOUBLE_COUNTED", "description": "Counted an object twice, so the count is one too many.", "remedy": "Move each star to a 'counted' pile in your mind so you only count it once." }
@@ -211,6 +212,7 @@
         "text": "Flat shapes have sides and corners. A triangle has 3 straight sides. A square has 4 sides that are all the same length. A circle is round with no corners.",
         "visual": { "kind": "shape", "shape": "triangle" }
       },
+      "watch": {"kind": "song", "title": "The Shape Song", "lines": [{"text": "A circle is round, like the sun in the sky.", "visual": {"kind": "shape", "shape": "circle"}}, {"text": "A triangle has three sides, pointing up high.", "visual": {"kind": "shape", "shape": "triangle"}}, {"text": "A square has four sides, all the very same size.", "visual": {"kind": "shape", "shape": "square"}}, {"text": "A rectangle is long, what a lovely surprise!", "visual": {"kind": "shape", "shape": "rectangle"}}]},
       "misconceptions": [
         { "code": "ORIENTATION", "description": "Thinks a shape stops being the same shape when turned.", "remedy": "Turning a shape doesn't change it. Count its sides." },
         { "code": "SQUARE_RECTANGLE", "description": "Mixes up squares and rectangles.", "remedy": "A square has 4 equal sides. A rectangle has 2 long sides and 2 short sides." },

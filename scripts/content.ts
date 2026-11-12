@@ -42,7 +42,7 @@ export async function importContent(db: PrismaClient, opts: { publish: boolean }
 
   let created = 0, changed = 0, unchanged = 0;
   for (const a of lib.activities) {
-    const body = { learn: a.learn, misconceptions: a.misconceptions, mastery: a.mastery, followUp: a.followUp, levels: a.levels } as unknown as Prisma.InputJsonValue;
+    const body = { learn: a.learn, watch: a.watch, misconceptions: a.misconceptions, mastery: a.mastery, followUp: a.followUp, levels: a.levels } as unknown as Prisma.InputJsonValue;
     const fields = {
       ageBand: a.ageBand, subjectSlug: a.subject, objectiveCode: a.objective, topic: a.topic, subtopic: a.subtopic,
       title: a.title, pathOrder: a.pathOrder, estimatedMinutes: a.estimatedMinutes, isFree: a.isFree, body, contentHash: a.hash,
@@ -77,7 +77,7 @@ async function main() {
     const db = new PrismaClient();
     try {
       const r = await importContent(db, { publish: process.argv.includes("--publish") });
-      console.log(`✓ Imported: ${r.created} new, ${r.changed} changed (back to review), ${r.unchanged} unchanged.`);
+      console.log(`✓ Imported: ${r.created} new, ${r.changed} changed (${process.argv.includes("--publish") ? "auto-published" : "back to review"}), ${r.unchanged} unchanged.`);
     } finally {
       await db.$disconnect();
     }

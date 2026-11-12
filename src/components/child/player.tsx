@@ -4,23 +4,25 @@ import Link from "next/link";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
-import type { ActivityBody, Visual as VisualSpec } from "@/lib/content/schema";
+import type { ActivityBody, Visual as VisualSpec, Watch } from "@/lib/content/schema";
 import type { PublicItem } from "@/lib/content/check";
 import { nextLevel, type ItemResult } from "@/lib/learning/adaptive";
 import { finishAttempt, startAttempt, submitAnswer, type AnswerFeedback, type AttemptSummary } from "@/app/actions/play";
 import { Pip } from "@/components/mascot";
 import { Visual } from "./visual";
 import { useSpeech } from "./use-speech";
+import { WatchPlayer } from "./watch-player";
 
 export interface PlayerActivity {
   slug: string;
   title: string;
   learn: ActivityBody["learn"];
+  watch?: Watch;
   levels: { level: number; label: string; items: PublicItem[] }[];
   worldSlug: string;
 }
 
-type Phase = "learn" | "item" | "summary" | "blocked";
+type Phase = "watch" | "learn" | "item" | "summary" | "blocked";
 type Answer = string | number | string[];
 
 export function Player({
@@ -41,7 +43,7 @@ export function Player({
   const totalItems = activity.levels.reduce((n, l) => n + l.items.length, 0);
   const roundSize = Math.min(itemsPerRound, totalItems);
 
-  const [phase, setPhase] = useState<Phase>("learn");
+  const [phase, setPhase] = useState<Phase>(activity.watch ? "watch" : "learn");
   const [blocked, setBlocked] = useState<string>("");
   const [attemptId, setAttemptId] = useState<string | null>(null);
   const [level, setLevel] = useState(startLevel);
@@ -161,6 +163,8 @@ export function Player({
           transition={{ duration: 0.25 }}
           className="rounded-[2rem] bg-surface p-5 text-ink shadow-xl sm:p-8"
         >
+          {phase === "watch" && activity.watch && <WatchPlayer watch={activity.watch} onDone={() => setPhase("learn")} />}
+
           {phase === "learn" && (
             <div className="flex flex-col items-center gap-5 text-center">
               <Pip className="size-24" mood="think" />
@@ -170,6 +174,11 @@ export function Player({
               {activity.learn.example && <p className="rounded-2xl bg-sun-soft px-4 py-3 font-bold">{activity.learn.example}</p>}
               <div className="flex flex-wrap justify-center gap-3">
                 {supported && <SpeakButton onClick={() => speak(activity.learn.say ?? activity.learn.text)} />}
+                {activity.watch && (
+                  <button type="button" onClick={() => setPhase("watch")} className="inline-flex min-h-14 items-center gap-2 rounded-full bg-berry-soft px-5 font-bold text-berry hover:bg-berry hover:text-white">
+                    🎵 Sing again
+                  </button>
+                )}
                 <button onClick={begin} disabled={busy} className="btn-pop min-h-16 rounded-full bg-leaf px-10 font-display text-2xl font-bold text-white disabled:opacity-60">
                   {busy ? "Getting ready…" : "Let's practise!"}
                 </button>

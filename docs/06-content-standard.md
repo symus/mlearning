@@ -22,6 +22,19 @@ Content quality is the main competitive advantage. This document is the rulebook
 
 Automatic checks: answers must be valid options; order answers must use every tile once; misconception codes must exist; follow-ups and prerequisites must exist; subject/age must match the objective; item IDs and path positions must be unique.
 
+## Watch & Sing (optional opening step)
+
+An activity can open with a `watch` block before the explanation:
+
+| Kind | Fields | Rules |
+|---|---|---|
+| `song` | `title`, 2–12 `lines` (text + optional visual), `credit` | Original lyrics only. Each line ≤ 90 characters. Read aloud with word-by-word highlighting. |
+| `video` | `title`, `src`, `captions` (.vtt, **required**), optional `poster`, `credit` | Self-hosted or CDN file. No YouTube embeds (tracking and ads). Captions are mandatory for accessibility. |
+
+Nothing autoplays: the child presses play. Today 6 activities open with songs (counting, shapes, letter sounds, rhymes, bonds to 10, skip counting).
+Browser speech can't say phonics sounds well, so professionally recorded songs and phonics videos are the next content upgrade.
+To add one, put `video.mp4` and `video.vtt` in `public/media/` and reference them as `/media/video.mp4`.
+
 ## Writing rules
 
 - **Original only.** No text, questions or images copied from textbooks or other platforms.
