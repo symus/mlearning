@@ -1,5 +1,5 @@
 import { Logo } from "@/components/logo";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 
 export default function AuthLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -7,7 +7,7 @@ export default function AuthLayout({ children }: { children: React.ReactNode }) 
       <aside className="bg-universe relative hidden flex-col justify-between p-10 text-white md:flex">
         <Logo light />
         <div>
-          <Pip className="size-32" mood="cheer" />
+          <Muchi className="size-32" mood="cheer" />
           <p className="mt-6 max-w-sm font-display text-3xl font-bold leading-snug">A learning universe that grows with your child.</p>
           <p className="mt-3 max-w-sm text-white/75">Parents create the account and stay in control. Children just get to explore.</p>
         </div>

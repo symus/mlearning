@@ -4,7 +4,7 @@ import { db } from "@/lib/db";
 import { getSession } from "@/lib/auth/dal";
 import { startPlaying } from "@/app/actions/children";
 import { Avatar } from "@/components/avatar";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 
 export const metadata = { title: "Who's learning?" };
 
@@ -16,7 +16,7 @@ export default async function WhoPage() {
 
   return (
     <main className="bg-universe flex min-h-dvh flex-col items-center justify-center gap-8 px-4 py-10 text-white">
-      <Pip className="size-24" mood="cheer" />
+      <Muchi className="size-24" mood="cheer" />
       <h1 className="text-center text-4xl font-bold">Who&apos;s exploring today?</h1>
       {children.length === 0 ? (
         <div className="text-center">

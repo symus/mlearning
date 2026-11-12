@@ -105,6 +105,9 @@ model ChildProfile {
   interests        String[]  @default([])
   dailyGoalMinutes Int       @default(15)
   narration        Boolean   @default(true) // read instructions aloud
+  soundEffects     Boolean   @default(true) // gentle clicks, chimes and celebrations
+  textSize         String    @default("normal") // "normal" | "large" | "xlarge" (accessibility)
+  dailyLimitMinutes Int?     // parent-set healthy daily limit; null = no limit
   onboardedAt      DateTime?
   createdAt        DateTime  @default(now())
   updatedAt        DateTime  @updatedAt
@@ -132,7 +135,7 @@ model Curriculum {
 model Subject {
   slug  String @id // "maths", "reading"
   name  String
-  world String // learning-universe destination slug, e.g. "number-nebula"
+  world String // learning-universe destination slug, e.g. "math-galaxy"
 
   objectives Objective[]
   activities Activity[]

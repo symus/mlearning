@@ -28,7 +28,7 @@ function Sparkle({ x, y, s = 1, fill = "#fff4d6" }: { x: number; y: number; s?: 
 }
 
 const ART: Record<string, React.ReactNode> = {
-  "number-nebula": (
+  "math-galaxy": (
     <Island top="#7a63ea" side="#3e2aa6" glow="#5b3fd9">
       <circle cx="100" cy="78" r="34" fill="#ffc23d" />
       <path d="M78 64 a34 34 0 0 1 44 -6" stroke="#fff" strokeOpacity="0.5" strokeWidth="5" fill="none" strokeLinecap="round" />
@@ -39,8 +39,14 @@ const ART: Record<string, React.ReactNode> = {
       <Sparkle x={150} y={112} s={0.6} />
     </Island>
   ),
-  "story-grove": (
+  "reading-kingdom": (
     <Island top="#3cc27f" side="#1b7a4f" glow="#1f9d6b">
+      {/* castle tower */}
+      <rect x="122" y="44" width="26" height="70" rx="3" fill="#fff4d6" />
+      <path d="M118 46 h34 l-17 -22 z" fill="#c8458e" />
+      <path d="M135 24 v-10 l10 4 -10 4" fill="#ffc23d" />
+      <rect x="130" y="64" width="10" height="14" rx="5" fill="#8a5a2b" />
+      <rect x="128" y="94" width="14" height="20" rx="7" fill="#8a5a2b" />
       <rect x="92" y="78" width="16" height="48" rx="5" fill="#8a5a2b" />
       <circle cx="100" cy="66" r="32" fill="#23a565" />
       <circle cx="76" cy="80" r="20" fill="#2fb873" />
@@ -54,7 +60,7 @@ const ART: Record<string, React.ReactNode> = {
       <Sparkle x={150} y={46} />
     </Island>
   ),
-  "discovery-lab": (
+  "science-lab": (
     <Island top="#2bb3c4" side="#0a6b78" glow="#0e8fa0">
       <path d="M86 46 h28 v10 h-4 v18 l24 40 q4 10 -8 10 h-52 q-12 0 -8 -10 l24 -40 v-18 h-4z" fill="#e2f0fe" />
       <path d="M74 106 l12 -20 h28 l12 20 q4 10 -8 10 h-36 q-12 0 -8 -10z" fill="#6ff0c8" />
@@ -64,7 +70,7 @@ const ART: Record<string, React.ReactNode> = {
       <circle cx="132" cy="22" r="4" fill="#6ff0c8" opacity="0.5" />
     </Island>
   ),
-  "puzzle-peaks": (
+  "logic-island": (
     <Island top="#f08a4b" side="#a8471b" glow="#d9652a">
       <path d="M46 126 L86 52 L126 126 Z" fill="#c5551f" />
       <path d="M86 52 L72 78 L80 74 L86 82 L92 74 L100 78 Z" fill="#fff" />
@@ -75,8 +81,15 @@ const ART: Record<string, React.ReactNode> = {
       <circle cx="76" cy="108" r="5" fill="#ffc23d" />
     </Island>
   ),
-  "code-harbour": (
+  "coding-city": (
     <Island top="#4f8cf0" side="#1f4fae" glow="#2f6fe0">
+      {/* little skyline */}
+      <rect x="36" y="70" width="20" height="48" rx="3" fill="#2a5cc4" />
+      <rect x="144" y="62" width="22" height="56" rx="3" fill="#2a5cc4" />
+      <g fill="#ffc23d" opacity="0.9">
+        <rect x="41" y="78" width="4" height="4" /><rect x="48" y="78" width="4" height="4" /><rect x="41" y="88" width="4" height="4" />
+        <rect x="149" y="70" width="4" height="4" /><rect x="157" y="70" width="4" height="4" /><rect x="157" y="82" width="4" height="4" />
+      </g>
       <rect x="64" y="58" width="72" height="56" rx="16" fill="#e2f0fe" />
       <rect x="74" y="68" width="52" height="28" rx="9" fill={INK} />
       <circle cx="90" cy="82" r="5" fill="#6ff0c8" />
@@ -86,7 +99,7 @@ const ART: Record<string, React.ReactNode> = {
       <text x="100" y="128" textAnchor="middle" fontSize="18" fontWeight="800" fontFamily="monospace" fill="#fff">{"{ }"}</text>
     </Island>
   ),
-  "atlas-trails": (
+  "world-explorer": (
     <Island top="#c99042" side="#7a5212" glow="#a86c12">
       <circle cx="100" cy="76" r="34" fill="#4a9ff5" />
       <path d="M78 62 q10 -10 20 -2 q8 10 -4 16 q-10 4 -16 -4z M108 84 q12 -6 18 4 q-2 12 -14 8z" fill="#2fb873" />
@@ -96,7 +109,7 @@ const ART: Record<string, React.ReactNode> = {
       <path d="M140 40 l6 12 l-12 0z" fill="#ff7a59" />
     </Island>
   ),
-  "make-studio": (
+  "creative-studio": (
     <Island top="#e06aae" side="#93286a" glow="#c8458e">
       <path d="M60 96 q-6 -44 40 -46 q44 0 42 34 q-2 16 -18 12 q-12 -4 -14 8 q-2 16 -22 14 q-26 -4 -28 -22z" fill="#fff4d6" />
       <circle cx="80" cy="76" r="7" fill="#ff7a59" />
@@ -107,7 +120,7 @@ const ART: Record<string, React.ReactNode> = {
       <path d="M114 100 l-4 14 l10 -10z" fill={INK} />
     </Island>
   ),
-  "coin-cove": (
+  "money-mission": (
     <Island top="#d4ab1f" side="#7a5d00" glow="#b08700">
       <rect x="66" y="72" width="68" height="44" rx="8" fill="#8a5a2b" />
       <path d="M66 80 q34 -30 68 0" fill="#a8743a" />
@@ -124,7 +137,7 @@ const ART: Record<string, React.ReactNode> = {
 export function WorldArt({ slug, className, float = false }: { slug: string; className?: string; float?: boolean }) {
   return (
     <svg viewBox="0 0 200 200" className={clsx("block overflow-visible", float && "animate-float", className)} aria-hidden>
-      {ART[slug] ?? ART["number-nebula"]}
+      {ART[slug] ?? ART["math-galaxy"]}
     </svg>
   );
 }

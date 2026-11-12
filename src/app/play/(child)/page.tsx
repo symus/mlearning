@@ -5,7 +5,7 @@ import { requireChild } from "@/lib/auth/dal";
 import { WORLDS } from "@/lib/worlds";
 import { getPlan, getToday, getWorldPath } from "@/lib/learning/queries";
 import { ACHIEVEMENTS } from "@/lib/achievements";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { WorldArt } from "@/components/art/worlds";
 import { Starfield } from "@/components/child/starfield";
 import { journeysForBand, getJourneyView } from "@/lib/learning/journey";
@@ -40,7 +40,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
   return (
     <div className="space-y-10">
       <section className="flex flex-col items-center gap-4 rounded-[2rem] bg-white/10 p-6 text-center ring-1 ring-white/15 sm:flex-row sm:text-left">
-        <Pip className="size-24 shrink-0" mood={goalMet ? "cheer" : "happy"} />
+        <Muchi className="size-24 shrink-0" mood={goalMet ? "cheer" : "happy"} />
         <div className="flex-1">
           <p className="font-display text-2xl font-bold sm:text-3xl">
             {sp.welcome ? `Welcome to the universe, ${child.nickname}!` : goalMet ? `Amazing work today, ${child.nickname}!` : `Hi ${child.nickname}! Ready to explore?`}
@@ -50,7 +50,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
               ? "You reached today's goal. You can stop here and come back tomorrow — or explore a little more."
               : featured
                 ? review
-                  ? "Pip thinks it's time to visit an old friend. A quick review helps your brain remember!"
+                  ? "Muchi thinks it's time to visit an old friend. A quick review helps your brain remember!"
                   : "Here's a great next adventure for you."
                 : "Pick a world to explore!"}
           </p>
@@ -70,7 +70,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
             href={`/play/journey/${v.journey.slug}`}
             className="group relative flex items-center gap-5 overflow-hidden rounded-[2rem] bg-gradient-to-r from-[var(--color-world-grove)] to-[#0f6b4a] p-5 shadow-xl ring-1 ring-white/15 transition hover:-translate-y-0.5"
           >
-            <WorldArt slug="story-grove" float className="size-24 shrink-0 sm:size-28" />
+            <WorldArt slug="reading-kingdom" float className="size-24 shrink-0 sm:size-28" />
             <div className="flex-1">
               <p className="text-xs font-bold uppercase tracking-wider text-sun">📖 {v.journey.title}</p>
               <p className="font-display text-2xl font-bold leading-tight sm:text-3xl">

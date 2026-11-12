@@ -216,7 +216,7 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       <div className="grid gap-5 lg:grid-cols-2">
         <Card>
           <h2 className="mb-4 text-xl font-bold">Edit profile</h2>
-          <ChildForm action={update} submitLabel="Save changes" initial={{ nickname: child.nickname, birthYear: child.birthYear, dailyGoalMinutes: child.dailyGoalMinutes, interests: child.interests, narration: child.narration }} />
+          <ChildForm action={update} submitLabel="Save changes" initial={{ nickname: child.nickname, birthYear: child.birthYear, dailyGoalMinutes: child.dailyGoalMinutes, interests: child.interests, narration: child.narration, soundEffects: child.soundEffects, textSize: child.textSize, dailyLimitMinutes: child.dailyLimitMinutes }} />
         </Card>
         <Card className="border-danger/30">
           <h2 className="text-xl font-bold text-danger">Delete profile</h2>

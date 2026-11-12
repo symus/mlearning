@@ -7,7 +7,7 @@ import { PLAN_FEATURES } from "@/lib/pricing";
 import { Avatar } from "@/components/avatar";
 import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { WeeklyMinutesChart } from "@/components/parent/charts";
 
 export const metadata = { title: "Parent overview" };
@@ -34,7 +34,7 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
 
       {children.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 py-12 text-center">
-          <Pip className="size-24" />
+          <Muchi className="size-24" />
           <h2 className="text-2xl font-bold">Add your first child</h2>
           <p className="max-w-md text-ink-soft">Create a profile with just a nickname and birth year. We&apos;ll choose the right learning experience for their age.</p>
           <ButtonLink href="/parent/children/new" size="lg">Add a child</ButtonLink>

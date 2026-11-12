@@ -2,7 +2,7 @@
 
 import { useActionState, useState } from "react";
 import { AGE_BANDS, ageBandForBirthYear, allowedBirthYears } from "@/lib/age";
-import { INTERESTS, type FormState } from "@/lib/validation";
+import { DAILY_LIMITS, INTERESTS, type FormState } from "@/lib/validation";
 import { Button } from "@/components/ui/button";
 import { CheckboxField, FieldError, FormMessage, SelectField, TextField } from "@/components/ui/field";
 
@@ -15,7 +15,7 @@ export function ChildForm({
 }: {
   action: Action;
   submitLabel: string;
-  initial?: { nickname: string; birthYear: number; dailyGoalMinutes: number; interests: string[]; narration: boolean };
+  initial?: { nickname: string; birthYear: number; dailyGoalMinutes: number; interests: string[]; narration: boolean; soundEffects: boolean; textSize: string; dailyLimitMinutes: number | null };
 }) {
   const [state, formAction, pending] = useActionState(action, undefined);
   const v = state?.values;
@@ -66,7 +66,23 @@ export function ChildForm({
         </div>
         <FieldError id="interests-error" errors={state?.errors?.interests} />
       </fieldset>
+      <SelectField
+        label="Daily time limit"
+        name="dailyLimitMinutes"
+        defaultValue={v?.dailyLimitMinutes ?? (initial?.dailyLimitMinutes ? String(initial.dailyLimitMinutes) : "")}
+        errors={state?.errors?.dailyLimitMinutes}
+      >
+        <option value="">No limit (gentle goal reminders only)</option>
+        {DAILY_LIMITS.map((m) => <option key={m} value={m}>{m} minutes a day</option>)}
+      </SelectField>
+      <p className="-mt-3 text-sm text-ink-muted">Near the limit, Muchi suggests one last activity. At the limit, lessons pause until tomorrow. A lesson already started can always finish.</p>
+      <SelectField label="Text size" name="textSize" defaultValue={v?.textSize ?? initial?.textSize ?? "normal"} errors={state?.errors?.textSize}>
+        <option value="normal">Normal</option>
+        <option value="large">Large</option>
+        <option value="xlarge">Extra large</option>
+      </SelectField>
       <CheckboxField name="narration" label="Read instructions aloud (recommended for pre-readers)" defaultChecked={v ? v.narration === "on" : initial?.narration ?? true} />
+      <CheckboxField name="soundEffects" label="Gentle sound effects (chimes and celebrations)" defaultChecked={v ? v.soundEffects === "on" : initial?.soundEffects ?? true} />
       <Button type="submit" size="lg" disabled={pending}>{pending ? "Saving…" : submitLabel}</Button>
     </form>
   );

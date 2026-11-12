@@ -11,12 +11,12 @@
 
 1. Parent taps **Let a child play** → `/play/who` ("Who's exploring today?").
 2. Tapping a profile switches the session to **child mode**.
-3. First time: `/play/onboarding` — Pip says hello (narrated), the child picks an explorer and a colour.
+3. First time: `/play/onboarding` — Muchi says hello (narrated), the child picks an explorer and a colour.
 4. `/play` — the universe: greeting, **Next adventure** or **Quick review**, worlds, trophy shelf, today's goal ring.
 
 ## C. Child: learn an activity (working)
 
-1. World `/play/world/number-nebula` → zig-zag learning path with states (✨ new, 🌱 practising, ⭐ mastered, 🔁 review, 🔒 ask a grown-up) and a **Next!** marker.
+1. World `/play/world/math-galaxy` → zig-zag learning path with states (✨ new, 🌱 practising, ⭐ mastered, 🔁 review, 🔒 ask a grown-up) and a **Next!** marker.
 2. Activity: **Learn** screen (explanation + visual model + example, read aloud) → **Let's practise!**
 3. Each question: hints on request; first wrong answer → targeted help ("Not quite — have another go!" + remedy linked to the misconception); second wrong → explanation and the correct answer; correct → celebration + explanation.
 4. Difficulty steps up or down between items. The round length depends on age (4 / 6 / 8 items).
@@ -24,7 +24,7 @@
 
 ## C2. Child: Reading Journey (working)
 
-1. Universe → **📖 Reading Journey** card (ages 3–8), or the banner in Story Grove.
+1. Universe → **📖 Reading Journey** card (ages 3–8), or the banner in Reading Kingdom.
 2. First visit: **Find my level** (placement check, up to 10 questions, stops early, no right/wrong feedback) or **Start at the beginning**.
 3. Lesson map: 22 numbered stepping stones across 4 parts, with a dotted trail. ⭐ passed, green = already known (replayable), glowing = next lesson, 🔒 = coming up.
 4. Passing a lesson (60%+) unlocks the next; the summary offers **Next: Lesson N** or **Back to my map**.

@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { requireChild } from "@/lib/auth/dal";
 import { getWorld } from "@/lib/worlds";
 import { getPlan, getWorldPath, type PathNodeState } from "@/lib/learning/queries";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { WorldArt } from "@/components/art/worlds";
 
 const STATE_UI: Record<PathNodeState, { icon: string; label: string; ring: string }> = {
@@ -28,8 +28,8 @@ export default async function WorldPage({ params }: { params: Promise<{ slug: st
         <h1 className="text-4xl font-bold">{world.name}</h1>
         <p className="max-w-lg text-lg text-white/90">{world.description}</p>
         <div className="flex items-center gap-3 rounded-2xl bg-black/20 p-4 text-left">
-          <Pip className="size-16 shrink-0" mood="think" />
-          <p>Pip is still building this world with our teachers. It will open soon!</p>
+          <Muchi className="size-16 shrink-0" mood="think" />
+          <p>Muchi is still building this world with our teachers. It will open soon!</p>
         </div>
         <Link href="/play" className="btn-pop rounded-full bg-sun px-8 py-4 font-display text-xl font-bold text-ink">Back to the universe</Link>
       </div>

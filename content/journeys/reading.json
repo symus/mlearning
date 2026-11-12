@@ -5,13 +5,13 @@
   "ageBands": ["LITTLE_EXPLORERS", "YOUNG_THINKERS"],
   "passAccuracy": 0.6,
   "stages": [
-    { "title": "Sound Seeds", "description": "Hear sounds, rhymes and your very first letters.", "world": "story-grove",
+    { "title": "Sound Seeds", "description": "Hear sounds, rhymes and your very first letters.", "world": "reading-kingdom",
       "lessons": ["first-sounds", "rhyme-time", "sounds-s-a-t-p", "sounds-i-n-m-d", "blend-and-read", "story-listening-lost-kite"] },
-    { "title": "Letter Garden", "description": "More letter sounds, blending and the first tricky words.", "world": "make-studio",
+    { "title": "Letter Garden", "description": "More letter sounds, blending and the first tricky words.", "world": "creative-studio",
       "lessons": ["sounds-g-o-c-k", "sounds-ck-e-u-r", "sounds-h-b-f-l", "blend-more-words", "sounds-j-v-w-x", "sounds-y-z-qu", "tricky-words-1"] },
-    { "title": "Word Builders", "description": "Read your first story, more tricky words and letter teams.", "world": "puzzle-peaks",
+    { "title": "Word Builders", "description": "Read your first story, more tricky words and letter teams.", "world": "logic-island",
       "lessons": ["fox-in-a-box", "tricky-words-2", "two-letters-one-sound", "vowel-teams"] },
-    { "title": "Story Readers", "description": "Grammar, punctuation, and understanding what you read.", "world": "atlas-trails",
+    { "title": "Story Readers", "description": "Grammar, punctuation, and understanding what you read.", "world": "world-explorer",
       "lessons": ["naming-and-doing-words", "sentence-shapes", "detail-detective", "what-happened-next", "word-twins-and-opposites"] }
   ],
   "placement": {

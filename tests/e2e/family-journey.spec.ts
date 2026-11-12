@@ -68,7 +68,7 @@ test("a parent signs up, adds a child, the child learns, and progress appears", 
   await page.getByRole("link", { name: "← Back to playing" }).click();
 
   // Play a free maths activity
-  await page.getByRole("link", { name: /Number Nebula/ }).click();
+  await page.getByRole("link", { name: /Math Galaxy/ }).click();
   await page.getByRole("link", { name: /Rocket Bonds to 10/ }).click();
   // This activity opens with a sing-along; it can be skipped.
   await expect(page.getByRole("heading", { name: "Make Ten!" })).toBeVisible();

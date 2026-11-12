@@ -6,6 +6,6 @@ export const brand = {
   /** Tamil: அறிவுப்புள்ள — "child of knowledge". */
   meaning: "child of knowledge",
   tagline: "A learning universe that grows with your child",
-  mascot: "Pip",
+  mascot: "Muchi",
   supportEmail: "hello@arivupulla.example",
 } as const;

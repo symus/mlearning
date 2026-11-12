@@ -7,7 +7,7 @@ import { getJourneyView } from "@/lib/learning/journey";
 import { beginJourney } from "@/app/actions/journey";
 import { WorldArt } from "@/components/art/worlds";
 import { Avatar } from "@/components/avatar";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 
 export const metadata = { title: "Reading Journey" };
 
@@ -26,7 +26,7 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
   if (!progress) {
     return (
       <div className="mx-auto flex max-w-2xl flex-col items-center gap-6 rounded-[2rem] bg-white/10 p-8 text-center ring-1 ring-white/15">
-        <WorldArt slug="story-grove" float className="w-40" />
+        <WorldArt slug="reading-kingdom" float className="w-40" />
         <h1 className="text-4xl font-bold">{journey.title}</h1>
         <p className="max-w-md text-lg text-white/80">
           {total} lessons from your very first sounds to reading real stories. Where would you like to start, {child.nickname}?
@@ -35,7 +35,7 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
           <Link href={`/play/journey/${slug}/placement`} className="btn-pop flex flex-col items-center gap-2 rounded-3xl bg-sun p-6 text-ink">
             <span className="text-4xl" aria-hidden>🧭</span>
             <span className="font-display text-xl font-bold">Find my level</span>
-            <span className="text-sm">A few quick questions, then Pip picks your starting lesson.</span>
+            <span className="text-sm">A few quick questions, then Muchi picks your starting lesson.</span>
           </Link>
           <form action={beginJourney.bind(null, slug)} className="contents">
             <button className="btn-pop flex flex-col items-center gap-2 rounded-3xl bg-leaf p-6 text-white">
@@ -53,7 +53,7 @@ export default async function JourneyPage({ params }: { params: Promise<{ slug: 
   return (
     <div className="space-y-8">
       <header className="flex flex-wrap items-center gap-4 rounded-[2rem] bg-white/10 p-5 ring-1 ring-white/15">
-        <Pip className="size-16" mood={current ? "happy" : "cheer"} />
+        <Muchi className="size-16" mood={current ? "happy" : "cheer"} />
         <div className="flex-1">
           <h1 className="text-3xl font-bold">{journey.title}</h1>
           <p className="text-white/80">

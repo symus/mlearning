@@ -7,7 +7,7 @@ import { saveOnboarding } from "@/app/actions/children";
 import { AVATAR_CHARACTERS, AVATAR_COLOURS } from "@/lib/validation";
 import { Avatar, COLOUR_CLASS } from "@/components/avatar";
 import { CharacterArt, CHARACTER_NAMES, type CharacterId } from "@/components/art/characters";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { useSpeech } from "@/components/child/use-speech";
 
 export function OnboardingForm({ nickname, narration }: { nickname: string; narration: boolean }) {
@@ -16,7 +16,7 @@ export function OnboardingForm({ nickname, narration }: { nickname: string; narr
   const [colour, setColour] = useState<string>("sun");
   const { speak, supported } = useSpeech();
   const lines = [
-    `Hello ${nickname}! I'm Pip. I'll be your guide in the learning universe.`,
+    `Hello ${nickname}! I'm Muchi. I'll be your guide in the learning universe.`,
     "Choose your explorer! Who do you want to be?",
     "Pick a colour for your explorer.",
     "You're ready! Let's go and explore.",
@@ -28,7 +28,7 @@ export function OnboardingForm({ nickname, narration }: { nickname: string; narr
       <input type="hidden" name="character" value={character} />
       <input type="hidden" name="colour" value={colour} />
       <motion.div key={step} initial={{ scale: 0.8, opacity: 0 }} animate={{ scale: 1, opacity: 1 }}>
-        {step === 0 || step === 3 ? <Pip className="size-36" mood="cheer" /> : <Avatar avatar={{ character, colour }} size="xl" />}
+        {step === 0 || step === 3 ? <Muchi className="size-36" mood="cheer" /> : <Avatar avatar={{ character, colour }} size="xl" />}
       </motion.div>
       <p className="font-display text-3xl font-bold leading-snug">{lines[step]}</p>
       {supported && <button type="button" onClick={() => speak(lines[step])} className="rounded-full bg-white/15 px-5 py-2 font-bold">🔊 Listen</button>}

@@ -7,7 +7,7 @@ import { ageBandForBirthYear } from "@/lib/age";
 import { getOwnedChild, getSession, requireParent } from "@/lib/auth/dal";
 import { verifySecret } from "@/lib/auth/password";
 import { PLAN_CHILD_LIMIT } from "@/lib/pricing";
-import { AVATAR_CHARACTERS, AVATAR_COLOURS, avatarSchema, childSchema, fieldErrors, pinSchema, type FormState } from "@/lib/validation";
+import { AVATAR_CHARACTERS, AVATAR_COLOURS, avatarSchema, childPrefsSchema, childSchema, fieldErrors, pinSchema, type FormState } from "@/lib/validation";
 
 function parseChildForm(formData: FormData) {
   return childSchema.safeParse({
@@ -16,6 +16,9 @@ function parseChildForm(formData: FormData) {
     dailyGoalMinutes: formData.get("dailyGoalMinutes"),
     interests: formData.getAll("interests"),
     narration: formData.get("narration") === "on",
+    soundEffects: formData.get("soundEffects") === "on",
+    textSize: formData.get("textSize") ?? "normal",
+    dailyLimitMinutes: formData.get("dailyLimitMinutes") ?? "",
   });
 }
 
@@ -26,6 +29,9 @@ function childValues(formData: FormData) {
     dailyGoalMinutes: String(formData.get("dailyGoalMinutes") ?? "15"),
     interests: formData.getAll("interests").map(String).join(","),
     narration: formData.get("narration") === "on" ? "on" : "",
+    soundEffects: formData.get("soundEffects") === "on" ? "on" : "",
+    textSize: String(formData.get("textSize") ?? "normal"),
+    dailyLimitMinutes: String(formData.get("dailyLimitMinutes") ?? ""),
   };
 }
 
@@ -53,6 +59,9 @@ export async function createChild(_prev: FormState, formData: FormData): Promise
       dailyGoalMinutes: d.dailyGoalMinutes,
       interests: d.interests,
       narration: d.narration,
+      soundEffects: d.soundEffects,
+      textSize: d.textSize,
+      dailyLimitMinutes: d.dailyLimitMinutes,
       avatar: { character: AVATAR_CHARACTERS[count % AVATAR_CHARACTERS.length], colour: AVATAR_COLOURS[count % AVATAR_COLOURS.length] },
     },
   });
@@ -70,7 +79,7 @@ export async function updateChild(childId: string, _prev: FormState, formData: F
   const d = parsed.data;
   await db.childProfile.update({
     where: { id: child.id },
-    data: { nickname: d.nickname, birthYear: d.birthYear, ageBand: ageBandForBirthYear(d.birthYear), dailyGoalMinutes: d.dailyGoalMinutes, interests: d.interests, narration: d.narration },
+    data: { nickname: d.nickname, birthYear: d.birthYear, ageBand: ageBandForBirthYear(d.birthYear), dailyGoalMinutes: d.dailyGoalMinutes, interests: d.interests, narration: d.narration, soundEffects: d.soundEffects, textSize: d.textSize, dailyLimitMinutes: d.dailyLimitMinutes },
   });
   revalidatePath(`/parent/children/${child.id}`);
   return { ok: true, message: "Saved." };
@@ -119,4 +128,15 @@ export async function saveOnboarding(formData: FormData): Promise<void> {
     data: { avatar: avatar.success ? avatar.data : { character: "fox", colour: "sun" }, onboardedAt: new Date() },
   });
   redirect("/play?welcome=1");
+}
+
+/** Child-side accessibility settings (text size, sounds, read-aloud). The daily limit stays parent-only. */
+export async function updateMyPrefs(prefs: { soundEffects: boolean; narration: boolean; textSize: string }): Promise<{ ok: boolean }> {
+  const session = await getSession();
+  if (!session?.activeChild) return { ok: false };
+  const parsed = childPrefsSchema.safeParse(prefs);
+  if (!parsed.success) return { ok: false };
+  await db.childProfile.update({ where: { id: session.activeChild.id }, data: parsed.data });
+  revalidatePath("/play", "layout");
+  return { ok: true };
 }

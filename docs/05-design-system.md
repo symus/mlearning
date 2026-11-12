@@ -40,7 +40,7 @@ Tokens live in [`src/app/globals.css`](../src/app/globals.css) (`@theme`) and ar
 | Button / ButtonLink (primary, secondary, ghost, danger, sun; sm/md/lg) | `components/ui/button.tsx` |
 | Card, Badge, ProgressBar | `components/ui/card.tsx` |
 | TextField, SelectField, CheckboxField, FieldError, FormMessage | `components/ui/field.tsx` |
-| Pip mascot (happy / think / cheer) | `components/mascot.tsx` |
+| Muchi mascot (happy / think / cheer) | `components/mascot.tsx` |
 | Avatar (character + colour) | `components/avatar.tsx` |
 | Visual models: objects, groups, ten frame, number line, array, fraction bar, shapes, place value, passage, big text, pattern, grid | `components/child/visual.tsx` |
 | Activity player (learn → items → feedback → summary) | `components/child/player.tsx` |
@@ -70,7 +70,7 @@ All key art is original SVG drawn in code (no external assets, works offline, sc
 
 | Art | File |
 |---|---|
-| Pip, the guide | `components/mascot.tsx` |
+| Muchi, the guide | `components/mascot.tsx` |
 | 6 avatar characters × 6 colours (fox, owl, bear, cat, dragon, robot) | `components/art/characters.tsx` |
 | 8 world islands, one landmark each | `components/art/worlds.tsx` |
 

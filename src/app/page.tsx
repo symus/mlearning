@@ -6,7 +6,7 @@ import { WORLDS } from "@/lib/worlds";
 import { formatMoney, PLAN_FEATURES, priceRegion } from "@/lib/pricing";
 import { COUNTRIES } from "@/lib/validation";
 import { ButtonLink } from "@/components/ui/button";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { Logo } from "@/components/logo";
 import { SiteFooter } from "@/components/site-footer";
 import { WorldArt } from "@/components/art/worlds";
@@ -77,12 +77,12 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ c
               <p className="mt-4 text-sm text-white/65">No card needed · Parents stay in control · Children never see ads or chat</p>
             </div>
             <div className="relative mx-auto aspect-square w-full max-w-md" aria-hidden>
-              <WorldArt slug="number-nebula" float className="absolute left-0 top-2 w-[46%]" />
-              <WorldArt slug="story-grove" float className="absolute right-0 top-10 w-[44%] [animation-delay:1.2s]" />
-              <WorldArt slug="discovery-lab" float className="absolute bottom-0 left-[10%] w-[36%] opacity-80 [animation-delay:2s]" />
-              <WorldArt slug="coin-cove" float className="absolute bottom-6 right-[6%] w-[34%] opacity-80 [animation-delay:.6s]" />
+              <WorldArt slug="math-galaxy" float className="absolute left-0 top-2 w-[46%]" />
+              <WorldArt slug="reading-kingdom" float className="absolute right-0 top-10 w-[44%] [animation-delay:1.2s]" />
+              <WorldArt slug="science-lab" float className="absolute bottom-0 left-[10%] w-[36%] opacity-80 [animation-delay:2s]" />
+              <WorldArt slug="money-mission" float className="absolute bottom-6 right-[6%] w-[34%] opacity-80 [animation-delay:.6s]" />
               <div className="absolute left-1/2 top-1/2 flex -translate-x-1/2 -translate-y-1/2 items-end">
-                <Pip className="animate-float size-32 drop-shadow-xl" mood="cheer" />
+                <Muchi className="animate-float size-32 drop-shadow-xl" mood="cheer" />
                 <CharacterArt character="fox" colour="coral" className="-ml-4 size-20 drop-shadow-xl" />
               </div>
             </div>

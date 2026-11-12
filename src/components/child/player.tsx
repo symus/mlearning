@@ -8,7 +8,7 @@ import type { ActivityBody, Visual as VisualSpec, Watch } from "@/lib/content/sc
 import type { PublicItem } from "@/lib/content/check";
 import { nextLevel, type ItemResult } from "@/lib/learning/adaptive";
 import { finishAttempt, startAttempt, submitAnswer, type AnswerFeedback, type AttemptSummary } from "@/app/actions/play";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { Visual } from "./visual";
 import { useSpeech } from "./use-speech";
 import { WatchPlayer } from "./watch-player";
@@ -170,7 +170,7 @@ export function Player({
 
           {phase === "learn" && (
             <div className="flex flex-col items-center gap-5 text-center">
-              <Pip className="size-24" mood="think" />
+              <Muchi className="size-24" mood="think" />
               <h1 className="text-3xl font-bold sm:text-4xl">{activity.title}</h1>
               {activity.learn.visual && <Visual visual={activity.learn.visual} />}
               <p className="max-w-xl text-lg leading-relaxed sm:text-xl">{activity.learn.text}</p>
@@ -215,7 +215,7 @@ export function Player({
 
           {phase === "blocked" && (
             <div className="flex flex-col items-center gap-4 py-6 text-center">
-              <Pip className="size-24" />
+              <Muchi className="size-24" />
               {blocked === "limit" ? (
                 <>
                   <h2 className="text-2xl font-bold">That&apos;s all the adventures for today!</h2>
@@ -298,7 +298,7 @@ function ItemView({
         )}
         {feedback?.final && (
           <div className={clsx("flex items-start gap-4 rounded-2xl px-5 py-4", feedback.correct ? "bg-leaf-soft" : "bg-sky-soft")}>
-            <Pip className="size-16 shrink-0" mood={feedback.correct ? "cheer" : "think"} />
+            <Muchi className="size-16 shrink-0" mood={feedback.correct ? "cheer" : "think"} />
             <div>
               <p className="font-display text-xl font-bold">{feedback.correct ? (tryNumber > 1 ? "You got it on the second try!" : "Yes! Well done!") : "Let's learn this one together"}</p>
               {!feedback.correct && feedback.correctAnswer && <p className="mt-1 text-lg">The answer is <strong>{feedback.correctAnswer}</strong>.</p>}
@@ -428,7 +428,7 @@ function Summary({ summary, backHref, journeySlug }: { summary: AttemptSummary; 
   return (
     <div className="flex flex-col items-center gap-5 text-center">
       <motion.div initial={{ scale: 0.6, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 200, damping: 12 }}>
-        <Pip className="size-28" mood="cheer" />
+        <Muchi className="size-28" mood="cheer" />
       </motion.div>
       <h2 className="text-3xl font-bold">Adventure complete!</h2>
       <p className="text-xl">{summary.message}</p>
