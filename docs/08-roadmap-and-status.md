@@ -11,11 +11,11 @@
 | Phase | Goal | Status |
 |---|---|---|
 | 1. Foundation | Architecture, design system, landing, registration, child profiles, onboarding, dashboard | ✅ **Done** |
-| 2. Educational MVP | Maths + reading, exercise engine, hints, explanations, progress, ≥100 activities | 🟡 **Engine done; 47 of 100 activities; Reading Journey (22 lessons + placement)** |
-| 3. Engagement | Illustrated universe, avatar room, missions, more achievements, progress map, family challenges | 🟡 Illustrated universe, drawn avatars, Watch & Sing songs, trophy shelf done |
-| 4. Parent premium | Weekly reports (email), Stripe subscriptions, billing portal, plan limits, offline selected activities | ⏳ Charts on dashboard; plans + prices + limits modelled |
+| 2. Educational MVP | Maths + reading, exercise engine, hints, explanations, progress, ≥100 activities | 🟡 **74 activities, 447 questions across 5 worlds; Reading Journey (22 lessons + placement)** |
+| 3. Engagement | Illustrated universe, avatar room, missions, more achievements, progress map, family challenges | 🟡 Illustrated universe, Muchi intros and celebrations, sound effects, songs, stickers, daily limits done |
+| 4. Parent premium | Weekly reports (email), Stripe subscriptions, billing portal, plan limits, offline selected activities | 🟡 Weekly report page (printable), charts, per-child settings; payments and email next |
 | 5. Intelligence | Calibrated mastery model, personalised paths across objectives, AI-assisted explanations with validation | ⏳ Rule-based adaptivity + spaced review done |
-| 6. Expansion | Science, coding, logic, geography, money worlds; Polish UI; school and teacher accounts | ⏳ Worlds and curriculum tables ready |
+| 6. Expansion | Science, coding, logic, geography, money worlds; Polish UI; school and teacher accounts | 🟡 Science Lab, Logic Island, Coding City open (27 activities) |
 
 ## Next implementation steps (in order)
 

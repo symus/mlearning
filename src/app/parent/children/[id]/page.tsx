@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import { getOwnedChild, requireParent } from "@/lib/auth/dal";
@@ -62,10 +63,11 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       {sp.created && <p role="status" className="rounded-xl bg-leaf-soft px-4 py-3 font-bold text-success">Profile created! Tap “Let a child play” at the top whenever {child.nickname} is ready.</p>}
       <div className="flex flex-wrap items-center gap-4">
         <Avatar avatar={child.avatar} size="xl" />
-        <div>
+        <div className="flex-1">
           <h1 className="text-3xl font-bold">{child.nickname}</h1>
           <p className="text-ink-muted">About {ageFromBirthYear(child.birthYear)} · {band.name} ({band.ages}) · Goal {child.dailyGoalMinutes} min/day</p>
         </div>
+        <Link href={`/parent/children/${child.id}/report`} className="btn-pop rounded-full bg-sun px-5 py-3 font-bold text-ink">📄 Weekly report</Link>
       </div>
 
       <section aria-labelledby="week-title">

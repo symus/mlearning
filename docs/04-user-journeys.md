@@ -30,6 +30,15 @@
 4. Passing a lesson (60%+) unlocks the next; the summary offers **Next: Lesson N** or **Back to my map**.
 5. Parents see journey progress on the child page and can **Reset journey**.
 
+## C3. Lesson experience (working)
+
+1. **Intro:** Muchi greets the child by name, shows the lesson number, the learning objective ("Today you will learn…"), time and what to expect. Spoken if read-aloud is on.
+2. **Resume:** an unfinished lesson from the last 24 hours offers "Continue (N done)" or "Start again".
+3. **Song → explanation → practice** with hints, instant feedback, gentle sound effects and detailed explanations.
+4. **Celebration:** confetti, 1–3 stars, Muchi cheer, badges, and a sticker gift box (fixed sticker per activity).
+5. **Settings** in the child header: sound effects 🔔, read-aloud 🗣️, text size Aa (saved per child).
+6. **Daily limit** (parent-set): warning 5 minutes before; then a friendly "see you tomorrow" screen. Unfinished lessons can still finish.
+
 ## D. Child → parent (working)
 
 1. **Grown-ups** button → `/play/exit` PIN pad. A wrong PIN shows a friendly message.
@@ -39,6 +48,10 @@
 
 1. `/parent` — every child: minutes this week, activities, skills mastered, weekly goal bar, one plain-language "worth a look" item.
 2. `/parent/children/[id]` — last 7 days, strengths, needs attention (with the recurring slip and a "try at home" tip), skills by subject with curriculum references, recent activity, achievements, edit, delete.
+
+## E2. Weekly report (working)
+
+`/parent/children/[id]/report?week=YYYY-MM-DD`: time (vs previous week), days active, activities, accuracy, minutes per day, subjects, what was learned, highlights, needs practice with "try at home" tips, stickers and achievements. Week navigation and print/PDF. Only the child's own parent can open it.
 
 ## F. Parent: account and privacy (working)
 

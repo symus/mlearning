@@ -80,7 +80,7 @@ The review checklist (shown in the admin screen): factual accuracy (independentl
 
 ## Current library (end of this release)
 
-- **46 objectives**, **47 activities**, **285 items**, **8 songs**, **1 lesson journey (22 lessons)**, all three age groups, maths and reading.
+- **73 objectives**, **74 activities**, **447 items**, **8 songs**, **1 lesson journey (22 lessons)**, across Math Galaxy, Reading Kingdom, Science Lab, Logic Island and Coding City, all three age groups, maths and reading.
 - Each age group × subject has 5–7 activities and at least one free activity.
 - Curriculum references: England National Curriculum / EYFS (`uk-nc`).
 
