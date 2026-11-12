@@ -47,7 +47,11 @@ export const watchSchema = z.discriminatedUnion("kind", [
     kind: z.literal("song"),
     title: z.string().min(3),
     lines: z.array(z.object({ text: z.string().min(2).max(90), visual: visualSchema.optional() })).min(2).max(12),
-    credit: z.string().default("Original lyrics"),
+    /** Original tune generated in the browser: speed and instrument. */
+    tune: z
+      .object({ bpm: z.number().int().min(60).max(150), instrument: z.enum(["xylophone", "piano", "marimba"]) })
+      .default({ bpm: 100, instrument: "xylophone" }),
+    credit: z.string().default("Original lyrics and tune"),
   }),
   z.object({
     kind: z.literal("video"),

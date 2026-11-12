@@ -12,6 +12,7 @@ import clsx from "clsx";
 import type { Watch } from "@/lib/content/schema";
 import { Visual } from "./visual";
 import { Pip } from "@/components/mascot";
+import { composeLine, MusicEngine, splitWords } from "./music";
 
 const noopSubscribe = () => () => {};
 
@@ -73,123 +74,119 @@ function DoneButton({
   );
 }
 
-function SongPlayer({
-  watch,
-  onDone,
-  doneLabel,
-}: {
-  watch: Extract<Watch, { kind: "song" }>;
-  onDone: () => void;
-  doneLabel: string;
-}) {
-  const speechOk = useSyncExternalStore(
-    noopSubscribe,
-    () => "speechSynthesis" in window,
-    () => false,
-  );
+function SongPlayer({ watch, onDone, doneLabel }: { watch: Extract<Watch, { kind: "song" }>; onDone: () => void; doneLabel: string }) {
+  const speechOk = useSyncExternalStore(noopSubscribe, () => "speechSynthesis" in window, () => false);
+  const audioOk = useSyncExternalStore(noopSubscribe, () => "AudioContext" in window || "webkitAudioContext" in window, () => false);
+  const { bpm, instrument } = watch.tune;
+
   const [line, setLine] = useState(-1); // -1 = not started
   const [word, setWord] = useState(-1);
+  const [stage, setStage] = useState<"listen" | "sing" | null>(null);
   const [playing, setPlaying] = useState(false);
   const [finished, setFinished] = useState(false);
+  const [echo, setEcho] = useState(true); // Pip says each line first, then the child sings it
+  const engine = useRef<MusicEngine | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const run = useRef(0); // bumps on stop/restart so stale callbacks are ignored
 
-  const clearTimers = () => {
-    timers.current.forEach(clearTimeout);
-    timers.current = [];
-  };
+  const later = (ms: number, fn: () => void) => timers.current.push(setTimeout(fn, ms));
 
   const stop = useCallback(() => {
     run.current++;
-    clearTimers();
+    timers.current.forEach(clearTimeout);
+    timers.current = [];
+    engine.current?.stopAll();
     if ("speechSynthesis" in window) window.speechSynthesis.cancel();
     setPlaying(false);
+    setStage(null);
   }, []);
 
-  useEffect(() => stop, [stop]);
+  useEffect(
+    () => () => {
+      stop();
+      engine.current?.close();
+    },
+    [stop],
+  );
 
-  // Plain function (not a hook): it calls itself for the next line and only runs from button clicks.
+  // Plain functions (not hooks): they call each other line by line and only run from button clicks.
   function playLine(i: number, token: number) {
     if (token !== run.current) return;
     if (i >= watch.lines.length) {
+      if (engine.current) engine.current.fanfare(engine.current.now + 0.05, instrument);
       setPlaying(false);
       setFinished(true);
+      setStage(null);
       setWord(-1);
       return;
     }
     setLine(i);
-    setWord(0);
+    setWord(-1);
     const text = watch.lines[i].text;
-    const words = text.split(/\s+/);
-    // Word starts, so speech "boundary" events can be mapped to a word index.
-    const starts: number[] = [];
-    let pos = 0;
-    for (const w of words) {
-      const at = text.indexOf(w, pos);
-      starts.push(at);
-      pos = at + w.length;
-    }
-    const next = () =>
-      timers.current.push(setTimeout(() => playLine(i + 1, token), 500));
-
-    // Timed highlighting works everywhere; speech boundary events refine it where supported.
-    const msPerWord = 430;
-    words.forEach((_, w) =>
-      timers.current.push(
-        setTimeout(() => token === run.current && setWord(w), w * msPerWord),
-      ),
-    );
-
-    if (speechOk) {
+    if (echo && speechOk) {
+      setStage("listen");
       const u = new SpeechSynthesisUtterance(text);
       u.lang = "en-GB";
-      u.rate = 0.85;
-      u.pitch = 1.15;
-      u.onboundary = (e) => {
-        if (token !== run.current || e.name !== "word") return;
-        clearTimers();
-        let idx = 0;
-        while (idx + 1 < starts.length && starts[idx + 1] <= e.charIndex) idx++;
-        setWord(idx);
+      u.rate = 0.9;
+      u.pitch = 1.2;
+      let done = false;
+      const next = () => {
+        if (done || token !== run.current) return;
+        done = true;
+        later(250, () => singLine(i, token));
       };
-      u.onend = () => token === run.current && next();
+      u.onend = next;
+      // Some browsers never fire onend; don't get stuck.
+      later(splitWords(text).length * 520 + 2500, next);
       window.speechSynthesis.speak(u);
     } else {
-      timers.current.push(
-        setTimeout(
-          () => playLine(i + 1, token),
-          words.length * msPerWord + 200,
-        ),
-      );
+      singLine(i, token);
     }
   }
 
-  const play = () => {
+  function singLine(i: number, token: number) {
+    if (token !== run.current) return;
+    setStage("sing");
+    const composed = composeLine(watch.lines[i].text, i, bpm);
+    const e = engine.current;
+    const lead = 0.15;
+    if (e) e.playLine(composed, e.now + lead, bpm, instrument, i);
+    for (const n of composed.notes) later((lead + n.at) * 1000, () => token === run.current && setWord(n.word));
+    later((lead + composed.seconds) * 1000, () => playLine(i + 1, token));
+  }
+
+  async function play() {
     stop();
     const token = run.current;
+    if (audioOk && !engine.current) engine.current = new MusicEngine();
+    await engine.current?.resume();
     setFinished(false);
     setPlaying(true);
     playLine(line >= 0 && !finished ? line : 0, token);
-  };
+  }
 
   const current = watch.lines[Math.max(0, line)];
 
   return (
     <div className="flex flex-col items-center gap-5 text-center">
-      <p className="rounded-full bg-berry-soft px-4 py-1 text-sm font-bold text-berry">
-        🎵 Watch &amp; Sing
-      </p>
+      <p className="rounded-full bg-berry-soft px-4 py-1 text-sm font-bold text-berry">🎵 Watch &amp; Sing</p>
       <h1 className="text-3xl font-bold sm:text-4xl">{watch.title}</h1>
 
       <div className="relative flex min-h-56 w-full items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-b from-sky-soft to-paper p-6">
+        {stage && (
+          <p className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold shadow-sm" aria-live="polite">
+            {stage === "listen" ? "👂 Listen to Pip…" : "🎤 Your turn — sing!"}
+          </p>
+        )}
+        {stage === "sing" && (
+          <span aria-hidden className="pointer-events-none absolute right-4 top-3 flex gap-1 text-2xl text-berry">
+            <motion.span key={`a${word}`} initial={{ y: 10, opacity: 0 }} animate={{ y: -8, opacity: [0, 1, 0] }} transition={{ duration: 0.9 }}>♪</motion.span>
+            <motion.span key={`b${word}`} initial={{ y: 10, opacity: 0 }} animate={{ y: -14, opacity: [0, 1, 0] }} transition={{ duration: 1.1, delay: 0.15 }}>♫</motion.span>
+          </span>
+        )}
         <AnimatePresence mode="wait">
           {line < 0 ? (
-            <motion.div
-              key="intro"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
+            <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
               <Pip className="size-32" mood="cheer" />
             </motion.div>
           ) : (
@@ -200,44 +197,27 @@ function SongPlayer({
               exit={{ scale: 0.8, opacity: 0 }}
               transition={{ type: "spring", stiffness: 180, damping: 14 }}
             >
-              {current.visual ? (
-                <Visual visual={current.visual} />
-              ) : (
-                <Pip className="size-32" mood="cheer" />
-              )}
+              {/* bounce on every beat */}
+              <motion.div key={word} animate={stage === "sing" ? { scale: [1, 1.07, 1] } : {}} transition={{ duration: 0.3 }}>
+                {current.visual ? <Visual visual={current.visual} /> : <Pip className="size-32" mood="cheer" />}
+              </motion.div>
             </motion.div>
           )}
         </AnimatePresence>
       </div>
 
-      {/* Lyrics with karaoke highlighting */}
-      <ol
-        className="w-full max-w-xl space-y-2 text-left"
-        aria-label="Song words"
-      >
+      {/* Lyrics with karaoke highlighting on the beat */}
+      <ol className="w-full max-w-xl space-y-2 text-left" aria-label="Song words">
         {watch.lines.map((l, i) => (
           <li
             key={i}
             aria-current={i === line ? "true" : undefined}
-            className={clsx(
-              "rounded-2xl px-4 py-2 text-lg transition sm:text-xl",
-              i === line
-                ? "bg-sun-soft font-bold"
-                : i < line
-                  ? "text-ink-muted"
-                  : "text-ink-soft",
-            )}
+            className={clsx("rounded-2xl px-4 py-2 text-lg transition sm:text-xl", i === line ? "bg-sun-soft font-bold" : i < line ? "text-ink-muted" : "text-ink-soft")}
           >
             {i === line
-              ? l.text.split(/\s+/).map((w, j) => (
-                  <span
-                    key={j}
-                    className={clsx(
-                      "rounded px-0.5 transition-colors",
-                      j === word && playing && "bg-sun text-ink",
-                    )}
-                  >
-                    {w}{" "}
+              ? splitWords(l.text).map((w, j) => (
+                  <span key={j}>
+                    <span className={clsx("rounded px-0.5 transition-colors", stage === "sing" && j === word && "bg-sun text-ink", stage === "sing" && j < word && "text-berry")}>{w}</span>{" "}
                   </span>
                 ))
               : l.text}
@@ -247,51 +227,27 @@ function SongPlayer({
 
       <div className="flex flex-wrap items-center justify-center gap-3">
         {playing ? (
-          <button
-            onClick={stop}
-            className="min-h-14 rounded-full bg-sky-soft px-6 font-bold text-sky"
-          >
-            ⏸ Pause
-          </button>
+          <button onClick={stop} className="min-h-14 rounded-full bg-sky-soft px-6 font-bold text-sky">⏸ Pause</button>
         ) : (
-          <button
-            onClick={play}
-            className="btn-pop min-h-14 rounded-full bg-berry px-8 font-display text-xl font-bold text-white"
-          >
-            {finished
-              ? "🔁 Sing again"
-              : line >= 0
-                ? "▶ Keep singing"
-                : "▶ Play the song"}
+          <button onClick={play} className="btn-pop min-h-14 rounded-full bg-berry px-8 font-display text-xl font-bold text-white">
+            {finished ? "🔁 Sing again" : line >= 0 ? "▶ Keep singing" : "▶ Play the song"}
           </button>
         )}
-        {(finished || line >= 0) && (
-          <DoneButton
-            onClick={() => {
-              stop();
-              onDone();
-            }}
-            label={doneLabel}
-          />
-        )}
+        {(finished || line >= 0) && <DoneButton onClick={() => { stop(); onDone(); }} label={doneLabel} />}
         {line < 0 && (
-          <button
-            onClick={() => {
-              stop();
-              onDone();
-            }}
-            className="min-h-14 rounded-full px-5 font-bold text-ink-soft underline"
-          >
+          <button onClick={() => { stop(); onDone(); }} className="min-h-14 rounded-full px-5 font-bold text-ink-soft underline">
             Skip
           </button>
         )}
       </div>
-      {!speechOk && (
-        <p className="text-sm text-ink-muted">
-          This device can&apos;t read aloud, so ask a grown-up to sing the words
-          with you!
-        </p>
+
+      {speechOk && (
+        <label className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink-soft">
+          <input type="checkbox" checked={echo} onChange={(e) => setEcho(e.target.checked)} disabled={playing} className="size-5 accent-berry" />
+          Pip says each line first, then you sing it
+        </label>
       )}
+      {!audioOk && <p className="text-sm text-ink-muted">This device can&apos;t play music, so ask a grown-up to sing the words with you!</p>}
       <p className="text-xs text-ink-muted">{watch.credit}</p>
     </div>
   );

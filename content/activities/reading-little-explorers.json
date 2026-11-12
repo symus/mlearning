@@ -9,7 +9,7 @@
         "say": "Letters make sounds. S says sss, like a snake. A says a, like apple. T says t, like a tick. P says p, like pop!",
         "visual": { "kind": "bigText", "text": "s  a  t  p" }
       },
-      "watch": {"kind": "song", "title": "The Sound Seed Song", "lines": [{"text": "S is for snake, and the snake says sss.", "visual": {"kind": "objects", "emoji": "🐍", "count": 1}}, {"text": "A is for apple, crunch, a, a, a.", "visual": {"kind": "objects", "emoji": "🍎", "count": 1}}, {"text": "T is for tiger, t, t, t.", "visual": {"kind": "objects", "emoji": "🐯", "count": 1}}, {"text": "P is for pig, p, p, p.", "visual": {"kind": "objects", "emoji": "🐷", "count": 1}}, {"text": "S, a, t, p, sing the sounds with me!", "visual": {"kind": "bigText", "text": "s a t p"}}]},
+      "watch": {"kind": "song", "title": "The Sound Seed Song", "tune": {"bpm": 88, "instrument": "xylophone"}, "lines": [{"text": "S is for snake, and the snake says sss.", "visual": {"kind": "objects", "emoji": "🐍", "count": 1}}, {"text": "A is for apple, crunch, a, a, a.", "visual": {"kind": "objects", "emoji": "🍎", "count": 1}}, {"text": "T is for tiger, t, t, t.", "visual": {"kind": "objects", "emoji": "🐯", "count": 1}}, {"text": "P is for pig, p, p, p.", "visual": {"kind": "objects", "emoji": "🐷", "count": 1}}, {"text": "S, a, t, p, sing the sounds with me!", "visual": {"kind": "bigText", "text": "s a t p"}}]},
       "misconceptions": [
         { "code": "LETTER_NAME", "description": "Uses the letter name (e.g. 'ess') instead of the sound ('sss').", "remedy": "We say the sound, not the name: s is 'sss', like a snake." },
         { "code": "SIMILAR_SOUND", "description": "Confuses sounds that are made in a similar way (e.g. p and b, t and d).", "remedy": "Put your hand in front of your mouth. p makes a little puff of air." }
@@ -154,7 +154,7 @@
         "say": "Rhyming words sound the same at the end. Cat, hat, bat. They all rhyme!",
         "visual": { "kind": "pattern", "items": ["🐈", "🎩", "🦇"] }
       },
-      "watch": {"kind": "song", "title": "Rhyme Time Rap", "lines": [{"text": "A cat in a hat sat down on a mat.", "visual": {"kind": "pattern", "items": ["🐈", "🎩"]}}, {"text": "A frog on a log met a dog in the fog.", "visual": {"kind": "pattern", "items": ["🐸", "🪵", "🐕"]}}, {"text": "A bee in a tree looked down at me.", "visual": {"kind": "pattern", "items": ["🐝", "🌳"]}}, {"text": "Rhymes sound the same at the end, you see!", "visual": {"kind": "bigText", "text": "cat · hat · mat"}}]},
+      "watch": {"kind": "song", "title": "Rhyme Time Rap", "tune": {"bpm": 112, "instrument": "marimba"}, "lines": [{"text": "A cat in a hat sat down on a mat.", "visual": {"kind": "pattern", "items": ["🐈", "🎩"]}}, {"text": "A frog on a log met a dog in the fog.", "visual": {"kind": "pattern", "items": ["🐸", "🪵", "🐕"]}}, {"text": "A bee in a tree looked down at me.", "visual": {"kind": "pattern", "items": ["🐝", "🌳"]}}, {"text": "Rhymes sound the same at the end, you see!", "visual": {"kind": "bigText", "text": "cat · hat · mat"}}]},
       "misconceptions": [
         { "code": "SAME_START", "description": "Picks a word with the same first sound rather than the same ending.", "remedy": "Rhymes match at the end of the word, not the start." },
         { "code": "MEANING_MATCH", "description": "Picks a word with a related meaning.", "remedy": "Listen to how the word sounds, not what it means." }
