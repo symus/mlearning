@@ -19,9 +19,10 @@ export async function importContent(db: PrismaClient, opts: { publish: boolean }
 
   for (const c of CURRICULA) await db.curriculum.upsert({ where: { code: c.code }, create: c, update: c });
 
+  const NAMES: Record<string, string> = { maths: "Mathematics", reading: "Reading & Phonics", science: "Science", logic: "Logic & Reasoning", coding: "Coding & Computational Thinking" };
   for (const w of WORLDS) {
-    if (!["maths", "reading"].includes(w.subject)) continue;
-    const name = w.subject === "maths" ? "Mathematics" : "Reading & Phonics";
+    if (!(w.subject in NAMES)) continue;
+    const name = NAMES[w.subject];
     await db.subject.upsert({ where: { slug: w.subject }, create: { slug: w.subject, name, world: w.slug }, update: { name, world: w.slug } });
   }
 

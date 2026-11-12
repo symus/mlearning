@@ -48,8 +48,8 @@ export const WORLDS: World[] = [
     colour: "lab",
     tagline: "Ask questions, test ideas",
     description: "Living things, materials, forces, space and simple experiments you can try at home.",
-    status: "soon",
-    phase: 6,
+    status: "open",
+    phase: 4,
   },
   {
     slug: "logic-island",
@@ -59,8 +59,8 @@ export const WORLDS: World[] = [
     colour: "peaks",
     tagline: "Climb with clever thinking",
     description: "Patterns, sequences, sorting, spatial puzzles and reasoning challenges.",
-    status: "soon",
-    phase: 6,
+    status: "open",
+    phase: 4,
   },
   {
     slug: "coding-city",
@@ -70,8 +70,8 @@ export const WORLDS: World[] = [
     colour: "harbour",
     tagline: "Give instructions, build machines",
     description: "Sequences, loops, conditions and debugging with friendly robots.",
-    status: "soon",
-    phase: 6,
+    status: "open",
+    phase: 4,
   },
   {
     slug: "world-explorer",
@@ -115,3 +115,15 @@ export function getWorld(slug: string): World | undefined {
 export function worldForSubject(subject: string): World | undefined {
   return WORLDS.find((w) => w.subject === subject);
 }
+
+/** Parent-facing subject names. */
+export const SUBJECT_LABEL: Record<string, string> = {
+  maths: "Maths",
+  reading: "Reading",
+  science: "Science",
+  logic: "Logic",
+  coding: "Coding",
+  world: "Geography & history",
+  creative: "Creative",
+  money: "Money",
+};

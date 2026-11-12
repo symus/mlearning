@@ -1,0 +1,2305 @@
+{
+ "activities": [
+  {
+   "slug": "animal-homes",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "science",
+   "topic": "Living things",
+   "subtopic": "Animals and habitats",
+   "objective": "SC.ANIMALS.HOMES",
+   "title": "Animal Homes",
+   "pathOrder": 1,
+   "estimatedMinutes": 4,
+   "isFree": true,
+   "learn": {
+    "text": "Every animal has a home that keeps it safe. Birds live in nests, fish live in water, bees live in hives and rabbits live in burrows under the ground.",
+    "say": "Every animal has a home. Birds live in nests. Fish live in water. Bees live in hives. Rabbits live in burrows.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "🐦",
+      "🪺",
+      "🐟",
+      "💧",
+      "🐝",
+      "🍯"
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "HOME_MIXUP",
+     "description": "Matches an animal to a home that belongs to a different animal.",
+     "remedy": "Think: what does this animal need? Fish need water to breathe."
+    },
+    {
+     "code": "PET_ONLY",
+     "description": "Thinks every animal lives in a house with people.",
+     "remedy": "Wild animals make their own homes outdoors."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "my-five-senses",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "bird",
+       "type": "choice",
+       "prompt": "Where does a bird live?",
+       "say": "Where does a bird live?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🐦",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "nest",
+         "label": "nest",
+         "emoji": "🪺"
+        },
+        {
+         "id": "hive",
+         "label": "hive",
+         "emoji": "🍯"
+        },
+        {
+         "id": "pond",
+         "label": "pond",
+         "emoji": "💧"
+        }
+       ],
+       "answer": "nest",
+       "hints": [
+        "Birds lay eggs in it.",
+        "It is made of twigs."
+       ],
+       "explanation": "Birds build nests from twigs and grass to keep their eggs safe.",
+       "misconceptions": {
+        "hive": "HOME_MIXUP",
+        "pond": "HOME_MIXUP"
+       }
+      },
+      {
+       "id": "fish",
+       "type": "choice",
+       "prompt": "Where does a fish live?",
+       "say": "Where does a fish live?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🐟",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "tree",
+         "label": "in a tree",
+         "emoji": "🌳"
+        },
+        {
+         "id": "water",
+         "label": "in water",
+         "emoji": "💧"
+        },
+        {
+         "id": "house",
+         "label": "in a house",
+         "emoji": "🏠"
+        }
+       ],
+       "answer": "water",
+       "hints": [
+        "Fish swim.",
+        "They need water to breathe."
+       ],
+       "explanation": "Fish live in water. They breathe through gills.",
+       "misconceptions": {
+        "tree": "HOME_MIXUP",
+        "house": "PET_ONLY"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "bee",
+       "type": "choice",
+       "prompt": "Which animal lives in a hive?",
+       "say": "Which animal lives in a hive?",
+       "options": [
+        {
+         "id": "bee",
+         "label": "bee",
+         "emoji": "🐝"
+        },
+        {
+         "id": "cow",
+         "label": "cow",
+         "emoji": "🐄"
+        },
+        {
+         "id": "frog",
+         "label": "frog",
+         "emoji": "🐸"
+        }
+       ],
+       "answer": "bee",
+       "hints": [
+        "A hive is full of honey.",
+        "Who makes honey?"
+       ],
+       "explanation": "Bees live in hives and make honey there.",
+       "misconceptions": {
+        "cow": "HOME_MIXUP",
+        "frog": "HOME_MIXUP"
+       }
+      },
+      {
+       "id": "rabbit",
+       "type": "choice",
+       "prompt": "A rabbit digs a home under the ground. What is it called?",
+       "say": "A rabbit digs a home under the ground. What is it called?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🐇",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "burrow",
+         "label": "burrow",
+         "emoji": "🕳️"
+        },
+        {
+         "id": "nest",
+         "label": "nest",
+         "emoji": "🪺"
+        },
+        {
+         "id": "web",
+         "label": "web",
+         "emoji": "🕸️"
+        }
+       ],
+       "answer": "burrow",
+       "hints": [
+        "It is a tunnel under the ground.",
+        "It starts with b."
+       ],
+       "explanation": "Rabbits live in burrows: tunnels under the ground.",
+       "misconceptions": {
+        "nest": "HOME_MIXUP",
+        "web": "HOME_MIXUP"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "baby-cow",
+       "type": "choice",
+       "prompt": "A baby cow is called a...",
+       "say": "A baby cow is called a what?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🐄",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "calf",
+         "label": "calf",
+         "emoji": "🐮"
+        },
+        {
+         "id": "kitten",
+         "label": "kitten",
+         "emoji": "🐱"
+        },
+        {
+         "id": "chick",
+         "label": "chick",
+         "emoji": "🐥"
+        }
+       ],
+       "answer": "calf",
+       "hints": [
+        "Kittens are baby cats.",
+        "Chicks are baby birds."
+       ],
+       "explanation": "A baby cow is a calf.",
+       "misconceptions": {
+        "kitten": "HOME_MIXUP",
+        "chick": "HOME_MIXUP"
+       }
+      },
+      {
+       "id": "odd-home",
+       "type": "choice",
+       "prompt": "Which animal does NOT live in water?",
+       "say": "Which animal does not live in water?",
+       "options": [
+        {
+         "id": "whale",
+         "label": "whale",
+         "emoji": "🐳"
+        },
+        {
+         "id": "crab",
+         "label": "crab",
+         "emoji": "🦀"
+        },
+        {
+         "id": "lion",
+         "label": "lion",
+         "emoji": "🦁"
+        }
+       ],
+       "answer": "lion",
+       "hints": [
+        "Two of these swim in the sea.",
+        "Which one lives on dry grassland?"
+       ],
+       "explanation": "Whales and crabs live in the sea. Lions live on dry grassland.",
+       "misconceptions": {
+        "whale": "HOME_MIXUP",
+        "crab": "HOME_MIXUP"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "my-five-senses",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "science",
+   "topic": "Humans",
+   "subtopic": "The senses",
+   "objective": "SC.BODY.SENSES",
+   "title": "My Five Senses",
+   "pathOrder": 2,
+   "estimatedMinutes": 4,
+   "isFree": false,
+   "learn": {
+    "text": "We have five senses. We see with our eyes, hear with our ears, smell with our nose, taste with our tongue and feel with our skin.",
+    "say": "We have five senses. See with your eyes. Hear with your ears. Smell with your nose. Taste with your tongue. Feel with your skin.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "👀",
+      "👂",
+      "👃",
+      "👅",
+      "✋"
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "WRONG_ORGAN",
+     "description": "Links a sense to the wrong body part.",
+     "remedy": "Point to the body part: eyes see, ears hear, nose smells, tongue tastes, skin feels."
+    },
+    {
+     "code": "ONE_SENSE",
+     "description": "Thinks we only use one sense at a time.",
+     "remedy": "We often use many senses together, like seeing and smelling a cake."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "float-or-sink",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "eyes",
+       "type": "choice",
+       "prompt": "Which body part do we use to see?",
+       "options": [
+        {
+         "id": "eyes",
+         "label": "eyes",
+         "emoji": "👀"
+        },
+        {
+         "id": "ears",
+         "label": "ears",
+         "emoji": "👂"
+        },
+        {
+         "id": "nose",
+         "label": "nose",
+         "emoji": "👃"
+        }
+       ],
+       "answer": "eyes",
+       "hints": [
+        "Close them and it goes dark.",
+        "You are using them to look now!"
+       ],
+       "explanation": "We see with our eyes.",
+       "misconceptions": {
+        "ears": "WRONG_ORGAN",
+        "nose": "WRONG_ORGAN"
+       }
+      },
+      {
+       "id": "ears",
+       "type": "choice",
+       "prompt": "Which body part hears music?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🎵",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "hand",
+         "label": "hand",
+         "emoji": "✋"
+        },
+        {
+         "id": "ears",
+         "label": "ears",
+         "emoji": "👂"
+        },
+        {
+         "id": "tongue",
+         "label": "tongue",
+         "emoji": "👅"
+        }
+       ],
+       "answer": "ears",
+       "hints": [
+        "Cover them and sounds get quieter.",
+        "They are on the sides of your head."
+       ],
+       "explanation": "We hear with our ears.",
+       "misconceptions": {
+        "hand": "WRONG_ORGAN",
+        "tongue": "WRONG_ORGAN"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "smell",
+       "type": "choice",
+       "prompt": "Which sense tells you the flowers smell nice?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🌸",
+        "count": 3
+       },
+       "options": [
+        {
+         "id": "smell",
+         "label": "smell",
+         "emoji": "👃"
+        },
+        {
+         "id": "taste",
+         "label": "taste",
+         "emoji": "👅"
+        },
+        {
+         "id": "touch",
+         "label": "touch",
+         "emoji": "✋"
+        }
+       ],
+       "answer": "smell",
+       "hints": [
+        "We don't eat flowers!",
+        "It uses your nose."
+       ],
+       "explanation": "Smell uses our nose.",
+       "misconceptions": {
+        "taste": "WRONG_ORGAN",
+        "touch": "WRONG_ORGAN"
+       }
+      },
+      {
+       "id": "touch",
+       "type": "choice",
+       "prompt": "Which sense tells you ice is cold?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🧊",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "see",
+         "label": "seeing",
+         "emoji": "👀"
+        },
+        {
+         "id": "touch",
+         "label": "touching",
+         "emoji": "✋"
+        },
+        {
+         "id": "hear",
+         "label": "hearing",
+         "emoji": "👂"
+        }
+       ],
+       "answer": "touch",
+       "hints": [
+        "You can feel it on your skin.",
+        "Hold it in your hand."
+       ],
+       "explanation": "Our skin feels hot and cold. That is the sense of touch.",
+       "misconceptions": {
+        "see": "WRONG_ORGAN",
+        "hear": "WRONG_ORGAN"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "lemon",
+       "type": "choice",
+       "prompt": "A lemon tastes sour. Which body part tastes it?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🍋",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "tongue",
+         "label": "tongue",
+         "emoji": "👅"
+        },
+        {
+         "id": "eyes",
+         "label": "eyes",
+         "emoji": "👀"
+        },
+        {
+         "id": "ears",
+         "label": "ears",
+         "emoji": "👂"
+        }
+       ],
+       "answer": "tongue",
+       "hints": [
+        "You taste food in your mouth.",
+        "It is pink and wiggly."
+       ],
+       "explanation": "Our tongue tastes sweet, sour, salty and bitter.",
+       "misconceptions": {
+        "eyes": "WRONG_ORGAN",
+        "ears": "WRONG_ORGAN"
+       }
+      },
+      {
+       "id": "cake",
+       "type": "choice",
+       "prompt": "You see and smell a cake. How many senses is that?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🎂",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "1",
+         "label": "1"
+        },
+        {
+         "id": "2",
+         "label": "2"
+        },
+        {
+         "id": "5",
+         "label": "5"
+        }
+       ],
+       "answer": "2",
+       "hints": [
+        "Seeing is one sense.",
+        "Smelling is another."
+       ],
+       "explanation": "Seeing and smelling are two senses working together.",
+       "misconceptions": {
+        "1": "ONE_SENSE",
+        "5": "ONE_SENSE"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "float-or-sink",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "science",
+   "topic": "Materials",
+   "subtopic": "Floating and sinking",
+   "objective": "SC.MATERIALS.FLOAT",
+   "title": "Float or Sink?",
+   "pathOrder": 3,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "Some things float on water and some sink to the bottom. Light things and things filled with air often float, like a leaf or a ball. Heavy, solid things often sink, like a stone or a key. Scientists predict first, then test!",
+    "say": "Some things float and some things sink. Scientists guess first, then test!",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "🍃",
+      "⚽",
+      "🪨",
+      "🔑"
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "BIG_SINKS",
+     "description": "Thinks big things always sink and small things always float.",
+     "remedy": "Size isn't everything. A big beach ball floats; a tiny coin sinks."
+    },
+    {
+     "code": "NO_PREDICT",
+     "description": "Doesn't make a prediction before testing.",
+     "remedy": "A scientist always says what they think will happen first."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "same-or-different",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "stone",
+       "type": "choice",
+       "prompt": "Will a stone float or sink?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🪨",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "float",
+         "label": "float",
+         "emoji": "🛟"
+        },
+        {
+         "id": "sink",
+         "label": "sink",
+         "emoji": "⬇️"
+        }
+       ],
+       "answer": "sink",
+       "hints": [
+        "Stones are heavy and solid.",
+        "Imagine dropping one in a pond."
+       ],
+       "explanation": "A stone sinks: it is heavy and solid.",
+       "misconceptions": {
+        "float": "BIG_SINKS"
+       }
+      },
+      {
+       "id": "leaf",
+       "type": "choice",
+       "prompt": "Will a leaf float or sink?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🍃",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "float",
+         "label": "float",
+         "emoji": "🛟"
+        },
+        {
+         "id": "sink",
+         "label": "sink",
+         "emoji": "⬇️"
+        }
+       ],
+       "answer": "float",
+       "hints": [
+        "Leaves are very light.",
+        "Think of leaves on a puddle."
+       ],
+       "explanation": "A leaf floats: it is light and flat.",
+       "misconceptions": {
+        "sink": "BIG_SINKS"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "beachball",
+       "type": "choice",
+       "prompt": "A big beach ball is full of air. Will it float?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🏐",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "float",
+         "label": "float",
+         "emoji": "🛟"
+        },
+        {
+         "id": "sink",
+         "label": "sink",
+         "emoji": "⬇️"
+        }
+       ],
+       "answer": "float",
+       "hints": [
+        "It's big, but what is inside it?",
+        "Air is very light."
+       ],
+       "explanation": "It floats! It is big but full of light air.",
+       "misconceptions": {
+        "sink": "BIG_SINKS"
+       }
+      },
+      {
+       "id": "coin",
+       "type": "choice",
+       "prompt": "A tiny coin. Float or sink?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🪙",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "float",
+         "label": "float",
+         "emoji": "🛟"
+        },
+        {
+         "id": "sink",
+         "label": "sink",
+         "emoji": "⬇️"
+        }
+       ],
+       "answer": "sink",
+       "hints": [
+        "It is small, but it is metal.",
+        "Metal coins are heavy for their size."
+       ],
+       "explanation": "The coin sinks. Small things can still sink!",
+       "misconceptions": {
+        "float": "BIG_SINKS"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "steps",
+       "type": "order",
+       "prompt": "Put a scientist's steps in order.",
+       "tiles": [
+        {
+         "id": "test",
+         "label": "Test it",
+         "emoji": "🧪"
+        },
+        {
+         "id": "guess",
+         "label": "Guess what will happen",
+         "emoji": "🤔"
+        },
+        {
+         "id": "look",
+         "label": "Look at what happened",
+         "emoji": "👀"
+        }
+       ],
+       "answer": [
+        "guess",
+        "test",
+        "look"
+       ],
+       "hints": [
+        "What do scientists do before testing?",
+        "Guess, then..."
+       ],
+       "explanation": "Scientists guess (predict), test, then look at what happened."
+      },
+      {
+       "id": "sort",
+       "type": "choice",
+       "prompt": "Which group will all float?",
+       "options": [
+        {
+         "id": "a",
+         "label": "leaf, cork, duck toy",
+         "emoji": "🍃"
+        },
+        {
+         "id": "b",
+         "label": "key, stone, spoon",
+         "emoji": "🔑"
+        },
+        {
+         "id": "c",
+         "label": "leaf, key, cork",
+         "emoji": "🪨"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Find the group with only light things.",
+        "Keys and stones sink."
+       ],
+       "explanation": "A leaf, a cork and a duck toy all float.",
+       "misconceptions": {
+        "b": "BIG_SINKS",
+        "c": "BIG_SINKS"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "how-plants-grow",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "science",
+   "topic": "Plants",
+   "subtopic": "Plant needs and parts",
+   "objective": "SC.PLANTS.NEEDS",
+   "title": "How Plants Grow",
+   "pathOrder": 1,
+   "estimatedMinutes": 5,
+   "isFree": true,
+   "learn": {
+    "text": "Plants need water, light and the right temperature to grow well. Roots hold the plant and drink water from the soil. The stem carries water up. Leaves use sunlight to make food. Flowers make seeds for new plants.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "💧",
+      "☀️",
+      "🌡️",
+      "🌱"
+     ]
+    },
+    "example": "No light? The plant grows pale and weak."
+   },
+   "misconceptions": [
+    {
+     "code": "PLANTS_EAT_SOIL",
+     "description": "Thinks plants eat soil as food.",
+     "remedy": "Plants make their own food in their leaves using sunlight. Roots take in water."
+    },
+    {
+     "code": "PART_JOB_MIXUP",
+     "description": "Mixes up the jobs of plant parts.",
+     "remedy": "Roots drink and hold, stem carries, leaves make food, flowers make seeds."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": "super-materials",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "needs",
+       "type": "choice",
+       "prompt": "What does a plant need to grow?",
+       "options": [
+        {
+         "id": "a",
+         "label": "water and light",
+         "emoji": "☀️"
+        },
+        {
+         "id": "b",
+         "label": "sweets",
+         "emoji": "🍬"
+        },
+        {
+         "id": "c",
+         "label": "darkness",
+         "emoji": "🌑"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Think about a sunny windowsill.",
+        "Plants get thirsty too."
+       ],
+       "explanation": "Plants need water and light (and warmth).",
+       "misconceptions": {
+        "b": "PLANTS_EAT_SOIL",
+        "c": "PLANTS_EAT_SOIL"
+       }
+      },
+      {
+       "id": "roots",
+       "type": "choice",
+       "prompt": "Which part drinks water from the soil?",
+       "options": [
+        {
+         "id": "roots",
+         "label": "roots"
+        },
+        {
+         "id": "petals",
+         "label": "petals",
+         "emoji": "🌸"
+        },
+        {
+         "id": "leaves",
+         "label": "leaves",
+         "emoji": "🍃"
+        }
+       ],
+       "answer": "roots",
+       "hints": [
+        "It is under the ground.",
+        "It holds the plant in place too."
+       ],
+       "explanation": "Roots take in water and hold the plant steady.",
+       "misconceptions": {
+        "petals": "PART_JOB_MIXUP",
+        "leaves": "PART_JOB_MIXUP"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "leaves",
+       "type": "choice",
+       "prompt": "Which part uses sunlight to make food?",
+       "options": [
+        {
+         "id": "stem",
+         "label": "stem"
+        },
+        {
+         "id": "leaves",
+         "label": "leaves",
+         "emoji": "🍃"
+        },
+        {
+         "id": "roots",
+         "label": "roots"
+        }
+       ],
+       "answer": "leaves",
+       "hints": [
+        "It is usually green and flat.",
+        "It faces the sun."
+       ],
+       "explanation": "Leaves use sunlight to make the plant's food.",
+       "misconceptions": {
+        "stem": "PART_JOB_MIXUP",
+        "roots": "PART_JOB_MIXUP"
+       }
+      },
+      {
+       "id": "dark",
+       "type": "choice",
+       "prompt": "Amir put one bean plant in a dark cupboard. What will happen?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🌑",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "It grows pale and weak",
+         "emoji": "🥀"
+        },
+        {
+         "id": "b",
+         "label": "It grows faster",
+         "emoji": "🌳"
+        },
+        {
+         "id": "c",
+         "label": "Nothing changes",
+         "emoji": "🌱"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Plants need light to make food.",
+        "No food, no healthy growth."
+       ],
+       "explanation": "Without light the plant can't make food, so it grows pale and weak.",
+       "misconceptions": {
+        "b": "PLANTS_EAT_SOIL",
+        "c": "PLANTS_EAT_SOIL"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "lifecycle",
+       "type": "order",
+       "prompt": "Put the plant's life in order.",
+       "tiles": [
+        {
+         "id": "flower",
+         "label": "Flower",
+         "emoji": "🌸"
+        },
+        {
+         "id": "seed",
+         "label": "Seed",
+         "emoji": "🫘"
+        },
+        {
+         "id": "shoot",
+         "label": "Shoot",
+         "emoji": "🌱"
+        },
+        {
+         "id": "plant",
+         "label": "Young plant",
+         "emoji": "🪴"
+        }
+       ],
+       "answer": [
+        "seed",
+        "shoot",
+        "plant",
+        "flower"
+       ],
+       "hints": [
+        "What does a plant start as?",
+        "The flower comes last and makes new seeds."
+       ],
+       "explanation": "Seed, shoot, young plant, flower. Then the flower makes new seeds!"
+      },
+      {
+       "id": "food",
+       "type": "choice",
+       "prompt": "Where does a plant get its food?",
+       "options": [
+        {
+         "id": "a",
+         "label": "It makes it in its leaves",
+         "emoji": "🍃"
+        },
+        {
+         "id": "b",
+         "label": "It eats soil",
+         "emoji": "🟫"
+        },
+        {
+         "id": "c",
+         "label": "From the farmer",
+         "emoji": "🧑‍🌾"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Soil gives water and a few minerals, not food.",
+        "Think about sunlight and leaves."
+       ],
+       "explanation": "Plants make their own food in their leaves using sunlight, air and water.",
+       "misconceptions": {
+        "b": "PLANTS_EAT_SOIL",
+        "c": "PLANTS_EAT_SOIL"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "super-materials",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "science",
+   "topic": "Materials",
+   "subtopic": "Properties of materials",
+   "objective": "SC.MATERIALS.PROPS",
+   "title": "Super Materials",
+   "pathOrder": 2,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "Things are made of materials like wood, metal, plastic, glass and fabric. Materials have properties: hard or soft, bendy or stiff, waterproof or not, see-through or not. We choose materials that suit the job.",
+    "example": "Windows are glass because it is see-through and waterproof."
+   },
+   "misconceptions": [
+    {
+     "code": "OBJECT_MATERIAL",
+     "description": "Confuses the object with the material it is made from.",
+     "remedy": "An object is the thing (a spoon). The material is what it is made of (metal)."
+    },
+    {
+     "code": "WRONG_PROPERTY",
+     "description": "Chooses a material without the property the job needs.",
+     "remedy": "Ask: what must this thing do? Keep rain out? Bend? Let light through?"
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": "seasons-and-weather",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "spoon",
+       "type": "choice",
+       "prompt": "A spoon is made of metal. Which word is the material?",
+       "options": [
+        {
+         "id": "spoon",
+         "label": "spoon",
+         "emoji": "🥄"
+        },
+        {
+         "id": "metal",
+         "label": "metal",
+         "emoji": "🔩"
+        }
+       ],
+       "answer": "metal",
+       "hints": [
+        "The material is what it is made of.",
+        "The object is the thing itself."
+       ],
+       "explanation": "Metal is the material. The spoon is the object.",
+       "misconceptions": {
+        "spoon": "OBJECT_MATERIAL"
+       }
+      },
+      {
+       "id": "window",
+       "type": "choice",
+       "prompt": "Which material is best for a window?",
+       "options": [
+        {
+         "id": "glass",
+         "label": "glass",
+         "emoji": "🪟"
+        },
+        {
+         "id": "wood",
+         "label": "wood",
+         "emoji": "🪵"
+        },
+        {
+         "id": "wool",
+         "label": "wool",
+         "emoji": "🧶"
+        }
+       ],
+       "answer": "glass",
+       "hints": [
+        "You need to see through it.",
+        "It must keep rain out."
+       ],
+       "explanation": "Glass is see-through and waterproof, so it's great for windows.",
+       "misconceptions": {
+        "wood": "WRONG_PROPERTY",
+        "wool": "WRONG_PROPERTY"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "raincoat",
+       "type": "choice",
+       "prompt": "Which material keeps you dry in a raincoat?",
+       "options": [
+        {
+         "id": "plastic",
+         "label": "waterproof plastic",
+         "emoji": "🧥"
+        },
+        {
+         "id": "paper",
+         "label": "paper",
+         "emoji": "📄"
+        },
+        {
+         "id": "cotton",
+         "label": "cotton",
+         "emoji": "👕"
+        }
+       ],
+       "answer": "plastic",
+       "hints": [
+        "Water should run off it.",
+        "Paper goes soggy."
+       ],
+       "explanation": "Waterproof plastic stops rain soaking through.",
+       "misconceptions": {
+        "paper": "WRONG_PROPERTY",
+        "cotton": "WRONG_PROPERTY"
+       }
+      },
+      {
+       "id": "bendy",
+       "type": "choice",
+       "prompt": "Which material is bendy?",
+       "options": [
+        {
+         "id": "rubber",
+         "label": "rubber",
+         "emoji": "🎈"
+        },
+        {
+         "id": "stone",
+         "label": "stone",
+         "emoji": "🪨"
+        },
+        {
+         "id": "glass",
+         "label": "glass",
+         "emoji": "🥛"
+        }
+       ],
+       "answer": "rubber",
+       "hints": [
+        "Can you stretch or bend it?",
+        "Think of a rubber band."
+       ],
+       "explanation": "Rubber bends and stretches. Stone and glass are stiff.",
+       "misconceptions": {
+        "stone": "WRONG_PROPERTY",
+        "glass": "WRONG_PROPERTY"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "bridge",
+       "type": "choice",
+       "prompt": "Why are big bridges often made of steel?",
+       "options": [
+        {
+         "id": "a",
+         "label": "It is strong and hard",
+         "emoji": "🌉"
+        },
+        {
+         "id": "b",
+         "label": "It is see-through",
+         "emoji": "🔍"
+        },
+        {
+         "id": "c",
+         "label": "It is soft",
+         "emoji": "🧸"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Bridges carry heavy lorries.",
+        "Which property matters most?"
+       ],
+       "explanation": "Steel is very strong, so it can hold heavy weights.",
+       "misconceptions": {
+        "b": "WRONG_PROPERTY",
+        "c": "WRONG_PROPERTY"
+       }
+      },
+      {
+       "id": "teapot",
+       "type": "choice",
+       "prompt": "A chocolate teapot would be a bad idea. Why?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "🫖",
+        "count": 1
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "Chocolate melts when hot",
+         "emoji": "🍫"
+        },
+        {
+         "id": "b",
+         "label": "Chocolate is see-through",
+         "emoji": "🔍"
+        },
+        {
+         "id": "c",
+         "label": "Chocolate is too heavy",
+         "emoji": "⚖️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "What happens to chocolate in the sun?",
+        "Tea is very hot."
+       ],
+       "explanation": "Chocolate melts when it gets hot, so hot tea would melt the pot!",
+       "misconceptions": {
+        "b": "WRONG_PROPERTY",
+        "c": "WRONG_PROPERTY"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "seasons-and-weather",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "science",
+   "topic": "Earth",
+   "subtopic": "Seasons and weather",
+   "objective": "SC.EARTH.SEASONS",
+   "title": "Seasons and Weather",
+   "pathOrder": 3,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "There are four seasons: spring, summer, autumn and winter. In the UK, summer days are long and warm, winter days are short and cold. Spring brings new buds; in autumn many trees drop their leaves.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "🌷",
+      "☀️",
+      "🍂",
+      "❄️"
+     ]
+    },
+    "example": "Summer has the longest days and winter has the shortest."
+   },
+   "misconceptions": [
+    {
+     "code": "SEASON_ORDER",
+     "description": "Puts the seasons in the wrong order.",
+     "remedy": "Spring, summer, autumn, winter, then spring again."
+    },
+    {
+     "code": "DAYLIGHT",
+     "description": "Thinks day length is the same all year.",
+     "remedy": "Summer days are longer; winter days are shorter."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "cold",
+       "type": "choice",
+       "prompt": "Which season is usually the coldest?",
+       "options": [
+        {
+         "id": "winter",
+         "label": "winter",
+         "emoji": "❄️"
+        },
+        {
+         "id": "summer",
+         "label": "summer",
+         "emoji": "☀️"
+        },
+        {
+         "id": "spring",
+         "label": "spring",
+         "emoji": "🌷"
+        }
+       ],
+       "answer": "winter",
+       "hints": [
+        "Snow is most likely then.",
+        "You wear a warm coat."
+       ],
+       "explanation": "Winter is usually the coldest season.",
+       "misconceptions": {
+        "summer": "SEASON_ORDER",
+        "spring": "SEASON_ORDER"
+       }
+      },
+      {
+       "id": "leaves",
+       "type": "choice",
+       "prompt": "In which season do many trees drop their leaves?",
+       "options": [
+        {
+         "id": "autumn",
+         "label": "autumn",
+         "emoji": "🍂"
+        },
+        {
+         "id": "spring",
+         "label": "spring",
+         "emoji": "🌷"
+        },
+        {
+         "id": "summer",
+         "label": "summer",
+         "emoji": "☀️"
+        }
+       ],
+       "answer": "autumn",
+       "hints": [
+        "Leaves turn orange and brown first.",
+        "It comes after summer."
+       ],
+       "explanation": "In autumn many trees lose their leaves.",
+       "misconceptions": {
+        "spring": "SEASON_ORDER",
+        "summer": "SEASON_ORDER"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "order",
+       "type": "order",
+       "prompt": "Put the seasons in order, starting with spring.",
+       "tiles": [
+        {
+         "id": "winter",
+         "label": "winter",
+         "emoji": "❄️"
+        },
+        {
+         "id": "summer",
+         "label": "summer",
+         "emoji": "☀️"
+        },
+        {
+         "id": "spring",
+         "label": "spring",
+         "emoji": "🌷"
+        },
+        {
+         "id": "autumn",
+         "label": "autumn",
+         "emoji": "🍂"
+        }
+       ],
+       "answer": [
+        "spring",
+        "summer",
+        "autumn",
+        "winter"
+       ],
+       "hints": [
+        "Spring comes first here.",
+        "The hot season comes next."
+       ],
+       "explanation": "Spring, summer, autumn, winter."
+      },
+      {
+       "id": "longest",
+       "type": "choice",
+       "prompt": "Which season has the longest days?",
+       "options": [
+        {
+         "id": "summer",
+         "label": "summer",
+         "emoji": "☀️"
+        },
+        {
+         "id": "winter",
+         "label": "winter",
+         "emoji": "❄️"
+        },
+        {
+         "id": "autumn",
+         "label": "autumn",
+         "emoji": "🍂"
+        }
+       ],
+       "answer": "summer",
+       "hints": [
+        "It stays light late in the evening.",
+        "Think of long sunny evenings."
+       ],
+       "explanation": "Summer has the longest days.",
+       "misconceptions": {
+        "winter": "DAYLIGHT",
+        "autumn": "DAYLIGHT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "clothes",
+       "type": "choice",
+       "prompt": "It is snowing. What should Ola wear?",
+       "visual": {
+        "kind": "objects",
+        "emoji": "❄️",
+        "count": 3
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "coat, hat and gloves",
+         "emoji": "🧤"
+        },
+        {
+         "id": "b",
+         "label": "shorts and sandals",
+         "emoji": "🩳"
+        },
+        {
+         "id": "c",
+         "label": "swimsuit",
+         "emoji": "👙"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Snow means very cold weather.",
+        "Keep warm!"
+       ],
+       "explanation": "In snowy weather we need warm clothes: coat, hat and gloves.",
+       "misconceptions": {
+        "b": "SEASON_ORDER",
+        "c": "SEASON_ORDER"
+       }
+      },
+      {
+       "id": "after",
+       "type": "choice",
+       "prompt": "Which season comes after winter?",
+       "options": [
+        {
+         "id": "spring",
+         "label": "spring",
+         "emoji": "🌷"
+        },
+        {
+         "id": "autumn",
+         "label": "autumn",
+         "emoji": "🍂"
+        },
+        {
+         "id": "summer",
+         "label": "summer",
+         "emoji": "☀️"
+        }
+       ],
+       "answer": "spring",
+       "hints": [
+        "The seasons go round in a circle.",
+        "New buds and baby animals appear."
+       ],
+       "explanation": "After winter comes spring, and the cycle starts again.",
+       "misconceptions": {
+        "autumn": "SEASON_ORDER",
+        "summer": "SEASON_ORDER"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "forces-in-action",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "science",
+   "topic": "Physics",
+   "subtopic": "Forces",
+   "objective": "SC.FORCES.BASICS",
+   "title": "Forces in Action",
+   "pathOrder": 1,
+   "estimatedMinutes": 7,
+   "isFree": true,
+   "learn": {
+    "text": "A force is a push or a pull. Gravity pulls things down towards Earth. Friction slows things down when surfaces rub together. Air resistance is friction from the air, which slows down falling or moving objects.",
+    "example": "A parachute has a big surface, so air resistance slows the fall."
+   },
+   "misconceptions": [
+    {
+     "code": "HEAVY_FALLS_FASTER",
+     "description": "Thinks heavier objects always fall faster.",
+     "remedy": "Without air resistance, objects fall at the same rate. Shape and air resistance make the difference."
+    },
+    {
+     "code": "FRICTION_BAD",
+     "description": "Thinks friction is always unhelpful.",
+     "remedy": "Friction helps us walk, grip and brake. Without it we'd slip!"
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": "food-chains",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "pushpull",
+       "type": "choice",
+       "prompt": "Opening a drawer towards you is a...",
+       "options": [
+        {
+         "id": "pull",
+         "label": "pull",
+         "emoji": "🫳"
+        },
+        {
+         "id": "push",
+         "label": "push",
+         "emoji": "🫸"
+        }
+       ],
+       "answer": "pull",
+       "hints": [
+        "Is it moving towards you or away?",
+        "Towards you means..."
+       ],
+       "explanation": "Moving something towards you is a pull."
+      },
+      {
+       "id": "gravity",
+       "type": "choice",
+       "prompt": "Which force makes an apple fall from a tree?",
+       "options": [
+        {
+         "id": "gravity",
+         "label": "gravity",
+         "emoji": "🍎"
+        },
+        {
+         "id": "friction",
+         "label": "friction",
+         "emoji": "🛞"
+        },
+        {
+         "id": "magnetism",
+         "label": "magnetism",
+         "emoji": "🧲"
+        }
+       ],
+       "answer": "gravity",
+       "hints": [
+        "It pulls everything down to Earth.",
+        "It keeps your feet on the ground."
+       ],
+       "explanation": "Gravity pulls the apple down towards Earth."
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "ice",
+       "type": "choice",
+       "prompt": "Why is it hard to walk on ice?",
+       "options": [
+        {
+         "id": "a",
+         "label": "There is very little friction",
+         "emoji": "🧊"
+        },
+        {
+         "id": "b",
+         "label": "Gravity is stronger",
+         "emoji": "⬇️"
+        },
+        {
+         "id": "c",
+         "label": "Air resistance is bigger",
+         "emoji": "💨"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Ice is very smooth.",
+        "Shoes need to grip."
+       ],
+       "explanation": "Smooth ice gives very little friction, so shoes can't grip and we slip.",
+       "misconceptions": {
+        "b": "FRICTION_BAD",
+        "c": "FRICTION_BAD"
+       }
+      },
+      {
+       "id": "parachute",
+       "type": "choice",
+       "prompt": "Why does a parachute slow a skydiver down?",
+       "options": [
+        {
+         "id": "a",
+         "label": "Its big surface catches lots of air",
+         "emoji": "🪂"
+        },
+        {
+         "id": "b",
+         "label": "It makes gravity switch off",
+         "emoji": "🚫"
+        },
+        {
+         "id": "c",
+         "label": "It is very heavy",
+         "emoji": "🏋️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Think about air pushing up.",
+        "Bigger surface, more air resistance."
+       ],
+       "explanation": "The big canopy creates lots of air resistance, slowing the fall.",
+       "misconceptions": {
+        "b": "HEAVY_FALLS_FASTER",
+        "c": "HEAVY_FALLS_FASTER"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "drop",
+       "type": "choice",
+       "prompt": "A flat sheet of paper and a scrunched paper ball (same paper) are dropped. Which lands first?",
+       "options": [
+        {
+         "id": "ball",
+         "label": "the ball",
+         "emoji": "⚪"
+        },
+        {
+         "id": "sheet",
+         "label": "the flat sheet",
+         "emoji": "📄"
+        },
+        {
+         "id": "same",
+         "label": "they land together",
+         "emoji": "🤝"
+        }
+       ],
+       "answer": "ball",
+       "hints": [
+        "They weigh exactly the same.",
+        "Which shape has less air resistance?"
+       ],
+       "explanation": "The ball lands first: same weight, but its small shape has less air resistance.",
+       "misconceptions": {
+        "same": "HEAVY_FALLS_FASTER",
+        "sheet": "HEAVY_FALLS_FASTER"
+       }
+      },
+      {
+       "id": "brakes",
+       "type": "choice",
+       "prompt": "Bike brakes work by using...",
+       "options": [
+        {
+         "id": "friction",
+         "label": "friction",
+         "emoji": "🛞"
+        },
+        {
+         "id": "gravity",
+         "label": "gravity",
+         "emoji": "⬇️"
+        },
+        {
+         "id": "magnetism",
+         "label": "magnetism",
+         "emoji": "🧲"
+        }
+       ],
+       "answer": "friction",
+       "hints": [
+        "The brake pads rub on the wheel.",
+        "Rubbing slows things down."
+       ],
+       "explanation": "Brake pads rub the wheel, and friction slows the bike. Friction is useful!",
+       "misconceptions": {
+        "gravity": "FRICTION_BAD",
+        "magnetism": "FRICTION_BAD"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "food-chains",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "science",
+   "topic": "Living things",
+   "subtopic": "Food chains",
+   "objective": "SC.LIVING.FOODCHAIN",
+   "title": "Food Chains",
+   "pathOrder": 2,
+   "estimatedMinutes": 7,
+   "isFree": false,
+   "learn": {
+    "text": "A food chain shows what eats what. It starts with a producer, a plant that makes its own food using sunlight. Consumers eat other living things. A predator hunts other animals, which are its prey. The arrow means 'is eaten by'.",
+    "example": "grass → rabbit → fox"
+   },
+   "misconceptions": [
+    {
+     "code": "ARROW_DIRECTION",
+     "description": "Reads the arrow as 'eats' instead of 'is eaten by'.",
+     "remedy": "The arrow points to the eater: energy flows from the food to the animal that eats it."
+    },
+    {
+     "code": "PRODUCER_ANIMAL",
+     "description": "Thinks an animal can be a producer.",
+     "remedy": "Producers are plants (and algae): they make food from sunlight."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": "solids-liquids-gases",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "producer",
+       "type": "choice",
+       "prompt": "Which is a producer?",
+       "options": [
+        {
+         "id": "grass",
+         "label": "grass",
+         "emoji": "🌿"
+        },
+        {
+         "id": "rabbit",
+         "label": "rabbit",
+         "emoji": "🐇"
+        },
+        {
+         "id": "fox",
+         "label": "fox",
+         "emoji": "🦊"
+        }
+       ],
+       "answer": "grass",
+       "hints": [
+        "Producers make their own food.",
+        "They use sunlight."
+       ],
+       "explanation": "Grass is a producer: it makes food using sunlight.",
+       "misconceptions": {
+        "rabbit": "PRODUCER_ANIMAL",
+        "fox": "PRODUCER_ANIMAL"
+       }
+      },
+      {
+       "id": "predator",
+       "type": "choice",
+       "prompt": "In 'grass → rabbit → fox', which animal is the predator?",
+       "options": [
+        {
+         "id": "fox",
+         "label": "fox",
+         "emoji": "🦊"
+        },
+        {
+         "id": "rabbit",
+         "label": "rabbit",
+         "emoji": "🐇"
+        },
+        {
+         "id": "grass",
+         "label": "grass",
+         "emoji": "🌿"
+        }
+       ],
+       "answer": "fox",
+       "hints": [
+        "A predator hunts other animals.",
+        "Who hunts whom?"
+       ],
+       "explanation": "The fox is the predator; the rabbit is its prey.",
+       "misconceptions": {
+        "rabbit": "ARROW_DIRECTION",
+        "grass": "PRODUCER_ANIMAL"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "chain",
+       "type": "order",
+       "prompt": "Build the food chain.",
+       "tiles": [
+        {
+         "id": "owl",
+         "label": "owl",
+         "emoji": "🦉"
+        },
+        {
+         "id": "leaf",
+         "label": "leaf",
+         "emoji": "🍃"
+        },
+        {
+         "id": "caterpillar",
+         "label": "caterpillar",
+         "emoji": "🐛"
+        },
+        {
+         "id": "bird",
+         "label": "small bird",
+         "emoji": "🐦"
+        }
+       ],
+       "answer": [
+        "leaf",
+        "caterpillar",
+        "bird",
+        "owl"
+       ],
+       "hints": [
+        "Start with the producer.",
+        "Who eats the caterpillar?"
+       ],
+       "explanation": "leaf → caterpillar → small bird → owl"
+      },
+      {
+       "id": "arrow",
+       "type": "choice",
+       "prompt": "What does the arrow in a food chain mean?",
+       "options": [
+        {
+         "id": "a",
+         "label": "is eaten by",
+         "emoji": "➡️"
+        },
+        {
+         "id": "b",
+         "label": "eats",
+         "emoji": "🍽️"
+        },
+        {
+         "id": "c",
+         "label": "is friends with",
+         "emoji": "🤝"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "grass → rabbit",
+        "The grass doesn't eat the rabbit!"
+       ],
+       "explanation": "The arrow means 'is eaten by': grass is eaten by the rabbit.",
+       "misconceptions": {
+        "b": "ARROW_DIRECTION",
+        "c": "ARROW_DIRECTION"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "remove",
+       "type": "choice",
+       "prompt": "In 'algae → small fish → seal', what happens if the small fish disappear?",
+       "options": [
+        {
+         "id": "a",
+         "label": "Seals have less food and algae may grow more",
+         "emoji": "🦭"
+        },
+        {
+         "id": "b",
+         "label": "Nothing changes",
+         "emoji": "🤷"
+        },
+        {
+         "id": "c",
+         "label": "Seals eat more algae",
+         "emoji": "🌊"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Seals eat the small fish.",
+        "Who was eating the algae?"
+       ],
+       "explanation": "Seals lose food, and with fewer fish eating it, algae can grow more. Everything is connected.",
+       "misconceptions": {
+        "b": "ARROW_DIRECTION",
+        "c": "PRODUCER_ANIMAL"
+       }
+      },
+      {
+       "id": "sun",
+       "type": "choice",
+       "prompt": "Where does the energy in every food chain first come from?",
+       "options": [
+        {
+         "id": "sun",
+         "label": "the Sun",
+         "emoji": "☀️"
+        },
+        {
+         "id": "soil",
+         "label": "the soil",
+         "emoji": "🟫"
+        },
+        {
+         "id": "water",
+         "label": "the sea",
+         "emoji": "🌊"
+        }
+       ],
+       "answer": "sun",
+       "hints": [
+        "What do producers need to make food?",
+        "It is in the sky."
+       ],
+       "explanation": "Energy starts with the Sun; producers capture it to make food.",
+       "misconceptions": {
+        "soil": "PRODUCER_ANIMAL",
+        "water": "PRODUCER_ANIMAL"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "solids-liquids-gases",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "science",
+   "topic": "Chemistry",
+   "subtopic": "States of matter",
+   "objective": "SC.STATES.MATTER",
+   "title": "Solids, Liquids, Gases",
+   "pathOrder": 3,
+   "estimatedMinutes": 7,
+   "isFree": false,
+   "learn": {
+    "text": "Materials can be solids (keep their shape), liquids (flow and take the shape of their container) or gases (spread out to fill any space). Heating can melt a solid into a liquid or evaporate a liquid into a gas; cooling can freeze or condense them back.",
+    "example": "Ice (solid) melts into water (liquid), which evaporates into water vapour (gas)."
+   },
+   "misconceptions": [
+    {
+     "code": "POWDER_LIQUID",
+     "description": "Thinks powders like sand or flour are liquids because they pour.",
+     "remedy": "Each grain keeps its shape, so powders are solids made of tiny pieces."
+    },
+    {
+     "code": "CHANGE_MIXUP",
+     "description": "Mixes up melting, freezing, evaporating and condensing.",
+     "remedy": "Melting: solid→liquid. Freezing: liquid→solid. Evaporating: liquid→gas. Condensing: gas→liquid."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "ice",
+       "type": "choice",
+       "prompt": "Ice is a...",
+       "options": [
+        {
+         "id": "solid",
+         "label": "solid",
+         "emoji": "🧊"
+        },
+        {
+         "id": "liquid",
+         "label": "liquid",
+         "emoji": "💧"
+        },
+        {
+         "id": "gas",
+         "label": "gas",
+         "emoji": "💨"
+        }
+       ],
+       "answer": "solid",
+       "hints": [
+        "Does it keep its shape?",
+        "You can hold an ice cube."
+       ],
+       "explanation": "Ice is a solid: it keeps its shape."
+      },
+      {
+       "id": "juice",
+       "type": "choice",
+       "prompt": "Orange juice is a...",
+       "options": [
+        {
+         "id": "solid",
+         "label": "solid"
+        },
+        {
+         "id": "liquid",
+         "label": "liquid",
+         "emoji": "🧃"
+        },
+        {
+         "id": "gas",
+         "label": "gas"
+        }
+       ],
+       "answer": "liquid",
+       "hints": [
+        "It pours and flows.",
+        "It takes the shape of the glass."
+       ],
+       "explanation": "Juice is a liquid: it flows and takes the shape of its container."
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "sand",
+       "type": "choice",
+       "prompt": "Sand can be poured. Is it a liquid?",
+       "options": [
+        {
+         "id": "no",
+         "label": "No, it is a solid made of tiny grains",
+         "emoji": "🏖️"
+        },
+        {
+         "id": "yes",
+         "label": "Yes, it pours so it is a liquid",
+         "emoji": "💧"
+        }
+       ],
+       "answer": "no",
+       "hints": [
+        "Look at one grain closely.",
+        "Does a grain change shape?"
+       ],
+       "explanation": "Sand is a solid: each grain keeps its own shape.",
+       "misconceptions": {
+        "yes": "POWDER_LIQUID"
+       }
+      },
+      {
+       "id": "melt",
+       "type": "choice",
+       "prompt": "Chocolate turning runny in the sun is called...",
+       "options": [
+        {
+         "id": "melting",
+         "label": "melting",
+         "emoji": "🍫"
+        },
+        {
+         "id": "freezing",
+         "label": "freezing",
+         "emoji": "❄️"
+        },
+        {
+         "id": "condensing",
+         "label": "condensing",
+         "emoji": "🌫️"
+        }
+       ],
+       "answer": "melting",
+       "hints": [
+        "Solid to liquid.",
+        "Heat makes it happen."
+       ],
+       "explanation": "Melting: a solid turns into a liquid when heated.",
+       "misconceptions": {
+        "freezing": "CHANGE_MIXUP",
+        "condensing": "CHANGE_MIXUP"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "mirror",
+       "type": "choice",
+       "prompt": "After a hot shower the mirror goes misty. Which change is that?",
+       "options": [
+        {
+         "id": "condensing",
+         "label": "condensing",
+         "emoji": "🌫️"
+        },
+        {
+         "id": "evaporating",
+         "label": "evaporating",
+         "emoji": "♨️"
+        },
+        {
+         "id": "melting",
+         "label": "melting",
+         "emoji": "🧊"
+        }
+       ],
+       "answer": "condensing",
+       "hints": [
+        "Water vapour (gas) touches the cold mirror.",
+        "Gas turning back into liquid is..."
+       ],
+       "explanation": "Water vapour condenses into tiny droplets on the cold mirror.",
+       "misconceptions": {
+        "evaporating": "CHANGE_MIXUP",
+        "melting": "CHANGE_MIXUP"
+       }
+      },
+      {
+       "id": "cycle",
+       "type": "order",
+       "prompt": "Order the changes as water is heated from ice.",
+       "tiles": [
+        {
+         "id": "gas",
+         "label": "water vapour (gas)",
+         "emoji": "💨"
+        },
+        {
+         "id": "ice",
+         "label": "ice (solid)",
+         "emoji": "🧊"
+        },
+        {
+         "id": "water",
+         "label": "water (liquid)",
+         "emoji": "💧"
+        }
+       ],
+       "answer": [
+        "ice",
+        "water",
+        "gas"
+       ],
+       "hints": [
+        "Start with the coldest.",
+        "Melting comes before evaporating."
+       ],
+       "explanation": "Ice melts into water, then water evaporates into water vapour."
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

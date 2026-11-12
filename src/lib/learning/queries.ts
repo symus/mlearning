@@ -2,6 +2,7 @@ import "server-only";
 import type { AgeBand, MasteryStatus, PlanCode } from "@prisma/client";
 import { db } from "@/lib/db";
 import { FREE_DAILY_ACTIVITY_LIMIT } from "@/lib/pricing";
+import { SUBJECTS } from "@/lib/content/schema";
 
 const DAY = 86_400_000;
 
@@ -90,7 +91,7 @@ export async function getChildReport(childId: string) {
   const correct = attempts.reduce((s, a) => s + a.correctCount, 0);
 
   const counts = (status: MasteryStatus) => masteries.filter((m) => m.status === status).length;
-  const bySubject = ["maths", "reading"].map((subject) => {
+  const bySubject = SUBJECTS.map((subject) => {
     const ms = masteries.filter((m) => m.objective.subjectSlug === subject);
     return {
       subject,

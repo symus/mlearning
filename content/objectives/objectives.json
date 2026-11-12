@@ -663,6 +663,375 @@
    "curriculum": {
     "uk-nc": "Year 1 - Reading: word reading (vowel digraphs and trigraphs)"
    }
+  },
+  {
+   "code": "SC.ANIMALS.HOMES",
+   "subject": "science",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Living things",
+   "subtopic": "Animals and habitats",
+   "title": "Match animals to where they live and name their young",
+   "childTitle": "Animal homes",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "EYFS - Understanding the world: the natural world"
+   }
+  },
+  {
+   "code": "SC.BODY.SENSES",
+   "subject": "science",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Humans",
+   "subtopic": "The senses",
+   "title": "Name the five senses and the body parts we use for each",
+   "childTitle": "My five senses",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 1 - Science: animals including humans (senses)"
+   }
+  },
+  {
+   "code": "SC.MATERIALS.FLOAT",
+   "subject": "science",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Materials",
+   "subtopic": "Floating and sinking",
+   "title": "Predict and test whether everyday objects float or sink",
+   "childTitle": "Float or sink?",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "EYFS - Understanding the world: explore materials"
+   }
+  },
+  {
+   "code": "SC.PLANTS.NEEDS",
+   "subject": "science",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Plants",
+   "subtopic": "Plant needs and parts",
+   "title": "Name the parts of a plant and what plants need to grow",
+   "childTitle": "How plants grow",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 2 - Science: plants (what plants need)"
+   }
+  },
+  {
+   "code": "SC.MATERIALS.PROPS",
+   "subject": "science",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Materials",
+   "subtopic": "Properties of materials",
+   "title": "Describe materials by their properties and choose them for a job",
+   "childTitle": "Super materials",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 1/2 - Science: everyday materials and their uses"
+   }
+  },
+  {
+   "code": "SC.EARTH.SEASONS",
+   "subject": "science",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Earth",
+   "subtopic": "Seasons and weather",
+   "title": "Describe the four seasons and the weather that goes with them",
+   "childTitle": "Seasons and weather",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 1 - Science: seasonal changes"
+   }
+  },
+  {
+   "code": "SC.FORCES.BASICS",
+   "subject": "science",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Physics",
+   "subtopic": "Forces",
+   "title": "Explain pushes, pulls, gravity, friction and air resistance",
+   "childTitle": "Forces in action",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 3/5 - Science: forces and magnets; forces"
+   }
+  },
+  {
+   "code": "SC.LIVING.FOODCHAIN",
+   "subject": "science",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Living things",
+   "subtopic": "Food chains",
+   "title": "Build food chains and name producers, predators and prey",
+   "childTitle": "Food chains",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 4 - Science: living things (food chains)"
+   }
+  },
+  {
+   "code": "SC.STATES.MATTER",
+   "subject": "science",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Chemistry",
+   "subtopic": "States of matter",
+   "title": "Group materials as solids, liquids or gases and describe changes of state",
+   "childTitle": "Solids, liquids, gases",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 4 - Science: states of matter"
+   }
+  },
+  {
+   "code": "LG.SORT.SAME",
+   "subject": "logic",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Reasoning",
+   "subtopic": "Same and different",
+   "title": "Sort objects by colour, shape or type and spot the one that is different",
+   "childTitle": "Same or different?",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "EYFS - Mathematics: sorting and matching"
+   }
+  },
+  {
+   "code": "LG.SIZE.ORDER",
+   "subject": "logic",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Reasoning",
+   "subtopic": "Ordering",
+   "title": "Compare and order objects by size, length and height",
+   "childTitle": "Big, bigger, biggest",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "EYFS - Mathematics: compare length, weight and capacity"
+   }
+  },
+  {
+   "code": "LG.SPATIAL.POSITION",
+   "subject": "logic",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Spatial",
+   "subtopic": "Position words",
+   "title": "Use position words such as on, under, next to, in front of and behind",
+   "childTitle": "Where is it?",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "EYFS - Mathematics: spatial reasoning (position)"
+   }
+  },
+  {
+   "code": "LG.ODD.RULE",
+   "subject": "logic",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Reasoning",
+   "subtopic": "Classification",
+   "title": "Find the rule that links a group and spot the odd one out",
+   "childTitle": "Odd one out",
+   "prerequisites": [
+    "LG.SORT.SAME"
+   ],
+   "curriculum": {
+    "uk-nc": "Year 1/2 - Mathematics: reasoning about properties"
+   }
+  },
+  {
+   "code": "LG.SEQ.SHAPES",
+   "subject": "logic",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Patterns",
+   "subtopic": "Sequences",
+   "title": "Continue sequences that change by colour, size, number or turn",
+   "childTitle": "What comes next?",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 2 - Mathematics: patterns and sequences"
+   }
+  },
+  {
+   "code": "LG.DEDUCE.CLUES",
+   "subject": "logic",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Reasoning",
+   "subtopic": "Deduction",
+   "title": "Use clues to rule out options and find the answer",
+   "childTitle": "Clue detective",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Year 2 - Mathematics: problem solving and reasoning"
+   }
+  },
+  {
+   "code": "LG.DEDUCE.GRID",
+   "subject": "logic",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Reasoning",
+   "subtopic": "Logic grids",
+   "title": "Combine several clues to solve a logic puzzle",
+   "childTitle": "Logic grid puzzles",
+   "prerequisites": [
+    "LG.DEDUCE.CLUES"
+   ],
+   "curriculum": {
+    "uk-nc": "Years 5/6 - Mathematics: reasoning and problem solving"
+   }
+  },
+  {
+   "code": "LG.REASON.STATEMENTS",
+   "subject": "logic",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Reasoning",
+   "subtopic": "True, false and always",
+   "title": "Decide whether statements are always, sometimes or never true and give a counter-example",
+   "childTitle": "Always, sometimes, never",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Years 4-6 - Mathematics: generalise and justify"
+   }
+  },
+  {
+   "code": "LG.SPATIAL.TRANSFORM",
+   "subject": "logic",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Spatial",
+   "subtopic": "Reflection and rotation",
+   "title": "Predict how shapes look after reflection and rotation",
+   "childTitle": "Flip and turn",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "Years 4/5/6 - Mathematics: reflection and translation"
+   }
+  },
+  {
+   "code": "CD.SEQ.STEPS",
+   "subject": "coding",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Algorithms",
+   "subtopic": "Sequences",
+   "title": "Put the steps of an everyday task in the right order",
+   "childTitle": "Step by step",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "EYFS/KS1 - Computing: algorithms as sequences of instructions"
+   }
+  },
+  {
+   "code": "CD.DIR.ARROWS",
+   "subject": "coding",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Algorithms",
+   "subtopic": "Directions",
+   "title": "Follow and give arrow instructions to move a robot",
+   "childTitle": "Robot arrows",
+   "prerequisites": [
+    "CD.SEQ.STEPS"
+   ],
+   "curriculum": {
+    "uk-nc": "KS1 - Computing: create and follow simple programs"
+   }
+  },
+  {
+   "code": "CD.DEBUG.SPOT",
+   "subject": "coding",
+   "ageBand": "LITTLE_EXPLORERS",
+   "topic": "Debugging",
+   "subtopic": "Spot the mistake",
+   "title": "Spot the step that is wrong or missing in a set of instructions",
+   "childTitle": "Oops, a bug!",
+   "prerequisites": [
+    "CD.SEQ.STEPS"
+   ],
+   "curriculum": {
+    "uk-nc": "KS1 - Computing: debug simple programs"
+   }
+  },
+  {
+   "code": "CD.SEQ.ROBOT",
+   "subject": "coding",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Algorithms",
+   "subtopic": "Programming a route",
+   "title": "Write a sequence of moves to guide a robot to a goal",
+   "childTitle": "Program the robot",
+   "prerequisites": [
+    "CD.DIR.ARROWS"
+   ],
+   "curriculum": {
+    "uk-nc": "KS1 - Computing: create and debug simple programs"
+   }
+  },
+  {
+   "code": "CD.LOOP.REPEAT",
+   "subject": "coding",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Algorithms",
+   "subtopic": "Repetition",
+   "title": "Use a repeat loop to shorten a program",
+   "childTitle": "Repeat it!",
+   "prerequisites": [
+    "CD.SEQ.ROBOT"
+   ],
+   "curriculum": {
+    "uk-nc": "KS1/KS2 - Computing: repetition in programs"
+   }
+  },
+  {
+   "code": "CD.DEBUG.FIX",
+   "subject": "coding",
+   "ageBand": "YOUNG_THINKERS",
+   "topic": "Debugging",
+   "subtopic": "Fixing programs",
+   "title": "Find and fix the bug in a short program",
+   "childTitle": "Bug fixers",
+   "prerequisites": [
+    "CD.SEQ.ROBOT"
+   ],
+   "curriculum": {
+    "uk-nc": "KS1 - Computing: debug simple programs"
+   }
+  },
+  {
+   "code": "CD.COND.IFELSE",
+   "subject": "coding",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Algorithms",
+   "subtopic": "Selection",
+   "title": "Predict what a program does using if / else decisions",
+   "childTitle": "If this, then that",
+   "prerequisites": [
+    "CD.LOOP.REPEAT"
+   ],
+   "curriculum": {
+    "uk-nc": "KS2 - Computing: selection in programs"
+   }
+  },
+  {
+   "code": "CD.VAR.COUNTER",
+   "subject": "coding",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Data",
+   "subtopic": "Variables",
+   "title": "Track how a variable changes as a program runs",
+   "childTitle": "Variables as boxes",
+   "prerequisites": [
+    "CD.LOOP.REPEAT"
+   ],
+   "curriculum": {
+    "uk-nc": "KS2 - Computing: variables"
+   }
+  },
+  {
+   "code": "CD.ALGO.SEARCH",
+   "subject": "coding",
+   "ageBand": "FUTURE_INNOVATORS",
+   "topic": "Algorithms",
+   "subtopic": "Searching",
+   "title": "Compare search strategies and use halving to find things faster",
+   "childTitle": "Smart searching",
+   "prerequisites": [],
+   "curriculum": {
+    "uk-nc": "KS2 - Computing: use logical reasoning to explain algorithms"
+   }
   }
  ]
 }

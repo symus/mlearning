@@ -32,9 +32,26 @@ describe("content library", () => {
     expect(new Set(keys).size).toBe(keys.length);
   });
 
+  it("Science, Logic and Coding each have activities for every age group", () => {
+    for (const subject of ["science", "logic", "coding"])
+      for (const band of ["LITTLE_EXPLORERS", "YOUNG_THINKERS", "FUTURE_INNOVATORS"])
+        expect(lib.activities.filter((a) => a.subject === subject && a.ageBand === band).length, `${subject} ${band}`).toBeGreaterThanOrEqual(3);
+  });
+
+  it("robot puzzles keep the robot, goal and walls inside the grid", () => {
+    for (const a of lib.activities)
+      for (const item of a.levels.flatMap((l) => l.items)) {
+        const v = item.visual;
+        if (v?.kind !== "robot") continue;
+        const inside = ([r, c]: [number, number]) => r >= 0 && c >= 0 && r < v.rows && c < v.cols;
+        expect(inside(v.robot) && inside(v.goal), item.id).toBe(true);
+        for (const w of v.walls ?? []) expect(inside(w), item.id).toBe(true);
+      }
+  });
+
   it("free plan has at least one activity per age group and subject", () => {
     for (const band of ["LITTLE_EXPLORERS", "YOUNG_THINKERS", "FUTURE_INNOVATORS"])
-      for (const subject of ["maths", "reading"])
+      for (const subject of ["maths", "reading", "science", "logic", "coding"])
         expect(lib.activities.some((a) => a.ageBand === band && a.subject === subject && a.isFree)).toBe(true);
   });
 

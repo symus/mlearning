@@ -2,7 +2,7 @@ import Link from "next/link";
 import clsx from "clsx";
 import { db } from "@/lib/db";
 import { requireChild } from "@/lib/auth/dal";
-import { WORLDS } from "@/lib/worlds";
+import { SUBJECT_LABEL, WORLDS } from "@/lib/worlds";
 import { getPlan, getToday, getWorldPath } from "@/lib/learning/queries";
 import { ACHIEVEMENTS } from "@/lib/achievements";
 import { Muchi } from "@/components/mascot";
@@ -17,9 +17,9 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
   const { session, child } = await requireChild();
   const sp = await searchParams;
   const plan = await getPlan(session.userId);
-  const [maths, reading, today, achievements] = await Promise.all([
-    getWorldPath(child.id, child.ageBand, "maths", plan),
-    getWorldPath(child.id, child.ageBand, "reading", plan),
+  const openWorlds = WORLDS.filter((w) => w.status === "open");
+  const [paths, today, achievements] = await Promise.all([
+    Promise.all(openWorlds.map((w) => getWorldPath(child.id, child.ageBand, w.subject, plan))),
     getToday(child.id),
     db.childAchievement.findMany({ where: { childId: child.id }, orderBy: { earnedAt: "desc" } }),
   ]);
@@ -35,9 +35,12 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
     .filter((a) => a.watch);
   // Alternate subjects day by day so both get attention.
   const preferReading = new Date().getDate() % 2 === 0;
+  const pathFor = (subject: string) => paths[openWorlds.findIndex((w) => w.subject === subject)] ?? null;
+  const maths = pathFor("maths")!;
+  const reading = pathFor("reading")!;
   const picks = (preferReading ? [reading, maths] : [maths, reading]).map((p) => p.nodes.find((n) => n.slug === p.nextSlug)).filter(Boolean);
   const next = picks[0];
-  const review = [maths, reading].flatMap((p) => p.nodes).find((n) => n.state === "review" && !n.locked);
+  const review = paths.flatMap((p) => p.nodes).find((n) => n.state === "review" && !n.locked);
   const featured = review ?? next;
 
   return (
@@ -106,7 +109,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
                 <Link href={`/play/activity/${s.slug}`} className="flex w-44 flex-col gap-2 rounded-3xl bg-white/10 p-4 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15">
                   <span className="grid size-12 place-items-center rounded-2xl bg-berry text-2xl" aria-hidden>{s.watch!.kind === "video" ? "🎬" : "🎵"}</span>
                   <span className="font-display text-lg font-bold leading-tight">{s.watch!.title}</span>
-                  <span className="text-xs font-bold text-white/70">{s.subject === "maths" ? "Maths song" : "Reading song"}</span>
+                  <span className="text-xs font-bold text-white/70">{SUBJECT_LABEL[s.subject] ?? "Learning"} song</span>
                 </Link>
               </li>
             ))}
@@ -120,7 +123,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
         <p className="relative mb-6 text-white/75">Tap a world to explore. Stars show the skills you have mastered.</p>
         <ul className="relative grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
           {WORLDS.map((w, i) => {
-            const path = w.subject === "maths" ? maths : w.subject === "reading" ? reading : null;
+            const path = w.status === "open" ? pathFor(w.subject) : null;
             const total = path?.nodes.length ?? 0;
             const mastered = path?.nodes.filter((n) => n.state === "mastered").length ?? 0;
             const open = w.status === "open";

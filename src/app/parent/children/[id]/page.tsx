@@ -12,6 +12,8 @@ import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChildForm } from "@/components/parent/child-form";
 import { MasteryBars, WeeklyMinutesChart } from "@/components/parent/charts";
+import { SUBJECTS } from "@/lib/content/schema";
+import { SUBJECT_LABEL } from "@/lib/worlds";
 import { getJourneyView, journeysForBand } from "@/lib/learning/journey";
 import { getPlan } from "@/lib/learning/queries";
 import { resetJourney } from "@/app/actions/journey";
@@ -107,14 +109,14 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
         <Card><WeeklyMinutesChart daily={report.daily} goal={child.dailyGoalMinutes} /></Card>
         <Card>
           <MasteryBars
-            rows={(["maths", "reading"] as const).map((subject) => {
+            rows={SUBJECTS.filter((subject) => objectives.some((o) => o.subjectSlug === subject)).map((subject) => {
               const objs = objectives.filter((o) => o.subjectSlug === subject);
               const counts: Record<string, number> = {};
               for (const o of objs) {
                 const st = masteryByCode.get(o.code)?.status ?? "NOT_STARTED";
                 counts[st] = (counts[st] ?? 0) + 1;
               }
-              return { label: subject === "maths" ? "Maths" : "Reading", counts, total: Math.max(objs.length, 1) };
+              return { label: SUBJECT_LABEL[subject], counts, total: Math.max(objs.length, 1) };
             })}
           />
         </Card>
@@ -153,13 +155,13 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       <section aria-labelledby="skills-title">
         <h2 id="skills-title" className="mb-3 text-xl font-bold">Skills by subject</h2>
         <div className="grid gap-5 lg:grid-cols-2">
-          {report.bySubject.map((s) => {
+          {report.bySubject.filter((s) => objectives.some((o) => o.subjectSlug === s.subject)).map((s) => {
             const world = worldForSubject(s.subject);
             const objs = objectives.filter((o) => o.subjectSlug === s.subject);
             return (
               <Card key={s.subject}>
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold">{world?.emoji} {s.subject === "maths" ? "Maths" : "Reading"}</h3>
+                  <h3 className="text-lg font-bold">{world?.emoji} {SUBJECT_LABEL[s.subject]}</h3>
                   <span className="text-sm text-ink-muted">{s.mastered} of {objs.length} mastered · {s.minutes} min this week</span>
                 </div>
                 <ul className="mt-4 space-y-3">
