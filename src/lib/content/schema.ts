@@ -182,3 +182,31 @@ export const objectiveSchema = z.object({
 });
 export const objectivesFileSchema = z.object({ objectives: z.array(objectiveSchema).min(1) });
 export type ObjectiveFile = z.infer<typeof objectiveSchema>;
+
+/** A numbered lesson journey (e.g. the Reading Journey) built from existing activities. */
+export const journeySchema = z
+  .object({
+    slug: z.string().regex(/^[a-z0-9-]+$/),
+    title: z.string(),
+    subject: z.enum(["maths", "reading"]),
+    ageBands: z.array(ageBandEnum).min(1),
+    /** Minimum accuracy in a lesson to unlock the next one. */
+    passAccuracy: z.number().min(0.3).max(1),
+    stages: z
+      .array(z.object({ title: z.string(), description: z.string(), world: z.string(), lessons: z.array(z.string().regex(/^[a-z0-9-]+$/)).min(1) }))
+      .min(1),
+    placement: z.object({
+      /** Start lesson when every tier is passed. */
+      allPassStart: z.number().int().min(1),
+      /** Tiers get harder; the first failed tier decides the starting lesson. A tier passes only if all its items are right. */
+      tiers: z.array(z.object({ startIfFailed: z.number().int().min(1), items: z.array(itemSchema).min(1).max(3) })).min(1),
+    }),
+  })
+  .superRefine((j, ctx) => {
+    const all = j.stages.flatMap((s) => s.lessons);
+    if (new Set(all).size !== all.length) ctx.addIssue({ code: "custom", message: "a lesson appears twice in the journey" });
+    const max = all.length;
+    for (const t of j.placement.tiers) if (t.startIfFailed > max) ctx.addIssue({ code: "custom", message: `startIfFailed ${t.startIfFailed} is beyond lesson ${max}` });
+    if (j.placement.allPassStart > max) ctx.addIssue({ code: "custom", message: "allPassStart is beyond the last lesson" });
+  });
+export type Journey = z.infer<typeof journeySchema>;

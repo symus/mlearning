@@ -114,6 +114,7 @@ model ChildProfile {
   attempts     Attempt[]
   masteries    ObjectiveMastery[]
   achievements ChildAchievement[]
+  journeys     JourneyProgress[]
 
   @@index([parentId])
 }
@@ -321,4 +322,32 @@ model Subscription {
   updatedAt          DateTime           @updatedAt
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+// ---------- Lesson journeys (numbered lesson maps with placement) ----------
+
+model Journey {
+  slug        String   @id // "reading"
+  title       String
+  body        Json // validated Journey (stages, lesson order, placement tiers)
+  contentHash String
+  updatedAt   DateTime @updatedAt
+
+  progress JourneyProgress[]
+}
+
+model JourneyProgress {
+  id          String    @id @default(cuid())
+  childId     String
+  journeySlug String
+  startLesson Int       @default(1) // where the child began (placement or "from the beginning")
+  completed   Int[]     @default([]) // lesson numbers passed
+  placedAt    DateTime? // set when the placement check was used
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+
+  child   ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+  journey Journey      @relation(fields: [journeySlug], references: [slug], onDelete: Cascade)
+
+  @@unique([childId, journeySlug])
 }

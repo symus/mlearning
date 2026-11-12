@@ -8,6 +8,7 @@ import { ACHIEVEMENTS } from "@/lib/achievements";
 import { Pip } from "@/components/mascot";
 import { WorldArt } from "@/components/art/worlds";
 import { Starfield } from "@/components/child/starfield";
+import { journeysForBand, getJourneyView } from "@/lib/learning/journey";
 
 export const metadata = { title: "Learning universe" };
 
@@ -22,6 +23,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
     db.childAchievement.findMany({ where: { childId: child.id }, orderBy: { earnedAt: "desc" } }),
   ]);
   const goalMet = today.minutes >= child.dailyGoalMinutes;
+  const journeyViews = await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)));
   // Sing-along shelf: activities in this age group that open with a song or video.
   const songs = (
     await db.activity.findMany({ where: { ageBand: child.ageBand, status: "PUBLISHED" }, select: { slug: true, title: true, body: true, subjectSlug: true }, orderBy: { pathOrder: "asc" } })
@@ -60,6 +62,29 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
           </Link>
         )}
       </section>
+
+      {journeyViews.map((v) =>
+        v ? (
+          <Link
+            key={v.journey.slug}
+            href={`/play/journey/${v.journey.slug}`}
+            className="group relative flex items-center gap-5 overflow-hidden rounded-[2rem] bg-gradient-to-r from-[var(--color-world-grove)] to-[#0f6b4a] p-5 shadow-xl ring-1 ring-white/15 transition hover:-translate-y-0.5"
+          >
+            <WorldArt slug="story-grove" float className="size-24 shrink-0 sm:size-28" />
+            <div className="flex-1">
+              <p className="text-xs font-bold uppercase tracking-wider text-sun">📖 {v.journey.title}</p>
+              <p className="font-display text-2xl font-bold leading-tight sm:text-3xl">
+                {!v.progress ? "Start your reading adventure!" : v.current ? `Lesson ${v.current}: ${v.lessons[v.current - 1]?.title ?? ""}` : "Journey complete! 🏆"}
+              </p>
+              <div className="mt-2 h-2.5 max-w-sm overflow-hidden rounded-full bg-black/25" aria-hidden>
+                <div className="h-full rounded-full bg-sun" style={{ width: `${v.progress ? ((v.current ? v.current - 1 : v.total) / v.total) * 100 : 0}%` }} />
+              </div>
+              <p className="mt-1 text-sm text-white/80">{v.progress ? `${v.current ? v.current - 1 : v.total} of ${v.total} lessons` : `${v.total} lessons · from first sounds to stories`}</p>
+            </div>
+            <span className="hidden rounded-full bg-sun px-5 py-3 font-display text-lg font-bold text-ink sm:block">{v.progress ? "Continue ▶" : "Start ▶"}</span>
+          </Link>
+        ) : null,
+      )}
 
       {songs.length > 0 && (
         <section aria-labelledby="sing-title">

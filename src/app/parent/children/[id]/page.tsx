@@ -12,6 +12,9 @@ import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChildForm } from "@/components/parent/child-form";
 import { MasteryBars, WeeklyMinutesChart } from "@/components/parent/charts";
+import { getJourneyView, journeysForBand } from "@/lib/learning/journey";
+import { getPlan } from "@/lib/learning/queries";
+import { resetJourney } from "@/app/actions/journey";
 
 export const metadata = { title: "Child progress" };
 
@@ -45,6 +48,8 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
     }
     return null;
   };
+  const plan = await getPlan(session.userId);
+  const journeyViews = (await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)))).filter((v) => v !== null);
   const masteryByCode = new Map(report.masteries.map((m) => [m.objectiveCode, m]));
   const band = AGE_BANDS[child.ageBand];
   const update = updateChild.bind(null, child.id);
@@ -74,6 +79,29 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
           ))}
         </div>
       </section>
+
+      {journeyViews.map((v) => (
+        <Card key={v.journey.slug} className="flex flex-wrap items-center gap-4">
+          <span className="text-3xl" aria-hidden>📖</span>
+          <div className="min-w-0 flex-1">
+            <h2 className="text-xl font-bold">{v.journey.title}</h2>
+            {v.progress ? (
+              <p className="text-ink-soft">
+                {v.current ? <>On <strong>lesson {v.current} of {v.total}</strong> ({v.lessons[v.current - 1]?.title}). </> : <>Finished all {v.total} lessons. </>}
+                {v.progress.placedAt ? `Started at lesson ${v.progress.startLesson} after the placement check.` : "Started from the beginning."} {v.progress.completed.length} lesson(s) passed.
+              </p>
+            ) : (
+              <p className="text-ink-soft">Not started yet. {child.nickname} can begin from lesson 1 or take a short placement check.</p>
+            )}
+            {v.progress && <ProgressBar className="mt-2 h-2 max-w-md" value={(v.current ? v.current - 1 : v.total) / v.total} label={`${v.journey.title} progress`} colour="bg-leaf" />}
+          </div>
+          {v.progress && (
+            <form action={resetJourney.bind(null, child.id, v.journey.slug)}>
+              <Button type="submit" variant="secondary" size="sm">Reset journey</Button>
+            </form>
+          )}
+        </Card>
+      ))}
 
       <div className="grid gap-5 lg:grid-cols-2">
         <Card><WeeklyMinutesChart daily={report.daily} goal={child.dailyGoalMinutes} /></Card>

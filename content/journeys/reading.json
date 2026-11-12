@@ -1,0 +1,52 @@
+{
+  "slug": "reading",
+  "title": "Reading Journey",
+  "subject": "reading",
+  "ageBands": ["LITTLE_EXPLORERS", "YOUNG_THINKERS"],
+  "passAccuracy": 0.6,
+  "stages": [
+    { "title": "Sound Seeds", "description": "Hear sounds, rhymes and your very first letters.", "world": "story-grove",
+      "lessons": ["first-sounds", "rhyme-time", "sounds-s-a-t-p", "sounds-i-n-m-d", "blend-and-read", "story-listening-lost-kite"] },
+    { "title": "Letter Garden", "description": "More letter sounds, blending and the first tricky words.", "world": "make-studio",
+      "lessons": ["sounds-g-o-c-k", "sounds-ck-e-u-r", "sounds-h-b-f-l", "blend-more-words", "sounds-j-v-w-x", "sounds-y-z-qu", "tricky-words-1"] },
+    { "title": "Word Builders", "description": "Read your first story, more tricky words and letter teams.", "world": "puzzle-peaks",
+      "lessons": ["fox-in-a-box", "tricky-words-2", "two-letters-one-sound", "vowel-teams"] },
+    { "title": "Story Readers", "description": "Grammar, punctuation, and understanding what you read.", "world": "atlas-trails",
+      "lessons": ["naming-and-doing-words", "sentence-shapes", "detail-detective", "what-happened-next", "word-twins-and-opposites"] }
+  ],
+  "placement": {
+    "allPassStart": 18,
+    "tiers": [
+      { "startIfFailed": 1, "items": [
+        { "id": "p-sun", "type": "choice", "prompt": "Which letter does sun start with?", "say": "Sun. Which letter does sun start with?", "visual": { "kind": "objects", "emoji": "☀️", "count": 1 },
+          "options": [{ "id": "s", "label": "s" }, { "id": "m", "label": "m" }, { "id": "t", "label": "t" }], "answer": "s", "hints": ["sss-un"], "explanation": "Sun starts with s." },
+        { "id": "p-pig", "type": "choice", "prompt": "Which letter does pig start with?", "say": "Pig. Which letter does pig start with?", "visual": { "kind": "objects", "emoji": "🐷", "count": 1 },
+          "options": [{ "id": "d", "label": "d" }, { "id": "p", "label": "p" }, { "id": "a", "label": "a" }], "answer": "p", "hints": ["p-ig"], "explanation": "Pig starts with p." }
+      ]},
+      { "startIfFailed": 3, "items": [
+        { "id": "p-sat", "type": "choice", "prompt": "Read the word and pick the picture.", "say": "Read the word, then pick the picture.", "visual": { "kind": "bigText", "text": "pin" },
+          "options": [{ "id": "pan", "label": "pan", "emoji": "🍳" }, { "id": "pin", "label": "pin", "emoji": "📌" }, { "id": "tap", "label": "tap", "emoji": "🚰" }], "answer": "pin", "hints": ["p-i-n"], "explanation": "p, i, n makes pin." },
+        { "id": "p-mat", "type": "choice", "prompt": "Read the word and pick the picture.", "say": "Read the word, then pick the picture.", "visual": { "kind": "bigText", "text": "map" },
+          "options": [{ "id": "mop", "label": "mop", "emoji": "🧹" }, { "id": "man", "label": "man", "emoji": "🧍" }, { "id": "map", "label": "map", "emoji": "🗺️" }], "answer": "map", "hints": ["m-a-p"], "explanation": "m, a, p makes map." }
+      ]},
+      { "startIfFailed": 7, "items": [
+        { "id": "p-duck", "type": "choice", "prompt": "Read the word and pick the picture.", "say": "Read the word, then pick the picture.", "visual": { "kind": "bigText", "text": "duck" },
+          "options": [{ "id": "dog", "label": "dog", "emoji": "🐕" }, { "id": "duck", "label": "duck", "emoji": "🦆" }, { "id": "sock", "label": "sock", "emoji": "🧦" }], "answer": "duck", "hints": ["d-u-ck"], "explanation": "d, u, ck makes duck." },
+        { "id": "p-fox", "type": "choice", "prompt": "Read the word and pick the picture.", "say": "Read the word, then pick the picture.", "visual": { "kind": "bigText", "text": "fox" },
+          "options": [{ "id": "box", "label": "box", "emoji": "📦" }, { "id": "fox", "label": "fox", "emoji": "🦊" }, { "id": "fig", "label": "fish", "emoji": "🐟" }], "answer": "fox", "hints": ["f-o-x"], "explanation": "f, o, x makes fox." }
+      ]},
+      { "startIfFailed": 13, "items": [
+        { "id": "p-the", "type": "choice", "prompt": "Which word says 'the'?", "say": "Which word says: the?",
+          "options": [{ "id": "to", "label": "to" }, { "id": "the", "label": "the" }, { "id": "he", "label": "he" }], "answer": "the", "hints": ["t-h-e"], "explanation": "That word is 'the'." },
+        { "id": "p-was", "type": "choice", "prompt": "Pick the missing word: 'The cat ___ on the mat.'", "say": "The cat, something, on the mat.",
+          "options": [{ "id": "was", "label": "was" }, { "id": "go", "label": "go" }, { "id": "she", "label": "she" }], "answer": "was", "hints": ["Try each word."], "explanation": "'The cat was on the mat.'" }
+      ]},
+      { "startIfFailed": 16, "items": [
+        { "id": "p-ship", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "ship" },
+          "options": [{ "id": "chip", "label": "chip", "emoji": "🍟" }, { "id": "ship", "label": "ship", "emoji": "🚢" }, { "id": "sip", "label": "sip", "emoji": "🥤" }], "answer": "ship", "hints": ["sh-i-p"], "explanation": "sh, i, p makes ship." },
+        { "id": "p-rain", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "rain" },
+          "options": [{ "id": "rain", "label": "rain", "emoji": "🌧️" }, { "id": "ran", "label": "run", "emoji": "🏃" }, { "id": "train", "label": "train", "emoji": "🚂" }], "answer": "rain", "hints": ["r-ai-n"], "explanation": "r, ai, n makes rain." }
+      ]}
+    ]
+  }
+}

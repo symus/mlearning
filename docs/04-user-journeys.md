@@ -22,6 +22,14 @@
 4. Difficulty steps up or down between items. The round length depends on age (4 / 6 / 8 items).
 5. **Summary**: score, effort-focused message, mastery, new achievements, follow-up activity. If today's goal is reached, the app suggests a break.
 
+## C2. Child: Reading Journey (working)
+
+1. Universe → **📖 Reading Journey** card (ages 3–8), or the banner in Story Grove.
+2. First visit: **Find my level** (placement check, up to 10 questions, stops early, no right/wrong feedback) or **Start at the beginning**.
+3. Lesson map: 22 numbered stepping stones across 4 parts, with a dotted trail. ⭐ passed, green = already known (replayable), glowing = next lesson, 🔒 = coming up.
+4. Passing a lesson (60%+) unlocks the next; the summary offers **Next: Lesson N** or **Back to my map**.
+5. Parents see journey progress on the child page and can **Reset journey**.
+
 ## D. Child → parent (working)
 
 1. **Grown-ups** button → `/play/exit` PIN pad. A wrong PIN shows a friendly message.

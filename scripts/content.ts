@@ -58,7 +58,13 @@ export async function importContent(db: PrismaClient, opts: { publish: boolean }
       changed++;
     } else unchanged++;
   }
-  return { objectives: lib.objectives.length, activities: lib.activities.length, created, changed, unchanged };
+  for (const j of lib.journeys) {
+    const { hash, ...body } = j;
+    const data = { title: j.title, body: body as unknown as Prisma.InputJsonValue, contentHash: hash };
+    await db.journey.upsert({ where: { slug: j.slug }, create: { slug: j.slug, ...data }, update: data });
+  }
+
+  return { journeys: lib.journeys.length, objectives: lib.objectives.length, activities: lib.activities.length, created, changed, unchanged };
 }
 
 async function main() {
@@ -70,7 +76,7 @@ async function main() {
       console.error(`✗ ${lib.errors.length} problem(s):\n- ` + lib.errors.join("\n- "));
       process.exit(1);
     }
-    console.log(`✓ ${lib.objectives.length} objectives, ${lib.activities.length} activities, ${items} items are valid.`);
+    console.log(`✓ ${lib.objectives.length} objectives, ${lib.activities.length} activities, ${items} items, ${lib.journeys.length} journey(s) are valid.`);
     return;
   }
   if (cmd === "import") {

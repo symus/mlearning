@@ -8,8 +8,10 @@ import { startLevel } from "@/lib/learning/adaptive";
 import { worldForSubject } from "@/lib/worlds";
 import { Player, type PlayerActivity } from "@/components/child/player";
 
-export default async function ActivityPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function ActivityPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ journey?: string }> }) {
   const { slug } = await params;
+  const { journey } = await searchParams;
+  const journeySlug = journey && /^[a-z0-9-]+$/.test(journey) ? journey : undefined;
   const { child } = await requireChild();
   const activity = await db.activity.findFirst({ where: { slug, status: "PUBLISHED", locale: "en" } });
   if (!activity) notFound();
@@ -24,6 +26,8 @@ export default async function ActivityPage({ params }: { params: Promise<{ slug:
     watch: body.watch,
     levels: body.levels.map((l) => ({ level: l.level, label: l.label, items: l.items.map(publicItem) })),
     worldSlug: worldForSubject(activity.subjectSlug)?.slug ?? "",
+    backHref: journeySlug ? `/play/journey/${journeySlug}` : `/play/world/${worldForSubject(activity.subjectSlug)?.slug ?? ""}`,
+    journeySlug,
   };
   const band = AGE_BANDS[child.ageBand];
 

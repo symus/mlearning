@@ -18,6 +18,9 @@ export interface PlayerActivity {
   title: string;
   learn: ActivityBody["learn"];
   watch?: Watch;
+  /** Where "back" and "Back to the map" go (world path or lesson journey). */
+  backHref: string;
+  journeySlug?: string;
   levels: { level: number; label: string; items: PublicItem[] }[];
   worldSlug: string;
 }
@@ -147,7 +150,7 @@ export function Player({
   return (
     <div className="mx-auto flex w-full max-w-3xl flex-col gap-4">
       <div className="flex items-center gap-3">
-        <Link href={`/play/world/${activity.worldSlug}`} className="grid size-12 shrink-0 place-items-center rounded-full bg-white/15 text-2xl text-white hover:bg-white/25" aria-label="Back to the world map">←</Link>
+        <Link href={activity.backHref} className="grid size-12 shrink-0 place-items-center rounded-full bg-white/15 text-2xl text-white hover:bg-white/25" aria-label="Back to the world map">←</Link>
         <div className="h-4 flex-1 overflow-hidden rounded-full bg-white/20" role="progressbar" aria-label="Activity progress" aria-valuenow={Math.round(progress * 100)} aria-valuemin={0} aria-valuemax={100}>
           <motion.div className="h-full rounded-full bg-sun" animate={{ width: `${progress * 100}%` }} transition={{ type: "spring", stiffness: 120, damping: 20 }} />
         </div>
@@ -208,7 +211,7 @@ export function Player({
             />
           )}
 
-          {phase === "summary" && summary && <Summary summary={summary} worldSlug={activity.worldSlug} />}
+          {phase === "summary" && summary && <Summary summary={summary} backHref={activity.backHref} journeySlug={activity.journeySlug} />}
 
           {phase === "blocked" && (
             <div className="flex flex-col items-center gap-4 py-6 text-center">
@@ -226,7 +229,7 @@ export function Player({
               ) : (
                 <p className="text-lg">{blocked}</p>
               )}
-              <Link href={`/play/world/${activity.worldSlug}`} className="btn-pop rounded-full bg-brand px-8 py-4 font-display text-xl font-bold text-white">Back to the map</Link>
+              <Link href={activity.backHref} className="btn-pop rounded-full bg-brand px-8 py-4 font-display text-xl font-bold text-white">Back to the map</Link>
             </div>
           )}
         </motion.section>
@@ -416,8 +419,12 @@ function hash(s: string) {
   return h;
 }
 
-function Summary({ summary, worldSlug }: { summary: AttemptSummary; worldSlug: string }) {
+function Summary({ summary, backHref, journeySlug }: { summary: AttemptSummary; backHref: string; journeySlug?: string }) {
   const goalMet = summary.todayMinutes >= summary.dailyGoalMinutes;
+  const j = journeySlug && summary.journey?.slug === journeySlug ? summary.journey : null;
+  // In a journey, "next" is the next lesson; otherwise the activity's follow-up.
+  const next = j ? (j.next ? { slug: j.next.slug, title: `Lesson ${j.next.n}: ${j.next.title}` } : null) : summary.followUp;
+  const nextHref = next ? `/play/activity/${next.slug}${j ? `?journey=${j.slug}` : ""}` : null;
   return (
     <div className="flex flex-col items-center gap-5 text-center">
       <motion.div initial={{ scale: 0.6, rotate: -8 }} animate={{ scale: 1, rotate: 0 }} transition={{ type: "spring", stiffness: 200, damping: 12 }}>
@@ -438,13 +445,22 @@ function Summary({ summary, worldSlug }: { summary: AttemptSummary; worldSlug: s
           ))}
         </div>
       )}
+      {j && (
+        <p className={clsx("rounded-2xl px-5 py-3 text-lg font-bold", j.passed ? "bg-sun-soft" : "bg-sky-soft")}>
+          {j.passed
+            ? j.finished
+              ? `🏆 You finished the whole ${j.title}!`
+              : `🗺️ Lesson ${j.lesson} passed! The next lesson is open.`
+            : `🗺️ Nearly there! Play lesson ${j.lesson} again to open the next one.`}
+        </p>
+      )}
       {goalMet && <p className="rounded-2xl bg-sky-soft px-5 py-3 font-bold">🌙 You reached today&apos;s learning goal! This is a great time for a break.</p>}
       <div className="flex flex-wrap justify-center gap-3">
-        {summary.followUp && !goalMet && (
-          <Link href={`/play/activity/${summary.followUp.slug}`} className="btn-pop rounded-full bg-leaf px-8 py-4 font-display text-xl font-bold text-white">Next: {summary.followUp.title} →</Link>
+        {nextHref && next && !goalMet && (!j || j.passed) && (
+          <Link href={nextHref} className="btn-pop rounded-full bg-leaf px-8 py-4 font-display text-xl font-bold text-white">Next: {next.title} →</Link>
         )}
-        <Link href={`/play/world/${worldSlug}`} className="btn-pop rounded-full bg-brand px-8 py-4 font-display text-xl font-bold text-white">Back to the map</Link>
-        {summary.followUp && goalMet && <Link href={`/play/activity/${summary.followUp.slug}`} className="rounded-full px-6 py-4 font-bold text-ink-soft underline">One more?</Link>}
+        <Link href={backHref} className="btn-pop rounded-full bg-brand px-8 py-4 font-display text-xl font-bold text-white">{j ? "Back to my map" : "Back to the map"}</Link>
+        {nextHref && next && goalMet && (!j || j.passed) && <Link href={nextHref} className="rounded-full px-6 py-4 font-bold text-ink-soft underline">One more?</Link>}
       </div>
     </div>
   );

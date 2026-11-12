@@ -52,7 +52,7 @@
     {
       "slug": "sounds-i-n-m-d",
       "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
-      "objective": "RE.PHON.INMD", "title": "Sound Seeds: i n m d", "pathOrder": 2, "estimatedMinutes": 4,
+      "objective": "RE.PHON.INMD", "title": "Sound Seeds: i n m d", "pathOrder": 2, "estimatedMinutes": 4, "isFree": true,
       "learn": {
         "text": "Four new sounds! i like in insect. n like a buzzing nnn. m like mmm, yummy! d like a drum: d, d, d.",
         "say": "Four new sounds! I, like insect. Nnn, like net. Mmm, like yummy. D, like drum.",
@@ -148,7 +148,7 @@
     {
       "slug": "rhyme-time",
       "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Phonological awareness",
-      "objective": "RE.PHON.RHYME", "title": "Rhyme Time", "pathOrder": 4, "estimatedMinutes": 4,
+      "objective": "RE.PHON.RHYME", "title": "Rhyme Time", "pathOrder": 4, "estimatedMinutes": 4, "isFree": true,
       "learn": {
         "text": "Rhyming words sound the same at the end. Cat, hat and bat all end in 'at'. They rhyme!",
         "say": "Rhyming words sound the same at the end. Cat, hat, bat. They all rhyme!",
@@ -197,7 +197,7 @@
     {
       "slug": "blend-and-read",
       "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Blending",
-      "objective": "RE.PHON.CVC", "title": "Blend and Read", "pathOrder": 5, "estimatedMinutes": 5,
+      "objective": "RE.PHON.CVC", "title": "Blend and Read", "pathOrder": 5, "estimatedMinutes": 5, "isFree": true,
       "learn": {
         "text": "To read a word, say each sound, then push them together fast. s - a - t ... sat! This is called blending.",
         "say": "To read a word, say each sound, then push them together. S, a, t. Sat!",

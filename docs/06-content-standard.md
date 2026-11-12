@@ -35,6 +35,21 @@ Nothing autoplays: the child presses play. Today 6 activities open with songs (c
 Browser speech can't say phonics sounds well, so professionally recorded songs and phonics videos are the next content upgrade.
 To add one, put `video.mp4` and `video.vtt` in `public/media/` and reference them as `/media/video.mp4`.
 
+## Lesson journeys (Reading Journey)
+
+A journey is a numbered lesson map built from reviewed activities: `content/journeys/<slug>.json`.
+
+| Field | Meaning |
+|---|---|
+| `stages[]` | Map regions (title, description, world art) with ordered lesson slugs. Lessons are numbered 1..n across stages. |
+| `passAccuracy` | Accuracy needed in a lesson to unlock the next (0.6 for reading). |
+| `placement.tiers[]` | Harder and harder question sets. A tier passes only if every item is right; the first failed tier sets `startIfFailed`. |
+| `placement.allPassStart` | Start lesson if every tier passes. |
+
+The Reading Journey (ages 3–8) has 22 lessons in 4 parts: Sound Seeds (1–6, free), Letter Garden (7–13), Word Builders (14–17), Story Readers (18–22).
+The phonics order follows widely used systematic synthetic phonics practice: s a t p → i n m d → g o c k → ck e u r → h b f l → j v w x → y z qu → tricky words → digraphs → vowel teams.
+Placement items are never shown with right/wrong feedback, and the check stops at the first tier that is too hard.
+
 ## Writing rules
 
 - **Original only.** No text, questions or images copied from textbooks or other platforms.
@@ -65,7 +80,7 @@ The review checklist (shown in the admin screen): factual accuracy (independentl
 
 ## Current library (end of this release)
 
-- **37 objectives**, **37 activities**, **225 items**, all three age groups, maths and reading.
+- **46 objectives**, **47 activities**, **285 items**, **8 songs**, **1 lesson journey (22 lessons)**, all three age groups, maths and reading.
 - Each age group × subject has 5–7 activities and at least one free activity.
 - Curriculum references: England National Curriculum / EYFS (`uk-nc`).
 

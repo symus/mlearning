@@ -50,6 +50,14 @@ export default async function WorldPage({ params }: { params: Promise<{ slug: st
         <Link href="/play" className="rounded-full bg-black/20 px-4 py-2 font-bold hover:bg-black/30">← Universe</Link>
       </div>
 
+      {world.subject === "reading" && (child.ageBand === "LITTLE_EXPLORERS" || child.ageBand === "YOUNG_THINKERS") && (
+        <Link href="/play/journey/reading" className="flex items-center gap-3 rounded-3xl bg-sun p-4 font-bold text-ink shadow-lg">
+          <span className="text-3xl" aria-hidden>📖</span>
+          <span className="flex-1">Follow the <span className="font-display text-lg">Reading Journey</span>: numbered lessons, one step at a time.</span>
+          <span aria-hidden>▶</span>
+        </Link>
+      )}
+
       {nodes.length === 0 ? (
         <p className="rounded-2xl bg-white/10 p-6 text-center text-lg">New adventures for your age are on their way!</p>
       ) : (

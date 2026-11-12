@@ -1,0 +1,491 @@
+{
+  "activities": [
+    {
+      "slug": "sounds-g-o-c-k",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.GOCK", "title": "Sound Seeds: g o c k", "pathOrder": 7, "estimatedMinutes": 4,
+      "watch": { "kind": "song", "title": "Goat and Octopus", "tune": { "bpm": 96, "instrument": "marimba" }, "lines": [
+        { "text": "G is for goat, g, g, g.", "visual": { "kind": "objects", "emoji": "🐐", "count": 1 } },
+        { "text": "O is for octopus, o, o, o.", "visual": { "kind": "objects", "emoji": "🐙", "count": 1 } },
+        { "text": "C is for cat, and K is for kite,", "visual": { "kind": "pattern", "items": ["🐈", "🪁"] } },
+        { "text": "c and k make the same sound, that's right!", "visual": { "kind": "bigText", "text": "c = k" } }
+      ]},
+      "learn": {
+        "text": "Four new sounds! g like a goat: g, g, g. o like an octopus: o, o, o. c and k are twins: they make the same sound, k, like in cat and kite.",
+        "say": "Four new sounds! G, like goat. O, like octopus. C and K both say k, like cat and kite.",
+        "visual": { "kind": "bigText", "text": "g  o  c  k" }
+      },
+      "misconceptions": [
+        { "code": "C_K_DIFFERENT", "description": "Thinks c and k make different sounds.", "remedy": "c and k are sound twins: both say k, like cat and kite." },
+        { "code": "G_Q_SWAP", "description": "Confuses g with similar-looking letters such as q or a.", "remedy": "g has a tail that curls round like a hook." },
+        { "code": "LETTER_NAME", "description": "Uses the letter name instead of the sound.", "remedy": "Say the sound, not the name: g says g, not 'jee'." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "sounds-ck-e-u-r",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "goat", "type": "choice", "prompt": "Which letter does goat start with?", "say": "Goat. G, g, goat.", "visual": { "kind": "objects", "emoji": "🐐", "count": 1 },
+            "options": [{ "id": "g", "label": "g" }, { "id": "o", "label": "o" }, { "id": "q", "label": "q" }], "answer": "g",
+            "hints": ["Listen: g-oat.", "It has a curly tail."], "explanation": "Goat starts with g.",
+            "misconceptions": { "q": "G_Q_SWAP", "o": "LETTER_NAME" } },
+          { "id": "octopus", "type": "choice", "prompt": "Which letter does octopus start with?", "say": "Octopus. O, o, octopus.", "visual": { "kind": "objects", "emoji": "🐙", "count": 1 },
+            "options": [{ "id": "c", "label": "c" }, { "id": "o", "label": "o" }, { "id": "g", "label": "g" }], "answer": "o",
+            "hints": ["Make your mouth round like an o.", "o-ctopus"], "explanation": "Octopus starts with o.",
+            "misconceptions": { "c": "LETTER_NAME", "g": "LETTER_NAME" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "cat-kite", "type": "choice", "prompt": "Cat starts with c. Kite starts with k. Do they start with the same sound?", "say": "Cat. Kite. Do they start with the same sound?",
+            "options": [{ "id": "yes", "label": "Yes, both say k", "emoji": "✅" }, { "id": "no", "label": "No, they are different", "emoji": "❌" }], "answer": "yes",
+            "hints": ["Say them: c-at, k-ite.", "Listen to the very first sound."], "explanation": "c and k make the same sound, k. They are sound twins!",
+            "misconceptions": { "no": "C_K_DIFFERENT" } },
+          { "id": "pick-k", "type": "choice", "prompt": "Which picture starts with the k sound?", "say": "Which picture starts with k?",
+            "options": [{ "id": "cup", "label": "cup", "emoji": "🥤" }, { "id": "sun", "label": "sun", "emoji": "☀️" }, { "id": "dog", "label": "dog", "emoji": "🐕" }], "answer": "cup",
+            "hints": ["Say each word slowly.", "c-up"], "explanation": "Cup starts with the k sound, written with a c.",
+            "misconceptions": { "dog": "G_Q_SWAP", "sun": "LETTER_NAME" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "build-cog", "type": "order", "prompt": "Build the word 'cog'.", "say": "Build cog. C, o, g.",
+            "tiles": [{ "id": "g", "label": "g" }, { "id": "c", "label": "c" }, { "id": "o", "label": "o" }], "answer": ["c", "o", "g"],
+            "hints": ["What is the first sound in cog?", "c... o... g"], "explanation": "c, o, g makes cog, a wheel with teeth." },
+          { "id": "build-kid", "type": "order", "prompt": "Build the word 'kid'.", "say": "Build kid. K, i, d.",
+            "tiles": [{ "id": "d", "label": "d" }, { "id": "k", "label": "k" }, { "id": "i", "label": "i" }], "answer": ["k", "i", "d"],
+            "hints": ["kid starts like kite.", "k... i... d"], "explanation": "k, i, d makes kid. A kid is a baby goat!" }
+        ]}
+      ]
+    },
+    {
+      "slug": "sounds-ck-e-u-r",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.CKEUR", "title": "Sound Seeds: ck e u r", "pathOrder": 8, "estimatedMinutes": 4,
+      "learn": {
+        "text": "ck is two letters that make one sound, k, at the end of words like duck and sock. e says e like egg. u says u like umbrella. r says rrr like a roaring tiger.",
+        "say": "C K together say k, at the end of duck. E, like egg. U, like umbrella. R, like a roar!",
+        "visual": { "kind": "bigText", "text": "ck  e  u  r" }
+      },
+      "misconceptions": [
+        { "code": "CK_TWO_SOUNDS", "description": "Says c and k as two separate sounds.", "remedy": "ck is a team: two letters, one sound, k." },
+        { "code": "E_I_SWAP", "description": "Confuses the short e and i sounds (bed and bid).", "remedy": "e: open your mouth a little, like egg. i: smile a little, like insect." },
+        { "code": "U_A_SWAP", "description": "Confuses the short u and a sounds.", "remedy": "u is the 'uh' in up and umbrella." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "sounds-h-b-f-l",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "egg", "type": "choice", "prompt": "Which letter does egg start with?", "say": "Egg. E, e, egg.", "visual": { "kind": "objects", "emoji": "🥚", "count": 1 },
+            "options": [{ "id": "e", "label": "e" }, { "id": "i", "label": "i" }, { "id": "u", "label": "u" }], "answer": "e",
+            "hints": ["e-gg", "Open your mouth a little."], "explanation": "Egg starts with e.",
+            "misconceptions": { "i": "E_I_SWAP", "u": "U_A_SWAP" } },
+          { "id": "rabbit", "type": "choice", "prompt": "Which letter does rabbit start with?", "say": "Rabbit. Rrr, rabbit.", "visual": { "kind": "objects", "emoji": "🐇", "count": 1 },
+            "options": [{ "id": "n", "label": "n" }, { "id": "r", "label": "r" }, { "id": "u", "label": "u" }], "answer": "r",
+            "hints": ["Growl like a tiger: rrr.", "rrr-abbit"], "explanation": "Rabbit starts with r." }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "up", "type": "choice", "prompt": "Which word starts with u?", "say": "Which word starts with u?",
+            "options": [{ "id": "up", "label": "up", "emoji": "⬆️" }, { "id": "at", "label": "at", "emoji": "📍" }, { "id": "in", "label": "in", "emoji": "📥" }], "answer": "up",
+            "hints": ["u says 'uh'.", "u-p"], "explanation": "up starts with u.",
+            "misconceptions": { "at": "U_A_SWAP", "in": "E_I_SWAP" } },
+          { "id": "duck-end", "type": "choice", "prompt": "Duck ends with the k sound. Which letters make it?", "say": "Duck. Which letters make the sound at the end?", "visual": { "kind": "objects", "emoji": "🦆", "count": 1 },
+            "options": [{ "id": "ck", "label": "ck" }, { "id": "c", "label": "c" }, { "id": "kk", "label": "kk" }], "answer": "ck",
+            "hints": ["Two letters work together here.", "d-u-ck"], "explanation": "Duck ends with ck: two letters, one sound.",
+            "misconceptions": { "c": "CK_TWO_SOUNDS", "kk": "CK_TWO_SOUNDS" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "build-sock", "type": "order", "prompt": "Build the word 'sock'.", "say": "Build sock. S, o, ck.",
+            "tiles": [{ "id": "ck", "label": "ck" }, { "id": "o", "label": "o" }, { "id": "s", "label": "s" }], "answer": ["s", "o", "ck"],
+            "hints": ["sock has 3 sounds.", "s... o... ck"], "explanation": "s, o, ck makes sock." },
+          { "id": "read-red", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "red" },
+            "options": [{ "id": "red", "label": "red", "emoji": "🟥" }, { "id": "rod", "label": "rod", "emoji": "🎣" }, { "id": "rug", "label": "rug", "emoji": "🧶" }], "answer": "red",
+            "hints": ["The middle sound is e.", "r-e-d"], "explanation": "r, e, d makes red.",
+            "misconceptions": { "rug": "U_A_SWAP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "sounds-h-b-f-l",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.HBFL", "title": "Sound Seeds: h b f l", "pathOrder": 9, "estimatedMinutes": 4,
+      "watch": { "kind": "song", "title": "Hop, Bounce, Fly", "tune": { "bpm": 104, "instrument": "xylophone" }, "lines": [
+        { "text": "H is for hat, h, h, h, puff out some air!", "visual": { "kind": "objects", "emoji": "🎩", "count": 1 } },
+        { "text": "B is for ball, b, b, bounce it everywhere!", "visual": { "kind": "objects", "emoji": "⚽", "count": 1 } },
+        { "text": "F is for fish, fff, fff, fff,", "visual": { "kind": "objects", "emoji": "🐟", "count": 1 } },
+        { "text": "L is for lion, lll, lll, lll!", "visual": { "kind": "objects", "emoji": "🦁", "count": 1 } }
+      ]},
+      "learn": {
+        "text": "h is a little puff of air, like when you're out of breath: h, h, h. b bounces like a ball: b, b, b. f is like a fish blowing bubbles: fff. l is like a lollipop: lll.",
+        "say": "H, a little puff of air. B, bounce a ball. F, fff, like a fish. L, lll, like a lollipop.",
+        "visual": { "kind": "bigText", "text": "h  b  f  l" }
+      },
+      "misconceptions": [
+        { "code": "B_D_SWAP", "description": "Reverses b and d.", "remedy": "b: the bat comes first, then the ball. Line first, then the round part." },
+        { "code": "F_V_SWAP", "description": "Confuses f and v, which are made in the same place.", "remedy": "f is just air, like a fish. v buzzes, like a van." },
+        { "code": "H_DROPPED", "description": "Doesn't hear the soft h at the start of a word.", "remedy": "Hold your hand in front of your mouth: h makes a little puff." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "blend-more-words",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "hat", "type": "choice", "prompt": "Which letter does hat start with?", "say": "Hat. H, h, hat.", "visual": { "kind": "objects", "emoji": "🎩", "count": 1 },
+            "options": [{ "id": "h", "label": "h" }, { "id": "a", "label": "a" }, { "id": "n", "label": "n" }], "answer": "h",
+            "hints": ["Feel the puff of air.", "h-at"], "explanation": "Hat starts with h, a little puff of air.",
+            "misconceptions": { "a": "H_DROPPED" } },
+          { "id": "fish", "type": "choice", "prompt": "Which letter does fish start with?", "say": "Fish. Fff, fish.", "visual": { "kind": "objects", "emoji": "🐟", "count": 1 },
+            "options": [{ "id": "v", "label": "v" }, { "id": "f", "label": "f" }, { "id": "l", "label": "l" }], "answer": "f",
+            "hints": ["Top teeth on your bottom lip and blow.", "fff-ish"], "explanation": "Fish starts with f.",
+            "misconceptions": { "v": "F_V_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "ball", "type": "choice", "prompt": "Which letter does ball start with?", "say": "Ball. B, b, ball.", "visual": { "kind": "objects", "emoji": "⚽", "count": 1 },
+            "options": [{ "id": "d", "label": "d" }, { "id": "b", "label": "b" }, { "id": "p", "label": "p" }], "answer": "b",
+            "hints": ["Bounce it: b, b, b.", "Line first, then the round part."], "explanation": "Ball starts with b. In b, the line comes before the round part.",
+            "misconceptions": { "d": "B_D_SWAP" } },
+          { "id": "lion", "type": "choice", "prompt": "Which picture starts with l?", "say": "Which picture starts with lll?",
+            "options": [{ "id": "lion", "label": "lion", "emoji": "🦁" }, { "id": "fox", "label": "fox", "emoji": "🦊" }, { "id": "hen", "label": "hen", "emoji": "🐔" }], "answer": "lion",
+            "hints": ["Put your tongue behind your top teeth.", "lll-ion"], "explanation": "Lion starts with l.",
+            "misconceptions": { "fox": "F_V_SWAP", "hen": "H_DROPPED" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "build-bed", "type": "order", "prompt": "Build the word 'bed'.", "say": "Build bed. B, e, d.",
+            "tiles": [{ "id": "d", "label": "d" }, { "id": "b", "label": "b" }, { "id": "e", "label": "e" }], "answer": ["b", "e", "d"],
+            "hints": ["bed starts with b and ends with d.", "b... e... d"], "explanation": "b, e, d makes bed. Fun fact: the word bed looks like a bed!" },
+          { "id": "read-fun", "type": "choice", "prompt": "Read the word. Which one says 'fun'?",
+            "options": [{ "id": "fun", "label": "fun" }, { "id": "van", "label": "van" }, { "id": "bun", "label": "bun" }], "answer": "fun",
+            "hints": ["Look for f at the start.", "f-u-n"], "explanation": "f, u, n makes fun.",
+            "misconceptions": { "van": "F_V_SWAP", "bun": "B_D_SWAP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "blend-more-words",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Blending",
+      "objective": "RE.PHON.CVC", "title": "Blend More Words", "pathOrder": 10, "estimatedMinutes": 5,
+      "learn": {
+        "text": "You know lots of sounds now! Say each sound, then push them together fast: h - u - g ... hug! Keep going all the way to the last sound.",
+        "say": "Say each sound, then push them together. H, u, g. Hug!",
+        "visual": { "kind": "bigText", "text": "h · u · g → hug" }
+      },
+      "misconceptions": [
+        { "code": "FIRST_LETTER_GUESS", "description": "Reads the first sound then guesses a word.", "remedy": "Say every sound, all the way to the end." },
+        { "code": "VOWEL_SWAP", "description": "Reads the middle vowel wrongly.", "remedy": "Look carefully at the middle letter and say its sound." },
+        { "code": "LAST_SOUND_DROPPED", "description": "Leaves off the last sound.", "remedy": "Point under each letter as you say it, right to the end." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "sounds-j-v-w-x",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "hug", "type": "choice", "prompt": "h - u - g. Which picture?", "say": "H. U. G. Push the sounds together.", "visual": { "kind": "bigText", "text": "h u g" },
+            "options": [{ "id": "hug", "label": "hug", "emoji": "🤗" }, { "id": "hat", "label": "hat", "emoji": "🎩" }], "answer": "hug",
+            "hints": ["Say each sound slowly.", "h-u-g, hug!"], "explanation": "h, u, g blends to hug.",
+            "misconceptions": { "hat": "FIRST_LETTER_GUESS" } },
+          { "id": "bus", "type": "choice", "prompt": "Read the word and pick the picture.", "say": "Read the word, then pick the picture.", "visual": { "kind": "bigText", "text": "bus" },
+            "options": [{ "id": "bus", "label": "bus", "emoji": "🚌" }, { "id": "bun", "label": "bun", "emoji": "🍞" }, { "id": "box", "label": "box", "emoji": "📦" }], "answer": "bus",
+            "hints": ["The last sound is s.", "b-u-s"], "explanation": "b, u, s makes bus.",
+            "misconceptions": { "bun": "LAST_SOUND_DROPPED", "box": "VOWEL_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "log", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "log" },
+            "options": [{ "id": "leg", "label": "leg", "emoji": "🦵" }, { "id": "log", "label": "log", "emoji": "🪵" }, { "id": "lot", "label": "lock", "emoji": "🔒" }], "answer": "log",
+            "hints": ["The middle sound is o.", "l-o-g"], "explanation": "l, o, g makes log.",
+            "misconceptions": { "leg": "VOWEL_SWAP", "lot": "LAST_SOUND_DROPPED" } },
+          { "id": "duck", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "duck" },
+            "options": [{ "id": "duck", "label": "duck", "emoji": "🦆" }, { "id": "dog", "label": "dog", "emoji": "🐕" }, { "id": "sock", "label": "sock", "emoji": "🧦" }], "answer": "duck",
+            "hints": ["ck makes one sound.", "d-u-ck"], "explanation": "d, u, ck makes duck: three sounds, four letters.",
+            "misconceptions": { "dog": "FIRST_LETTER_GUESS", "sock": "VOWEL_SWAP" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "build-fox", "type": "order", "prompt": "Build the word 'fog'.", "say": "Build fog. F, o, g.",
+            "tiles": [{ "id": "o", "label": "o" }, { "id": "g", "label": "g" }, { "id": "f", "label": "f" }], "answer": ["f", "o", "g"],
+            "hints": ["fog starts like fish.", "f... o... g"], "explanation": "f, o, g makes fog, a cloud near the ground." },
+          { "id": "build-rock", "type": "order", "prompt": "Build the word 'rock'.", "say": "Build rock. R, o, ck.",
+            "tiles": [{ "id": "ck", "label": "ck" }, { "id": "r", "label": "r" }, { "id": "o", "label": "o" }], "answer": ["r", "o", "ck"],
+            "hints": ["rock has 3 sounds.", "r... o... ck"], "explanation": "r, o, ck makes rock." }
+        ]}
+      ]
+    },
+    {
+      "slug": "sounds-j-v-w-x",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.JVWX", "title": "Sound Seeds: j v w x", "pathOrder": 11, "estimatedMinutes": 4,
+      "learn": {
+        "text": "j says j like jelly and jump. v buzzes like a van: vvv. w is like blowing out a candle: w, w. x is special: it says 'ks', like at the end of box and fox.",
+        "say": "J, like jump. V, vvv, like a van. W, like blowing a candle. X says ks, like box.",
+        "visual": { "kind": "bigText", "text": "j  v  w  x" }
+      },
+      "misconceptions": [
+        { "code": "X_SOUND", "description": "Thinks x makes one simple sound like z.", "remedy": "x says two sounds quickly: k and s, 'ks', like in fox." },
+        { "code": "V_W_SWAP", "description": "Confuses v and w.", "remedy": "v: teeth on your lip and buzz. w: round lips, no teeth." },
+        { "code": "J_G_SWAP", "description": "Mixes j with g.", "remedy": "j is the sound in jump and jam." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "sounds-y-z-qu",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "jam", "type": "choice", "prompt": "Which letter does jam start with?", "say": "Jam. J, j, jam.", "visual": { "kind": "objects", "emoji": "🍓", "count": 1 },
+            "options": [{ "id": "j", "label": "j" }, { "id": "g", "label": "g" }, { "id": "y", "label": "y" }], "answer": "j",
+            "hints": ["j like jump.", "j-am"], "explanation": "Jam starts with j.",
+            "misconceptions": { "g": "J_G_SWAP" } },
+          { "id": "van", "type": "choice", "prompt": "Which letter does van start with?", "say": "Van. Vvv, van.", "visual": { "kind": "objects", "emoji": "🚐", "count": 1 },
+            "options": [{ "id": "w", "label": "w" }, { "id": "v", "label": "v" }, { "id": "f", "label": "f" }], "answer": "v",
+            "hints": ["Feel the buzz on your lip.", "vvv-an"], "explanation": "Van starts with v. It buzzes!",
+            "misconceptions": { "w": "V_W_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "web", "type": "choice", "prompt": "Which picture starts with w?", "say": "Which picture starts with w?",
+            "options": [{ "id": "web", "label": "web", "emoji": "🕸️" }, { "id": "vet", "label": "vet", "emoji": "🩺" }, { "id": "jet", "label": "jet", "emoji": "✈️" }], "answer": "web",
+            "hints": ["Make round lips.", "w-eb"], "explanation": "Web starts with w.",
+            "misconceptions": { "vet": "V_W_SWAP", "jet": "J_G_SWAP" } },
+          { "id": "box-end", "type": "choice", "prompt": "Which letter is at the end of 'box'?", "say": "Box. Which letter makes the ks sound at the end?", "visual": { "kind": "objects", "emoji": "📦", "count": 1 },
+            "options": [{ "id": "x", "label": "x" }, { "id": "s", "label": "s" }, { "id": "z", "label": "z" }], "answer": "x",
+            "hints": ["The end sounds like 'ks'.", "One letter makes 'ks'."], "explanation": "Box ends with x, which says 'ks'.",
+            "misconceptions": { "s": "X_SOUND", "z": "X_SOUND" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "build-wax", "type": "order", "prompt": "Build the word 'six'.", "say": "Build six. S, i, x.",
+            "tiles": [{ "id": "x", "label": "x" }, { "id": "s", "label": "s" }, { "id": "i", "label": "i" }], "answer": ["s", "i", "x"],
+            "hints": ["six ends with ks.", "s... i... x"], "explanation": "s, i, x makes six." },
+          { "id": "read-jog", "type": "choice", "prompt": "Read the word. Which one says 'jog'?",
+            "options": [{ "id": "jog", "label": "jog" }, { "id": "jug", "label": "jug" }, { "id": "wig", "label": "wig" }], "answer": "jog",
+            "hints": ["The middle sound is o.", "j-o-g"], "explanation": "j, o, g makes jog: running slowly.",
+            "misconceptions": { "jug": "J_G_SWAP", "wig": "V_W_SWAP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "sounds-y-z-qu",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Letter sounds",
+      "objective": "RE.PHON.YZQU", "title": "Sound Seeds: y z qu", "pathOrder": 12, "estimatedMinutes": 4,
+      "learn": {
+        "text": "y says y like yes and yo-yo. z buzzes like a bee: zzz. q always comes with its friend u, and together they say 'kw', like queen.",
+        "say": "Y, like yes. Z, zzz, like a bee. Q and U together say kw, like queen.",
+        "visual": { "kind": "bigText", "text": "y  z  qu" }
+      },
+      "misconceptions": [
+        { "code": "Q_ALONE", "description": "Expects q to appear without u.", "remedy": "In English words, q nearly always has u with it: qu." },
+        { "code": "Z_S_SWAP", "description": "Confuses z and s.", "remedy": "s hisses like a snake. z buzzes like a bee." },
+        { "code": "Y_LETTER_NAME", "description": "Says the letter name 'why' instead of the sound.", "remedy": "y says y, like yes." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "tricky-words-1",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "zip", "type": "choice", "prompt": "Which letter does zip start with?", "say": "Zip. Zzz, zip.", "visual": { "kind": "objects", "emoji": "🤐", "count": 1 },
+            "options": [{ "id": "s", "label": "s" }, { "id": "z", "label": "z" }, { "id": "y", "label": "y" }], "answer": "z",
+            "hints": ["Buzz like a bee.", "zzz-ip"], "explanation": "Zip starts with z.",
+            "misconceptions": { "s": "Z_S_SWAP" } },
+          { "id": "yes", "type": "choice", "prompt": "Which letter does yo-yo start with?", "say": "Yo-yo. Y, y, yo-yo.", "visual": { "kind": "objects", "emoji": "🪀", "count": 1 },
+            "options": [{ "id": "y", "label": "y" }, { "id": "w", "label": "w" }, { "id": "j", "label": "j" }], "answer": "y",
+            "hints": ["y like yes.", "y-o"], "explanation": "Yo-yo starts with y.",
+            "misconceptions": { "w": "Y_LETTER_NAME", "j": "Y_LETTER_NAME" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "queen", "type": "choice", "prompt": "Queen starts with 'kw'. Which letters make that sound?", "say": "Queen. Kw, queen. Which letters?", "visual": { "kind": "objects", "emoji": "👑", "count": 1 },
+            "options": [{ "id": "qu", "label": "qu" }, { "id": "q", "label": "q" }, { "id": "kw", "label": "kw" }], "answer": "qu",
+            "hints": ["q has a best friend.", "q and u together."], "explanation": "qu says 'kw', like queen.",
+            "misconceptions": { "q": "Q_ALONE", "kw": "Q_ALONE" } },
+          { "id": "zz", "type": "choice", "prompt": "Which word starts with z?", "say": "Which word starts with zzz?",
+            "options": [{ "id": "zoo", "label": "zoo", "emoji": "🦓" }, { "id": "sun", "label": "sun", "emoji": "☀️" }, { "id": "yak", "label": "yak", "emoji": "🐂" }], "answer": "zoo",
+            "hints": ["Buzz: zzz.", "z-oo"], "explanation": "Zoo starts with z.",
+            "misconceptions": { "sun": "Z_S_SWAP" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "build-quiz", "type": "order", "prompt": "Build the word 'quiz'.", "say": "Build quiz. Qu, i, z.",
+            "tiles": [{ "id": "z", "label": "z" }, { "id": "qu", "label": "qu" }, { "id": "i", "label": "i" }], "answer": ["qu", "i", "z"],
+            "hints": ["quiz starts with 'kw'.", "qu... i... z"], "explanation": "qu, i, z makes quiz. Three sounds!" },
+          { "id": "read-yes", "type": "choice", "prompt": "Read the word. Which one says 'yes'?",
+            "options": [{ "id": "yes", "label": "yes" }, { "id": "zip", "label": "zip" }, { "id": "yell", "label": "yell" }], "answer": "yes",
+            "hints": ["Look for y at the start and s at the end.", "y-e-s"], "explanation": "y, e, s makes yes.",
+            "misconceptions": { "zip": "Z_S_SWAP" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "tricky-words-1",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Tricky words",
+      "objective": "RE.WORD.TRICKY1", "title": "Tricky Words: the, to, I", "pathOrder": 13, "estimatedMinutes": 4,
+      "learn": {
+        "text": "Some words are tricky: they don't sound the way their letters usually do. We learn them by sight. Our first tricky words: the, to, I, no, go, into.",
+        "say": "Some words are tricky. We learn them by looking. The. To. I. No. Go. Into.",
+        "visual": { "kind": "bigText", "text": "the  to  I" }
+      },
+      "misconceptions": [
+        { "code": "SOUNDED_OUT", "description": "Tries to sound out a tricky word letter by letter (t-h-e).", "remedy": "Tricky words are learned by sight. Look at the whole word and remember it." },
+        { "code": "SIMILAR_WORD", "description": "Mixes up words that look alike (to, go, no).", "remedy": "Look at the first letter carefully." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "fox-in-a-box",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "find-the", "type": "choice", "prompt": "Find the word 'the'.", "say": "Find the word: the.",
+            "options": [{ "id": "the", "label": "the" }, { "id": "to", "label": "to" }, { "id": "tea", "label": "ten" }], "answer": "the",
+            "hints": ["It has three letters.", "It starts with t and h."], "explanation": "This is 'the'. We see it in almost every story!",
+            "misconceptions": { "to": "SIMILAR_WORD", "tea": "SOUNDED_OUT" } },
+          { "id": "find-i", "type": "choice", "prompt": "Find the word 'I' (like 'I can jump').", "say": "Find the word: I. Like, I can jump.",
+            "options": [{ "id": "I", "label": "I" }, { "id": "it", "label": "it" }, { "id": "in", "label": "in" }], "answer": "I",
+            "hints": ["It is just one letter.", "It is always a capital letter."], "explanation": "'I' is one capital letter. It means me!",
+            "misconceptions": { "it": "SIMILAR_WORD", "in": "SIMILAR_WORD" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "find-go", "type": "choice", "prompt": "Find the word 'go'.", "say": "Find the word: go.",
+            "options": [{ "id": "no", "label": "no" }, { "id": "go", "label": "go" }, { "id": "to", "label": "to" }], "answer": "go",
+            "hints": ["Look at the first letter.", "go starts with g."], "explanation": "go starts with g. Ready, steady, go!",
+            "misconceptions": { "no": "SIMILAR_WORD", "to": "SIMILAR_WORD" } },
+          { "id": "fill-to", "type": "choice", "prompt": "Pick the missing word: 'I went ___ the park.'", "say": "I went, something, the park. Which word?",
+            "options": [{ "id": "to", "label": "to" }, { "id": "no", "label": "no" }, { "id": "the", "label": "the" }], "answer": "to",
+            "hints": ["Read the sentence with each word.", "Which one makes sense?"], "explanation": "'I went to the park.' makes sense.",
+            "misconceptions": { "no": "SIMILAR_WORD", "the": "SIMILAR_WORD" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "order-sentence", "type": "order", "prompt": "Make the sentence: 'I go into the den.'", "say": "Make the sentence: I go into the den.",
+            "tiles": [{ "id": "into", "label": "into" }, { "id": "I", "label": "I" }, { "id": "den", "label": "den." }, { "id": "go", "label": "go" }, { "id": "the", "label": "the" }],
+            "answer": ["I", "go", "into", "the", "den"], "hints": ["Start with the word that means me.", "I... go... into..."],
+            "explanation": "I go into the den. You read three tricky words!" },
+          { "id": "count-the", "type": "number", "prompt": "How many times can you see 'the'? 'The cat sat on the mat by the bed.'", "answer": 3,
+            "hints": ["Point to each word as you read.", "Count 'The' at the start too."], "explanation": "'The' cat, 'the' mat, 'the' bed: 3 times.",
+            "misconceptions": { "2": "SIMILAR_WORD", "4": "SIMILAR_WORD" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "fox-in-a-box",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Reading", "subtopic": "Decodable text",
+      "objective": "RE.READ.DECODABLE", "title": "Read It Yourself: Fox in a Box", "pathOrder": 14, "estimatedMinutes": 6,
+      "learn": {
+        "text": "This time, YOU read the story! Every word uses sounds you know, plus our tricky words. Point under each word as you read it.",
+        "visual": { "kind": "passage", "title": "Fox in a Box", "text": "A fox sat in a box. The box had a big red lid. \"I can hop!\" said the fox. Hop, hop, hop! The fox got on the rug. \"I am hot,\" said the fox. The fox had a sip of milk. Then the fox got back in the box and had a nap." }
+      },
+      "misconceptions": [
+        { "code": "GUESSED", "description": "Answered from imagination rather than the story.", "remedy": "Find the words in the story that tell you." },
+        { "code": "WRONG_DETAIL", "description": "Remembered the event but mixed up a detail.", "remedy": "Read that part of the story again, slowly." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "tricky-words-2",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "where-fox", "type": "choice", "prompt": "Where did the fox sit at the start?", "say": "Where did the fox sit at the start?",
+            "options": [{ "id": "box", "label": "in a box", "emoji": "📦" }, { "id": "bed", "label": "in a bed", "emoji": "🛏️" }, { "id": "log", "label": "on a log", "emoji": "🪵" }], "answer": "box",
+            "hints": ["Read the first sentence.", "A fox sat in a..."], "explanation": "'A fox sat in a box.'",
+            "misconceptions": { "bed": "GUESSED", "log": "GUESSED" } },
+          { "id": "lid", "type": "choice", "prompt": "What colour was the lid?", "say": "What colour was the lid?",
+            "options": [{ "id": "red", "label": "red", "emoji": "🟥" }, { "id": "tan", "label": "brown", "emoji": "🟫" }, { "id": "sky", "label": "blue", "emoji": "🟦" }], "answer": "red",
+            "hints": ["Find the word 'lid'.", "a big ... lid"], "explanation": "'The box had a big red lid.'",
+            "misconceptions": { "tan": "WRONG_DETAIL", "sky": "WRONG_DETAIL" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "hot", "type": "choice", "prompt": "Why did the fox have a sip of milk?", "say": "Why did the fox have a sip of milk?",
+            "options": [{ "id": "hot", "label": "It was hot" }, { "id": "sad", "label": "It was sad" }, { "id": "cold", "label": "It was cold" }], "answer": "hot",
+            "hints": ["What did the fox say before the milk?", "\"I am ...,\" said the fox."], "explanation": "The fox said \"I am hot\" after hopping, so it had a drink.",
+            "misconceptions": { "sad": "GUESSED", "cold": "WRONG_DETAIL" } },
+          { "id": "hops", "type": "number", "prompt": "How many times does the story say 'Hop'?", "answer": 3,
+            "hints": ["Find the hopping part.", "Hop, hop, hop!"], "explanation": "Hop, hop, hop: 3 hops.",
+            "misconceptions": { "2": "WRONG_DETAIL", "4": "WRONG_DETAIL" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "order-fox", "type": "order", "prompt": "Put the story in order.", "say": "Put the story in order.",
+            "tiles": [{ "id": "nap", "label": "Nap in the box", "emoji": "😴" }, { "id": "sit", "label": "Sit in the box", "emoji": "📦" }, { "id": "hop", "label": "Hop on the rug", "emoji": "🦊" }],
+            "answer": ["sit", "hop", "nap"], "hints": ["What happened first?", "The nap was at the end."], "explanation": "The fox sat in the box, hopped on the rug, then had a nap." },
+          { "id": "feel", "type": "choice", "prompt": "How do you think the fox felt at the end?", "say": "How do you think the fox felt at the end?",
+            "options": [{ "id": "sleepy", "label": "sleepy and cosy", "emoji": "😴" }, { "id": "cross", "label": "cross", "emoji": "😠" }, { "id": "scared", "label": "scared", "emoji": "😨" }], "answer": "sleepy",
+            "hints": ["What did the fox do at the end?", "It had a nap."], "explanation": "The fox got back in its box for a nap, so it felt sleepy and cosy.",
+            "misconceptions": { "cross": "GUESSED", "scared": "GUESSED" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "tricky-words-2",
+      "ageBand": "LITTLE_EXPLORERS", "subject": "reading", "topic": "Phonics", "subtopic": "Tricky words",
+      "objective": "RE.WORD.TRICKY2", "title": "Tricky Words: he, she, was", "pathOrder": 15, "estimatedMinutes": 4,
+      "learn": {
+        "text": "More tricky words to learn by sight: he, she, we, me, be (the e says its name!), was, you and they.",
+        "say": "More tricky words. He. She. We. Me. Be. Was. You. They.",
+        "visual": { "kind": "bigText", "text": "he  she  we  was" }
+      },
+      "misconceptions": [
+        { "code": "SOUNDED_OUT", "description": "Sounds out 'was' as w-a-s (rhyming with 'gas').", "remedy": "'was' is tricky: it sounds like 'woz'. Learn it by sight." },
+        { "code": "HE_SHE_SWAP", "description": "Mixes up he and she.", "remedy": "she has sh at the start: she, ship, shop." }
+      ],
+      "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
+      "followUp": "two-letters-one-sound",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "find-she", "type": "choice", "prompt": "Find the word 'she'.", "say": "Find the word: she.",
+            "options": [{ "id": "she", "label": "she" }, { "id": "he", "label": "he" }, { "id": "the", "label": "the" }], "answer": "she",
+            "hints": ["It starts with sh.", "sh like ship."], "explanation": "she starts with sh.",
+            "misconceptions": { "he": "HE_SHE_SWAP", "the": "HE_SHE_SWAP" } },
+          { "id": "find-we", "type": "choice", "prompt": "Find the word 'we'.", "say": "Find the word: we.",
+            "options": [{ "id": "me", "label": "me" }, { "id": "we", "label": "we" }, { "id": "be", "label": "be" }], "answer": "we",
+            "hints": ["Look at the first letter.", "w like web."], "explanation": "we starts with w.",
+            "misconceptions": { "me": "HE_SHE_SWAP", "be": "HE_SHE_SWAP" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "fill-was", "type": "choice", "prompt": "Pick the missing word: 'The dog ___ on the bed.'", "say": "The dog, something, on the bed.",
+            "options": [{ "id": "was", "label": "was" }, { "id": "we", "label": "we" }, { "id": "you", "label": "you" }], "answer": "was",
+            "hints": ["Try each word in the sentence.", "It sounds like 'woz'."], "explanation": "'The dog was on the bed.'",
+            "misconceptions": { "we": "SOUNDED_OUT", "you": "SOUNDED_OUT" } },
+          { "id": "fill-they", "type": "choice", "prompt": "Pick the missing word: 'Mum and Dad said ___ can come.'", "say": "Mum and Dad said, something, can come.",
+            "options": [{ "id": "they", "label": "they" }, { "id": "she", "label": "she" }, { "id": "me", "label": "me" }], "answer": "they",
+            "hints": ["Mum AND Dad: more than one person.", "Which word means 'those people'?"], "explanation": "'they' means more than one person: Mum and Dad.",
+            "misconceptions": { "she": "HE_SHE_SWAP", "me": "HE_SHE_SWAP" } }
+        ]},
+        { "level": 3, "label": "Star", "items": [
+          { "id": "order-she", "type": "order", "prompt": "Make the sentence: 'She was in the van.'", "say": "Make the sentence: She was in the van.",
+            "tiles": [{ "id": "van", "label": "van." }, { "id": "was", "label": "was" }, { "id": "She", "label": "She" }, { "id": "the", "label": "the" }, { "id": "in", "label": "in" }],
+            "answer": ["She", "was", "in", "the", "van"], "hints": ["Start with the word with a capital letter.", "She... was..."], "explanation": "She was in the van." },
+          { "id": "count-tricky", "type": "number", "prompt": "How many tricky words? 'you', 'cat', 'she', 'hop', 'was'", "answer": 3,
+            "hints": ["Tricky words can't be sounded out the usual way.", "cat and hop can be sounded out."], "explanation": "you, she and was are tricky. cat and hop are sound-it-out words.",
+            "misconceptions": { "5": "SOUNDED_OUT", "2": "SOUNDED_OUT" } }
+        ]}
+      ]
+    },
+    {
+      "slug": "vowel-teams",
+      "ageBand": "YOUNG_THINKERS", "subject": "reading", "topic": "Phonics", "subtopic": "Vowel teams",
+      "objective": "RE.PHON.VOWELTEAMS", "title": "Vowel Teams", "pathOrder": 7, "estimatedMinutes": 5,
+      "watch": { "kind": "song", "title": "The Vowel Team Song", "tune": { "bpm": 100, "instrument": "piano" }, "lines": [
+        { "text": "A and I, they work as a team, ai says ai in the rain!", "visual": { "kind": "objects", "emoji": "🌧️", "count": 1 } },
+        { "text": "Two little e's, ee, ee, ee, up in a tree!", "visual": { "kind": "objects", "emoji": "🌳", "count": 1 } },
+        { "text": "I, g, h say igh, look at the stars at night!", "visual": { "kind": "objects", "emoji": "🌙", "count": 1 } },
+        { "text": "O and A say oa, row, row the boat!", "visual": { "kind": "objects", "emoji": "⛵", "count": 1 } },
+        { "text": "Two o's say oo, to the moon and back to you!", "visual": { "kind": "objects", "emoji": "🌕", "count": 1 } }
+      ]},
+      "learn": {
+        "text": "Vowel teams are letters that work together to make one long sound: ai (rain), ee (tree), igh (night), oa (boat), oo (moon). Spot the team, say its sound, then blend!",
+        "visual": { "kind": "bigText", "text": "ai ee igh oa oo" }
+      },
+      "misconceptions": [
+        { "code": "SPLIT_TEAM", "description": "Reads each vowel separately (r-a-i-n).", "remedy": "Spot the team first and say one sound: r-ai-n." },
+        { "code": "SHORT_VOWEL", "description": "Uses the short vowel sound instead of the long one (ran for rain).", "remedy": "Vowel teams usually make a long sound that says the letter's name." }
+      ],
+      "mastery": { "minAccuracy": 0.8, "minItems": 5, "atLevel": 2 },
+      "followUp": "naming-and-doing-words",
+      "levels": [
+        { "level": 1, "label": "Warm-up", "items": [
+          { "id": "rain", "type": "choice", "prompt": "Which vowel team is in 'rain'?", "say": "Rain. Which vowel team?", "visual": { "kind": "objects", "emoji": "🌧️", "count": 1 },
+            "options": [{ "id": "ai", "label": "ai" }, { "id": "ee", "label": "ee" }, { "id": "oa", "label": "oa" }], "answer": "ai",
+            "hints": ["r-ai-n", "Look between r and n."], "explanation": "Rain has ai: r-ai-n.",
+            "misconceptions": { "ee": "SHORT_VOWEL", "oa": "SHORT_VOWEL" } },
+          { "id": "tree", "type": "choice", "prompt": "Which vowel team is in 'tree'?", "say": "Tree. Which vowel team?", "visual": { "kind": "objects", "emoji": "🌳", "count": 1 },
+            "options": [{ "id": "oo", "label": "oo" }, { "id": "ee", "label": "ee" }, { "id": "igh", "label": "igh" }], "answer": "ee",
+            "hints": ["tr-ee", "Two of the same letter."], "explanation": "Tree ends with ee.",
+            "misconceptions": { "oo": "SPLIT_TEAM", "igh": "SPLIT_TEAM" } }
+        ]},
+        { "level": 2, "label": "Explorer", "items": [
+          { "id": "sounds-night", "type": "number", "prompt": "How many sounds are in 'night'? (n - igh - t)", "answer": 3,
+            "hints": ["igh is one sound.", "n - igh - t"], "explanation": "night has 5 letters but only 3 sounds: n, igh, t.",
+            "misconceptions": { "5": "SPLIT_TEAM", "4": "SPLIT_TEAM" } },
+          { "id": "read-boat", "type": "choice", "prompt": "Read the word and pick the picture.", "visual": { "kind": "bigText", "text": "boat" },
+            "options": [{ "id": "boat", "label": "boat", "emoji": "⛵" }, { "id": "bat", "label": "bat", "emoji": "🦇" }, { "id": "boot", "label": "boot", "emoji": "🥾" }], "answer": "boat",
+            "hints": ["oa says the name of o.", "b-oa-t"], "explanation": "b, oa, t makes boat.",
+            "misconceptions": { "bat": "SHORT_VOWEL", "boot": "SPLIT_TEAM" } }
+        ]},
+        { "level": 3, "label": "Challenge", "items": [
+          { "id": "build-moon", "type": "order", "prompt": "Build the word 'moon'.",
+            "tiles": [{ "id": "n", "label": "n" }, { "id": "oo", "label": "oo" }, { "id": "m", "label": "m" }], "answer": ["m", "oo", "n"],
+            "hints": ["moon has 3 sounds.", "m... oo... n"], "explanation": "m, oo, n makes moon." },
+          { "id": "odd-one", "type": "choice", "prompt": "Which word does NOT have a vowel team?",
+            "options": [{ "id": "sheep", "label": "sheep" }, { "id": "light", "label": "light" }, { "id": "chip", "label": "chip" }, { "id": "road", "label": "road" }], "answer": "chip",
+            "hints": ["Look for ai, ee, igh, oa or oo.", "Which word has just one vowel?"], "explanation": "sheep (ee), light (igh) and road (oa) have teams. chip has a short i.",
+            "misconceptions": { "sheep": "SPLIT_TEAM", "light": "SPLIT_TEAM", "road": "SPLIT_TEAM" } }
+        ]}
+      ]
+    }
+  ]
+}

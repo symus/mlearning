@@ -7,6 +7,7 @@ import type { ActivityBody, Item } from "@/lib/content/schema";
 import { encouragement, updateMastery, type ItemResult } from "@/lib/learning/adaptive";
 import { freeLimitReached, getPlan, getToday } from "@/lib/learning/queries";
 import { ACHIEVEMENTS, type AchievementCode } from "@/lib/achievements";
+import { recordJourneyResult } from "@/lib/learning/journey";
 
 async function requireChildSession() {
   const session = await getSession();
@@ -87,6 +88,7 @@ export interface AttemptSummary {
   followUp: { slug: string; title: string } | null;
   todayMinutes: number;
   dailyGoalMinutes: number;
+  journey: Awaited<ReturnType<typeof recordJourneyResult>>;
 }
 
 export async function finishAttempt(attemptId: string): Promise<AttemptSummary> {
@@ -142,6 +144,8 @@ export async function finishAttempt(attemptId: string): Promise<AttemptSummary> 
 
   const followUp = body.followUp ? await db.activity.findFirst({ where: { slug: body.followUp, status: "PUBLISHED" }, select: { slug: true, title: true } }) : null;
   const today = await getToday(child.id);
+  const accuracy = results.length ? correct / results.length : 0;
+  const journey = await recordJourneyResult(child.id, attempt.activity.slug, accuracy);
 
   return {
     correct,
@@ -154,5 +158,6 @@ export async function finishAttempt(attemptId: string): Promise<AttemptSummary> 
     followUp,
     todayMinutes: today.minutes,
     dailyGoalMinutes: child.dailyGoalMinutes,
+    journey,
   };
 }

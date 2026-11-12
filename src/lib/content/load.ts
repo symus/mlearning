@@ -3,14 +3,15 @@
  * Content lives outside the app code so it can be versioned, reviewed and imported
  * without redeploying the application.
  */
-import { readdirSync, readFileSync } from "node:fs";
+import { existsSync, readdirSync, readFileSync } from "node:fs";
 import { createHash } from "node:crypto";
 import path from "node:path";
-import { activitySchema, objectivesFileSchema, type ActivityFile, type ObjectiveFile } from "./schema";
+import { activitySchema, journeySchema, objectivesFileSchema, type ActivityFile, type Journey, type ObjectiveFile } from "./schema";
 
 export interface ContentLibrary {
   objectives: ObjectiveFile[];
   activities: (ActivityFile & { file: string; hash: string })[];
+  journeys: (Journey & { hash: string })[];
   errors: string[];
 }
 
@@ -21,6 +22,7 @@ export function loadContent(root = path.join(process.cwd(), "content")): Content
   const errors: string[] = [];
   const objectives: ObjectiveFile[] = [];
   const activities: ContentLibrary["activities"] = [];
+  const journeys: ContentLibrary["journeys"] = [];
 
   const objDir = path.join(root, "objectives");
   for (const file of readdirSync(objDir).filter((f) => f.endsWith(".json"))) {
@@ -45,6 +47,14 @@ export function loadContent(root = path.join(process.cwd(), "content")): Content
     });
   }
 
+  const jDir = path.join(root, "journeys");
+  for (const file of existsSync(jDir) ? readdirSync(jDir).filter((f) => f.endsWith(".json")) : []) {
+    const raw = readFileSync(path.join(jDir, file), "utf8");
+    const parsed = journeySchema.safeParse(JSON.parse(raw));
+    if (!parsed.success) errors.push(`journeys/${file}: ${formatIssues(parsed.error.issues)}`);
+    else journeys.push({ ...parsed.data, hash: createHash("sha256").update(raw).digest("hex").slice(0, 16) });
+  }
+
   // Cross-file integrity checks.
   const objByCode = new Map(objectives.map((o) => [o.code, o]));
   const slugs = new Set<string>();
@@ -63,5 +73,9 @@ export function loadContent(root = path.join(process.cwd(), "content")): Content
     if (a.followUp && !activities.some((b) => b.slug === a.followUp))
       errors.push(`activity ${a.slug}: follow-up ${a.followUp} does not exist`);
 
-  return { objectives, activities, errors };
+  for (const j of journeys)
+    for (const slug of j.stages.flatMap((s) => s.lessons))
+      if (!activities.some((a) => a.slug === slug)) errors.push(`journey ${j.slug}: lesson ${slug} does not exist`);
+
+  return { objectives, activities, journeys, errors };
 }
