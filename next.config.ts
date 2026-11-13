@@ -1,18 +1,29 @@
 import type { NextConfig } from "next";
+import { networkInterfaces } from "node:os";
 
-// Let phones/tablets on your network use the dev server (e.g. APP_URL="http://192.168.1.25:3000").
-// Without this, Next.js blocks their dev requests and pages never become interactive.
-const devOrigins = [process.env.APP_URL, ...(process.env.DEV_ORIGINS ?? "").split(",")]
-  .map((v) => v?.trim())
-  .filter((v): v is string => !!v)
-  .map((v) => {
-    try {
-      return new URL(v.includes("://") ? v : `http://${v}`).hostname;
-    } catch {
-      return "";
-    }
-  })
-  .filter((h) => h && h !== "localhost");
+// The dev server blocks pages opened from any address except "localhost", and a blocked page never
+// becomes interactive (buttons do nothing). Allow this computer's own addresses (127.0.0.1, its Wi-Fi
+// IP, so phones/tablets on your network work), plus APP_URL and DEV_ORIGINS. Dev server only.
+const ownAddresses = Object.values(networkInterfaces())
+  .flat()
+  .filter((n) => n && n.family === "IPv4")
+  .map((n) => n!.address);
+
+const devOrigins = [
+  ...new Set(
+    [process.env.APP_URL, ...(process.env.DEV_ORIGINS ?? "").split(","), ...ownAddresses]
+      .map((v) => v?.trim())
+      .filter((v): v is string => !!v)
+      .map((v) => {
+        try {
+          return new URL(v.includes("://") ? v : `http://${v}`).hostname;
+        } catch {
+          return "";
+        }
+      })
+      .filter((h) => h && h !== "localhost"),
+  ),
+];
 
 const nextConfig: NextConfig = {
   allowedDevOrigins: devOrigins,

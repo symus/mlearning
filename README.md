@@ -69,8 +69,8 @@ Try it: log in → **Let a child play** → pick Mia → play an activity → **
 | Name | Required | Example | Purpose |
 |---|---|---|---|
 | `DATABASE_URL` | yes | `postgresql://app:app@localhost:5432/arivupulla?schema=public` | PostgreSQL connection |
-| `APP_URL` | no | `http://localhost:3000` | Public base URL; used in QR login cards and allowed to use the dev server |
-| `DEV_ORIGINS` | no | `192.168.1.30` | Extra hostnames allowed to use the dev server (comma-separated) |
+| `APP_URL` | no | `http://localhost:3000` | Public base URL; used in QR login cards |
+| `DEV_ORIGINS` | no | `myhost.local` | Extra hostnames allowed to use the dev server (comma-separated). This computer's own addresses are allowed automatically |
 | `SESSION_TTL_DAYS` | no | `30` | Session lifetime |
 | `SEED_DEMO_EMAIL` / `SEED_DEMO_PASSWORD` | no | | Demo parent created by the seed |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | no | | Admin created by the seed |
