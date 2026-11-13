@@ -39,6 +39,19 @@
 5. **Settings** in the child header: sound effects 🔔, read-aloud 🗣️, text size Aa (saved per child).
 6. **Daily limit** (parent-set): warning 5 minutes before; then a friendly "see you tomorrow" screen. Unfinished lessons can still finish.
 
+## C4. Maps and the activity library (working)
+
+1. Every world and the Reading Journey are shown as **illustrated maps** (up to 10 lessons per map; the Reading Journey has one map per part). Numbered stepping stones on a dotted trail show 1–3 stars, 🎵 songs and 🔁 reviews. Muchi and the child's avatar stand at the current lesson. A treasure chest after the last lesson opens when every lesson on the map is done.
+2. ◀ ▶ arrows move between maps (`?map=N`), 🏠 returns to the universe, 📚 opens the library. Phones get a portrait layout. A text lesson list sits under each map for screen readers.
+3. **All activities** (`/play/activities`): every activity for the child's age on one page, filtered by world, progress and search (title, goal, topic).
+
+## C5. QR login cards (working)
+
+1. Parent → child's Progress page → **Login card** → *Make a login card* → print (only the card prints, on one page).
+2. The child scans it with the tablet camera app, or with **📷 Scan my card** on the login page (`/login/qr`). They land in their own play area.
+3. Card sessions are **child-only**: no parent area, no PIN unlock, no switching to siblings, no data export. A grown-up must log in with email and password.
+4. Making a new card cancels the old one and signs out devices that used it; *Cancel card* does the same. Only a hash of the card's secret is stored.
+
 ## D. Child → parent (working)
 
 1. **Grown-ups** button → `/play/exit` PIN pad. A wrong PIN shows a friendly message.

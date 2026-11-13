@@ -47,6 +47,7 @@ model Session {
   userId        String
   activeChildId String? // set when a child profile is "playing" on this device
   childMode     Boolean  @default(false)
+  childOnly     Boolean  @default(false) // signed in with a child's QR card: no parent access at all
   expiresAt     DateTime
   createdAt     DateTime @default(now())
 
@@ -119,6 +120,7 @@ model ChildProfile {
   achievements ChildAchievement[]
   journeys     JourneyProgress[]
   stickers     ChildSticker[]
+  loginCards   ChildLoginCard[]
 
   @@index([parentId])
 }
@@ -368,4 +370,19 @@ model ChildSticker {
   child ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
 
   @@unique([childId, activitySlug])
+}
+
+// ---------- QR login cards ----------
+
+/** A printable QR card that signs a child straight into their own play area (never the parent area). */
+model ChildLoginCard {
+  id        String    @id @default(cuid())
+  childId   String
+  tokenHash String    @unique // SHA-256 of the secret in the QR code; the secret itself is never stored
+  createdAt DateTime  @default(now())
+  revokedAt DateTime?
+
+  child ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@index([childId])
 }

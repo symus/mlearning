@@ -28,7 +28,8 @@ export type AppSession = NonNullable<Awaited<ReturnType<typeof getSession>>>;
 export async function requireParent() {
   const session = await getSession();
   if (!session) redirect("/login");
-  if (session.childMode) redirect("/play/exit");
+  // QR-card sessions never reach the parent area, even with the PIN.
+  if (session.childMode || session.childOnly) redirect("/play/exit");
   return session;
 }
 

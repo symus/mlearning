@@ -57,6 +57,7 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   const ok = await verifySecret(parsed.data.password, user?.passwordHash ?? (await getDummyHash()));
   if (!user || !ok) return { message: "That email and password don't match. Please try again.", values };
 
+  await destroySession(); // replace any child-card session on this device
   await createSession(user.id);
   redirect(safeNext(formData.get("next")) ?? "/parent");
 }

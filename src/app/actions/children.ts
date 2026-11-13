@@ -101,6 +101,7 @@ export async function deleteChild(childId: string, formData: FormData): Promise<
 export async function startPlaying(childId: string): Promise<void> {
   const session = await getSession();
   if (!session) redirect("/login");
+  if (session.childOnly) redirect("/play"); // a card session can't switch to a sibling
   const child = await getOwnedChild(session.userId, childId);
   if (!child) redirect("/play/who");
   await db.session.update({ where: { id: session.id }, data: { activeChildId: child.id, childMode: true } });
@@ -111,6 +112,7 @@ export async function startPlaying(childId: string): Promise<void> {
 export async function exitChildMode(_prev: FormState, formData: FormData): Promise<FormState> {
   const session = await getSession();
   if (!session) redirect("/login");
+  if (session.childOnly) return { message: "This device signed in with a child's card. A grown-up needs to log in with their email and password." };
   const parsed = pinSchema.safeParse({ pin: formData.get("pin") });
   if (!parsed.success) return { errors: fieldErrors(parsed.error) };
   const user = await db.user.findUnique({ where: { id: session.userId }, select: { parentPinHash: true } });

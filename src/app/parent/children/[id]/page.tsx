@@ -18,6 +18,7 @@ import { SUBJECT_LABEL } from "@/lib/worlds";
 import { getJourneyView, journeysForBand } from "@/lib/learning/journey";
 import { getPlan } from "@/lib/learning/queries";
 import { resetJourney } from "@/app/actions/journey";
+import { LoginCardManager } from "@/components/parent/login-card";
 
 export const metadata = { title: "Child progress" };
 
@@ -52,6 +53,7 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
     return null;
   };
   const plan = await getPlan(session.userId);
+  const activeCard = await db.childLoginCard.findFirst({ where: { childId: child.id, revokedAt: null }, orderBy: { createdAt: "desc" } });
   const journeyViews = (await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)))).filter((v) => v !== null);
   const masteryByCode = new Map(report.masteries.map((m) => [m.objectiveCode, m]));
   const band = AGE_BANDS[child.ageBand];
@@ -216,6 +218,11 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
           ) : <p className="mt-2 text-ink-soft">Achievements celebrate effort and persistence. They&apos;ll appear here.</p>}
         </Card>
       </div>
+
+      <Card>
+        <h2 className="mb-3 text-xl font-bold">📇 Login card</h2>
+        <LoginCardManager childId={child.id} nickname={child.nickname} avatar={child.avatar} activeSince={activeCard ? activeCard.createdAt.toLocaleDateString("en-GB") : null} />
+      </Card>
 
       <div className="grid gap-5 lg:grid-cols-2">
         <Card>

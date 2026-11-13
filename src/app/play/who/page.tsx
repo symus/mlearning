@@ -11,7 +11,7 @@ export const metadata = { title: "Who's learning?" };
 export default async function WhoPage() {
   const session = await getSession();
   if (!session) redirect("/login");
-  if (session.childMode && session.activeChild) redirect("/play");
+  if ((session.childMode || session.childOnly) && session.activeChild) redirect("/play");
   const children = await db.childProfile.findMany({ where: { parentId: session.userId }, orderBy: { createdAt: "asc" } });
 
   return (

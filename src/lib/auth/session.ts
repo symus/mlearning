@@ -12,10 +12,17 @@ export function hashToken(token: string): string {
 }
 
 /** Create a DB-backed session and set an httpOnly cookie. The raw token is never stored. */
-export async function createSession(userId: string): Promise<void> {
+export async function createSession(userId: string, child?: { childId: string; childOnly: true }): Promise<void> {
   const token = randomBytes(32).toString("base64url");
   const expiresAt = new Date(Date.now() + ttlDays() * 24 * 60 * 60 * 1000);
-  await db.session.create({ data: { tokenHash: hashToken(token), userId, expiresAt } });
+  await db.session.create({
+    data: {
+      tokenHash: hashToken(token),
+      userId,
+      expiresAt,
+      ...(child ? { activeChildId: child.childId, childMode: true, childOnly: true } : {}),
+    },
+  });
   (await cookies()).set(SESSION_COOKIE, token, {
     httpOnly: true,
     secure: process.env.NODE_ENV === "production",

@@ -97,8 +97,8 @@ content/activities/<subject>-<age>.json   activity packs
 ## Testing
 
 ```bash
-npm test                                   # 52 unit tests
-npm run build && npm run test:e2e -- --trace off   # 14 e2e tests (7 journeys × desktop/tablet)
+npm test                                   # 56 unit tests
+npm run build && npm run test:e2e -- --trace off   # 20 e2e tests (10 journeys × desktop/tablet)
 ```
 
 The end-to-end journey covers: landing → sign-up validation → sign-up → add child → hand-over → onboarding → child mode blocks the parent area → play a full activity → locked content shows "Ask a grown-up" → wrong and right PIN → the parent sees progress and "needs attention".
