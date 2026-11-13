@@ -119,7 +119,10 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
 
       <section aria-labelledby="worlds-title" className="relative">
         <Starfield />
-        <h1 id="worlds-title" className="relative mb-2 text-3xl font-bold">Your learning universe</h1>
+        <div className="relative mb-2 flex flex-wrap items-center justify-between gap-3">
+          <h1 id="worlds-title" className="text-3xl font-bold">Your learning universe</h1>
+          <Link href="/play/activities" className="btn-pop rounded-full bg-sun px-5 py-2.5 font-display text-lg font-bold text-ink">📚 All activities</Link>
+        </div>
         <p className="relative mb-6 text-white/75">Tap a world to explore. Stars show the skills you have mastered.</p>
         <ul className="relative grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
           {WORLDS.map((w, i) => {

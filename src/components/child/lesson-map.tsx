@@ -70,7 +70,7 @@ export function LessonMap({
           <p className="inline-block rounded-2xl bg-sun px-4 py-1 font-display text-xl font-bold text-ink shadow-[var(--shadow-pop)] sm:text-2xl">Map {mapIndex + 1}</p>
           <p className="mt-1 truncate text-sm font-bold text-white/80">{title} · {subtitle}</p>
         </div>
-        <span className="w-12" aria-hidden />
+        <Link href="/play/activities" className="grid size-12 shrink-0 place-items-center rounded-2xl bg-white/15 text-2xl hover:bg-white/25" aria-label="All activities">📚</Link>
       </div>
 
       <div className="relative">
