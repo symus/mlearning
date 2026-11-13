@@ -3,8 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import jsQR from "jsqr";
 import { brand } from "@/config/brand";
+import { readQrFromPhoto } from "@/lib/qr-photo";
 
-type Status = "starting" | "scanning" | "found" | "nocamera" | "insecure" | "wrong" | "reading" | "notfound";
+type Status = "starting" | "scanning" | "found" | "nocamera" | "insecure" | "wrong" | "reading" | "notfound" | "badphoto";
 
 /**
  * Returns the /q/<token> path inside a QR text, or null if it isn't one of our login cards.
@@ -18,24 +19,6 @@ function cardPath(text: string): string | null {
   } catch {
     return null;
   }
-}
-
-/** Reads a QR code from a photo. Large phone photos are scaled down first (faster, and jsQR copes better). */
-async function readQrFromPhoto(file: File): Promise<string | null> {
-  const bitmap = await createImageBitmap(file);
-  for (const max of [1200, 800, 1800]) {
-    const scale = Math.min(1, max / Math.max(bitmap.width, bitmap.height));
-    const w = Math.round(bitmap.width * scale), h = Math.round(bitmap.height * scale);
-    const c = document.createElement("canvas");
-    c.width = w;
-    c.height = h;
-    const ctx = c.getContext("2d", { willReadFrequently: true });
-    if (!ctx) return null;
-    ctx.drawImage(bitmap, 0, 0, w, h);
-    const code = jsQR(ctx.getImageData(0, 0, w, h).data, w, h, { inversionAttempts: "attemptBoth" });
-    if (code?.data) return code.data;
-  }
-  return null;
 }
 
 /**
@@ -121,8 +104,9 @@ export function QrScanner() {
       const text = await readQrFromPhoto(file);
       if (!text) return setStatus("notfound");
       if (!follow(text)) setStatus("wrong");
-    } catch {
-      setStatus("notfound");
+    } catch (err) {
+      console.error("Could not open the photo", err);
+      setStatus("badphoto");
     }
   };
 
@@ -142,7 +126,8 @@ export function QrScanner() {
         {status === "found" && "Found it! Opening your adventures…"}
         {status === "reading" && "Reading your card…"}
         {status === "wrong" && `That isn't a ${brand.name} login card. Try your card!`}
-        {status === "notfound" && "We couldn't see the code. Take the photo closer, with the whole card in view."}
+        {status === "notfound" && "We couldn't see the code. Hold the phone steady so the code is sharp, and fill most of the photo with the card."}
+        {status === "badphoto" && "We couldn't open that photo. Please try again."}
         {(status === "nocamera" || status === "insecure") && "Tap the button and take a photo of your card."}
       </p>
 

@@ -44,3 +44,6 @@ next-env.d.ts
 # test output
 /test-results
 /playwright-report
+
+# QR reader engine (copied from node_modules by scripts/copy-qr-engine.mjs)
+/public/zxing/

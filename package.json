@@ -3,7 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "node scripts/copy-qr-engine.mjs",
     "dev": "next dev",
+    "prebuild": "node scripts/copy-qr-engine.mjs",
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
@@ -31,7 +33,8 @@
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "server-only": "^0.0.1",
-    "zod": "^4.6.7"
+    "zod": "^4.6.7",
+    "zxing-wasm": "^3.1.6"
   },
   "devDependencies": {
     "@playwright/test": "^1.63.0",

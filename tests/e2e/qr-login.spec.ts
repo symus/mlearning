@@ -51,7 +51,9 @@ test("QR login card: child-only access, parent login still required, new card ca
   await other.getByRole("link", { name: "📷 Scan my card" }).click();
   await expect(other.getByRole("heading", { name: "Scan your login card" })).toBeVisible();
   const photo = await page.getByRole("img", { name: "Login QR code for Aya" }).screenshot();
+  const engine = other.waitForResponse(/\/zxing\/zxing_reader\.wasm$/); // the ZXing reader, served by us (no CDN)
   await other.getByTestId("qr-photo").setInputFiles({ name: "card.png", mimeType: "image/png", buffer: photo });
+  expect((await engine).ok()).toBe(true);
   await expect(other.getByRole("heading", { name: "Your learning universe" })).toBeVisible();
   await tablet.close();
 });
