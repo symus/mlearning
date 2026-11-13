@@ -49,8 +49,9 @@
 
 1. Parent → child's Progress page → **Login card** → *Make a login card* → print (only the card prints, on one page).
 2. The child scans it with the tablet camera app, or with **📷 Scan my card** on the login page (`/login/qr`): a live camera on https/localhost, and a **📸 Take a photo of my card** button that works everywhere (including plain http on a home network). They land in their own play area.
-3. Card sessions are **child-only**: no parent area, no PIN unlock, no switching to siblings, no data export. A grown-up must log in with email and password.
-4. Making a new card cancels the old one and signs out devices that used it; *Cancel card* does the same. Only a hash of the card's secret is stored.
+3. Or the child types the **login ID and password** printed on the card (`/login/kids`, e.g. `aya4821` / `tiger0482`). Capitals and spaces are ignored. 5 wrong passwords in a row lock the card for 15 minutes.
+4. Card sessions are **child-only**: no parent area, no PIN unlock, no switching to siblings, no data export. A grown-up must log in with email and password.
+5. Making a new card cancels the old one (QR and password) and signs out devices that used it; the login ID stays the same. *Cancel card* does the same. Only hashes of the QR secret and password are stored, so they are shown once, when the card is made.
 
 ## D. Child → parent (working)
 

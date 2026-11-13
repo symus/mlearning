@@ -68,6 +68,11 @@ export const loginSchema = z.object({
   password: z.string().min(1, { message: "Enter your password." }),
 });
 
+export const childLoginSchema = z.object({
+  loginId: z.string().transform((v) => v.toLowerCase().replace(/\s+/g, "")).pipe(z.string().min(1, { message: "Type the login ID from your card." }).max(40)),
+  password: z.string().transform((v) => v.toLowerCase().replace(/\s+/g, "")).pipe(z.string().min(1, { message: "Type the password from your card." }).max(40)),
+});
+
 export const childSchema = z.object({
   nickname: z
     .string()

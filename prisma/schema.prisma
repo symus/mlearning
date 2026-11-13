@@ -22,23 +22,23 @@ enum Role {
 }
 
 model User {
-  id             String    @id @default(cuid())
-  email          String    @unique // stored lower-case
-  passwordHash   String
-  displayName    String
-  role           Role      @default(PARENT)
-  country        String    @default("GB") // ISO 3166-1 alpha-2, drives pricing + default curriculum
-  locale         String    @default("en")
-  parentPinHash  String? // 4-digit PIN that lets an adult leave child mode
-  createdAt      DateTime  @default(now())
-  updatedAt      DateTime  @updatedAt
+  id            String   @id @default(cuid())
+  email         String   @unique // stored lower-case
+  passwordHash  String
+  displayName   String
+  role          Role     @default(PARENT)
+  country       String   @default("GB") // ISO 3166-1 alpha-2, drives pricing + default curriculum
+  locale        String   @default("en")
+  parentPinHash String? // 4-digit PIN that lets an adult leave child mode
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 
   sessions      Session[]
   children      ChildProfile[]
   consents      ConsentRecord[]
   subscription  Subscription?
   auditLogs     AuditLog[]
-  reviewedItems Activity[]     @relation("ActivityReviewer")
+  reviewedItems Activity[]      @relation("ActivityReviewer")
 }
 
 model Session {
@@ -96,24 +96,25 @@ enum AgeBand {
 }
 
 model ChildProfile {
-  id               String    @id @default(cuid())
-  parentId         String
-  nickname         String // shown only inside the family account
-  birthYear        Int
-  ageBand          AgeBand
-  curriculumCode   String    @default("uk-nc")
-  avatar           Json // { character, colour, accessory }
-  interests        String[]  @default([])
-  dailyGoalMinutes Int       @default(15)
-  narration        Boolean   @default(true) // read instructions aloud
-  soundEffects     Boolean   @default(true) // gentle clicks, chimes and celebrations
-  textSize         String    @default("normal") // "normal" | "large" | "xlarge" (accessibility)
-  dailyLimitMinutes Int?     // parent-set healthy daily limit; null = no limit
-  onboardedAt      DateTime?
-  createdAt        DateTime  @default(now())
-  updatedAt        DateTime  @updatedAt
+  id                String    @id @default(cuid())
+  parentId          String
+  nickname          String // shown only inside the family account
+  birthYear         Int
+  ageBand           AgeBand
+  curriculumCode    String    @default("uk-nc")
+  avatar            Json // { character, colour, accessory }
+  interests         String[]  @default([])
+  dailyGoalMinutes  Int       @default(15)
+  narration         Boolean   @default(true) // read instructions aloud
+  soundEffects      Boolean   @default(true) // gentle clicks, chimes and celebrations
+  textSize          String    @default("normal") // "normal" | "large" | "xlarge" (accessibility)
+  dailyLimitMinutes Int? // parent-set healthy daily limit; null = no limit
+  loginId           String?   @unique // simple login ID for the child's card, e.g. "aya4821" (made with the first card, never changes)
+  onboardedAt       DateTime?
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
 
-  parent       User                @relation(fields: [parentId], references: [id], onDelete: Cascade)
+  parent       User               @relation(fields: [parentId], references: [id], onDelete: Cascade)
   sessions     Session[]
   attempts     Attempt[]
   masteries    ObjectiveMastery[]
@@ -236,16 +237,16 @@ model Attempt {
 }
 
 model AttemptResponse {
-  id               String   @id @default(cuid())
-  attemptId        String
-  itemId           String
-  level            Int
-  answer           Json
-  isCorrect        Boolean
-  hintsUsed        Int      @default(0)
-  misconception    String? // code from the activity's misconception list
-  timeMs           Int      @default(0)
-  createdAt        DateTime @default(now())
+  id            String   @id @default(cuid())
+  attemptId     String
+  itemId        String
+  level         Int
+  answer        Json
+  isCorrect     Boolean
+  hintsUsed     Int      @default(0)
+  misconception String? // code from the activity's misconception list
+  timeMs        Int      @default(0)
+  createdAt     DateTime @default(now())
 
   attempt Attempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
 
@@ -280,10 +281,10 @@ model ObjectiveMastery {
 }
 
 model ChildAchievement {
-  id          String   @id @default(cuid())
-  childId     String
-  code        String // defined in src/lib/achievements.ts
-  earnedAt    DateTime @default(now())
+  id       String   @id @default(cuid())
+  childId  String
+  code     String // defined in src/lib/achievements.ts
+  earnedAt DateTime @default(now())
 
   child ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
 
@@ -360,7 +361,9 @@ model JourneyProgress {
 
 // ---------- Rewards ----------
 
-/** One sticker per activity, earned by passing it. Fixed per activity: no random rewards. */
+/**
+ * One sticker per activity, earned by passing it. Fixed per activity: no random rewards.
+ */
 model ChildSticker {
   id           String   @id @default(cuid())
   childId      String
@@ -374,13 +377,18 @@ model ChildSticker {
 
 // ---------- QR login cards ----------
 
-/** A printable QR card that signs a child straight into their own play area (never the parent area). */
+/**
+ * A printable QR card that signs a child straight into their own play area (never the parent area).
+ */
 model ChildLoginCard {
-  id        String    @id @default(cuid())
-  childId   String
-  tokenHash String    @unique // SHA-256 of the secret in the QR code; the secret itself is never stored
-  createdAt DateTime  @default(now())
-  revokedAt DateTime?
+  id           String    @id @default(cuid())
+  childId      String
+  tokenHash    String    @unique // SHA-256 of the secret in the QR code; the secret itself is never stored
+  passwordHash String? // bcrypt hash of the simple card password (e.g. "tiger0482"); shown once, never stored in plain text
+  failedLogins Int       @default(0) // wrong passwords in a row; too many locks the card for a while
+  lockedUntil  DateTime?
+  createdAt    DateTime  @default(now())
+  revokedAt    DateTime?
 
   child ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
 

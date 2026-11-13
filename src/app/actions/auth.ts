@@ -4,7 +4,8 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { hashSecret, verifySecret } from "@/lib/auth/password";
 import { createSession, destroySession } from "@/lib/auth/session";
-import { fieldErrors, loginSchema, signupSchema, type FormState } from "@/lib/validation";
+import { childLoginSchema, fieldErrors, loginSchema, signupSchema, type FormState } from "@/lib/validation";
+import { LOCK_MINUTES, MAX_FAILED_LOGINS, isLocked } from "@/lib/auth/child-login";
 
 const CONSENT_VERSION = "2026-11";
 
@@ -60,6 +61,45 @@ export async function login(_prev: FormState, formData: FormData): Promise<FormS
   await destroySession(); // replace any child-card session on this device
   await createSession(user.id);
   redirect(safeNext(formData.get("next")) ?? "/parent");
+}
+
+/**
+ * A child logs in with the login ID and password from their card. Like scanning the QR code, this
+ * opens only that child's play area (a child-only session). Wrong passwords count against the card,
+ * and too many lock it for a while, because card passwords are short.
+ */
+export async function childLogin(_prev: FormState, formData: FormData): Promise<FormState> {
+  const parsed = childLoginSchema.safeParse(Object.fromEntries(formData));
+  const values = { loginId: String(formData.get("loginId") ?? "") };
+  if (!parsed.success) return { errors: fieldErrors(parsed.error), values };
+  const { loginId, password } = parsed.data;
+
+  const child = await db.childProfile.findUnique({
+    where: { loginId },
+    include: { loginCards: { where: { revokedAt: null, passwordHash: { not: null } }, orderBy: { createdAt: "desc" }, take: 1 } },
+  });
+  const card = child?.loginCards[0];
+  const lockedMessage = `Too many tries. Ask a grown-up for help, or try again in ${LOCK_MINUTES} minutes.`;
+  if (card && isLocked(card.lockedUntil)) return { message: lockedMessage, values };
+
+  const ok = await verifySecret(password, card?.passwordHash ?? (await getDummyHash()));
+  if (!child || !card || !ok) {
+    if (card) {
+      const { failedLogins } = await db.childLoginCard.update({ where: { id: card.id }, data: { failedLogins: { increment: 1 } } });
+      if (failedLogins >= MAX_FAILED_LOGINS) {
+        await db.childLoginCard.update({ where: { id: card.id }, data: { failedLogins: 0, lockedUntil: new Date(Date.now() + LOCK_MINUTES * 60_000) } });
+        await db.auditLog.create({ data: { userId: child!.parentId, action: "card.locked", targetId: child!.id } });
+        return { message: lockedMessage, values };
+      }
+    }
+    return { message: "That login ID and password don't match. Check your card and try again.", values };
+  }
+
+  await db.childLoginCard.update({ where: { id: card.id }, data: { failedLogins: 0, lockedUntil: null } });
+  await destroySession();
+  await createSession(child.parentId, { childId: child.id, childOnly: true });
+  await db.auditLog.create({ data: { userId: child.parentId, action: "card.password_login", targetId: child.id } });
+  redirect(child.onboardedAt ? "/play" : "/play/onboarding");
 }
 
 export async function logout(): Promise<void> {

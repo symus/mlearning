@@ -20,7 +20,10 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
       <LoginForm next={next} />
       <div className="mt-8 rounded-2xl border-2 border-dashed border-line p-4 text-center">
         <p className="font-bold">Are you a child with a login card?</p>
-        <Link href="/login/qr" className="btn-pop mt-3 inline-flex min-h-12 items-center gap-2 rounded-full bg-berry px-6 font-bold text-white">📷 Scan my card</Link>
+        <div className="mt-3 flex flex-wrap justify-center gap-2">
+          <Link href="/login/qr" className="btn-pop inline-flex min-h-12 items-center gap-2 rounded-full bg-berry px-6 font-bold text-white">📷 Scan my card</Link>
+          <Link href="/login/kids" className="btn-pop inline-flex min-h-12 items-center gap-2 rounded-full bg-sun px-6 font-bold text-ink">🔑 Type my login ID</Link>
+        </div>
       </div>
     </>
   );

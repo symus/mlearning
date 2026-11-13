@@ -221,7 +221,7 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
 
       <Card>
         <h2 className="mb-3 text-xl font-bold">📇 Login card</h2>
-        <LoginCardManager childId={child.id} nickname={child.nickname} avatar={child.avatar} activeSince={activeCard ? activeCard.createdAt.toLocaleDateString("en-GB") : null} />
+        <LoginCardManager childId={child.id} nickname={child.nickname} avatar={child.avatar} loginId={child.loginId} activeSince={activeCard ? activeCard.createdAt.toLocaleDateString("en-GB") : null} />
       </Card>
 
       <div className="grid gap-5 lg:grid-cols-2">

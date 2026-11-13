@@ -13,7 +13,7 @@ export function FieldError({ id, errors }: { id: string; errors?: string[] }) {
 const inputClass =
   "mt-1 block w-full rounded-xl border-2 border-line bg-surface px-4 py-3 text-base text-ink placeholder:text-ink-muted focus:border-brand focus:outline-none aria-[invalid=true]:border-danger";
 
-export function TextField({ label, name, errors, hint, ...props }: ComponentProps<"input"> & { label: string; name: string; errors?: string[]; hint?: ReactNode }) {
+export function TextField({ label, name, errors, hint, className, ...props }: ComponentProps<"input"> & { label: string; name: string; errors?: string[]; hint?: ReactNode }) {
   const errId = `${name}-error`;
   return (
     <div>
@@ -21,7 +21,7 @@ export function TextField({ label, name, errors, hint, ...props }: ComponentProp
         {label}
       </label>
       {hint && <p className="text-sm text-ink-muted">{hint}</p>}
-      <input id={name} name={name} className={inputClass} aria-invalid={!!errors?.length} aria-describedby={errors?.length ? errId : undefined} {...props} />
+      <input id={name} name={name} className={clsx(inputClass, className)} aria-invalid={!!errors?.length} aria-describedby={errors?.length ? errId : undefined} {...props} />
       <FieldError id={errId} errors={errors} />
     </div>
   );

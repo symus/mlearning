@@ -59,7 +59,7 @@ Try it: log in → **Let a child play** → pick Mia → play an activity → **
 1. Find your computer's network address (Windows: `ipconfig` → IPv4 Address, e.g. `192.168.1.25`).
 2. In `.env` set `APP_URL="http://192.168.1.25:3000"` and restart `npm run dev`.
 3. Open `http://192.168.1.25:3000` on the phone (same Wi-Fi).
-4. QR login cards, two ways:
+4. Login cards (parent → child's **Progress** → **Login card**) carry a QR code **and** a login ID + password (e.g. `aya4821` / `tiger0482`). Children type these at **Login → 🔑 Type my login ID**. QR codes can be scanned two ways:
    - **Login page → 📷 Scan my card → 📸 Take a photo of my card.** Works everywhere, including plain http.
    - The phone's **camera app**: make a **new** card after changing `APP_URL`, because the card holds that address.
    The live camera preview inside "Scan my card" only runs on https or `localhost` (a browser rule); on http the photo button is used instead.
@@ -108,8 +108,8 @@ content/activities/<subject>-<age>.json   activity packs
 ## Testing
 
 ```bash
-npm test                                   # 56 unit tests
-npm run build && npm run test:e2e -- --trace off   # 20 e2e tests (10 journeys × desktop/tablet)
+npm test                                   # 60 unit tests
+npm run build && npm run test:e2e -- --trace off   # 22 e2e tests (11 journeys × desktop/tablet)
 ```
 
 The end-to-end journey covers: landing → sign-up validation → sign-up → add child → hand-over → onboarding → child mode blocks the parent area → play a full activity → locked content shows "Ask a grown-up" → wrong and right PIN → the parent sees progress and "needs attention".
