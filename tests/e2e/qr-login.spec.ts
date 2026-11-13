@@ -15,6 +15,10 @@ test("QR login card: child-only access, parent login still required, new card ca
   const cardUrl = new URL((await qr.getAttribute("data-login-url"))!).pathname;
   expect(cardUrl).toMatch(/^\/q\/[A-Za-z0-9_-]{20,}$/);
 
+  // The card redirects with a same-site path, never a server name like localhost (phones would break).
+  const hop = await page.request.get(`/q/not-a-real-card-token-123456`, { maxRedirects: 0 });
+  expect(hop.headers()["location"]).toBe("/login?card=invalid");
+
   // A different device (the child's tablet) scans the card.
   const tablet = await browser.newContext();
   const kid = await tablet.newPage();
