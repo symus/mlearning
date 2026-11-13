@@ -8,6 +8,10 @@ import { z } from "zod";
  *  11 misconceptions  12 mastery criteria  13 follow-up
  */
 
+/** Subjects with content. Each maps to one world in src/lib/worlds.ts. */
+export const SUBJECTS = ["maths", "reading", "science", "logic", "coding"] as const;
+export const subjectEnum = z.enum(SUBJECTS);
+
 export const ageBandEnum = z.enum(["LITTLE_EXPLORERS", "YOUNG_THINKERS", "FUTURE_INNOVATORS"]);
 
 /** Visual models shown with an explanation or an item. Rendered by <Visual/>. */
@@ -33,6 +37,16 @@ export const visualSchema = z.discriminatedUnion("kind", [
   z.object({ kind: z.literal("passage"), title: z.string().optional(), text: z.string().min(10) }),
   z.object({ kind: z.literal("bigText"), text: z.string().min(1).max(40) }),
   z.object({ kind: z.literal("pattern"), items: z.array(z.string()).min(2).max(12) }),
+  /** Coding: a robot on a grid, a goal flag and optional walls. Cells are [row, col], 0-based. */
+  z.object({
+    kind: z.literal("robot"),
+    rows: z.number().int().min(1).max(6),
+    cols: z.number().int().min(2).max(8),
+    robot: z.tuple([z.number().int(), z.number().int()]),
+    goal: z.tuple([z.number().int(), z.number().int()]),
+    walls: z.array(z.tuple([z.number().int(), z.number().int()])).optional(),
+    items: z.array(z.tuple([z.number().int(), z.number().int()])).optional(),
+  }),
   z.object({ kind: z.literal("grid"), rows: z.number().int().min(1).max(12), cols: z.number().int().min(1).max(12), unit: z.string().optional() }),
 ]);
 export type Visual = z.infer<typeof visualSchema>;
@@ -113,7 +127,7 @@ export const activitySchema = z
     locale: z.string().default("en"),
     status: z.enum(["DRAFT", "IN_REVIEW", "PUBLISHED"]).default("IN_REVIEW"),
     ageBand: ageBandEnum,
-    subject: z.enum(["maths", "reading"]),
+    subject: subjectEnum,
     topic: z.string().min(2),
     subtopic: z.string().min(2),
     objective: z.string().regex(/^[A-Z]{2}\.[A-Z0-9.]+$/),
@@ -170,7 +184,7 @@ export type ActivityBody = Pick<ActivityFile, "learn" | "watch" | "misconception
 
 export const objectiveSchema = z.object({
   code: z.string().regex(/^[A-Z]{2}\.[A-Z0-9.]+$/),
-  subject: z.enum(["maths", "reading"]),
+  subject: subjectEnum,
   ageBand: ageBandEnum,
   topic: z.string(),
   subtopic: z.string(),
@@ -188,7 +202,7 @@ export const journeySchema = z
   .object({
     slug: z.string().regex(/^[a-z0-9-]+$/),
     title: z.string(),
-    subject: z.enum(["maths", "reading"]),
+    subject: subjectEnum,
     ageBands: z.array(ageBandEnum).min(1),
     /** Minimum accuracy in a lesson to unlock the next one. */
     passAccuracy: z.number().min(0.3).max(1),

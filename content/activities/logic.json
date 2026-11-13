@@ -1,0 +1,2197 @@
+{
+ "activities": [
+  {
+   "slug": "same-or-different",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "logic",
+   "topic": "Reasoning",
+   "subtopic": "Same and different",
+   "objective": "LG.SORT.SAME",
+   "title": "Same or Different?",
+   "pathOrder": 1,
+   "estimatedMinutes": 4,
+   "isFree": true,
+   "learn": {
+    "text": "Clever thinkers look closely. Things can be the same colour, the same shape or the same kind. When one thing doesn't match the others, it is the odd one out!",
+    "say": "Look closely! Find the one that is different.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "🍎",
+      "🍎",
+      "🍌",
+      "🍎"
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "NOT_LOOKING",
+     "description": "Picks without comparing every item.",
+     "remedy": "Look at each one in turn. What is the same? What is different?"
+    },
+    {
+     "code": "WRONG_RULE",
+     "description": "Uses a different rule from the question (e.g. size instead of colour).",
+     "remedy": "Check the question: are we sorting by colour, shape or kind?"
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "big-bigger-biggest",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "odd-fruit",
+       "type": "choice",
+       "prompt": "Which one is different?",
+       "say": "Which one is different?",
+       "options": [
+        {
+         "id": "a",
+         "label": "apple",
+         "emoji": "🍎"
+        },
+        {
+         "id": "b",
+         "label": "apple",
+         "emoji": "🍎"
+        },
+        {
+         "id": "c",
+         "label": "banana",
+         "emoji": "🍌"
+        }
+       ],
+       "answer": "c",
+       "hints": [
+        "Look at each fruit.",
+        "Two are the same."
+       ],
+       "explanation": "The banana is different. The other two are apples.",
+       "misconceptions": {
+        "a": "NOT_LOOKING",
+        "b": "NOT_LOOKING"
+       }
+      },
+      {
+       "id": "same-shape",
+       "type": "choice",
+       "prompt": "Which shape is the same as the first one?",
+       "say": "Which shape is the same?",
+       "visual": {
+        "kind": "shape",
+        "shape": "triangle"
+       },
+       "options": [
+        {
+         "id": "tri",
+         "label": "triangle",
+         "emoji": "🔺"
+        },
+        {
+         "id": "circle",
+         "label": "circle",
+         "emoji": "🔵"
+        },
+        {
+         "id": "square",
+         "label": "square",
+         "emoji": "🟦"
+        }
+       ],
+       "answer": "tri",
+       "hints": [
+        "Look at the first shape.",
+        "It has 3 pointy corners."
+       ],
+       "explanation": "Both are triangles.",
+       "misconceptions": {
+        "circle": "NOT_LOOKING",
+        "square": "NOT_LOOKING"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "colour",
+       "type": "choice",
+       "prompt": "Which one is NOT red?",
+       "say": "Which one is not red?",
+       "options": [
+        {
+         "id": "a",
+         "label": "strawberry",
+         "emoji": "🍓"
+        },
+        {
+         "id": "b",
+         "label": "tomato",
+         "emoji": "🍅"
+        },
+        {
+         "id": "c",
+         "label": "grapes",
+         "emoji": "🍇"
+        }
+       ],
+       "answer": "c",
+       "hints": [
+        "Look at the colours.",
+        "Two are red."
+       ],
+       "explanation": "Grapes are purple. Strawberries and tomatoes are red.",
+       "misconceptions": {
+        "a": "WRONG_RULE",
+        "b": "WRONG_RULE"
+       }
+      },
+      {
+       "id": "animal",
+       "type": "choice",
+       "prompt": "Which one is not an animal?",
+       "say": "Which one is not an animal?",
+       "options": [
+        {
+         "id": "a",
+         "label": "dog",
+         "emoji": "🐕"
+        },
+        {
+         "id": "b",
+         "label": "car",
+         "emoji": "🚗"
+        },
+        {
+         "id": "c",
+         "label": "cat",
+         "emoji": "🐈"
+        }
+       ],
+       "answer": "b",
+       "hints": [
+        "Which one is alive?",
+        "Two can run and eat."
+       ],
+       "explanation": "The car is a machine. Dogs and cats are animals.",
+       "misconceptions": {
+        "a": "NOT_LOOKING",
+        "c": "NOT_LOOKING"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "sock",
+       "type": "choice",
+       "prompt": "Which sock makes a pair with 🧦?",
+       "options": [
+        {
+         "id": "a",
+         "label": "🧦",
+         "emoji": "🧦"
+        },
+        {
+         "id": "b",
+         "label": "🧤",
+         "emoji": "🧤"
+        },
+        {
+         "id": "c",
+         "label": "👟",
+         "emoji": "👟"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "A pair means two the same.",
+        "Look for another sock."
+       ],
+       "explanation": "Two socks make a pair.",
+       "misconceptions": {
+        "b": "NOT_LOOKING",
+        "c": "NOT_LOOKING"
+       }
+      },
+      {
+       "id": "rule",
+       "type": "choice",
+       "prompt": "Ball, orange, coin, plate. Why do they go together?",
+       "visual": {
+        "kind": "pattern",
+        "items": [
+         "⚽",
+         "🍊",
+         "🪙",
+         "🍽️"
+        ]
+       },
+       "options": [
+        {
+         "id": "round",
+         "label": "They are all round",
+         "emoji": "⚪"
+        },
+        {
+         "id": "food",
+         "label": "They are all food",
+         "emoji": "🍽️"
+        },
+        {
+         "id": "toys",
+         "label": "They are all toys",
+         "emoji": "🧸"
+        }
+       ],
+       "answer": "round",
+       "hints": [
+        "Can you eat a coin?",
+        "Think about their shape."
+       ],
+       "explanation": "They are all round! Only one of them is food.",
+       "misconceptions": {
+        "food": "WRONG_RULE",
+        "toys": "WRONG_RULE"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "big-bigger-biggest",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "logic",
+   "topic": "Reasoning",
+   "subtopic": "Ordering",
+   "objective": "LG.SIZE.ORDER",
+   "title": "Big, Bigger, Biggest",
+   "pathOrder": 2,
+   "estimatedMinutes": 4,
+   "isFree": false,
+   "learn": {
+    "text": "We can put things in order by size: small, bigger, biggest. Or tall, taller, tallest. Line them up and compare two at a time.",
+    "say": "Small, bigger, biggest! Compare two at a time.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "🐭",
+      "🐶",
+      "🐘"
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "REVERSE",
+     "description": "Orders from biggest to smallest when asked for smallest first.",
+     "remedy": "Read the question: which end do we start from?"
+    },
+    {
+     "code": "PICTURE_SIZE",
+     "description": "Judges by how big the picture looks instead of the real thing.",
+     "remedy": "Think about the real animal: a real mouse is tiny, even in a big picture."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "where-is-it",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "biggest",
+       "type": "choice",
+       "prompt": "Which animal is the biggest?",
+       "say": "Which animal is the biggest?",
+       "options": [
+        {
+         "id": "mouse",
+         "label": "mouse",
+         "emoji": "🐭"
+        },
+        {
+         "id": "elephant",
+         "label": "elephant",
+         "emoji": "🐘"
+        },
+        {
+         "id": "cat",
+         "label": "cat",
+         "emoji": "🐈"
+        }
+       ],
+       "answer": "elephant",
+       "hints": [
+        "Think about the real animals.",
+        "Which one is huge?"
+       ],
+       "explanation": "An elephant is the biggest. Elephants are much bigger than cats and mice.",
+       "misconceptions": {
+        "mouse": "REVERSE",
+        "cat": "PICTURE_SIZE"
+       }
+      },
+      {
+       "id": "smallest",
+       "type": "choice",
+       "prompt": "Which is the smallest?",
+       "say": "Which is the smallest?",
+       "options": [
+        {
+         "id": "ant",
+         "label": "ant",
+         "emoji": "🐜"
+        },
+        {
+         "id": "dog",
+         "label": "dog",
+         "emoji": "🐕"
+        },
+        {
+         "id": "horse",
+         "label": "horse",
+         "emoji": "🐎"
+        }
+       ],
+       "answer": "ant",
+       "hints": [
+        "Think about real sizes.",
+        "It is tiny!"
+       ],
+       "explanation": "An ant is tiny, the smallest of these.",
+       "misconceptions": {
+        "horse": "REVERSE",
+        "dog": "PICTURE_SIZE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "order",
+       "type": "order",
+       "prompt": "Put them in order, smallest first.",
+       "tiles": [
+        {
+         "id": "bear",
+         "label": "bear",
+         "emoji": "🐻"
+        },
+        {
+         "id": "bee",
+         "label": "bee",
+         "emoji": "🐝"
+        },
+        {
+         "id": "rabbit",
+         "label": "rabbit",
+         "emoji": "🐇"
+        }
+       ],
+       "answer": [
+        "bee",
+        "rabbit",
+        "bear"
+       ],
+       "hints": [
+        "Which is tiniest?",
+        "A rabbit is smaller than a bear."
+       ],
+       "explanation": "Bee, rabbit, bear: small, bigger, biggest."
+      },
+      {
+       "id": "tallest",
+       "type": "choice",
+       "prompt": "Which is the tallest?",
+       "say": "Which is the tallest?",
+       "options": [
+        {
+         "id": "giraffe",
+         "label": "giraffe",
+         "emoji": "🦒"
+        },
+        {
+         "id": "pig",
+         "label": "pig",
+         "emoji": "🐖"
+        },
+        {
+         "id": "duck",
+         "label": "duck",
+         "emoji": "🦆"
+        }
+       ],
+       "answer": "giraffe",
+       "hints": [
+        "Look up high!",
+        "It has a very long neck."
+       ],
+       "explanation": "A giraffe is the tallest animal on land.",
+       "misconceptions": {
+        "pig": "REVERSE",
+        "duck": "REVERSE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "order2",
+       "type": "order",
+       "prompt": "Put them in order, biggest first.",
+       "tiles": [
+        {
+         "id": "ball",
+         "label": "football",
+         "emoji": "⚽"
+        },
+        {
+         "id": "marble",
+         "label": "marble",
+         "emoji": "🔮"
+        },
+        {
+         "id": "planet",
+         "label": "planet",
+         "emoji": "🪐"
+        }
+       ],
+       "answer": [
+        "planet",
+        "ball",
+        "marble"
+       ],
+       "hints": [
+        "Which is the most enormous?",
+        "A marble fits in your hand."
+       ],
+       "explanation": "Planet, football, marble: biggest to smallest."
+      },
+      {
+       "id": "trick",
+       "type": "choice",
+       "prompt": "Is a real mouse bigger than a real cow?",
+       "visual": {
+        "kind": "pattern",
+        "items": [
+         "🐭",
+         "🐄"
+        ]
+       },
+       "options": [
+        {
+         "id": "no",
+         "label": "No",
+         "emoji": "❌"
+        },
+        {
+         "id": "yes",
+         "label": "Yes",
+         "emoji": "✅"
+        }
+       ],
+       "answer": "no",
+       "hints": [
+        "Don't be tricked by picture size.",
+        "Think about real animals."
+       ],
+       "explanation": "No! A real cow is much bigger than a mouse.",
+       "misconceptions": {
+        "yes": "PICTURE_SIZE"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "where-is-it",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "logic",
+   "topic": "Spatial",
+   "subtopic": "Position words",
+   "objective": "LG.SPATIAL.POSITION",
+   "title": "Where Is It?",
+   "pathOrder": 3,
+   "estimatedMinutes": 4,
+   "isFree": false,
+   "learn": {
+    "text": "Position words tell us where something is: on, under, in, next to, in front of, behind. 'The cat is on the box' means it sits on the top.",
+    "say": "Position words: on, under, in, next to, in front of, behind."
+   },
+   "misconceptions": [
+    {
+     "code": "ON_UNDER",
+     "description": "Mixes up on and under.",
+     "remedy": "On is on top. Under is below."
+    },
+    {
+     "code": "LEFT_RIGHT",
+     "description": "Mixes up left and right.",
+     "remedy": "Hold up your left hand: your thumb and first finger make an L."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "odd-one-out",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "on",
+       "type": "choice",
+       "prompt": "The ball is ON the table. Where is the ball?",
+       "say": "The ball is on the table. Where is it?",
+       "options": [
+        {
+         "id": "top",
+         "label": "on top",
+         "emoji": "⬆️"
+        },
+        {
+         "id": "below",
+         "label": "below",
+         "emoji": "⬇️"
+        }
+       ],
+       "answer": "top",
+       "hints": [
+        "'On' means resting on top.",
+        "Look up!"
+       ],
+       "explanation": "On means on top of the table.",
+       "misconceptions": {
+        "below": "ON_UNDER"
+       }
+      },
+      {
+       "id": "under",
+       "type": "choice",
+       "prompt": "The cat is UNDER the bed. Where is the cat?",
+       "say": "The cat is under the bed. Where is the cat?",
+       "options": [
+        {
+         "id": "below",
+         "label": "below the bed",
+         "emoji": "⬇️"
+        },
+        {
+         "id": "top",
+         "label": "on top of the bed",
+         "emoji": "⬆️"
+        }
+       ],
+       "answer": "below",
+       "hints": [
+        "Under means below.",
+        "The cat is hiding!"
+       ],
+       "explanation": "Under means below the bed.",
+       "misconceptions": {
+        "top": "ON_UNDER"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "in",
+       "type": "choice",
+       "prompt": "Which picture shows a fish IN a bowl?",
+       "say": "Which picture shows a fish in a bowl?",
+       "options": [
+        {
+         "id": "in",
+         "label": "fish inside the bowl",
+         "emoji": "🐠"
+        },
+        {
+         "id": "next",
+         "label": "fish next to the bowl",
+         "emoji": "🐟"
+        }
+       ],
+       "answer": "in",
+       "hints": [
+        "In means inside.",
+        "It's swimming!"
+       ],
+       "explanation": "In means inside the bowl.",
+       "misconceptions": {
+        "next": "ON_UNDER"
+       }
+      },
+      {
+       "id": "next",
+       "type": "choice",
+       "prompt": "In this row, what is next to the dog?",
+       "visual": {
+        "kind": "pattern",
+        "items": [
+         "🐦",
+         "🐄",
+         "🐕",
+         "🐈"
+        ]
+       },
+       "options": [
+        {
+         "id": "cat",
+         "label": "cat",
+         "emoji": "🐈"
+        },
+        {
+         "id": "bird",
+         "label": "bird",
+         "emoji": "🐦"
+        },
+        {
+         "id": "cow",
+         "label": "cow",
+         "emoji": "🐄"
+        }
+       ],
+       "answer": "cat",
+       "hints": [
+        "Next to means right beside.",
+        "Look on both sides of the dog."
+       ],
+       "explanation": "The cat is right next to the dog.",
+       "misconceptions": {
+        "bird": "ON_UNDER",
+        "cow": "ON_UNDER"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "first",
+       "type": "choice",
+       "prompt": "In the row, which animal is first (on the left)?",
+       "visual": {
+        "kind": "pattern",
+        "items": [
+         "🐸",
+         "🦆",
+         "🐖"
+        ]
+       },
+       "options": [
+        {
+         "id": "frog",
+         "label": "frog",
+         "emoji": "🐸"
+        },
+        {
+         "id": "duck",
+         "label": "duck",
+         "emoji": "🦆"
+        },
+        {
+         "id": "pig",
+         "label": "pig",
+         "emoji": "🐖"
+        }
+       ],
+       "answer": "frog",
+       "hints": [
+        "Start at the left side.",
+        "Left is where we start reading."
+       ],
+       "explanation": "The frog is first, on the left.",
+       "misconceptions": {
+        "pig": "LEFT_RIGHT",
+        "duck": "LEFT_RIGHT"
+       }
+      },
+      {
+       "id": "behind",
+       "type": "choice",
+       "prompt": "Mo stands in front of Ava. Who is behind?",
+       "options": [
+        {
+         "id": "ava",
+         "label": "Ava",
+         "emoji": "👧"
+        },
+        {
+         "id": "mo",
+         "label": "Mo",
+         "emoji": "👦"
+        }
+       ],
+       "answer": "ava",
+       "hints": [
+        "If Mo is in front...",
+        "...the other person is at the back."
+       ],
+       "explanation": "Ava is behind Mo.",
+       "misconceptions": {
+        "mo": "ON_UNDER"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "odd-one-out",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "logic",
+   "topic": "Reasoning",
+   "subtopic": "Classification",
+   "objective": "LG.ODD.RULE",
+   "title": "Odd One Out",
+   "pathOrder": 1,
+   "estimatedMinutes": 5,
+   "isFree": true,
+   "learn": {
+    "text": "To find the odd one out, find the rule that links most of the group. The one that breaks the rule is the odd one out. Some groups have more than one possible answer: explain your rule!",
+    "example": "2, 4, 7, 8 → 7 is odd: the others are even."
+   },
+   "misconceptions": [
+    {
+     "code": "SURFACE_FEATURE",
+     "description": "Uses a surface feature (colour, size) instead of the deeper rule.",
+     "remedy": "Ask: what are these things? What can they do? What makes them a group?"
+    },
+    {
+     "code": "NO_RULE",
+     "description": "Picks without stating a rule that fits the others.",
+     "remedy": "Say your rule out loud and check it fits every other item."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": "what-comes-next",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "num",
+       "type": "choice",
+       "prompt": "Which number is the odd one out? 2, 4, 7, 8",
+       "options": [
+        {
+         "id": "2",
+         "label": "2"
+        },
+        {
+         "id": "4",
+         "label": "4"
+        },
+        {
+         "id": "7",
+         "label": "7"
+        },
+        {
+         "id": "8",
+         "label": "8"
+        }
+       ],
+       "answer": "7",
+       "hints": [
+        "Look for a rule that fits three numbers.",
+        "Count in twos."
+       ],
+       "explanation": "7 is odd; 2, 4 and 8 are even.",
+       "misconceptions": {
+        "2": "NO_RULE",
+        "4": "NO_RULE",
+        "8": "NO_RULE"
+       }
+      },
+      {
+       "id": "fly",
+       "type": "choice",
+       "prompt": "Which one cannot fly?",
+       "options": [
+        {
+         "id": "eagle",
+         "label": "eagle",
+         "emoji": "🦅"
+        },
+        {
+         "id": "penguin",
+         "label": "penguin",
+         "emoji": "🐧"
+        },
+        {
+         "id": "bee",
+         "label": "bee",
+         "emoji": "🐝"
+        }
+       ],
+       "answer": "penguin",
+       "hints": [
+        "Think about what each can do.",
+        "One is a bird that swims instead."
+       ],
+       "explanation": "Penguins are birds, but they can't fly. They swim.",
+       "misconceptions": {
+        "eagle": "SURFACE_FEATURE",
+        "bee": "SURFACE_FEATURE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "veg",
+       "type": "choice",
+       "prompt": "Carrot, potato, apple, onion. Which is the odd one out?",
+       "options": [
+        {
+         "id": "carrot",
+         "label": "carrot",
+         "emoji": "🥕"
+        },
+        {
+         "id": "potato",
+         "label": "potato",
+         "emoji": "🥔"
+        },
+        {
+         "id": "apple",
+         "label": "apple",
+         "emoji": "🍎"
+        },
+        {
+         "id": "onion",
+         "label": "onion",
+         "emoji": "🧅"
+        }
+       ],
+       "answer": "apple",
+       "hints": [
+        "Three are vegetables.",
+        "Which grows on a tree?"
+       ],
+       "explanation": "The apple is a fruit; the others are vegetables.",
+       "misconceptions": {
+        "carrot": "NO_RULE",
+        "potato": "NO_RULE",
+        "onion": "SURFACE_FEATURE"
+       }
+      },
+      {
+       "id": "shape-sides",
+       "type": "choice",
+       "prompt": "Square, rectangle, triangle, pentagon. Which has fewer than 4 sides?",
+       "options": [
+        {
+         "id": "square",
+         "label": "square"
+        },
+        {
+         "id": "rectangle",
+         "label": "rectangle"
+        },
+        {
+         "id": "triangle",
+         "label": "triangle"
+        },
+        {
+         "id": "pentagon",
+         "label": "pentagon"
+        }
+       ],
+       "answer": "triangle",
+       "hints": [
+        "Count the sides of each.",
+        "Which has only 3?"
+       ],
+       "explanation": "The triangle has 3 sides; the others have 4 or more.",
+       "misconceptions": {
+        "square": "NO_RULE",
+        "pentagon": "NO_RULE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "rule-words",
+       "type": "choice",
+       "prompt": "Dog, cow, sheep, shark. What makes shark the odd one out?",
+       "options": [
+        {
+         "id": "a",
+         "label": "It lives in the sea",
+         "emoji": "🦈"
+        },
+        {
+         "id": "b",
+         "label": "It is the biggest",
+         "emoji": "📏"
+        },
+        {
+         "id": "c",
+         "label": "It starts with s",
+         "emoji": "🔤"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Sheep also starts with s!",
+        "Where do the others live?"
+       ],
+       "explanation": "Dogs, cows and sheep live on land; sharks live in the sea. 'Starts with s' doesn't work because sheep does too.",
+       "misconceptions": {
+        "b": "SURFACE_FEATURE",
+        "c": "NO_RULE"
+       }
+      },
+      {
+       "id": "multiple",
+       "type": "choice",
+       "prompt": "3, 6, 9, 10, 12. Which is the odd one out?",
+       "options": [
+        {
+         "id": "3",
+         "label": "3"
+        },
+        {
+         "id": "9",
+         "label": "9"
+        },
+        {
+         "id": "10",
+         "label": "10"
+        },
+        {
+         "id": "12",
+         "label": "12"
+        }
+       ],
+       "answer": "10",
+       "hints": [
+        "Try the 3 times table.",
+        "Which isn't a multiple of 3?"
+       ],
+       "explanation": "3, 6, 9 and 12 are in the 3 times table. 10 is not.",
+       "misconceptions": {
+        "3": "NO_RULE",
+        "9": "NO_RULE",
+        "12": "NO_RULE"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "what-comes-next",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "logic",
+   "topic": "Patterns",
+   "subtopic": "Sequences",
+   "objective": "LG.SEQ.SHAPES",
+   "title": "What Comes Next?",
+   "pathOrder": 2,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "A sequence changes in a regular way. Find what changes each time: colour, size, number or direction. Then apply the same change to find what comes next.",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "⬆️",
+      "➡️",
+      "⬇️",
+      "⬅️",
+      "?"
+     ]
+    },
+    "example": "The arrow turns a quarter turn clockwise each time."
+   },
+   "misconceptions": [
+    {
+     "code": "ONE_FEATURE",
+     "description": "Tracks only one feature when two things change.",
+     "remedy": "Check every feature: does the colour change too? The number?"
+    },
+    {
+     "code": "REPEAT_LAST",
+     "description": "Repeats the last item instead of applying the change.",
+     "remedy": "Work out the change between two steps, then apply it again."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": "clue-detective",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "arrow",
+       "type": "choice",
+       "prompt": "What comes next?",
+       "visual": {
+        "kind": "pattern",
+        "items": [
+         "⬆️",
+         "➡️",
+         "⬇️",
+         "⬅️",
+         "?"
+        ]
+       },
+       "options": [
+        {
+         "id": "up",
+         "label": "⬆️"
+        },
+        {
+         "id": "right",
+         "label": "➡️"
+        },
+        {
+         "id": "down",
+         "label": "⬇️"
+        }
+       ],
+       "answer": "up",
+       "hints": [
+        "The arrow turns each time.",
+        "After pointing left, it turns back to..."
+       ],
+       "explanation": "The arrow turns clockwise: up, right, down, left, up.",
+       "misconceptions": {
+        "down": "REPEAT_LAST",
+        "right": "ONE_FEATURE"
+       }
+      },
+      {
+       "id": "grow",
+       "type": "choice",
+       "prompt": "What comes next? 1 star, 2 stars, 3 stars, ...",
+       "options": [
+        {
+         "id": "3",
+         "label": "3 stars"
+        },
+        {
+         "id": "4",
+         "label": "4 stars"
+        },
+        {
+         "id": "6",
+         "label": "6 stars"
+        }
+       ],
+       "answer": "4",
+       "hints": [
+        "One more each time.",
+        "3 and one more is..."
+       ],
+       "explanation": "The number of stars goes up by one: 4 stars next.",
+       "misconceptions": {
+        "3": "REPEAT_LAST",
+        "6": "ONE_FEATURE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "moon",
+       "type": "choice",
+       "prompt": "What comes next?",
+       "visual": {
+        "kind": "pattern",
+        "items": [
+         "🌑",
+         "🌒",
+         "🌓",
+         "🌔",
+         "?"
+        ]
+       },
+       "options": [
+        {
+         "id": "full",
+         "label": "🌕"
+        },
+        {
+         "id": "new",
+         "label": "🌑"
+        },
+        {
+         "id": "half",
+         "label": "🌓"
+        }
+       ],
+       "answer": "full",
+       "hints": [
+        "The moon gets fuller each step.",
+        "After nearly full comes..."
+       ],
+       "explanation": "The moon fills up step by step: next is the full moon.",
+       "misconceptions": {
+        "new": "REPEAT_LAST",
+        "half": "ONE_FEATURE"
+       }
+      },
+      {
+       "id": "double",
+       "type": "choice",
+       "prompt": "What comes next? 1, 2, 4, 8, ...",
+       "options": [
+        {
+         "id": "10",
+         "label": "10"
+        },
+        {
+         "id": "16",
+         "label": "16"
+        },
+        {
+         "id": "12",
+         "label": "12"
+        }
+       ],
+       "answer": "16",
+       "hints": [
+        "Each number is doubled.",
+        "8 doubled is..."
+       ],
+       "explanation": "Each number doubles: 8 × 2 = 16.",
+       "misconceptions": {
+        "10": "ONE_FEATURE",
+        "12": "ONE_FEATURE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "two-change",
+       "type": "choice",
+       "prompt": "🟥 small, 🟦 big, 🟥 small, 🟦 big, ... What comes next?",
+       "options": [
+        {
+         "id": "a",
+         "label": "🟥 small"
+        },
+        {
+         "id": "b",
+         "label": "🟦 small"
+        },
+        {
+         "id": "c",
+         "label": "🟥 big"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Two things change: colour AND size.",
+        "Red is always small."
+       ],
+       "explanation": "Red-small and blue-big take turns, so red-small is next.",
+       "misconceptions": {
+        "b": "ONE_FEATURE",
+        "c": "ONE_FEATURE"
+       }
+      },
+      {
+       "id": "missing",
+       "type": "number",
+       "prompt": "Find the missing number: 5, 10, ?, 20, 25",
+       "answer": 15,
+       "hints": [
+        "The step is the same each time.",
+        "Count in 5s."
+       ],
+       "explanation": "Counting in fives: 5, 10, 15, 20, 25.",
+       "misconceptions": {
+        "12": "ONE_FEATURE",
+        "11": "REPEAT_LAST"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "clue-detective",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "logic",
+   "topic": "Reasoning",
+   "subtopic": "Deduction",
+   "objective": "LG.DEDUCE.CLUES",
+   "title": "Clue Detective",
+   "pathOrder": 3,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "A detective uses clues to rule things out. Read one clue, cross off what it can't be, then read the next clue. The answer is what is left!",
+    "example": "Clue: 'It is not red.' → cross off the red ones."
+   },
+   "misconceptions": [
+    {
+     "code": "IGNORE_NOT",
+     "description": "Misses the word 'not' in a clue.",
+     "remedy": "Read every word. 'Not' flips the meaning."
+    },
+    {
+     "code": "ONE_CLUE",
+     "description": "Uses only one clue when the answer needs all of them.",
+     "remedy": "After each clue, check what is still possible. Use every clue."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "animal",
+       "type": "choice",
+       "prompt": "I have four legs. I say 'moo'. Who am I?",
+       "options": [
+        {
+         "id": "cow",
+         "label": "cow",
+         "emoji": "🐄"
+        },
+        {
+         "id": "dog",
+         "label": "dog",
+         "emoji": "🐕"
+        },
+        {
+         "id": "hen",
+         "label": "hen",
+         "emoji": "🐔"
+        }
+       ],
+       "answer": "cow",
+       "hints": [
+        "Which animal says moo?",
+        "Hens have two legs."
+       ],
+       "explanation": "A cow has four legs and says moo.",
+       "misconceptions": {
+        "dog": "ONE_CLUE",
+        "hen": "ONE_CLUE"
+       }
+      },
+      {
+       "id": "notred",
+       "type": "choice",
+       "prompt": "Which fruit is NOT red and NOT yellow?",
+       "options": [
+        {
+         "id": "strawberry",
+         "label": "strawberry",
+         "emoji": "🍓"
+        },
+        {
+         "id": "banana",
+         "label": "banana",
+         "emoji": "🍌"
+        },
+        {
+         "id": "grapes",
+         "label": "green grapes",
+         "emoji": "🍇"
+        }
+       ],
+       "answer": "grapes",
+       "hints": [
+        "Cross off the red one.",
+        "Cross off the yellow one."
+       ],
+       "explanation": "Strawberries are red and bananas are yellow, so it's the grapes.",
+       "misconceptions": {
+        "strawberry": "IGNORE_NOT",
+        "banana": "IGNORE_NOT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "who",
+       "type": "choice",
+       "prompt": "Tom, Ana and Raj. Tom has a hat. Ana does not have glasses. Who has glasses?",
+       "options": [
+        {
+         "id": "tom",
+         "label": "Tom"
+        },
+        {
+         "id": "ana",
+         "label": "Ana"
+        },
+        {
+         "id": "raj",
+         "label": "Raj"
+        }
+       ],
+       "answer": "raj",
+       "hints": [
+        "Ana doesn't have glasses.",
+        "Tom has the hat, so..."
+       ],
+       "explanation": "Ana doesn't, Tom has the hat, so Raj has the glasses.",
+       "misconceptions": {
+        "ana": "IGNORE_NOT",
+        "tom": "ONE_CLUE"
+       }
+      },
+      {
+       "id": "number",
+       "type": "choice",
+       "prompt": "I am a number less than 10. I am more than 6. I am even. What am I?",
+       "options": [
+        {
+         "id": "8",
+         "label": "8"
+        },
+        {
+         "id": "7",
+         "label": "7"
+        },
+        {
+         "id": "4",
+         "label": "4"
+        }
+       ],
+       "answer": "8",
+       "hints": [
+        "Numbers between 6 and 10: 7, 8, 9.",
+        "Which is even?"
+       ],
+       "explanation": "Between 6 and 10 are 7, 8 and 9. The even one is 8.",
+       "misconceptions": {
+        "7": "ONE_CLUE",
+        "4": "ONE_CLUE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "house",
+       "type": "choice",
+       "prompt": "The red house is between the blue and green houses. The blue house is on the left. Which house is on the right?",
+       "options": [
+        {
+         "id": "green",
+         "label": "green"
+        },
+        {
+         "id": "red",
+         "label": "red"
+        },
+        {
+         "id": "blue",
+         "label": "blue"
+        }
+       ],
+       "answer": "green",
+       "hints": [
+        "Blue is on the left.",
+        "Red is in the middle."
+       ],
+       "explanation": "Blue, red, green: the green house is on the right.",
+       "misconceptions": {
+        "red": "ONE_CLUE",
+        "blue": "IGNORE_NOT"
+       }
+      },
+      {
+       "id": "pet",
+       "type": "choice",
+       "prompt": "Sam's pet is not a fish. It does not have feathers. It barks. What is it?",
+       "options": [
+        {
+         "id": "dog",
+         "label": "dog",
+         "emoji": "🐕"
+        },
+        {
+         "id": "parrot",
+         "label": "parrot",
+         "emoji": "🦜"
+        },
+        {
+         "id": "goldfish",
+         "label": "goldfish",
+         "emoji": "🐠"
+        }
+       ],
+       "answer": "dog",
+       "hints": [
+        "Rule out the fish.",
+        "Rule out the feathers."
+       ],
+       "explanation": "Not a fish, no feathers, and it barks: it's a dog.",
+       "misconceptions": {
+        "parrot": "IGNORE_NOT",
+        "goldfish": "IGNORE_NOT"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "logic-grid-puzzles",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "logic",
+   "topic": "Reasoning",
+   "subtopic": "Logic grids",
+   "objective": "LG.DEDUCE.GRID",
+   "title": "Logic Grid Puzzles",
+   "pathOrder": 1,
+   "estimatedMinutes": 7,
+   "isFree": true,
+   "learn": {
+    "text": "In a logic grid puzzle, each person matches exactly one thing. Use each clue to rule out matches. When only one option is left for someone, it must be theirs, and nobody else can have it.",
+    "example": "If Mia doesn't have the cat and Leo has the dog, Mia must have the third pet."
+   },
+   "misconceptions": [
+    {
+     "code": "REUSE_ITEM",
+     "description": "Gives the same item to two people.",
+     "remedy": "Each item belongs to exactly one person. Once used, cross it off for everyone else."
+    },
+    {
+     "code": "IGNORE_NEGATIVE",
+     "description": "Ignores 'not' clues, which often matter most.",
+     "remedy": "'Not' clues rule things out. Mark them first."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": "always-sometimes-never",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "pets",
+       "type": "choice",
+       "prompt": "Ava, Ben and Cy each have one pet: cat, dog or fish. Ben has the dog. Ava does not have the fish. Who has the fish?",
+       "options": [
+        {
+         "id": "cy",
+         "label": "Cy"
+        },
+        {
+         "id": "ava",
+         "label": "Ava"
+        },
+        {
+         "id": "ben",
+         "label": "Ben"
+        }
+       ],
+       "answer": "cy",
+       "hints": [
+        "Ben has the dog.",
+        "Ava doesn't have the fish."
+       ],
+       "explanation": "Ben has the dog; Ava can't have the fish, so Ava has the cat and Cy has the fish.",
+       "misconceptions": {
+        "ava": "IGNORE_NEGATIVE",
+        "ben": "REUSE_ITEM"
+       }
+      },
+      {
+       "id": "pets2",
+       "type": "choice",
+       "prompt": "Same puzzle: who has the cat?",
+       "options": [
+        {
+         "id": "ava",
+         "label": "Ava"
+        },
+        {
+         "id": "cy",
+         "label": "Cy"
+        },
+        {
+         "id": "ben",
+         "label": "Ben"
+        }
+       ],
+       "answer": "ava",
+       "hints": [
+        "Ben = dog, Cy = fish.",
+        "What's left for Ava?"
+       ],
+       "explanation": "Only the cat is left, so Ava has the cat.",
+       "misconceptions": {
+        "cy": "REUSE_ITEM",
+        "ben": "REUSE_ITEM"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "sports",
+       "type": "choice",
+       "prompt": "Lia, Max, Nia play tennis, football and chess (one each). Lia hates ball games. Max doesn't play tennis. What does Nia play?",
+       "options": [
+        {
+         "id": "tennis",
+         "label": "tennis",
+         "emoji": "🎾"
+        },
+        {
+         "id": "football",
+         "label": "football",
+         "emoji": "⚽"
+        },
+        {
+         "id": "chess",
+         "label": "chess",
+         "emoji": "♟️"
+        }
+       ],
+       "answer": "tennis",
+       "hints": [
+        "Lia hates ball games, so Lia plays...",
+        "Max can't play tennis or chess."
+       ],
+       "explanation": "Lia plays chess. Max can't play tennis, so Max plays football. Nia plays tennis.",
+       "misconceptions": {
+        "football": "IGNORE_NEGATIVE",
+        "chess": "REUSE_ITEM"
+       }
+      },
+      {
+       "id": "race",
+       "type": "choice",
+       "prompt": "Four runners. Pia beat Quin. Quin beat Rui. Sol was last. Who won?",
+       "options": [
+        {
+         "id": "pia",
+         "label": "Pia"
+        },
+        {
+         "id": "quin",
+         "label": "Quin"
+        },
+        {
+         "id": "sol",
+         "label": "Sol"
+        }
+       ],
+       "answer": "pia",
+       "hints": [
+        "Put them in order from the clues.",
+        "Sol was last."
+       ],
+       "explanation": "Order: Pia, Quin, Rui, Sol. Pia won.",
+       "misconceptions": {
+        "quin": "IGNORE_NEGATIVE",
+        "sol": "IGNORE_NEGATIVE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "race-order",
+       "type": "order",
+       "prompt": "Pia beat Quin. Quin beat Rui. Sol was last. Put them in finishing order.",
+       "tiles": [
+        {
+         "id": "rui",
+         "label": "Rui"
+        },
+        {
+         "id": "sol",
+         "label": "Sol"
+        },
+        {
+         "id": "pia",
+         "label": "Pia"
+        },
+        {
+         "id": "quin",
+         "label": "Quin"
+        }
+       ],
+       "answer": [
+        "pia",
+        "quin",
+        "rui",
+        "sol"
+       ],
+       "hints": [
+        "Who beat everyone they raced?",
+        "Sol was last."
+       ],
+       "explanation": "Pia, Quin, Rui, Sol."
+      },
+      {
+       "id": "lunch",
+       "type": "choice",
+       "prompt": "Three friends: Ali, Bo, Cat. Lunches: soup, salad, pasta. Bo has neither soup nor pasta. Cat doesn't have soup. Who has pasta?",
+       "options": [
+        {
+         "id": "cat",
+         "label": "Cat"
+        },
+        {
+         "id": "ali",
+         "label": "Ali"
+        },
+        {
+         "id": "bo",
+         "label": "Bo"
+        }
+       ],
+       "answer": "cat",
+       "hints": [
+        "Bo must have salad.",
+        "Cat doesn't have soup..."
+       ],
+       "explanation": "Bo has salad. Cat can't have soup, so Cat has pasta, and Ali has soup.",
+       "misconceptions": {
+        "ali": "IGNORE_NEGATIVE",
+        "bo": "REUSE_ITEM"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "always-sometimes-never",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "logic",
+   "topic": "Reasoning",
+   "subtopic": "True, false and always",
+   "objective": "LG.REASON.STATEMENTS",
+   "title": "Always, Sometimes, Never",
+   "pathOrder": 2,
+   "estimatedMinutes": 7,
+   "isFree": false,
+   "learn": {
+    "text": "Mathematicians test statements. 'Always true' means it works for every example. 'Sometimes true' means it works for some but not all. 'Never true' means no example works. One counter-example is enough to show a statement isn't always true.",
+    "example": "'Odd + odd = even' is always true: 3 + 5 = 8, 7 + 9 = 16..."
+   },
+   "misconceptions": [
+    {
+     "code": "ONE_EXAMPLE_PROOF",
+     "description": "Thinks one example that works proves 'always'.",
+     "remedy": "One example doesn't prove 'always'. Try to find one that breaks it."
+    },
+    {
+     "code": "SOMETIMES_NEVER",
+     "description": "Confuses 'sometimes' and 'never'.",
+     "remedy": "If you can find even one example that works, it's not 'never'."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": "flip-and-turn",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "oddodd",
+       "type": "choice",
+       "prompt": "Odd + odd = even.",
+       "options": [
+        {
+         "id": "always",
+         "label": "Always true"
+        },
+        {
+         "id": "sometimes",
+         "label": "Sometimes true"
+        },
+        {
+         "id": "never",
+         "label": "Never true"
+        }
+       ],
+       "answer": "always",
+       "hints": [
+        "Try 3 + 5 and 7 + 9.",
+        "Can you find one that fails?"
+       ],
+       "explanation": "Always: odd + odd is always even (3+5=8, 7+9=16).",
+       "misconceptions": {
+        "sometimes": "ONE_EXAMPLE_PROOF",
+        "never": "SOMETIMES_NEVER"
+       }
+      },
+      {
+       "id": "bigger",
+       "type": "choice",
+       "prompt": "Multiplying makes a number bigger.",
+       "options": [
+        {
+         "id": "always",
+         "label": "Always true"
+        },
+        {
+         "id": "sometimes",
+         "label": "Sometimes true"
+        },
+        {
+         "id": "never",
+         "label": "Never true"
+        }
+       ],
+       "answer": "sometimes",
+       "hints": [
+        "Try 5 × 2.",
+        "Now try 5 × 1, or 5 × 0."
+       ],
+       "explanation": "Sometimes: 5 × 2 = 10 is bigger, but 5 × 1 = 5 and 5 × 0 = 0 are not.",
+       "misconceptions": {
+        "always": "ONE_EXAMPLE_PROOF",
+        "never": "SOMETIMES_NEVER"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "triangle",
+       "type": "choice",
+       "prompt": "A triangle has 4 corners.",
+       "options": [
+        {
+         "id": "always",
+         "label": "Always true"
+        },
+        {
+         "id": "sometimes",
+         "label": "Sometimes true"
+        },
+        {
+         "id": "never",
+         "label": "Never true"
+        }
+       ],
+       "answer": "never",
+       "hints": [
+        "Count a triangle's corners.",
+        "'Tri' means three."
+       ],
+       "explanation": "Never: every triangle has exactly 3 corners.",
+       "misconceptions": {
+        "sometimes": "SOMETIMES_NEVER",
+        "always": "ONE_EXAMPLE_PROOF"
+       }
+      },
+      {
+       "id": "counter",
+       "type": "choice",
+       "prompt": "Ella says 'All birds can fly.' Which is a counter-example?",
+       "options": [
+        {
+         "id": "penguin",
+         "label": "a penguin",
+         "emoji": "🐧"
+        },
+        {
+         "id": "eagle",
+         "label": "an eagle",
+         "emoji": "🦅"
+        },
+        {
+         "id": "robin",
+         "label": "a robin",
+         "emoji": "🐦"
+        }
+       ],
+       "answer": "penguin",
+       "hints": [
+        "A counter-example breaks the rule.",
+        "Find a bird that can't fly."
+       ],
+       "explanation": "A penguin is a bird that can't fly, so 'all birds can fly' is false.",
+       "misconceptions": {
+        "eagle": "ONE_EXAMPLE_PROOF",
+        "robin": "ONE_EXAMPLE_PROOF"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "square",
+       "type": "choice",
+       "prompt": "A square is a rectangle.",
+       "options": [
+        {
+         "id": "always",
+         "label": "Always true"
+        },
+        {
+         "id": "sometimes",
+         "label": "Sometimes true"
+        },
+        {
+         "id": "never",
+         "label": "Never true"
+        }
+       ],
+       "answer": "always",
+       "hints": [
+        "A rectangle has 4 right angles and opposite sides equal.",
+        "Does a square have those?"
+       ],
+       "explanation": "Always: a square has 4 right angles and equal opposite sides, so it's a special rectangle.",
+       "misconceptions": {
+        "never": "SOMETIMES_NEVER",
+        "sometimes": "SOMETIMES_NEVER"
+       }
+      },
+      {
+       "id": "halving",
+       "type": "choice",
+       "prompt": "Halving a whole number gives a whole number.",
+       "options": [
+        {
+         "id": "always",
+         "label": "Always true"
+        },
+        {
+         "id": "sometimes",
+         "label": "Sometimes true"
+        },
+        {
+         "id": "never",
+         "label": "Never true"
+        }
+       ],
+       "answer": "sometimes",
+       "hints": [
+        "Try 8.",
+        "Now try 7."
+       ],
+       "explanation": "Sometimes: half of 8 is 4, but half of 7 is 3.5.",
+       "misconceptions": {
+        "always": "ONE_EXAMPLE_PROOF",
+        "never": "SOMETIMES_NEVER"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "flip-and-turn",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "logic",
+   "topic": "Spatial",
+   "subtopic": "Reflection and rotation",
+   "objective": "LG.SPATIAL.TRANSFORM",
+   "title": "Flip and Turn",
+   "pathOrder": 3,
+   "estimatedMinutes": 7,
+   "isFree": false,
+   "learn": {
+    "text": "A reflection flips a shape over a mirror line: left and right swap. A rotation turns a shape around a point: a quarter turn is 90°, a half turn is 180°. Shapes keep their size when flipped or turned.",
+    "example": "Turning an arrow pointing up a quarter turn clockwise makes it point right."
+   },
+   "misconceptions": [
+    {
+     "code": "ROTATE_REFLECT",
+     "description": "Mixes up rotating (turning) and reflecting (flipping).",
+     "remedy": "Rotation turns it round. Reflection flips it like a mirror."
+    },
+    {
+     "code": "CLOCKWISE",
+     "description": "Turns the wrong way (anticlockwise instead of clockwise).",
+     "remedy": "Clockwise means the way clock hands move: top → right → bottom → left."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "quarter",
+       "type": "choice",
+       "prompt": "An arrow points up ⬆️. Turn it a quarter turn clockwise. Where does it point?",
+       "options": [
+        {
+         "id": "right",
+         "label": "➡️ right"
+        },
+        {
+         "id": "left",
+         "label": "⬅️ left"
+        },
+        {
+         "id": "down",
+         "label": "⬇️ down"
+        }
+       ],
+       "answer": "right",
+       "hints": [
+        "Clockwise follows the clock hands.",
+        "From 12 o'clock to 3 o'clock."
+       ],
+       "explanation": "A quarter turn clockwise from up points right.",
+       "misconceptions": {
+        "left": "CLOCKWISE",
+        "down": "ROTATE_REFLECT"
+       }
+      },
+      {
+       "id": "half",
+       "type": "choice",
+       "prompt": "An arrow points right ➡️. Turn it a half turn. Where does it point?",
+       "options": [
+        {
+         "id": "left",
+         "label": "⬅️ left"
+        },
+        {
+         "id": "up",
+         "label": "⬆️ up"
+        },
+        {
+         "id": "right",
+         "label": "➡️ right"
+        }
+       ],
+       "answer": "left",
+       "hints": [
+        "A half turn is 180°.",
+        "It ends up facing the opposite way."
+       ],
+       "explanation": "A half turn makes it face the opposite way: left.",
+       "misconceptions": {
+        "up": "CLOCKWISE",
+        "right": "ROTATE_REFLECT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "mirror",
+       "type": "choice",
+       "prompt": "Which capital letter looks exactly the same in a mirror stood upright next to it?",
+       "options": [
+        {
+         "id": "A",
+         "label": "A"
+        },
+        {
+         "id": "R",
+         "label": "R"
+        },
+        {
+         "id": "F",
+         "label": "F"
+        }
+       ],
+       "answer": "A",
+       "hints": [
+        "Imagine folding the letter down the middle.",
+        "Do both halves match?"
+       ],
+       "explanation": "A has a vertical line of symmetry, so its reflection looks the same. R and F would face the other way.",
+       "misconceptions": {
+        "R": "ROTATE_REFLECT",
+        "F": "ROTATE_REFLECT"
+       }
+      },
+      {
+       "id": "degrees",
+       "type": "number",
+       "prompt": "How many degrees is a three-quarter turn?",
+       "answer": 270,
+       "hints": [
+        "A quarter turn is 90°.",
+        "3 × 90"
+       ],
+       "explanation": "Three quarter turns: 3 × 90° = 270°.",
+       "unit": "°",
+       "misconceptions": {
+        "90": "ROTATE_REFLECT",
+        "180": "ROTATE_REFLECT",
+        "360": "ROTATE_REFLECT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "clock",
+       "type": "choice",
+       "prompt": "A clock's minute hand points to 12. It turns a quarter turn clockwise. Where does it point?",
+       "options": [
+        {
+         "id": "3",
+         "label": "3"
+        },
+        {
+         "id": "9",
+         "label": "9"
+        },
+        {
+         "id": "6",
+         "label": "6"
+        }
+       ],
+       "answer": "3",
+       "hints": [
+        "Clockwise from 12.",
+        "A quarter of the way round."
+       ],
+       "explanation": "A quarter turn clockwise from 12 is 3.",
+       "misconceptions": {
+        "9": "CLOCKWISE",
+        "6": "ROTATE_REFLECT"
+       }
+      },
+      {
+       "id": "same-size",
+       "type": "choice",
+       "prompt": "After a reflection, is a shape bigger, smaller or the same size?",
+       "options": [
+        {
+         "id": "same",
+         "label": "the same size"
+        },
+        {
+         "id": "bigger",
+         "label": "bigger"
+        },
+        {
+         "id": "smaller",
+         "label": "smaller"
+        }
+       ],
+       "answer": "same",
+       "hints": [
+        "A mirror doesn't stretch things.",
+        "Only the direction changes."
+       ],
+       "explanation": "Reflections and rotations never change size, only position or direction.",
+       "misconceptions": {
+        "bigger": "ROTATE_REFLECT",
+        "smaller": "ROTATE_REFLECT"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

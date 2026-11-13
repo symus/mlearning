@@ -7,7 +7,7 @@ import { PLAN_FEATURES } from "@/lib/pricing";
 import { Avatar } from "@/components/avatar";
 import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { WeeklyMinutesChart } from "@/components/parent/charts";
 
 export const metadata = { title: "Parent overview" };
@@ -34,7 +34,7 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
 
       {children.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 py-12 text-center">
-          <Pip className="size-24" />
+          <Muchi className="size-24" />
           <h2 className="text-2xl font-bold">Add your first child</h2>
           <p className="max-w-md text-ink-soft">Create a profile with just a nickname and birth year. We&apos;ll choose the right learning experience for their age.</p>
           <ButtonLink href="/parent/children/new" size="lg">Add a child</ButtonLink>
@@ -53,7 +53,10 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
                     <h2 className="truncate text-2xl font-bold">{child.nickname}</h2>
                     <p className="text-sm text-ink-muted">About {ageFromBirthYear(child.birthYear)} · {band.name}</p>
                   </div>
-                  <ButtonLink href={`/parent/children/${child.id}`} variant="secondary" size="sm">Progress</ButtonLink>
+                  <div className="flex flex-col gap-1.5 sm:flex-row">
+                    <ButtonLink href={`/parent/children/${child.id}`} variant="secondary" size="sm">Progress</ButtonLink>
+                    <ButtonLink href={`/parent/children/${child.id}/report`} variant="secondary" size="sm">Weekly report</ButtonLink>
+                  </div>
                 </div>
                 <dl className="grid grid-cols-3 gap-3 text-center">
                   <div className="rounded-xl bg-paper p-3"><dt className="text-xs font-bold text-ink-muted">This week</dt><dd className="font-display text-2xl font-bold">{r.minutesThisWeek}<span className="text-sm"> min</span></dd></div>

@@ -11,7 +11,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import type { Watch } from "@/lib/content/schema";
 import { Visual } from "./visual";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { composeLine, MusicEngine, splitWords } from "./music";
 
 const noopSubscribe = () => () => {};
@@ -84,7 +84,7 @@ function SongPlayer({ watch, onDone, doneLabel }: { watch: Extract<Watch, { kind
   const [stage, setStage] = useState<"listen" | "sing" | null>(null);
   const [playing, setPlaying] = useState(false);
   const [finished, setFinished] = useState(false);
-  const [echo, setEcho] = useState(true); // Pip says each line first, then the child sings it
+  const [echo, setEcho] = useState(true); // Muchi says each line first, then the child sings it
   const engine = useRef<MusicEngine | null>(null);
   const timers = useRef<ReturnType<typeof setTimeout>[]>([]);
   const run = useRef(0); // bumps on stop/restart so stale callbacks are ignored
@@ -175,7 +175,7 @@ function SongPlayer({ watch, onDone, doneLabel }: { watch: Extract<Watch, { kind
       <div className="relative flex min-h-56 w-full items-center justify-center overflow-hidden rounded-3xl bg-gradient-to-b from-sky-soft to-paper p-6">
         {stage && (
           <p className="absolute left-3 top-3 rounded-full bg-white/90 px-3 py-1 text-sm font-bold shadow-sm" aria-live="polite">
-            {stage === "listen" ? "👂 Listen to Pip…" : "🎤 Your turn — sing!"}
+            {stage === "listen" ? "👂 Listen to Muchi…" : "🎤 Your turn — sing!"}
           </p>
         )}
         {stage === "sing" && (
@@ -187,7 +187,7 @@ function SongPlayer({ watch, onDone, doneLabel }: { watch: Extract<Watch, { kind
         <AnimatePresence mode="wait">
           {line < 0 ? (
             <motion.div key="intro" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}>
-              <Pip className="size-32" mood="cheer" />
+              <Muchi className="size-32" mood="cheer" />
             </motion.div>
           ) : (
             <motion.div
@@ -199,7 +199,7 @@ function SongPlayer({ watch, onDone, doneLabel }: { watch: Extract<Watch, { kind
             >
               {/* bounce on every beat */}
               <motion.div key={word} animate={stage === "sing" ? { scale: [1, 1.07, 1] } : {}} transition={{ duration: 0.3 }}>
-                {current.visual ? <Visual visual={current.visual} /> : <Pip className="size-32" mood="cheer" />}
+                {current.visual ? <Visual visual={current.visual} /> : <Muchi className="size-32" mood="cheer" />}
               </motion.div>
             </motion.div>
           )}
@@ -244,7 +244,7 @@ function SongPlayer({ watch, onDone, doneLabel }: { watch: Extract<Watch, { kind
       {speechOk && (
         <label className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-ink-soft">
           <input type="checkbox" checked={echo} onChange={(e) => setEcho(e.target.checked)} disabled={playing} className="size-5 accent-berry" />
-          Pip says each line first, then you sing it
+          Muchi says each line first, then you sing it
         </label>
       )}
       {!audioOk && <p className="text-sm text-ink-muted">This device can&apos;t play music, so ask a grown-up to sing the words with you!</p>}

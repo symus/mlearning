@@ -112,6 +112,28 @@ export function Visual({ visual, className }: { visual: VisualSpec; className?: 
           ))}
         </div>
       );
+    case "robot": {
+      const at = (cells: [number, number][] | undefined, r: number, c: number) => cells?.some(([rr, cc]) => rr === r && cc === c);
+      return (
+        <div
+          className={clsx("inline-grid gap-1 rounded-2xl bg-sky-soft p-2", className)}
+          style={{ gridTemplateColumns: `repeat(${visual.cols}, minmax(0, 1fr))` }}
+          role="img"
+          aria-label={`Grid ${visual.rows} by ${visual.cols}. Robot at row ${visual.robot[0] + 1}, column ${visual.robot[1] + 1}. Flag at row ${visual.goal[0] + 1}, column ${visual.goal[1] + 1}.${visual.walls?.length ? ` ${visual.walls.length} wall(s).` : ""}`}
+        >
+          {Array.from({ length: visual.rows * visual.cols }, (_, i) => {
+            const r = Math.floor(i / visual.cols), c = i % visual.cols;
+            const robot = visual.robot[0] === r && visual.robot[1] === c;
+            const goal = visual.goal[0] === r && visual.goal[1] === c;
+            return (
+              <span key={i} className={clsx("grid size-11 place-items-center rounded-lg text-2xl sm:size-12", at(visual.walls, r, c) ? "bg-[#a8743a]" : "bg-white")} aria-hidden>
+                {robot ? "🤖" : goal ? "🏁" : at(visual.walls, r, c) ? "🧱" : at(visual.items, r, c) ? "⭐" : ""}
+              </span>
+            );
+          })}
+        </div>
+      );
+    }
     case "grid":
       return (
         <div className={clsx("flex flex-col items-center", className)} role="img" aria-label={`Grid ${visual.cols} by ${visual.rows}${visual.unit ? ` ${visual.unit}` : ""}`}>

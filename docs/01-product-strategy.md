@@ -1,6 +1,6 @@
 # 1. Product strategy
 
-> Product name: **Arivupulla** (Tamil அறிவுப்புள்ள, "Intelligent Kid"). Change it in `src/config/brand.ts`. Mascot: **Pip**, an original star-sprout character.
+> Product name: **Arivupulla** (Tamil அறிவுப்புள்ள, "Intelligent Kid"). Change it in `src/config/brand.ts`. Guide character: **Muchi**, an original star-sprout character.
 
 ## Vision
 

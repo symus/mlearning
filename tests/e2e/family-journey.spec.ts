@@ -59,7 +59,8 @@ test("a parent signs up, adds a child, the child learns, and progress appears", 
   await page.getByRole("link", { name: /Let a child play/ }).click();
   await page.getByRole("button", { name: /Ola/ }).click();
   for (let i = 0; i < 3; i++) await page.getByRole("button", { name: "Next →" }).click();
-  await page.getByRole("button", { name: "Start exploring!" }).click();
+  // The page changes instantly after this click; wait for the universe rather than the click itself.
+  await Promise.all([page.waitForURL(/\/play\?welcome=1/), page.getByRole("button", { name: "Start exploring!" }).click({ timeout: 5000 }).catch(() => {})]);
   await expect(page.getByRole("heading", { name: "Your learning universe" })).toBeVisible();
 
   // Child mode blocks the parent area
@@ -68,14 +69,17 @@ test("a parent signs up, adds a child, the child learns, and progress appears", 
   await page.getByRole("link", { name: "← Back to playing" }).click();
 
   // Play a free maths activity
-  await page.getByRole("link", { name: /Number Nebula/ }).click();
+  await page.getByRole("link", { name: /Math Galaxy/ }).click();
   await page.getByRole("link", { name: /Rocket Bonds to 10/ }).click();
+  // Muchi introduces the lesson and its objective.
+  await expect(page.getByText("Today you will learn")).toBeVisible();
+  await page.getByRole("button", { name: /Let's go!/ }).click();
   // This activity opens with a sing-along; it can be skipped.
   await expect(page.getByRole("heading", { name: "Make Ten!" })).toBeVisible();
   await page.getByRole("button", { name: "Skip" }).click();
   await page.getByRole("button", { name: "Let's practise!" }).click();
   await playThrough(page);
-  await expect(page.getByText(/\d+ \/ \d+/)).toBeVisible();
+  await expect(page.getByText(/\d+ of \d+ correct/)).toBeVisible();
 
   // Locked content shows no price to children
   await page.getByRole("link", { name: "Back to the map" }).click();

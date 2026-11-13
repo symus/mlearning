@@ -31,6 +31,11 @@ export const INTERESTS = [
 ] as const;
 const interestIds = INTERESTS.map((i) => i.id) as [string, ...string[]];
 
+export const TEXT_SIZES = ["normal", "large", "xlarge"] as const;
+export type TextSize = (typeof TEXT_SIZES)[number];
+/** Parent-selectable healthy daily limits (minutes). */
+export const DAILY_LIMITS = [20, 30, 45, 60, 90];
+
 export const AVATAR_CHARACTERS = ["fox", "owl", "bear", "cat", "dragon", "robot"] as const;
 export const AVATAR_COLOURS = ["sun", "coral", "leaf", "sky", "berry", "sand"] as const;
 
@@ -79,6 +84,20 @@ export const childSchema = z.object({
   }),
   interests: z.array(z.enum(interestIds)).max(5, { message: "Pick up to 5 interests." }).default([]),
   narration: z.boolean().default(true),
+  soundEffects: z.boolean().default(true),
+  textSize: z.enum(TEXT_SIZES).default("normal"),
+  /** "" = no limit. */
+  dailyLimitMinutes: z
+    .union([z.literal(""), z.coerce.number().int()])
+    .refine((v) => v === "" || DAILY_LIMITS.includes(v), { message: "Choose a daily limit." })
+    .transform((v) => (v === "" ? null : v))
+    .default(null),
+});
+
+export const childPrefsSchema = z.object({
+  soundEffects: z.boolean(),
+  narration: z.boolean(),
+  textSize: z.enum(TEXT_SIZES),
 });
 
 export const pinSchema = z.object({ pin });

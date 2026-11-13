@@ -8,6 +8,8 @@ import { encouragement, updateMastery, type ItemResult } from "@/lib/learning/ad
 import { freeLimitReached, getPlan, getToday } from "@/lib/learning/queries";
 import { ACHIEVEMENTS, type AchievementCode } from "@/lib/achievements";
 import { recordJourneyResult } from "@/lib/learning/journey";
+import { limitStatus, type LimitStatus } from "@/lib/learning/limits";
+import { STICKER_ACCURACY, stickerFor } from "@/lib/rewards";
 
 async function requireChildSession() {
   const session = await getSession();
@@ -30,6 +32,8 @@ export async function startAttempt(slug: string, startLevel: number): Promise<{ 
   const plan = await getPlan(session.userId);
   if (plan === "FREE" && !activity.isFree) return { error: "locked" };
   if (await freeLimitReached(child.id, plan)) return { error: "limit" };
+  // Healthy daily limit set by the parent (a lesson already started can still finish).
+  if (limitStatus((await getToday(child.id)).minutes, child.dailyLimitMinutes) === "reached") return { error: "daily-limit" };
   const attempt = await db.attempt.create({ data: { childId: child.id, activityId: activity.id, startLevel } });
   return { attemptId: attempt.id };
 }
@@ -89,6 +93,9 @@ export interface AttemptSummary {
   todayMinutes: number;
   dailyGoalMinutes: number;
   journey: Awaited<ReturnType<typeof recordJourneyResult>>;
+  /** Sticker earned for passing this activity for the first time. */
+  newSticker: { emoji: string; name: string } | null;
+  limit: LimitStatus;
 }
 
 export async function finishAttempt(attemptId: string): Promise<AttemptSummary> {
@@ -147,6 +154,13 @@ export async function finishAttempt(attemptId: string): Promise<AttemptSummary> 
   const accuracy = results.length ? correct / results.length : 0;
   const journey = await recordJourneyResult(child.id, attempt.activity.slug, accuracy);
 
+  // Sticker reward: fixed per activity, earned once by passing it.
+  let newSticker: AttemptSummary["newSticker"] = null;
+  if (accuracy >= STICKER_ACCURACY) {
+    const created = await db.childSticker.createMany({ data: [{ childId: child.id, activitySlug: attempt.activity.slug }], skipDuplicates: true });
+    if (created.count) newSticker = stickerFor(attempt.activity);
+  }
+
   return {
     correct,
     total: results.length,
@@ -159,5 +173,7 @@ export async function finishAttempt(attemptId: string): Promise<AttemptSummary> 
     todayMinutes: today.minutes,
     dailyGoalMinutes: child.dailyGoalMinutes,
     journey,
+    newSticker,
+    limit: limitStatus(today.minutes, child.dailyLimitMinutes),
   };
 }

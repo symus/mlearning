@@ -124,3 +124,13 @@ h1, h2, h3, .font-display {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Muchi's little celebration jump. */
+@keyframes cheer-jump {
+  0%, 100% { transform: translateY(0) rotate(0); }
+  30% { transform: translateY(-14px) rotate(-6deg); }
+  60% { transform: translateY(0) rotate(4deg); }
+}
+.animate-cheer {
+  animation: cheer-jump 0.9s ease-in-out 2;
+}

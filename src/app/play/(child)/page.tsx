@@ -2,13 +2,14 @@ import Link from "next/link";
 import clsx from "clsx";
 import { db } from "@/lib/db";
 import { requireChild } from "@/lib/auth/dal";
-import { WORLDS } from "@/lib/worlds";
+import { SUBJECT_LABEL, WORLDS } from "@/lib/worlds";
 import { getPlan, getToday, getWorldPath } from "@/lib/learning/queries";
 import { ACHIEVEMENTS } from "@/lib/achievements";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { WorldArt } from "@/components/art/worlds";
 import { Starfield } from "@/components/child/starfield";
 import { journeysForBand, getJourneyView } from "@/lib/learning/journey";
+import { limitStatus } from "@/lib/learning/limits";
 
 export const metadata = { title: "Learning universe" };
 
@@ -16,13 +17,15 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
   const { session, child } = await requireChild();
   const sp = await searchParams;
   const plan = await getPlan(session.userId);
-  const [maths, reading, today, achievements] = await Promise.all([
-    getWorldPath(child.id, child.ageBand, "maths", plan),
-    getWorldPath(child.id, child.ageBand, "reading", plan),
+  const openWorlds = WORLDS.filter((w) => w.status === "open");
+  const [paths, today, achievements] = await Promise.all([
+    Promise.all(openWorlds.map((w) => getWorldPath(child.id, child.ageBand, w.subject, plan))),
     getToday(child.id),
     db.childAchievement.findMany({ where: { childId: child.id }, orderBy: { earnedAt: "desc" } }),
   ]);
   const goalMet = today.minutes >= child.dailyGoalMinutes;
+  const limit = limitStatus(today.minutes, child.dailyLimitMinutes);
+  const stickerCount = await db.childSticker.count({ where: { childId: child.id } });
   const journeyViews = await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)));
   // Sing-along shelf: activities in this age group that open with a song or video.
   const songs = (
@@ -32,15 +35,26 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
     .filter((a) => a.watch);
   // Alternate subjects day by day so both get attention.
   const preferReading = new Date().getDate() % 2 === 0;
+  const pathFor = (subject: string) => paths[openWorlds.findIndex((w) => w.subject === subject)] ?? null;
+  const maths = pathFor("maths")!;
+  const reading = pathFor("reading")!;
   const picks = (preferReading ? [reading, maths] : [maths, reading]).map((p) => p.nodes.find((n) => n.slug === p.nextSlug)).filter(Boolean);
   const next = picks[0];
-  const review = [maths, reading].flatMap((p) => p.nodes).find((n) => n.state === "review" && !n.locked);
+  const review = paths.flatMap((p) => p.nodes).find((n) => n.state === "review" && !n.locked);
   const featured = review ?? next;
 
   return (
     <div className="space-y-10">
+      {limit === "reached" && (
+        <p role="status" className="rounded-[2rem] bg-sky-soft px-6 py-4 text-center text-lg font-bold text-ink">
+          🌙 That&apos;s your learning time for today. Rest and play — new adventures open tomorrow! You can still visit your map and Sticker Book.
+        </p>
+      )}
+      {limit === "lastOne" && (
+        <p role="status" className="rounded-[2rem] bg-sun-soft px-6 py-4 text-center text-lg font-bold text-ink">⏳ Nearly time to stop. Pick one last adventure for today!</p>
+      )}
       <section className="flex flex-col items-center gap-4 rounded-[2rem] bg-white/10 p-6 text-center ring-1 ring-white/15 sm:flex-row sm:text-left">
-        <Pip className="size-24 shrink-0" mood={goalMet ? "cheer" : "happy"} />
+        <Muchi className="size-24 shrink-0" mood={goalMet ? "cheer" : "happy"} />
         <div className="flex-1">
           <p className="font-display text-2xl font-bold sm:text-3xl">
             {sp.welcome ? `Welcome to the universe, ${child.nickname}!` : goalMet ? `Amazing work today, ${child.nickname}!` : `Hi ${child.nickname}! Ready to explore?`}
@@ -50,7 +64,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
               ? "You reached today's goal. You can stop here and come back tomorrow — or explore a little more."
               : featured
                 ? review
-                  ? "Pip thinks it's time to visit an old friend. A quick review helps your brain remember!"
+                  ? "Muchi thinks it's time to visit an old friend. A quick review helps your brain remember!"
                   : "Here's a great next adventure for you."
                 : "Pick a world to explore!"}
           </p>
@@ -70,7 +84,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
             href={`/play/journey/${v.journey.slug}`}
             className="group relative flex items-center gap-5 overflow-hidden rounded-[2rem] bg-gradient-to-r from-[var(--color-world-grove)] to-[#0f6b4a] p-5 shadow-xl ring-1 ring-white/15 transition hover:-translate-y-0.5"
           >
-            <WorldArt slug="story-grove" float className="size-24 shrink-0 sm:size-28" />
+            <WorldArt slug="reading-kingdom" float className="size-24 shrink-0 sm:size-28" />
             <div className="flex-1">
               <p className="text-xs font-bold uppercase tracking-wider text-sun">📖 {v.journey.title}</p>
               <p className="font-display text-2xl font-bold leading-tight sm:text-3xl">
@@ -95,7 +109,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
                 <Link href={`/play/activity/${s.slug}`} className="flex w-44 flex-col gap-2 rounded-3xl bg-white/10 p-4 ring-1 ring-white/15 transition hover:-translate-y-0.5 hover:bg-white/15">
                   <span className="grid size-12 place-items-center rounded-2xl bg-berry text-2xl" aria-hidden>{s.watch!.kind === "video" ? "🎬" : "🎵"}</span>
                   <span className="font-display text-lg font-bold leading-tight">{s.watch!.title}</span>
-                  <span className="text-xs font-bold text-white/70">{s.subject === "maths" ? "Maths song" : "Reading song"}</span>
+                  <span className="text-xs font-bold text-white/70">{SUBJECT_LABEL[s.subject] ?? "Learning"} song</span>
                 </Link>
               </li>
             ))}
@@ -109,7 +123,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
         <p className="relative mb-6 text-white/75">Tap a world to explore. Stars show the skills you have mastered.</p>
         <ul className="relative grid grid-cols-2 gap-x-4 gap-y-6 sm:grid-cols-4">
           {WORLDS.map((w, i) => {
-            const path = w.subject === "maths" ? maths : w.subject === "reading" ? reading : null;
+            const path = w.status === "open" ? pathFor(w.subject) : null;
             const total = path?.nodes.length ?? 0;
             const mastered = path?.nodes.filter((n) => n.state === "mastered").length ?? 0;
             const open = w.status === "open";
@@ -139,7 +153,10 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
       </section>
 
       <section aria-labelledby="trophy-title" className="pt-10">
-        <h2 id="trophy-title" className="mb-3 text-2xl font-bold">My trophy shelf</h2>
+        <div className="mb-3 flex flex-wrap items-center justify-between gap-3">
+          <h2 id="trophy-title" className="text-2xl font-bold">My trophy shelf</h2>
+          <Link href="/play/stickers" className="btn-pop rounded-full bg-sun px-5 py-2.5 font-display text-lg font-bold text-ink">📒 My Sticker Book ({stickerCount})</Link>
+        </div>
         <ul className="flex flex-wrap gap-3">
           {Object.entries(ACHIEVEMENTS).map(([code, a]) => {
             const earned = achievements.some((x) => x.code === code);

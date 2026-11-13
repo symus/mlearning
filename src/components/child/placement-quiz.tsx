@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import type { PublicItem } from "@/lib/content/check";
 import { checkPlacementTier, savePlacement } from "@/app/actions/journey";
-import { Pip } from "@/components/mascot";
+import { Muchi } from "@/components/mascot";
 import { Visual } from "./visual";
 import { useSpeech } from "./use-speech";
 
@@ -72,10 +72,10 @@ export function PlacementQuiz({ slug, tiers, lessonCount, narration, young }: { 
         >
           {phase === "intro" && (
             <div className="flex flex-col items-center gap-5">
-              <Pip className="size-28" mood="cheer" />
+              <Muchi className="size-28" mood="cheer" />
               <h1 className="text-3xl font-bold">Let&apos;s find your starting place!</h1>
               <p className="max-w-md text-lg text-ink-soft">
-                Pip will ask a few questions. It&apos;s not a test — just do your best, and it&apos;s fine to not know some answers.
+                Muchi will ask a few questions. It&apos;s not a test — just do your best, and it&apos;s fine to not know some answers.
               </p>
               <button onClick={() => setPhase("quiz")} className="btn-pop min-h-16 rounded-full bg-leaf px-10 font-display text-2xl font-bold text-white">
                 I&apos;m ready!
@@ -116,14 +116,14 @@ export function PlacementQuiz({ slug, tiers, lessonCount, narration, young }: { 
 
           {phase === "saving" && (
             <div className="flex flex-col items-center gap-4 py-8">
-              <Pip className="size-24" mood="think" />
-              <p className="text-xl font-bold">Pip is choosing your lesson…</p>
+              <Muchi className="size-24" mood="think" />
+              <p className="text-xl font-bold">Muchi is choosing your lesson…</p>
             </div>
           )}
 
           {phase === "done" && start !== null && (
             <div className="flex flex-col items-center gap-5">
-              <Pip className="size-28" mood="cheer" />
+              <Muchi className="size-28" mood="cheer" />
               <h2 className="text-3xl font-bold">Brilliant work!</h2>
               <p className="text-xl">
                 You&apos;ll start at <strong>lesson {start}</strong> of {lessonCount}.

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { notFound } from "next/navigation";
 import { db } from "@/lib/db";
 import { getOwnedChild, requireParent } from "@/lib/auth/dal";
@@ -12,6 +13,8 @@ import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { ChildForm } from "@/components/parent/child-form";
 import { MasteryBars, WeeklyMinutesChart } from "@/components/parent/charts";
+import { SUBJECTS } from "@/lib/content/schema";
+import { SUBJECT_LABEL } from "@/lib/worlds";
 import { getJourneyView, journeysForBand } from "@/lib/learning/journey";
 import { getPlan } from "@/lib/learning/queries";
 import { resetJourney } from "@/app/actions/journey";
@@ -60,10 +63,11 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       {sp.created && <p role="status" className="rounded-xl bg-leaf-soft px-4 py-3 font-bold text-success">Profile created! Tap “Let a child play” at the top whenever {child.nickname} is ready.</p>}
       <div className="flex flex-wrap items-center gap-4">
         <Avatar avatar={child.avatar} size="xl" />
-        <div>
+        <div className="flex-1">
           <h1 className="text-3xl font-bold">{child.nickname}</h1>
           <p className="text-ink-muted">About {ageFromBirthYear(child.birthYear)} · {band.name} ({band.ages}) · Goal {child.dailyGoalMinutes} min/day</p>
         </div>
+        <Link href={`/parent/children/${child.id}/report`} className="btn-pop rounded-full bg-sun px-5 py-3 font-bold text-ink">📄 Weekly report</Link>
       </div>
 
       <section aria-labelledby="week-title">
@@ -107,14 +111,14 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
         <Card><WeeklyMinutesChart daily={report.daily} goal={child.dailyGoalMinutes} /></Card>
         <Card>
           <MasteryBars
-            rows={(["maths", "reading"] as const).map((subject) => {
+            rows={SUBJECTS.filter((subject) => objectives.some((o) => o.subjectSlug === subject)).map((subject) => {
               const objs = objectives.filter((o) => o.subjectSlug === subject);
               const counts: Record<string, number> = {};
               for (const o of objs) {
                 const st = masteryByCode.get(o.code)?.status ?? "NOT_STARTED";
                 counts[st] = (counts[st] ?? 0) + 1;
               }
-              return { label: subject === "maths" ? "Maths" : "Reading", counts, total: Math.max(objs.length, 1) };
+              return { label: SUBJECT_LABEL[subject], counts, total: Math.max(objs.length, 1) };
             })}
           />
         </Card>
@@ -153,13 +157,13 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       <section aria-labelledby="skills-title">
         <h2 id="skills-title" className="mb-3 text-xl font-bold">Skills by subject</h2>
         <div className="grid gap-5 lg:grid-cols-2">
-          {report.bySubject.map((s) => {
+          {report.bySubject.filter((s) => objectives.some((o) => o.subjectSlug === s.subject)).map((s) => {
             const world = worldForSubject(s.subject);
             const objs = objectives.filter((o) => o.subjectSlug === s.subject);
             return (
               <Card key={s.subject}>
                 <div className="flex items-center justify-between">
-                  <h3 className="text-lg font-bold">{world?.emoji} {s.subject === "maths" ? "Maths" : "Reading"}</h3>
+                  <h3 className="text-lg font-bold">{world?.emoji} {SUBJECT_LABEL[s.subject]}</h3>
                   <span className="text-sm text-ink-muted">{s.mastered} of {objs.length} mastered · {s.minutes} min this week</span>
                 </div>
                 <ul className="mt-4 space-y-3">
@@ -216,7 +220,7 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
       <div className="grid gap-5 lg:grid-cols-2">
         <Card>
           <h2 className="mb-4 text-xl font-bold">Edit profile</h2>
-          <ChildForm action={update} submitLabel="Save changes" initial={{ nickname: child.nickname, birthYear: child.birthYear, dailyGoalMinutes: child.dailyGoalMinutes, interests: child.interests, narration: child.narration }} />
+          <ChildForm action={update} submitLabel="Save changes" initial={{ nickname: child.nickname, birthYear: child.birthYear, dailyGoalMinutes: child.dailyGoalMinutes, interests: child.interests, narration: child.narration, soundEffects: child.soundEffects, textSize: child.textSize, dailyLimitMinutes: child.dailyLimitMinutes }} />
         </Card>
         <Card className="border-danger/30">
           <h2 className="text-xl font-bold text-danger">Delete profile</h2>

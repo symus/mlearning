@@ -1,0 +1,2209 @@
+{
+ "activities": [
+  {
+   "slug": "step-by-step",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "coding",
+   "topic": "Algorithms",
+   "subtopic": "Sequences",
+   "objective": "CD.SEQ.STEPS",
+   "title": "Step by Step",
+   "pathOrder": 1,
+   "estimatedMinutes": 4,
+   "isFree": true,
+   "learn": {
+    "text": "An algorithm is a list of steps in the right order. Computers follow steps exactly, one at a time. If the order is wrong, things go wrong. You can't put shoes on before socks!",
+    "say": "An algorithm is a list of steps in the right order. Socks first, then shoes!",
+    "visual": {
+     "kind": "pattern",
+     "items": [
+      "🧦",
+      "👟"
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "ORDER_SKIP",
+     "description": "Puts a later step before an earlier one.",
+     "remedy": "Ask: what has to happen before this step can happen?"
+    },
+    {
+     "code": "MISSING_STEP",
+     "description": "Doesn't notice an important step is missing.",
+     "remedy": "Act it out step by step. Does anything get skipped?"
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "robot-arrows",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "first",
+       "type": "choice",
+       "prompt": "Getting dressed: what goes on first?",
+       "say": "Getting dressed. What goes on first, socks or shoes?",
+       "options": [
+        {
+         "id": "socks",
+         "label": "socks",
+         "emoji": "🧦"
+        },
+        {
+         "id": "shoes",
+         "label": "shoes",
+         "emoji": "👟"
+        }
+       ],
+       "answer": "socks",
+       "hints": [
+        "Shoes go over something.",
+        "Try it in your head."
+       ],
+       "explanation": "Socks go on first, then shoes.",
+       "misconceptions": {
+        "shoes": "ORDER_SKIP"
+       }
+      },
+      {
+       "id": "teeth",
+       "type": "choice",
+       "prompt": "Brushing teeth: what do you do first?",
+       "say": "Brushing teeth. What do you do first?",
+       "options": [
+        {
+         "id": "paste",
+         "label": "put toothpaste on the brush",
+         "emoji": "🪥"
+        },
+        {
+         "id": "rinse",
+         "label": "rinse your mouth",
+         "emoji": "💧"
+        }
+       ],
+       "answer": "paste",
+       "hints": [
+        "You need toothpaste to brush.",
+        "Rinsing comes at the end."
+       ],
+       "explanation": "First put toothpaste on the brush. Rinse at the end.",
+       "misconceptions": {
+        "rinse": "ORDER_SKIP"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "plant",
+       "type": "order",
+       "prompt": "Put the steps in order to plant a seed.",
+       "say": "Put the steps in order to plant a seed.",
+       "tiles": [
+        {
+         "id": "water",
+         "label": "Water it",
+         "emoji": "💧"
+        },
+        {
+         "id": "dig",
+         "label": "Dig a hole",
+         "emoji": "🕳️"
+        },
+        {
+         "id": "seed",
+         "label": "Drop in the seed",
+         "emoji": "🌰"
+        }
+       ],
+       "answer": [
+        "dig",
+        "seed",
+        "water"
+       ],
+       "hints": [
+        "You need a hole first.",
+        "Water comes last."
+       ],
+       "explanation": "Dig a hole, drop in the seed, then water it."
+      },
+      {
+       "id": "toast",
+       "type": "order",
+       "prompt": "Put the steps in order to make toast.",
+       "say": "Put the steps in order to make toast.",
+       "tiles": [
+        {
+         "id": "eat",
+         "label": "Eat it",
+         "emoji": "😋"
+        },
+        {
+         "id": "bread",
+         "label": "Put bread in toaster",
+         "emoji": "🍞"
+        },
+        {
+         "id": "butter",
+         "label": "Spread butter",
+         "emoji": "🧈"
+        }
+       ],
+       "answer": [
+        "bread",
+        "butter",
+        "eat"
+       ],
+       "hints": [
+        "Toast the bread first.",
+        "You eat it at the end."
+       ],
+       "explanation": "Toast the bread, spread the butter, then eat it."
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "bath",
+       "type": "order",
+       "prompt": "Put the bath-time steps in order.",
+       "tiles": [
+        {
+         "id": "dry",
+         "label": "Dry with a towel",
+         "emoji": "🧻"
+        },
+        {
+         "id": "fill",
+         "label": "Fill the bath",
+         "emoji": "🛁"
+        },
+        {
+         "id": "wash",
+         "label": "Wash",
+         "emoji": "🧼"
+        },
+        {
+         "id": "in",
+         "label": "Get in",
+         "emoji": "🦶"
+        }
+       ],
+       "answer": [
+        "fill",
+        "in",
+        "wash",
+        "dry"
+       ],
+       "hints": [
+        "What must happen before you get in?",
+        "Drying is last."
+       ],
+       "explanation": "Fill the bath, get in, wash, then dry yourself."
+      },
+      {
+       "id": "missing",
+       "type": "choice",
+       "prompt": "Steps: 1) Open the door. 2) ??? 3) Close the door. What is missing?",
+       "options": [
+        {
+         "id": "walk",
+         "label": "Walk through",
+         "emoji": "🚶"
+        },
+        {
+         "id": "sleep",
+         "label": "Go to sleep",
+         "emoji": "😴"
+        },
+        {
+         "id": "jump",
+         "label": "Jump up",
+         "emoji": "🤸"
+        }
+       ],
+       "answer": "walk",
+       "hints": [
+        "What do you do with an open door?",
+        "Then you close it behind you."
+       ],
+       "explanation": "Open the door, walk through, close the door.",
+       "misconceptions": {
+        "sleep": "MISSING_STEP",
+        "jump": "MISSING_STEP"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "robot-arrows",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "coding",
+   "topic": "Algorithms",
+   "subtopic": "Directions",
+   "objective": "CD.DIR.ARROWS",
+   "title": "Robot Arrows",
+   "pathOrder": 2,
+   "estimatedMinutes": 4,
+   "isFree": false,
+   "learn": {
+    "text": "Robots follow arrow instructions. ➡️ moves one square right, ⬅️ one square left, ⬆️ one square up and ⬇️ one square down. Help the robot reach the flag!",
+    "say": "Robots follow arrows. Right, left, up, down. One square at a time.",
+    "visual": {
+     "kind": "robot",
+     "rows": 1,
+     "cols": 4,
+     "robot": [
+      0,
+      0
+     ],
+     "goal": [
+      0,
+      3
+     ]
+    }
+   },
+   "misconceptions": [
+    {
+     "code": "DIRECTION_MIX",
+     "description": "Mixes up the arrow directions.",
+     "remedy": "Point your finger the way the arrow points, then move one square."
+    },
+    {
+     "code": "COUNT_SQUARES",
+     "description": "Counts the square the robot starts on as a step.",
+     "remedy": "Count the jumps between squares, not the starting square."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": "oops-a-bug",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "one",
+       "type": "choice",
+       "prompt": "Which arrow moves the robot to the flag?",
+       "say": "Which arrow moves the robot to the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 1,
+        "cols": 3,
+        "robot": [
+         0,
+         1
+        ],
+        "goal": [
+         0,
+         2
+        ]
+       },
+       "options": [
+        {
+         "id": "r",
+         "label": "➡️"
+        },
+        {
+         "id": "l",
+         "label": "⬅️"
+        },
+        {
+         "id": "u",
+         "label": "⬆️"
+        }
+       ],
+       "answer": "r",
+       "hints": [
+        "The flag is to the right.",
+        "Point your finger at the flag."
+       ],
+       "explanation": "The flag is one square to the right: ➡️.",
+       "misconceptions": {
+        "l": "DIRECTION_MIX",
+        "u": "DIRECTION_MIX"
+       }
+      },
+      {
+       "id": "steps",
+       "type": "number",
+       "prompt": "How many ➡️ steps to reach the flag?",
+       "say": "How many right steps to reach the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 1,
+        "cols": 4,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         0,
+         3
+        ]
+       },
+       "answer": 3,
+       "hints": [
+        "Count the jumps, not the start square.",
+        "Hop, hop, hop."
+       ],
+       "explanation": "Three steps right reach the flag.",
+       "misconceptions": {
+        "4": "COUNT_SQUARES",
+        "2": "COUNT_SQUARES"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "down",
+       "type": "choice",
+       "prompt": "Which arrow moves the robot to the flag?",
+       "say": "Which arrow moves the robot to the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 2,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         0
+        ]
+       },
+       "options": [
+        {
+         "id": "d",
+         "label": "⬇️"
+        },
+        {
+         "id": "u",
+         "label": "⬆️"
+        },
+        {
+         "id": "r",
+         "label": "➡️"
+        }
+       ],
+       "answer": "d",
+       "hints": [
+        "The flag is below the robot.",
+        "Down!"
+       ],
+       "explanation": "The flag is below, so ⬇️.",
+       "misconceptions": {
+        "u": "DIRECTION_MIX",
+        "r": "DIRECTION_MIX"
+       }
+      },
+      {
+       "id": "two",
+       "type": "choice",
+       "prompt": "Which program reaches the flag?",
+       "say": "Which program reaches the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 2,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         1
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "➡️ ⬇️"
+        },
+        {
+         "id": "b",
+         "label": "⬅️ ⬇️"
+        },
+        {
+         "id": "c",
+         "label": "➡️ ⬆️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "First go right.",
+        "Then go down."
+       ],
+       "explanation": "➡️ then ⬇️ reaches the flag.",
+       "misconceptions": {
+        "b": "DIRECTION_MIX",
+        "c": "DIRECTION_MIX"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "three",
+       "type": "choice",
+       "prompt": "Which program reaches the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 3,
+        "robot": [
+         1,
+         0
+        ],
+        "goal": [
+         0,
+         2
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "⬆️ ➡️ ➡️"
+        },
+        {
+         "id": "b",
+         "label": "➡️ ➡️"
+        },
+        {
+         "id": "c",
+         "label": "⬇️ ➡️ ➡️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "The flag is up AND to the right.",
+        "How many squares right?"
+       ],
+       "explanation": "Up once, then right twice: ⬆️ ➡️ ➡️.",
+       "misconceptions": {
+        "b": "COUNT_SQUARES",
+        "c": "DIRECTION_MIX"
+       }
+      },
+      {
+       "id": "build",
+       "type": "order",
+       "prompt": "Build the program: right, right, down.",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         2
+        ]
+       },
+       "tiles": [
+        {
+         "id": "d",
+         "label": "⬇️"
+        },
+        {
+         "id": "r1",
+         "label": "➡️"
+        },
+        {
+         "id": "r2",
+         "label": "➡️"
+        }
+       ],
+       "answer": [
+        "r1",
+        "r2",
+        "d"
+       ],
+       "hints": [
+        "Two rights first.",
+        "Then down."
+       ],
+       "explanation": "➡️ ➡️ ⬇️ takes the robot to the flag."
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "oops-a-bug",
+   "ageBand": "LITTLE_EXPLORERS",
+   "subject": "coding",
+   "topic": "Debugging",
+   "subtopic": "Spot the mistake",
+   "objective": "CD.DEBUG.SPOT",
+   "title": "Oops, a Bug!",
+   "pathOrder": 3,
+   "estimatedMinutes": 4,
+   "isFree": false,
+   "learn": {
+    "text": "A bug is a mistake in the instructions. Programmers find bugs by checking each step one at a time. When we find a bug, we fix it!",
+    "say": "A bug is a mistake in the steps. Check each step, find the bug, and fix it!"
+   },
+   "misconceptions": [
+    {
+     "code": "SKIP_CHECK",
+     "description": "Doesn't check each step in turn.",
+     "remedy": "Follow the steps with your finger, one at a time."
+    },
+    {
+     "code": "WRONG_FIX",
+     "description": "Changes a step that was already right.",
+     "remedy": "Only change the step that went wrong."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.75,
+    "minItems": 4,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "sandwich",
+       "type": "choice",
+       "prompt": "Making a sandwich: 1) Eat it 2) Get bread 3) Add cheese. Which step is in the wrong place?",
+       "options": [
+        {
+         "id": "eat",
+         "label": "Eat it",
+         "emoji": "😋"
+        },
+        {
+         "id": "bread",
+         "label": "Get bread",
+         "emoji": "🍞"
+        },
+        {
+         "id": "cheese",
+         "label": "Add cheese",
+         "emoji": "🧀"
+        }
+       ],
+       "answer": "eat",
+       "hints": [
+        "Can you eat it before it is made?",
+        "Eating comes last."
+       ],
+       "explanation": "Eating should be the last step!",
+       "misconceptions": {
+        "bread": "WRONG_FIX",
+        "cheese": "WRONG_FIX"
+       }
+      },
+      {
+       "id": "shoes",
+       "type": "choice",
+       "prompt": "Going out: 1) Shoes on 2) Socks on 3) Open door. Where is the bug?",
+       "options": [
+        {
+         "id": "order",
+         "label": "Shoes before socks",
+         "emoji": "👟"
+        },
+        {
+         "id": "door",
+         "label": "Opening the door",
+         "emoji": "🚪"
+        }
+       ],
+       "answer": "order",
+       "hints": [
+        "Think about your feet.",
+        "Socks go on first."
+       ],
+       "explanation": "The bug: shoes went on before socks. Swap them!",
+       "misconceptions": {
+        "door": "WRONG_FIX"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "robot-bug",
+       "type": "choice",
+       "prompt": "The robot should reach the flag. Program: ➡️ ⬆️. Which arrow is the bug?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 2,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         1
+        ]
+       },
+       "options": [
+        {
+         "id": "r",
+         "label": "➡️ (the first arrow)"
+        },
+        {
+         "id": "u",
+         "label": "⬆️ (the second arrow)"
+        }
+       ],
+       "answer": "u",
+       "hints": [
+        "After ➡️ the robot is above the flag... or below?",
+        "The flag is down."
+       ],
+       "explanation": "The second arrow should be ⬇️, not ⬆️.",
+       "misconceptions": {
+        "r": "WRONG_FIX"
+       }
+      },
+      {
+       "id": "fix",
+       "type": "choice",
+       "prompt": "Program ➡️ ➡️ ➡️ goes one square too far. How do we fix it?",
+       "visual": {
+        "kind": "robot",
+        "rows": 1,
+        "cols": 4,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         0,
+         2
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "Take away one ➡️",
+         "emoji": "✂️"
+        },
+        {
+         "id": "b",
+         "label": "Add one more ➡️",
+         "emoji": "➕"
+        },
+        {
+         "id": "c",
+         "label": "Change all to ⬅️",
+         "emoji": "🔄"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "It went too far.",
+        "Fewer steps."
+       ],
+       "explanation": "Remove one ➡️ so the robot stops on the flag.",
+       "misconceptions": {
+        "b": "SKIP_CHECK",
+        "c": "WRONG_FIX"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Star",
+     "items": [
+      {
+       "id": "missing",
+       "type": "choice",
+       "prompt": "Program: ➡️ ⬇️. The robot stops one square short of the flag. What is missing?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         2
+        ]
+       },
+       "options": [
+        {
+         "id": "r",
+         "label": "one more ➡️"
+        },
+        {
+         "id": "u",
+         "label": "one ⬆️"
+        },
+        {
+         "id": "l",
+         "label": "one ⬅️"
+        }
+       ],
+       "answer": "r",
+       "hints": [
+        "Where does the robot stop?",
+        "The flag is further right."
+       ],
+       "explanation": "One more ➡️ is needed: ➡️ ➡️ ⬇️ (or ➡️ ⬇️ ➡️).",
+       "misconceptions": {
+        "u": "SKIP_CHECK",
+        "l": "WRONG_FIX"
+       }
+      },
+      {
+       "id": "check",
+       "type": "choice",
+       "prompt": "What is the best way to find a bug?",
+       "options": [
+        {
+         "id": "a",
+         "label": "Check each step one by one",
+         "emoji": "🔍"
+        },
+        {
+         "id": "b",
+         "label": "Start again without looking",
+         "emoji": "🔁"
+        },
+        {
+         "id": "c",
+         "label": "Change everything",
+         "emoji": "🌀"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Programmers are detectives.",
+        "Look carefully at each step."
+       ],
+       "explanation": "Checking each step one at a time finds the bug.",
+       "misconceptions": {
+        "b": "SKIP_CHECK",
+        "c": "WRONG_FIX"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "program-the-robot",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "coding",
+   "topic": "Algorithms",
+   "subtopic": "Programming a route",
+   "objective": "CD.SEQ.ROBOT",
+   "title": "Program the Robot",
+   "pathOrder": 1,
+   "estimatedMinutes": 5,
+   "isFree": true,
+   "learn": {
+    "text": "Plan the robot's route before you write the program. Count squares right/left and up/down. Walls 🧱 block the way, so you may need to go around them. Collect stars ⭐ on the way if asked!",
+    "visual": {
+     "kind": "robot",
+     "rows": 3,
+     "cols": 4,
+     "robot": [
+      2,
+      0
+     ],
+     "goal": [
+      0,
+      3
+     ],
+     "walls": [
+      [
+       1,
+       1
+      ],
+      [
+       1,
+       2
+      ]
+     ]
+    },
+    "example": "⬆️ ⬆️ ➡️ ➡️ ➡️ goes up the side, then along the top."
+   },
+   "misconceptions": [
+    {
+     "code": "THROUGH_WALL",
+     "description": "Plans a route straight through a wall.",
+     "remedy": "Walls block the robot. Find a way around."
+    },
+    {
+     "code": "MISCOUNT",
+     "description": "Counts the wrong number of squares.",
+     "remedy": "Point and count each jump between squares."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": "repeat-it",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "count",
+       "type": "number",
+       "prompt": "How many moves does the shortest route take (no walls)?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         2
+        ]
+       },
+       "answer": 4,
+       "hints": [
+        "2 right and 2 down.",
+        "Add them up."
+       ],
+       "explanation": "2 moves right + 2 moves down = 4 moves.",
+       "misconceptions": {
+        "3": "MISCOUNT",
+        "5": "MISCOUNT"
+       }
+      },
+      {
+       "id": "route",
+       "type": "choice",
+       "prompt": "Which program reaches the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 4,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         3
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "⬇️ ⬇️ ➡️ ➡️ ➡️"
+        },
+        {
+         "id": "b",
+         "label": "➡️ ➡️ ➡️ ⬇️"
+        },
+        {
+         "id": "c",
+         "label": "⬇️ ➡️ ➡️ ➡️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "The flag is 2 down and 3 right.",
+        "Check the number of ⬇️."
+       ],
+       "explanation": "⬇️ ⬇️ then ➡️ ➡️ ➡️: 2 down and 3 right.",
+       "misconceptions": {
+        "b": "MISCOUNT",
+        "c": "MISCOUNT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "wall",
+       "type": "choice",
+       "prompt": "A wall blocks the middle. Which program avoids it?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 3,
+        "robot": [
+         2,
+         0
+        ],
+        "goal": [
+         0,
+         2
+        ],
+        "walls": [
+         [
+          2,
+          1
+         ],
+         [
+          1,
+          1
+         ]
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "⬆️ ⬆️ ➡️ ➡️"
+        },
+        {
+         "id": "b",
+         "label": "➡️ ➡️ ⬆️ ⬆️"
+        },
+        {
+         "id": "c",
+         "label": "➡️ ⬆️ ➡️ ⬆️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "A wall is right next to the robot on its right.",
+        "Go up the left side first."
+       ],
+       "explanation": "Going up first avoids the wall: ⬆️ ⬆️ ➡️ ➡️.",
+       "misconceptions": {
+        "b": "THROUGH_WALL",
+        "c": "THROUGH_WALL"
+       }
+      },
+      {
+       "id": "stars",
+       "type": "choice",
+       "prompt": "Which program collects BOTH stars on the way to the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         2
+        ],
+        "items": [
+         [
+          0,
+          1
+         ],
+         [
+          1,
+          1
+         ]
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "➡️ ⬇️ ➡️"
+        },
+        {
+         "id": "b",
+         "label": "⬇️ ➡️ ➡️"
+        },
+        {
+         "id": "c",
+         "label": "➡️ ➡️ ⬇️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "One star is right of the robot, one is below that star.",
+        "Trace each program and count the stars."
+       ],
+       "explanation": "➡️ collects the first star, ⬇️ the second, then ➡️ reaches the flag. The other programs miss a star.",
+       "misconceptions": {
+        "b": "MISCOUNT",
+        "c": "MISCOUNT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "build",
+       "type": "order",
+       "prompt": "Build a program from the robot to the flag avoiding the wall.",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         2
+        ],
+        "walls": [
+         [
+          1,
+          0
+         ],
+         [
+          2,
+          0
+         ]
+        ]
+       },
+       "tiles": [
+        {
+         "id": "r2",
+         "label": "➡️"
+        },
+        {
+         "id": "d1",
+         "label": "⬇️"
+        },
+        {
+         "id": "r1",
+         "label": "➡️"
+        },
+        {
+         "id": "d2",
+         "label": "⬇️"
+        }
+       ],
+       "answer": [
+        "r1",
+        "r2",
+        "d1",
+        "d2"
+       ],
+       "hints": [
+        "The wall is below the robot.",
+        "Go right twice first."
+       ],
+       "explanation": "➡️ ➡️ ⬇️ ⬇️ goes along the top, then down to the flag."
+      },
+      {
+       "id": "short",
+       "type": "number",
+       "prompt": "What is the fewest number of moves to reach the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 4,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         3
+        ],
+        "walls": [
+         [
+          1,
+          1
+         ],
+         [
+          1,
+          2
+         ]
+        ]
+       },
+       "answer": 5,
+       "hints": [
+        "The flag is 2 down and 3 right.",
+        "Walls don't block the outside route."
+       ],
+       "explanation": "2 down + 3 right = 5 moves (going round the walls along the edge).",
+       "misconceptions": {
+        "4": "MISCOUNT",
+        "6": "THROUGH_WALL"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "repeat-it",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "coding",
+   "topic": "Algorithms",
+   "subtopic": "Repetition",
+   "objective": "CD.LOOP.REPEAT",
+   "title": "Repeat It!",
+   "pathOrder": 2,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "A loop repeats instructions so programs are shorter. 'repeat 4 [➡️]' means do ➡️ four times. You can repeat more than one instruction: 'repeat 2 [➡️ ⬇️]' means ➡️ ⬇️ ➡️ ⬇️.",
+    "example": "➡️ ➡️ ➡️ ➡️ = repeat 4 [➡️]"
+   },
+   "misconceptions": [
+    {
+     "code": "LOOP_ONCE",
+     "description": "Runs the loop body only once.",
+     "remedy": "'Repeat 3' means do the instructions inside 3 times."
+    },
+    {
+     "code": "LOOP_COUNT",
+     "description": "Counts only the repeats, not the instructions inside.",
+     "remedy": "Moves = repeats × instructions inside the brackets."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": "bug-fixers",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "same",
+       "type": "choice",
+       "prompt": "Which loop does the same as ➡️ ➡️ ➡️?",
+       "options": [
+        {
+         "id": "a",
+         "label": "repeat 3 [➡️]"
+        },
+        {
+         "id": "b",
+         "label": "repeat 1 [➡️]"
+        },
+        {
+         "id": "c",
+         "label": "repeat 3 [⬅️]"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Count the arrows.",
+        "They all point the same way."
+       ],
+       "explanation": "Three ➡️ in a row is repeat 3 [➡️].",
+       "misconceptions": {
+        "b": "LOOP_ONCE",
+        "c": "LOOP_COUNT"
+       }
+      },
+      {
+       "id": "moves",
+       "type": "number",
+       "prompt": "How many moves does 'repeat 5 [⬆️]' make?",
+       "answer": 5,
+       "hints": [
+        "Do ⬆️ ...",
+        "five times."
+       ],
+       "explanation": "It moves up 5 times.",
+       "misconceptions": {
+        "1": "LOOP_ONCE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "pair",
+       "type": "number",
+       "prompt": "How many moves does 'repeat 3 [➡️ ⬇️]' make?",
+       "answer": 6,
+       "hints": [
+        "Each repeat does 2 moves.",
+        "3 × 2"
+       ],
+       "explanation": "3 repeats × 2 moves = 6 moves: ➡️⬇️➡️⬇️➡️⬇️.",
+       "misconceptions": {
+        "3": "LOOP_COUNT",
+        "2": "LOOP_ONCE"
+       }
+      },
+      {
+       "id": "stairs",
+       "type": "choice",
+       "prompt": "Which loop moves the robot down the stairs to the flag?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         2
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "repeat 2 [➡️ ⬇️]"
+        },
+        {
+         "id": "b",
+         "label": "repeat 2 [➡️]"
+        },
+        {
+         "id": "c",
+         "label": "repeat 4 [⬇️]"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Each step is right then down.",
+        "How many steps?"
+       ],
+       "explanation": "Right-down, right-down: repeat 2 [➡️ ⬇️].",
+       "misconceptions": {
+        "b": "LOOP_COUNT",
+        "c": "LOOP_COUNT"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "shorter",
+       "type": "choice",
+       "prompt": "Why do programmers use loops?",
+       "options": [
+        {
+         "id": "a",
+         "label": "Programs are shorter and easier to fix",
+         "emoji": "✂️"
+        },
+        {
+         "id": "b",
+         "label": "Robots go faster",
+         "emoji": "⚡"
+        },
+        {
+         "id": "c",
+         "label": "Loops make bugs",
+         "emoji": "🐛"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Imagine writing ➡️ 100 times!",
+        "One loop instead."
+       ],
+       "explanation": "Loops make programs shorter, clearer and easier to change.",
+       "misconceptions": {
+        "b": "LOOP_ONCE",
+        "c": "LOOP_COUNT"
+       }
+      },
+      {
+       "id": "square",
+       "type": "number",
+       "prompt": "'repeat 4 [➡️ ➡️ turn right]' draws a square. How many ➡️ moves in total?",
+       "answer": 8,
+       "hints": [
+        "Inside the loop there are 2 ➡️.",
+        "4 repeats."
+       ],
+       "explanation": "4 repeats × 2 moves = 8 moves (the turns don't move the robot).",
+       "misconceptions": {
+        "4": "LOOP_COUNT",
+        "12": "LOOP_COUNT",
+        "2": "LOOP_ONCE"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "bug-fixers",
+   "ageBand": "YOUNG_THINKERS",
+   "subject": "coding",
+   "topic": "Debugging",
+   "subtopic": "Fixing programs",
+   "objective": "CD.DEBUG.FIX",
+   "title": "Bug Fixers",
+   "pathOrder": 3,
+   "estimatedMinutes": 5,
+   "isFree": false,
+   "learn": {
+    "text": "Debugging means finding and fixing mistakes. Run the program in your head, step by step, and mark where the robot really goes. The first step that goes wrong is the bug.",
+    "example": "Should end on the flag but ends one square short? You're missing a move."
+   },
+   "misconceptions": [
+    {
+     "code": "FIX_SYMPTOM",
+     "description": "Changes the last step instead of the first wrong step.",
+     "remedy": "Find the FIRST step where things go wrong."
+    },
+    {
+     "code": "NO_TRACE",
+     "description": "Guesses without tracing the program.",
+     "remedy": "Trace it: move your finger square by square."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 5,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "which",
+       "type": "choice",
+       "prompt": "Program: ➡️ ➡️ ⬆️. The flag is down. Which step is the bug?",
+       "visual": {
+        "kind": "robot",
+        "rows": 2,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         1,
+         2
+        ]
+       },
+       "options": [
+        {
+         "id": "3",
+         "label": "step 3 (⬆️)"
+        },
+        {
+         "id": "1",
+         "label": "step 1 (➡️)"
+        },
+        {
+         "id": "2",
+         "label": "step 2 (➡️)"
+        }
+       ],
+       "answer": "3",
+       "hints": [
+        "Steps 1 and 2 go right correctly.",
+        "The flag is below."
+       ],
+       "explanation": "Step 3 should be ⬇️, not ⬆️.",
+       "misconceptions": {
+        "1": "NO_TRACE",
+        "2": "NO_TRACE"
+       }
+      },
+      {
+       "id": "fix",
+       "type": "choice",
+       "prompt": "Program 'repeat 2 [➡️]' stops one square short. Fix it:",
+       "visual": {
+        "kind": "robot",
+        "rows": 1,
+        "cols": 4,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         0,
+         3
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "repeat 3 [➡️]"
+        },
+        {
+         "id": "b",
+         "label": "repeat 2 [⬅️]"
+        },
+        {
+         "id": "c",
+         "label": "repeat 1 [➡️]"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "It needs one more move.",
+        "Change the number."
+       ],
+       "explanation": "Change the loop to repeat 3 [➡️].",
+       "misconceptions": {
+        "b": "FIX_SYMPTOM",
+        "c": "NO_TRACE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "wall",
+       "type": "choice",
+       "prompt": "Program ⬇️ ⬇️ ➡️ ➡️ crashes into a wall. Which step crashes?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         2
+        ],
+        "walls": [
+         [
+          2,
+          0
+         ]
+        ]
+       },
+       "options": [
+        {
+         "id": "1",
+         "label": "step 1"
+        },
+        {
+         "id": "2",
+         "label": "step 2"
+        },
+        {
+         "id": "3",
+         "label": "step 3"
+        }
+       ],
+       "answer": "2",
+       "hints": [
+        "Trace: step 1 moves down once.",
+        "Where is the wall?"
+       ],
+       "explanation": "Step 2 moves down into the wall square.",
+       "misconceptions": {
+        "1": "NO_TRACE",
+        "3": "FIX_SYMPTOM"
+       }
+      },
+      {
+       "id": "best",
+       "type": "choice",
+       "prompt": "Which program fixes the crash?",
+       "visual": {
+        "kind": "robot",
+        "rows": 3,
+        "cols": 3,
+        "robot": [
+         0,
+         0
+        ],
+        "goal": [
+         2,
+         2
+        ],
+        "walls": [
+         [
+          2,
+          0
+         ]
+        ]
+       },
+       "options": [
+        {
+         "id": "a",
+         "label": "➡️ ➡️ ⬇️ ⬇️"
+        },
+        {
+         "id": "b",
+         "label": "⬇️ ⬇️ ⬇️ ➡️"
+        },
+        {
+         "id": "c",
+         "label": "⬇️ ➡️ ⬇️ ⬅️"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Go around the wall.",
+        "Right first, then down."
+       ],
+       "explanation": "➡️ ➡️ ⬇️ ⬇️ goes along the top and down the side, avoiding the wall.",
+       "misconceptions": {
+        "b": "FIX_SYMPTOM",
+        "c": "NO_TRACE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "trace",
+       "type": "number",
+       "prompt": "Trace 'repeat 2 [➡️ ⬇️]' from the top-left corner of a 3×3 grid. Which row does the robot end in? (top row = 1)",
+       "answer": 3,
+       "hints": [
+        "Each repeat moves down once.",
+        "Start in row 1."
+       ],
+       "explanation": "Two ⬇️ moves: row 1 → 2 → 3.",
+       "misconceptions": {
+        "2": "NO_TRACE",
+        "4": "NO_TRACE"
+       }
+      },
+      {
+       "id": "method",
+       "type": "choice",
+       "prompt": "What should you do FIRST when a program doesn't work?",
+       "options": [
+        {
+         "id": "a",
+         "label": "Trace it step by step",
+         "emoji": "🔍"
+        },
+        {
+         "id": "b",
+         "label": "Delete it all",
+         "emoji": "🗑️"
+        },
+        {
+         "id": "c",
+         "label": "Add more steps",
+         "emoji": "➕"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Find the bug before fixing.",
+        "Detectives look for clues."
+       ],
+       "explanation": "Trace it step by step to find the first mistake.",
+       "misconceptions": {
+        "b": "FIX_SYMPTOM",
+        "c": "FIX_SYMPTOM"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "if-this-then-that",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "coding",
+   "topic": "Algorithms",
+   "subtopic": "Selection",
+   "objective": "CD.COND.IFELSE",
+   "title": "If This, Then That",
+   "pathOrder": 1,
+   "estimatedMinutes": 7,
+   "isFree": true,
+   "learn": {
+    "text": "Programs make decisions with if / else. 'if raining then take umbrella else wear sunglasses' checks a condition: if it is true, do the first thing; otherwise (else) do the second. Conditions often compare values with >, < or =.",
+    "example": "if score > 10 then say 'Level up!' else say 'Keep going!'"
+   },
+   "misconceptions": [
+    {
+     "code": "BOTH_BRANCHES",
+     "description": "Thinks both the 'then' and 'else' parts run.",
+     "remedy": "Only ONE branch runs: 'then' if the condition is true, otherwise 'else'."
+    },
+    {
+     "code": "COMPARE_SIGN",
+     "description": "Misreads > and <.",
+     "remedy": "The wide open side faces the bigger number: 7 > 3."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": "variables-as-boxes",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "rain",
+       "type": "choice",
+       "prompt": "if raining then 'umbrella' else 'sunglasses'. It is NOT raining. What happens?",
+       "options": [
+        {
+         "id": "sun",
+         "label": "sunglasses",
+         "emoji": "🕶️"
+        },
+        {
+         "id": "umb",
+         "label": "umbrella",
+         "emoji": "☂️"
+        },
+        {
+         "id": "both",
+         "label": "both",
+         "emoji": "🎒"
+        }
+       ],
+       "answer": "sun",
+       "hints": [
+        "Is the condition true?",
+        "If it's false, run the else part."
+       ],
+       "explanation": "Not raining, so the else part runs: sunglasses.",
+       "misconceptions": {
+        "umb": "COMPARE_SIGN",
+        "both": "BOTH_BRANCHES"
+       }
+      },
+      {
+       "id": "temp",
+       "type": "choice",
+       "prompt": "if temperature > 20 then 'shorts' else 'coat'. Temperature is 15. What is chosen?",
+       "options": [
+        {
+         "id": "coat",
+         "label": "coat",
+         "emoji": "🧥"
+        },
+        {
+         "id": "shorts",
+         "label": "shorts",
+         "emoji": "🩳"
+        }
+       ],
+       "answer": "coat",
+       "hints": [
+        "Is 15 > 20?",
+        "No, so..."
+       ],
+       "explanation": "15 is not more than 20, so 'coat'.",
+       "misconceptions": {
+        "shorts": "COMPARE_SIGN"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "score",
+       "type": "number",
+       "prompt": "score = 12. if score > 10 then score = score + 5. What is score now?",
+       "answer": 17,
+       "hints": [
+        "Is 12 > 10?",
+        "Then add 5."
+       ],
+       "explanation": "12 > 10 is true, so score becomes 12 + 5 = 17.",
+       "misconceptions": {
+        "12": "COMPARE_SIGN",
+        "22": "BOTH_BRANCHES"
+       }
+      },
+      {
+       "id": "light",
+       "type": "choice",
+       "prompt": "Traffic robot: if light = green then 'go' else 'stop'. The light is red. What does it do?",
+       "options": [
+        {
+         "id": "stop",
+         "label": "stop",
+         "emoji": "🛑"
+        },
+        {
+         "id": "go",
+         "label": "go",
+         "emoji": "🟢"
+        },
+        {
+         "id": "both",
+         "label": "go then stop",
+         "emoji": "🔁"
+        }
+       ],
+       "answer": "stop",
+       "hints": [
+        "Is the light green?",
+        "Not green means else."
+       ],
+       "explanation": "The light isn't green, so it stops.",
+       "misconceptions": {
+        "go": "COMPARE_SIGN",
+        "both": "BOTH_BRANCHES"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "grade",
+       "type": "choice",
+       "prompt": "if mark >= 50 then 'pass' else 'try again'. mark = 50. Result?",
+       "options": [
+        {
+         "id": "pass",
+         "label": "pass"
+        },
+        {
+         "id": "try",
+         "label": "try again"
+        }
+       ],
+       "answer": "pass",
+       "hints": [
+        ">= means 'greater than or equal to'.",
+        "Is 50 equal to 50?"
+       ],
+       "explanation": "50 >= 50 is true (equal counts), so 'pass'.",
+       "misconceptions": {
+        "try": "COMPARE_SIGN"
+       }
+      },
+      {
+       "id": "nested",
+       "type": "choice",
+       "prompt": "if x > 5 then (if x > 10 then 'big' else 'medium') else 'small'. x = 8. Result?",
+       "options": [
+        {
+         "id": "medium",
+         "label": "medium"
+        },
+        {
+         "id": "big",
+         "label": "big"
+        },
+        {
+         "id": "small",
+         "label": "small"
+        }
+       ],
+       "answer": "medium",
+       "hints": [
+        "8 > 5 is true, so go inside.",
+        "Is 8 > 10?"
+       ],
+       "explanation": "8 > 5 is true; 8 > 10 is false, so 'medium'.",
+       "misconceptions": {
+        "big": "COMPARE_SIGN",
+        "small": "COMPARE_SIGN"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "variables-as-boxes",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "coding",
+   "topic": "Data",
+   "subtopic": "Variables",
+   "objective": "CD.VAR.COUNTER",
+   "title": "Variables as Boxes",
+   "pathOrder": 2,
+   "estimatedMinutes": 7,
+   "isFree": false,
+   "learn": {
+    "text": "A variable is like a labelled box that stores a value. 'score = 0' puts 0 in the box called score. 'score = score + 2' takes what's in the box, adds 2 and puts the result back. Trace values step by step.",
+    "example": "lives = 3; lives = lives − 1 → lives is now 2"
+   },
+   "misconceptions": [
+    {
+     "code": "NO_UPDATE",
+     "description": "Forgets that the variable changes each time.",
+     "remedy": "Write the new value down after every line."
+    },
+    {
+     "code": "NAME_VALUE",
+     "description": "Confuses the variable's name with its value.",
+     "remedy": "The name is the label on the box; the value is what's inside."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": "smart-searching",
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "start",
+       "type": "number",
+       "prompt": "score = 0, then score = score + 3. What is score?",
+       "answer": 3,
+       "hints": [
+        "Start with 0.",
+        "Add 3."
+       ],
+       "explanation": "0 + 3 = 3.",
+       "misconceptions": {
+        "0": "NO_UPDATE"
+       }
+      },
+      {
+       "id": "lives",
+       "type": "number",
+       "prompt": "lives = 3, then lives = lives − 1. What is lives?",
+       "answer": 2,
+       "hints": [
+        "Take one away.",
+        "3 − 1"
+       ],
+       "explanation": "3 − 1 = 2 lives left.",
+       "misconceptions": {
+        "3": "NO_UPDATE",
+        "1": "NO_UPDATE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "loop",
+       "type": "number",
+       "prompt": "coins = 0, then repeat 4 [coins = coins + 5]. What is coins?",
+       "answer": 20,
+       "hints": [
+        "Add 5 four times.",
+        "0 → 5 → 10 → ..."
+       ],
+       "explanation": "0 → 5 → 10 → 15 → 20.",
+       "misconceptions": {
+        "5": "NO_UPDATE",
+        "9": "NO_UPDATE"
+       }
+      },
+      {
+       "id": "swap",
+       "type": "number",
+       "prompt": "a = 4, b = 7, then a = b. What is a now?",
+       "answer": 7,
+       "hints": [
+        "'a = b' copies b's value into a.",
+        "What's in b?"
+       ],
+       "explanation": "a takes b's value: a = 7 (b is still 7).",
+       "misconceptions": {
+        "4": "NAME_VALUE",
+        "11": "NO_UPDATE"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "double",
+       "type": "number",
+       "prompt": "n = 1, then repeat 3 [n = n × 2]. What is n?",
+       "answer": 8,
+       "hints": [
+        "Double it three times.",
+        "1 → 2 → ..."
+       ],
+       "explanation": "1 → 2 → 4 → 8.",
+       "misconceptions": {
+        "6": "NO_UPDATE",
+        "2": "NO_UPDATE",
+        "3": "NAME_VALUE"
+       }
+      },
+      {
+       "id": "count",
+       "type": "number",
+       "prompt": "count = 10. repeat 3 [count = count − 2]. What is count?",
+       "answer": 4,
+       "hints": [
+        "Take away 2, three times.",
+        "10 → 8 → ..."
+       ],
+       "explanation": "10 → 8 → 6 → 4.",
+       "misconceptions": {
+        "8": "NO_UPDATE",
+        "6": "NO_UPDATE"
+       }
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "slug": "smart-searching",
+   "ageBand": "FUTURE_INNOVATORS",
+   "subject": "coding",
+   "topic": "Algorithms",
+   "subtopic": "Searching",
+   "objective": "CD.ALGO.SEARCH",
+   "title": "Smart Searching",
+   "pathOrder": 3,
+   "estimatedMinutes": 7,
+   "isFree": false,
+   "learn": {
+    "text": "To find something, you can check every item one by one (linear search). If the list is sorted, you can be smarter: check the middle, then throw away the half that can't contain it (binary search). Each guess halves the possibilities!",
+    "example": "Guessing a number from 1 to 100: about 7 smart guesses are always enough."
+   },
+   "misconceptions": [
+    {
+     "code": "LINEAR_ONLY",
+     "description": "Doesn't see that halving is faster on sorted lists.",
+     "remedy": "Halving cuts the search in half every time: 100 → 50 → 25 → 13..."
+    },
+    {
+     "code": "UNSORTED_BINARY",
+     "description": "Tries binary search on an unsorted list.",
+     "remedy": "Halving only works if the list is in order."
+    }
+   ],
+   "mastery": {
+    "minAccuracy": 0.8,
+    "minItems": 6,
+    "atLevel": 2
+   },
+   "followUp": null,
+   "levels": [
+    {
+     "level": 1,
+     "label": "Warm-up",
+     "items": [
+      {
+       "id": "halve",
+       "type": "number",
+       "prompt": "You're guessing a number from 1 to 100. Your first smart guess is the middle. What number?",
+       "answer": 50,
+       "hints": [
+        "Halfway between 1 and 100.",
+        "Split it in half."
+       ],
+       "explanation": "50 is the middle, so one guess rules out half the numbers.",
+       "misconceptions": {
+        "1": "LINEAR_ONLY",
+        "100": "LINEAR_ONLY"
+       }
+      },
+      {
+       "id": "higher",
+       "type": "choice",
+       "prompt": "Guess 50: the answer is 'higher'. Which numbers are still possible?",
+       "options": [
+        {
+         "id": "a",
+         "label": "51 to 100"
+        },
+        {
+         "id": "b",
+         "label": "1 to 49"
+        },
+        {
+         "id": "c",
+         "label": "all of 1 to 100"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Higher than 50.",
+        "Throw away the rest."
+       ],
+       "explanation": "Only 51 to 100 are still possible: half are gone!",
+       "misconceptions": {
+        "b": "LINEAR_ONLY",
+        "c": "LINEAR_ONLY"
+       }
+      }
+     ]
+    },
+    {
+     "level": 2,
+     "label": "Explorer",
+     "items": [
+      {
+       "id": "worst",
+       "type": "number",
+       "prompt": "Checking a list of 16 names one by one. In the worst case, how many checks?",
+       "answer": 16,
+       "hints": [
+        "The name could be last.",
+        "Check every one."
+       ],
+       "explanation": "Worst case: all 16 checks (linear search).",
+       "misconceptions": {
+        "4": "LINEAR_ONLY",
+        "8": "LINEAR_ONLY"
+       }
+      },
+      {
+       "id": "binary",
+       "type": "number",
+       "prompt": "Halving a sorted list of 16 each time: 16 → 8 → 4 → 2 → 1. How many halvings?",
+       "answer": 4,
+       "hints": [
+        "Count the arrows.",
+        "16 to 8 is one."
+       ],
+       "explanation": "4 halvings: 16→8→4→2→1. Much faster than 16 checks!",
+       "misconceptions": {
+        "16": "LINEAR_ONLY",
+        "5": "LINEAR_ONLY"
+       }
+      }
+     ]
+    },
+    {
+     "level": 3,
+     "label": "Challenge",
+     "items": [
+      {
+       "id": "sorted",
+       "type": "choice",
+       "prompt": "Binary search only works when...",
+       "options": [
+        {
+         "id": "a",
+         "label": "the list is sorted",
+         "emoji": "🔢"
+        },
+        {
+         "id": "b",
+         "label": "the list is short",
+         "emoji": "📏"
+        },
+        {
+         "id": "c",
+         "label": "the list has numbers only",
+         "emoji": "🔟"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "We throw away half by comparing.",
+        "That only makes sense if items are in order."
+       ],
+       "explanation": "The list must be sorted, or you can't know which half to throw away.",
+       "misconceptions": {
+        "b": "UNSORTED_BINARY",
+        "c": "UNSORTED_BINARY"
+       }
+      },
+      {
+       "id": "dictionary",
+       "type": "choice",
+       "prompt": "Finding 'monkey' in a dictionary, the smart way is to...",
+       "options": [
+        {
+         "id": "a",
+         "label": "open near the middle and go towards M",
+         "emoji": "📖"
+        },
+        {
+         "id": "b",
+         "label": "start at A and read every word",
+         "emoji": "🐢"
+        },
+        {
+         "id": "c",
+         "label": "open random pages",
+         "emoji": "🎲"
+        }
+       ],
+       "answer": "a",
+       "hints": [
+        "Dictionaries are in alphabetical order.",
+        "M is near the middle."
+       ],
+       "explanation": "A dictionary is sorted, so jumping to the middle and narrowing down is fastest.",
+       "misconceptions": {
+        "b": "LINEAR_ONLY",
+        "c": "UNSORTED_BINARY"
+       }
+      }
+     ]
+    }
+   ]
+  }
+ ]
+}

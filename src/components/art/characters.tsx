@@ -1,5 +1,5 @@
 /**
- * Original avatar characters, drawn in SVG in the same friendly style as Pip:
+ * Original avatar characters, drawn in SVG in the same friendly style as Muchi:
  * round heads, big dot eyes with a highlight, rosy cheeks, thick dark outline-free shapes.
  * Each character takes a body colour from the child's chosen colour.
  */

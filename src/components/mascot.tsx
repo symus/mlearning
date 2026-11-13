@@ -1,9 +1,9 @@
 import clsx from "clsx";
 
-/** Pip: the learning guide. An original star-sprout character drawn in SVG. */
-export function Pip({ className, mood = "happy" }: { className?: string; mood?: "happy" | "think" | "cheer" }) {
+/** Muchi: the learning guide. An original star-sprout character drawn in SVG. */
+export function Muchi({ className, mood = "happy" }: { className?: string; mood?: "happy" | "think" | "cheer" }) {
   return (
-    <svg viewBox="0 0 120 120" className={clsx("drop-shadow-sm", className)} role="img" aria-label="Pip, your learning guide">
+    <svg viewBox="0 0 120 120" className={clsx("drop-shadow-sm", className)} role="img" aria-label="Muchi, your learning guide">
       <path d="M60 30 V14" stroke="#23a565" strokeWidth="5" strokeLinecap="round" />
       <path d="M60 20 C 48 8, 36 14, 40 22 C 46 26, 56 24, 60 20Z" fill="#23a565" />
       <path d="M60 4l3.6 7.4 8.1 1.2-5.9 5.7 1.4 8-7.2-3.8-7.2 3.8 1.4-8-5.9-5.7 8.1-1.2z" fill="#ffc23d" />

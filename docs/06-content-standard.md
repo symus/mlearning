@@ -28,7 +28,7 @@ An activity can open with a `watch` block before the explanation:
 
 | Kind | Fields | Rules |
 |---|---|---|
-| `song` | `title`, 2–12 `lines` (text + optional visual), `tune` (`bpm` 60–150, `instrument` xylophone/piano/marimba), `credit` | Original lyrics only. Each line ≤ 90 characters. An original pentatonic tune (melody + bass + soft beat) is generated in the browser; words light up on the beat. Echo mode (default): Pip says the line, then the child sings it to the music. |
+| `song` | `title`, 2–12 `lines` (text + optional visual), `tune` (`bpm` 60–150, `instrument` xylophone/piano/marimba), `credit` | Original lyrics only. Each line ≤ 90 characters. An original pentatonic tune (melody + bass + soft beat) is generated in the browser; words light up on the beat. Echo mode (default): Muchi says the line, then the child sings it to the music. |
 | `video` | `title`, `src`, `captions` (.vtt, **required**), optional `poster`, `credit` | Self-hosted or CDN file. No YouTube embeds (tracking and ads). Captions are mandatory for accessibility. |
 
 Nothing autoplays: the child presses play. Today 6 activities open with songs (counting, shapes, letter sounds, rhymes, bonds to 10, skip counting).
@@ -80,7 +80,7 @@ The review checklist (shown in the admin screen): factual accuracy (independentl
 
 ## Current library (end of this release)
 
-- **46 objectives**, **47 activities**, **285 items**, **8 songs**, **1 lesson journey (22 lessons)**, all three age groups, maths and reading.
+- **73 objectives**, **74 activities**, **447 items**, **8 songs**, **1 lesson journey (22 lessons)**, across Math Galaxy, Reading Kingdom, Science Lab, Logic Island and Coding City, all three age groups, maths and reading.
 - Each age group × subject has 5–7 activities and at least one free activity.
 - Curriculum references: England National Curriculum / EYFS (`uk-nc`).
 
