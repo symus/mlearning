@@ -8,7 +8,7 @@ import { brand } from "@/config/brand";
 export function QrScanner() {
   const video = useRef<HTMLVideoElement>(null);
   const canvas = useRef<HTMLCanvasElement>(null);
-  const [status, setStatus] = useState<"starting" | "scanning" | "found" | "nocamera" | "wrong">("starting");
+  const [status, setStatus] = useState<"starting" | "scanning" | "found" | "nocamera" | "insecure" | "wrong">("starting");
 
   useEffect(() => {
     let stream: MediaStream | null = null;
@@ -46,6 +46,11 @@ export function QrScanner() {
 
     (async () => {
       try {
+        // Browsers only allow the camera on https (or localhost).
+        if (!window.isSecureContext) {
+          setStatus("insecure");
+          return;
+        }
         if (!navigator.mediaDevices?.getUserMedia) throw new Error("no camera API");
         stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: "environment" } });
         if (stopped) return;
@@ -80,6 +85,7 @@ export function QrScanner() {
         {status === "found" && "Found it! Opening your adventures…"}
         {status === "wrong" && `That isn't a ${brand.name} login card. Try your card!`}
         {status === "nocamera" && "We can't use the camera here. Allow camera access, or use your tablet's camera app."}
+        {status === "insecure" && "This browser only allows the camera on secure (https) sites. Open your tablet's camera app and point it at the card instead."}
       </p>
     </div>
   );

@@ -54,12 +54,21 @@ npm run dev                   # http://localhost:3000
 
 Try it: log in → **Let a child play** → pick Mia → play an activity → **Grown-ups** → PIN `1234` → open Mia's **Progress**.
 
+## Testing on a phone or tablet
+
+1. Find your computer's network address (Windows: `ipconfig` → IPv4 Address, e.g. `192.168.1.25`).
+2. In `.env` set `APP_URL="http://192.168.1.25:3000"` and restart `npm run dev`.
+3. Open `http://192.168.1.25:3000` on the phone (same Wi-Fi).
+4. QR login cards: make a **new** card after changing `APP_URL`, then scan it with the phone's **camera app**.
+   The in-app "Scan my card" scanner needs https (browsers only allow the camera on secure sites), so it works on `localhost` and on the live https site.
+
 ## Environment variables
 
 | Name | Required | Example | Purpose |
 |---|---|---|---|
 | `DATABASE_URL` | yes | `postgresql://app:app@localhost:5432/arivupulla?schema=public` | PostgreSQL connection |
-| `APP_URL` | no | `http://localhost:3000` | Public base URL (for future emails) |
+| `APP_URL` | no | `http://localhost:3000` | Public base URL; used in QR login cards and allowed to use the dev server |
+| `DEV_ORIGINS` | no | `192.168.1.30` | Extra hostnames allowed to use the dev server (comma-separated) |
 | `SESSION_TTL_DAYS` | no | `30` | Session lifetime |
 | `SEED_DEMO_EMAIL` / `SEED_DEMO_PASSWORD` | no | | Demo parent created by the seed |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | no | | Admin created by the seed |
