@@ -2,6 +2,7 @@ import { db } from "@/lib/db";
 import { requireChild } from "@/lib/auth/dal";
 import { getPlan } from "@/lib/learning/queries";
 import { starsFor } from "@/lib/learning/maps";
+import { byPath, reachableActivityWhere } from "@/lib/learning/reachable";
 import { WORLDS } from "@/lib/worlds";
 import { ActivityLibrary, type LibraryItem } from "@/components/child/activity-library";
 
@@ -11,11 +12,14 @@ export default async function ActivitiesPage() {
   const { session, child } = await requireChild();
   const plan = await getPlan(session.userId);
   const [activities, masteries, stickers] = await Promise.all([
-    db.activity.findMany({
-      where: { ageBand: child.ageBand, status: "PUBLISHED", locale: "en" },
-      select: { slug: true, title: true, topic: true, subtopic: true, subjectSlug: true, pathOrder: true, estimatedMinutes: true, isFree: true, objectiveCode: true, body: true, objective: { select: { childTitle: true } } },
-      orderBy: [{ subjectSlug: "asc" }, { pathOrder: "asc" }],
-    }),
+    reachableActivityWhere(child)
+      .then((where) =>
+        db.activity.findMany({
+          where,
+          select: { slug: true, title: true, topic: true, subtopic: true, subjectSlug: true, ageBand: true, pathOrder: true, estimatedMinutes: true, isFree: true, objectiveCode: true, body: true, objective: { select: { childTitle: true } } },
+        }),
+      )
+      .then((xs) => xs.sort(byPath)),
     db.objectiveMastery.findMany({ where: { childId: child.id } }),
     db.childSticker.findMany({ where: { childId: child.id }, select: { activitySlug: true } }),
   ]);

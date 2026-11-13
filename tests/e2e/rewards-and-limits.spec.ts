@@ -44,3 +44,30 @@ test("passing a lesson earns a sticker, and the parent's daily limit pauses new 
   await page.goto("/play/stickers");
   await expect(page.getByRole("heading", { name: "My Sticker Book" })).toBeVisible();
 });
+
+test("stickers from Reading Journey lessons of a younger age group show in the Sticker Book and All activities", async ({ page }) => {
+  await newFamilyWithChild(page, { nickname: "Omar", age: 7 });
+
+  // "First Sounds" is Reading Journey lesson 1, written for ages 3–5; Omar (7) plays it from his journey.
+  await page.goto("/play/activity/first-sounds");
+  await page.getByRole("button", { name: /Let's go!/ }).click();
+  const skip = page.getByRole("button", { name: "Skip" });
+  if (await skip.isVisible().catch(() => false)) await skip.click();
+  await page.getByRole("button", { name: "Let's practise!" }).click();
+  await passActivity(page, "first-sounds");
+  await page.getByRole("button", { name: "Open your sticker gift" }).click();
+  await expect(page.getByText("Added to your Sticker Book!")).toBeVisible();
+
+  await page.goto("/play/stickers");
+  const summary = await page.getByText(/\d+ of \d+ stickers collected/).textContent();
+  const [, got, total] = summary!.match(/(\d+) of (\d+)/)!.map(Number);
+  expect(got).toBe(1);
+  await expect(page.getByRole("link", { name: /sticker, from First Sounds/ })).toBeVisible();
+  // Every sticker in the book is a real, listed sticker: one tile per activity.
+  await expect(page.getByRole("main").getByRole("listitem")).toHaveCount(total);
+
+  // The All activities page lists the same lesson.
+  await page.goto("/play/activities");
+  await page.getByRole("searchbox").fill("First Sounds");
+  await expect(page.getByRole("link", { name: /First Sounds/ }).first()).toBeVisible();
+});

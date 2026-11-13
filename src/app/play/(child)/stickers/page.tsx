@@ -3,6 +3,7 @@ import clsx from "clsx";
 import { db } from "@/lib/db";
 import { requireChild } from "@/lib/auth/dal";
 import { stickerFor } from "@/lib/rewards";
+import { byPath, reachableActivityWhere } from "@/lib/learning/reachable";
 import { WORLDS, worldForSubject } from "@/lib/worlds";
 import { Muchi } from "@/components/mascot";
 
@@ -11,10 +12,11 @@ export const metadata = { title: "My Sticker Book" };
 export default async function StickersPage() {
   const { child } = await requireChild();
   const [activities, owned] = await Promise.all([
-    db.activity.findMany({ where: { ageBand: child.ageBand, status: "PUBLISHED", locale: "en" }, select: { slug: true, title: true, subjectSlug: true, pathOrder: true, ageBand: true }, orderBy: [{ subjectSlug: "asc" }, { pathOrder: "asc" }] }),
+    reachableActivityWhere(child).then((where) => db.activity.findMany({ where, select: { slug: true, title: true, subjectSlug: true, pathOrder: true, ageBand: true } })).then((xs) => xs.sort(byPath)),
     db.childSticker.findMany({ where: { childId: child.id } }),
   ]);
-  const have = new Set(owned.map((s) => s.activitySlug));
+  const shown = new Set(activities.map((a) => a.slug));
+  const have = new Set(owned.map((s) => s.activitySlug).filter((slug) => shown.has(slug))); // e.g. an archived activity's sticker
   const subjects = WORLDS.map((w) => w.subject).filter((s) => activities.some((a) => a.subjectSlug === s));
 
   return (
