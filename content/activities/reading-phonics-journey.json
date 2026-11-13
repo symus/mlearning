@@ -354,7 +354,8 @@
       },
       "misconceptions": [
         { "code": "GUESSED", "description": "Answered from imagination rather than the story.", "remedy": "Find the words in the story that tell you." },
-        { "code": "WRONG_DETAIL", "description": "Remembered the event but mixed up a detail.", "remedy": "Read that part of the story again, slowly." }
+        { "code": "WRONG_DETAIL", "description": "Remembered the event but mixed up a detail.", "remedy": "Read that part of the story again, slowly." },
+        { "code": "COUNTED_SAID_HOP", "description": "Counted the 'hop' in \"I can hop!\" as a hop.", "remedy": "\"I can hop!\" is the fox talking. Count only the hops after that." }
       ],
       "mastery": { "minAccuracy": 0.75, "minItems": 4, "atLevel": 2 },
       "followUp": "tricky-words-2",
@@ -374,9 +375,9 @@
             "options": [{ "id": "hot", "label": "It was hot" }, { "id": "sad", "label": "It was sad" }, { "id": "cold", "label": "It was cold" }], "answer": "hot",
             "hints": ["What did the fox say before the milk?", "\"I am ...,\" said the fox."], "explanation": "The fox said \"I am hot\" after hopping, so it had a drink.",
             "misconceptions": { "sad": "GUESSED", "cold": "WRONG_DETAIL" } },
-          { "id": "hops", "type": "number", "prompt": "How many times does the story say 'Hop'?", "answer": 3,
-            "hints": ["Find the hopping part.", "Hop, hop, hop!"], "explanation": "Hop, hop, hop: 3 hops.",
-            "misconceptions": { "2": "WRONG_DETAIL", "4": "WRONG_DETAIL" } }
+          { "id": "hops", "type": "number", "prompt": "The fox said \"I can hop!\" Then how many hops did the fox do?", "say": "The fox said, I can hop! Then how many hops did the fox do?", "answer": 3,
+            "hints": ["Find the part just after \"I can hop!\"", "Hop, hop, hop!"], "explanation": "After saying \"I can hop!\", the fox did 3 hops: Hop, hop, hop!",
+            "misconceptions": { "2": "WRONG_DETAIL", "4": "COUNTED_SAID_HOP" } }
         ]},
         { "level": 3, "label": "Star", "items": [
           { "id": "order-fox", "type": "order", "prompt": "Put the story in order.", "say": "Put the story in order.",
