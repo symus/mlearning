@@ -20,16 +20,27 @@ export function LoginCardManager({ childId, nickname, avatar, activeSince }: { c
   const make = () =>
     start(async () => {
       setError("");
-      const res = await createLoginCard(childId);
-      if ("error" in res) return setError(res.error);
-      const qr = await QRCode.toDataURL(res.url, { margin: 1, width: 360, errorCorrectionLevel: "M" });
-      setCard({ url: res.url, qr });
+      try {
+        const res = await createLoginCard(childId);
+        if ("error" in res) return setError(res.error);
+        const qr = await QRCode.toDataURL(res.url, { margin: 1, width: 360, errorCorrectionLevel: "M" });
+        setCard({ url: res.url, qr });
+      } catch (e) {
+        console.error("Making the login card failed", e);
+        setError("Sorry, we couldn't make the card. Please try again. (If you run the app yourself: check the server terminal for the error.)");
+      }
     });
 
   const cancel = () =>
     start(async () => {
-      await cancelLoginCard(childId);
-      setCard(null);
+      setError("");
+      try {
+        await cancelLoginCard(childId);
+        setCard(null);
+      } catch (e) {
+        console.error("Cancelling the login card failed", e);
+        setError("Sorry, we couldn't cancel the card. Please try again.");
+      }
     });
 
   return (
