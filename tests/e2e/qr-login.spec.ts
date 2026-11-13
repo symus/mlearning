@@ -47,8 +47,11 @@ test("QR login card: child-only access, parent login still required, new card ca
   await other.goto(cardUrl);
   await expect(other.getByText("That login card no longer works")).toBeVisible();
 
-  // The scanner page explains what to do when there is no camera.
+  // "Scan my card" with a photo (the phone fallback when the live camera is blocked on http).
   await other.getByRole("link", { name: "📷 Scan my card" }).click();
   await expect(other.getByRole("heading", { name: "Scan your login card" })).toBeVisible();
+  const photo = await page.getByRole("img", { name: "Login QR code for Aya" }).screenshot();
+  await other.getByTestId("qr-photo").setInputFiles({ name: "card.png", mimeType: "image/png", buffer: photo });
+  await expect(other.getByRole("heading", { name: "Your learning universe" })).toBeVisible();
   await tablet.close();
 });

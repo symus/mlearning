@@ -59,8 +59,10 @@ Try it: log in → **Let a child play** → pick Mia → play an activity → **
 1. Find your computer's network address (Windows: `ipconfig` → IPv4 Address, e.g. `192.168.1.25`).
 2. In `.env` set `APP_URL="http://192.168.1.25:3000"` and restart `npm run dev`.
 3. Open `http://192.168.1.25:3000` on the phone (same Wi-Fi).
-4. QR login cards: make a **new** card after changing `APP_URL`, then scan it with the phone's **camera app**.
-   The in-app "Scan my card" scanner needs https (browsers only allow the camera on secure sites), so it works on `localhost` and on the live https site.
+4. QR login cards, two ways:
+   - **Login page → 📷 Scan my card → 📸 Take a photo of my card.** Works everywhere, including plain http.
+   - The phone's **camera app**: make a **new** card after changing `APP_URL`, because the card holds that address.
+   The live camera preview inside "Scan my card" only runs on https or `localhost` (a browser rule); on http the photo button is used instead.
 
 ## Environment variables
 

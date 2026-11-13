@@ -48,7 +48,7 @@
 ## C5. QR login cards (working)
 
 1. Parent → child's Progress page → **Login card** → *Make a login card* → print (only the card prints, on one page).
-2. The child scans it with the tablet camera app, or with **📷 Scan my card** on the login page (`/login/qr`). They land in their own play area.
+2. The child scans it with the tablet camera app, or with **📷 Scan my card** on the login page (`/login/qr`): a live camera on https/localhost, and a **📸 Take a photo of my card** button that works everywhere (including plain http on a home network). They land in their own play area.
 3. Card sessions are **child-only**: no parent area, no PIN unlock, no switching to siblings, no data export. A grown-up must log in with email and password.
 4. Making a new card cancels the old one and signs out devices that used it; *Cancel card* does the same. Only a hash of the card's secret is stored.
 
