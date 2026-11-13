@@ -36,7 +36,7 @@ test("a child takes the placement check, sees the lesson map and passing a lesso
   await expect(page.getByRole("heading", { name: "Reading Journey" })).toBeVisible();
   await expect(page.getByRole("link", { name: /Lesson 3: Sound Seeds: s a t p \(your next lesson\)/ })).toBeVisible();
   await expect(page.getByRole("link", { name: /Lesson 1:/ })).toBeVisible();
-  await expect(page.getByLabel(/Lesson 4: .* \(locked\)/)).toBeVisible();
+  await expect(page.getByRole("img", { name: /Lesson 4: .* \(locked\)/ })).toBeVisible();
 
   // Play lesson 3 (free) and answer correctly using the known answers.
   await page.getByRole("link", { name: /Play now/ }).click();

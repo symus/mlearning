@@ -1,22 +1,19 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import clsx from "clsx";
 import { requireChild } from "@/lib/auth/dal";
 import { getWorld } from "@/lib/worlds";
 import { getPlan, getWorldPath, type PathNodeState } from "@/lib/learning/queries";
+import { chunk, pickMap, starsFor } from "@/lib/learning/maps";
+import { themeForSubject } from "@/components/art/map-scenes";
+import { LessonMap, type MapStone, type StoneState } from "@/components/child/lesson-map";
 import { Muchi } from "@/components/mascot";
 import { WorldArt } from "@/components/art/worlds";
 
-const STATE_UI: Record<PathNodeState, { icon: string; label: string; ring: string }> = {
-  mastered: { icon: "⭐", label: "Mastered", ring: "ring-sun" },
-  practising: { icon: "🌱", label: "Practising", ring: "ring-leaf" },
-  learning: { icon: "🌱", label: "Learning", ring: "ring-leaf" },
-  review: { icon: "🔁", label: "Time to review", ring: "ring-sky" },
-  new: { icon: "✨", label: "New", ring: "ring-white/40" },
-};
+const STONE: Record<PathNodeState, StoneState> = { mastered: "done", practising: "started", learning: "started", review: "review", new: "open" };
 
-export default async function WorldPage({ params }: { params: Promise<{ slug: string }> }) {
+export default async function WorldPage({ params, searchParams }: { params: Promise<{ slug: string }>; searchParams: Promise<{ map?: string }> }) {
   const { slug } = await params;
+  const { map } = await searchParams;
   const world = getWorld(slug);
   if (!world) notFound();
   const { session, child } = await requireChild();
@@ -39,15 +36,29 @@ export default async function WorldPage({ params }: { params: Promise<{ slug: st
   const plan = await getPlan(session.userId);
   const { nodes, nextSlug } = await getWorldPath(child.id, child.ageBand, world.subject, plan);
 
+  // Every activity in this world for the child's age, laid out as illustrated maps of up to 10 lessons.
+  const stones = nodes.map((n, i) => ({
+    n: i + 1,
+    title: n.title,
+    href: n.locked ? null : `/play/activity/${n.slug}`,
+    state: (n.locked ? "locked" : n.slug === nextSlug ? "current" : STONE[n.state]) as StoneState,
+    stars: starsFor(n.score, n.state !== "new"),
+    hasSong: n.hasSong,
+    note: n.locked ? "Ask a grown-up" : undefined,
+    isCurrent: n.slug === nextSlug,
+  }));
+  const maps = chunk(stones);
+  const index = pickMap(map, maps);
+  const href = (i: number) => `/play/world/${world.slug}?map=${i + 1}`;
+
   return (
     <div className="space-y-6">
-      <div className="relative flex items-center gap-4 overflow-hidden rounded-[2rem] p-5" style={{ background: `linear-gradient(135deg, var(--color-world-${world.colour}), color-mix(in oklab, var(--color-world-${world.colour}) 55%, #1e1b3a))` }}>
-        <WorldArt slug={world.slug} float className="size-24 shrink-0 sm:size-32" />
+      <div className="relative flex items-center gap-4 overflow-hidden rounded-[2rem] p-4 sm:p-5" style={{ background: `linear-gradient(135deg, var(--color-world-${world.colour}), color-mix(in oklab, var(--color-world-${world.colour}) 55%, #1e1b3a))` }}>
+        <WorldArt slug={world.slug} float className="size-20 shrink-0 sm:size-28" />
         <div className="flex-1">
-          <h1 className="text-3xl font-bold">{world.name}</h1>
+          <h1 className="text-2xl font-bold sm:text-3xl">{world.name}</h1>
           <p className="text-white/85">{world.tagline}</p>
         </div>
-        <Link href="/play" className="rounded-full bg-black/20 px-4 py-2 font-bold hover:bg-black/30">← Universe</Link>
       </div>
 
       {world.subject === "reading" && (child.ageBand === "LITTLE_EXPLORERS" || child.ageBand === "YOUNG_THINKERS") && (
@@ -61,28 +72,18 @@ export default async function WorldPage({ params }: { params: Promise<{ slug: st
       {nodes.length === 0 ? (
         <p className="rounded-2xl bg-white/10 p-6 text-center text-lg">New adventures for your age are on their way!</p>
       ) : (
-        <ol className="relative mx-auto flex max-w-md flex-col gap-6 py-4" aria-label="Learning path">
-          <span aria-hidden className="absolute left-1/2 top-0 h-full w-2 -translate-x-1/2 rounded-full bg-white/15" />
-          {nodes.map((n, i) => {
-            const ui = STATE_UI[n.state];
-            const isNext = n.slug === nextSlug;
-            return (
-              <li key={n.slug} className={clsx("relative flex", i % 2 ? "justify-end" : "justify-start")}>
-                <Link
-                  href={`/play/activity/${n.slug}`}
-                  className={clsx("relative flex w-[85%] items-center gap-3 rounded-3xl bg-surface p-4 text-ink shadow-lg ring-4 transition hover:-translate-y-0.5", ui.ring, isNext && "outline outline-4 outline-offset-4 outline-sun")}
-                >
-                  <span className="grid size-14 shrink-0 place-items-center rounded-2xl bg-paper text-3xl" aria-hidden>{n.locked ? "🔒" : ui.icon}</span>
-                  <span className="min-w-0 flex-1">
-                    <span className="block font-display text-lg font-bold leading-tight">{n.title}</span>
-                    <span className="block text-sm text-ink-muted">{n.locked ? "Ask a grown-up" : `${ui.label} · ${n.estimatedMinutes} min`}</span>
-                  </span>
-                  {isNext && <span className="absolute -top-3 right-4 rounded-full bg-sun px-2 py-0.5 text-xs font-bold text-ink">Next!</span>}
-                </Link>
-              </li>
-            );
-          })}
-        </ol>
+        <LessonMap
+          title={world.name}
+          subtitle={`${nodes.length} adventures`}
+          theme={themeForSubject(world.subject)}
+          mapIndex={index}
+          mapCount={maps.length}
+          stones={maps[index] as MapStone[]}
+          prevHref={index > 0 ? href(index - 1) : null}
+          nextHref={index < maps.length - 1 ? href(index + 1) : null}
+          homeHref="/play"
+          avatar={child.avatar}
+        />
       )}
     </div>
   );

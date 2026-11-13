@@ -40,7 +40,7 @@ export async function getWorldPath(childId: string, ageBand: AgeBand, subject: s
     db.activity.findMany({
       where: { ageBand, subjectSlug: subject, status: "PUBLISHED", locale: "en" },
       orderBy: { pathOrder: "asc" },
-      select: { id: true, slug: true, title: true, topic: true, subtopic: true, objectiveCode: true, estimatedMinutes: true, isFree: true, pathOrder: true, objective: { select: { childTitle: true, prerequisites: true } } },
+      select: { id: true, slug: true, title: true, topic: true, subtopic: true, objectiveCode: true, estimatedMinutes: true, isFree: true, pathOrder: true, body: true, objective: { select: { childTitle: true, prerequisites: true } } },
     }),
     db.objectiveMastery.findMany({ where: { childId } }),
   ]);
@@ -50,7 +50,8 @@ export async function getWorldPath(childId: string, ageBand: AgeBand, subject: s
     const m = byCode.get(a.objectiveCode);
     const due = m?.nextReviewAt && m.nextReviewAt <= now && m.status !== "NOT_STARTED";
     const state: PathNodeState = !m || m.status === "NOT_STARTED" ? "new" : due ? "review" : (m.status.toLowerCase() as PathNodeState);
-    return { ...a, state, score: m?.score ?? 0, locked: plan === "FREE" && !a.isFree };
+    const { body, ...rest } = a;
+    return { ...rest, hasSong: !!(body as { watch?: unknown }).watch, state, score: m?.score ?? 0, locked: plan === "FREE" && !a.isFree };
   });
   // Recommendation: a due review first, then the first unlocked activity that isn't mastered.
   const next =

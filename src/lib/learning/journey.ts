@@ -22,6 +22,7 @@ export interface JourneyLessonView {
   title: string;
   minutes: number;
   hasSong: boolean;
+  score: number; // mastery score of the lesson's objective (0–1)
   state: LessonState;
   locked: boolean; // plan lock (free plan) — separate from journey order
 }
@@ -30,11 +31,13 @@ export async function getJourneyView(childId: string, slug: string, plan: PlanCo
   const journey = await getJourney(slug);
   if (!journey) return null;
   const lessons = flattenLessons(journey);
-  const [progress, activities] = await Promise.all([
+  const [progress, activities, masteries] = await Promise.all([
     db.journeyProgress.findUnique({ where: { childId_journeySlug: { childId, journeySlug: slug } } }),
-    db.activity.findMany({ where: { slug: { in: lessons.map((l) => l.slug) }, status: "PUBLISHED", locale: "en" }, select: { slug: true, title: true, estimatedMinutes: true, isFree: true, body: true } }),
+    db.activity.findMany({ where: { slug: { in: lessons.map((l) => l.slug) }, status: "PUBLISHED", locale: "en" }, select: { slug: true, title: true, estimatedMinutes: true, isFree: true, body: true, objectiveCode: true } }),
+    db.objectiveMastery.findMany({ where: { childId }, select: { objectiveCode: true, score: true } }),
   ]);
   const bySlug = new Map(activities.map((a) => [a.slug, a]));
+  const scoreByObjective = new Map(masteries.map((m) => [m.objectiveCode, m.score]));
   const states = lessonStates(lessons.length, progress?.startLesson ?? 1, progress?.completed ?? []);
   const view: JourneyLessonView[] = lessons
     .filter((l) => bySlug.has(l.slug))
@@ -45,6 +48,7 @@ export async function getJourneyView(childId: string, slug: string, plan: PlanCo
         title: a.title,
         minutes: a.estimatedMinutes,
         hasSong: !!(a.body as { watch?: unknown }).watch,
+        score: scoreByObjective.get(a.objectiveCode) ?? 0,
         state: states[l.n - 1],
         locked: plan === "FREE" && !a.isFree,
       };

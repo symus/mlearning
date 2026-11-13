@@ -83,7 +83,7 @@ test("a parent signs up, adds a child, the child learns, and progress appears", 
 
   // Locked content shows no price to children
   await page.getByRole("link", { name: "Back to the map" }).click();
-  await expect(page.getByText("Ask a grown-up").first()).toBeVisible();
+  await expect(page.getByRole("img", { name: /Ask a grown-up/ }).first()).toBeVisible();
 
   // Exit with PIN (wrong first)
   await page.getByRole("link", { name: "Grown-ups" }).click();
