@@ -12,10 +12,10 @@ import { Button } from "@/components/ui/button";
  * Parent tool: make, print and cancel a child's QR login card.
  * The card's secret only lives on this screen; leaving the page means making a new card to reprint.
  */
-type Card = { url: string; qr: string; loginId: string; password: string };
+export type PrintCard = { url: string; qr: string; loginId: string; password: string };
 
 export function LoginCardManager({ childId, nickname, avatar, loginId, activeSince }: { childId: string; nickname: string; avatar: unknown; loginId: string | null; activeSince: string | null }) {
-  const [card, setCard] = useState<Card | null>(null);
+  const [card, setCard] = useState<PrintCard | null>(null);
   const [error, setError] = useState("");
   const [pending, start] = useTransition();
 
@@ -83,7 +83,7 @@ export function LoginCardManager({ childId, nickname, avatar, loginId, activeSin
   );
 }
 
-function CardFace({ card, nickname, avatar }: { card: Card; nickname: string; avatar: unknown }) {
+export function CardFace({ card, nickname, avatar }: { card: PrintCard; nickname: string; avatar: unknown }) {
   return (
     <div className="mx-auto w-72 rounded-3xl border-4 border-brand bg-white p-5 text-center text-ink shadow-xl">
       {/* eslint-disable-next-line @next/next/no-img-element */}

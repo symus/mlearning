@@ -35,6 +35,8 @@ User (parent/admin) 1──* ChildProfile 1──* Attempt 1──* AttemptRespo
 | `ChildAchievement` | Earned achievements | unique (child, code) |
 | `Price` | Price per plan, country/region, interval | `currency`, `amountMinor` (pence/grosze/paise) |
 | `Subscription` | Plan state per parent | `plan`, `status`, `provider`, `providerCustomerId`, `currentPeriodEnd` |
+| `Classroom` | A teacher's class | `teacherId`, `name`, `ageBand`, `archivedAt`. Students are `ChildProfile`s with `classroomId` and `parentId` = the teacher |
+| `Assignment` | An activity set for a whole class | `classroomId`, `activityId` (unique together), `dueAt` (optional) |
 | `ChildLoginCard` | A child's printable login card (QR code + simple password) | `tokenHash` (SHA-256 of the QR secret), `passwordHash` (bcrypt), `failedLogins`, `lockedUntil`, `revokedAt`. `ChildProfile.loginId` (e.g. `aya4821`) is made with the first card and never changes |
 
 ## Rules built into the schema

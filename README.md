@@ -51,6 +51,9 @@ npm run dev                   # http://localhost:3000
 |---|---|---|---|
 | Parent with 2 children (Mia 7, Leo 4) and a week of history | `parent@example.com` | `Wonder-demo-2026` | `1234` |
 | Content admin (opens `/admin`) | `admin@example.com` | `Wonder-admin-2026` | `1234` |
+| Teacher with the class "Year 2 Robins" (6 students, 2 assignments) | `teacher@example.com` | `Teach-demo-2026` | — |
+
+Teachers: sign up at `/signup/teacher` (or use the demo teacher) → create a class → add first names → **Make login cards for the class** → set an assignment → see progress and the teacher-only ranking. See [user journeys → T](docs/04-user-journeys.md#t-teacher-working-school-pilot).
 
 Try it: log in → **Let a child play** → pick Mia → play an activity → **Grown-ups** → PIN `1234` → open Mia's **Progress**.
 
@@ -74,6 +77,7 @@ Try it: log in → **Let a child play** → pick Mia → play an activity → **
 | `SESSION_TTL_DAYS` | no | `30` | Session lifetime |
 | `SEED_DEMO_EMAIL` / `SEED_DEMO_PASSWORD` | no | | Demo parent created by the seed |
 | `SEED_ADMIN_EMAIL` / `SEED_ADMIN_PASSWORD` | no | | Admin created by the seed |
+| `SEED_TEACHER_EMAIL` / `SEED_TEACHER_PASSWORD` | no | | Demo teacher created by the seed |
 
 ## Scripts
 
@@ -108,8 +112,8 @@ content/activities/<subject>-<age>.json   activity packs
 ## Testing
 
 ```bash
-npm test                                   # 60 unit tests
-npm run build && npm run test:e2e -- --trace off   # 24 e2e tests (12 journeys × desktop/tablet)
+npm test                                   # 64 unit tests
+npm run build && npm run test:e2e -- --trace off   # 26 e2e tests (13 journeys × desktop/tablet)
 ```
 
 The end-to-end journey covers: landing → sign-up validation → sign-up → add child → hand-over → onboarding → child mode blocks the parent area → play a full activity → locked content shows "Ask a grown-up" → wrong and right PIN → the parent sees progress and "needs attention".

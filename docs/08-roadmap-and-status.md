@@ -15,7 +15,7 @@
 | 3. Engagement | Illustrated universe, avatar room, missions, more achievements, progress map, family challenges | 🟡 Illustrated universe, Muchi intros and celebrations, sound effects, songs, stickers, daily limits done |
 | 4. Parent premium | Weekly reports (email), Stripe subscriptions, billing portal, plan limits, offline selected activities | 🟡 Weekly report page (printable), charts, per-child settings; payments and email next |
 | 5. Intelligence | Calibrated mastery model, personalised paths across objectives, AI-assisted explanations with validation | ⏳ Rule-based adaptivity + spaced review done |
-| 6. Expansion | Science, coding, logic, geography, money worlds; Polish UI; school and teacher accounts | 🟡 Science Lab, Logic Island, Coding City open (27 activities) |
+| 6. Expansion | Science, coding, logic, geography, money worlds; Polish UI; school and teacher accounts | 🟡 Science Lab, Logic Island, Coding City open (27 activities). Teacher accounts (pilot): classes, student login cards, assignments with due dates, teacher-only ranking |
 
 ## Next implementation steps (in order)
 

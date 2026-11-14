@@ -13,6 +13,10 @@ export function formatMoney(amountMinor: number, currency: string, locale = "en-
   return new Intl.NumberFormat(locale, { style: "currency", currency }).format(amountMinor / 100);
 }
 
+/** School pilot limits (keeps one account from creating unbounded data). */
+export const MAX_CLASSES = 10;
+export const MAX_CLASS_SIZE = 40;
+
 export const PLAN_FEATURES: Record<PlanCode, { name: string; summary: string; features: string[] }> = {
   FREE: {
     name: "Free",
@@ -29,8 +33,15 @@ export const PLAN_FEATURES: Record<PlanCode, { name: string; summary: string; fe
     summary: "Everything in Premium for up to 4 children.",
     features: ["Up to 4 child profiles", "Individual learning paths", "Weekly family reports", "Family challenges", "Everything in Premium"],
   },
+  SCHOOL: {
+    name: "School (pilot)",
+    summary: "For teachers: classes, login cards, assignments and progress. Free during the pilot.",
+    features: [`Up to ${MAX_CLASSES} classes of ${MAX_CLASS_SIZE} students`, "Every activity in every world", "Assignments with due dates", "Teacher-only class ranking"],
+  },
 };
 
 /** Free-plan daily limit; enforced in the activity player. */
 export const FREE_DAILY_ACTIVITY_LIMIT = 3;
-export const PLAN_CHILD_LIMIT: Record<PlanCode, number> = { FREE: 1, PREMIUM: 1, FAMILY: 4 };
+// Teachers add students through classes, not as family children.
+export const PLAN_CHILD_LIMIT: Record<PlanCode, number> = { FREE: 1, PREMIUM: 1, FAMILY: 4, SCHOOL: 0 };
+

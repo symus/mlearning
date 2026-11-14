@@ -42,6 +42,9 @@ export function SignupForm() {
       <p className="text-center text-sm text-ink-soft">
         Already have an account? <Link href="/login" className="font-bold text-brand underline-offset-2 hover:underline">Log in</Link>
       </p>
+      <p className="text-center text-sm text-ink-soft">
+        A teacher? <Link href="/signup/teacher" className="font-bold text-brand underline-offset-2 hover:underline">Create a teacher account</Link>
+      </p>
     </form>
   );
 }

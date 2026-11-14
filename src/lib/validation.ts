@@ -63,6 +63,43 @@ export const signupSchema = z.object({
   terms: z.literal("on", { message: "Please accept the terms and privacy notice." }),
 });
 
+export const teacherSignupSchema = z.object({
+  displayName: z.string().trim().min(2, { message: "Please enter your name." }).max(60),
+  schoolName: z.string().trim().min(2, { message: "Please enter your school's name." }).max(100),
+  email: z.string().trim().toLowerCase().email({ message: "Enter a valid email address." }),
+  password,
+  country: z.enum(countryCodes, { message: "Choose your country." }),
+  schoolAuthorisation: z.literal("on", { message: "Please confirm your school allows this use." }),
+  terms: z.literal("on", { message: "Please accept the terms and privacy notice." }),
+});
+
+export const classSchema = z.object({
+  name: z.string().trim().min(1, { message: "Give the class a name." }).max(60),
+  ageBand: z.enum(["LITTLE_EXPLORERS", "YOUNG_THINKERS", "FUTURE_INNOVATORS"], { message: "Choose the age group." }),
+});
+
+/** First names, one per line or separated by commas (e.g. pasted from a class list). */
+export const studentNamesSchema = z.object({
+  names: z
+    .string()
+    .transform((v) => [...new Set(v.split(/[\n,;]+/).map((n) => n.trim().replace(/\s+/g, " ")).filter(Boolean))])
+    .pipe(
+      z
+        .array(z.string().max(30, { message: "Use first names of up to 30 characters." }))
+        .min(1, { message: "Type at least one first name." })
+        .max(40, { message: "Add up to 40 names at a time." }),
+    ),
+});
+
+export const assignmentSchema = z.object({
+  activitySlug: z.string().min(1, { message: "Choose an activity." }).max(100),
+  dueAt: z
+    .string()
+    .optional()
+    .transform((v) => (v ? v : null))
+    .pipe(z.string().regex(/^\d{4}-\d{2}-\d{2}$/, { message: "Choose a valid date." }).nullable()),
+});
+
 export const loginSchema = z.object({
   email: z.string().trim().toLowerCase().email({ message: "Enter a valid email address." }),
   password: z.string().min(1, { message: "Enter your password." }),

@@ -21,6 +21,13 @@ export async function reachableActivityWhere(child: { id: string; ageBand: AgeBa
   return { status: "PUBLISHED", locale: "en", OR: [{ ageBand: child.ageBand }, { slug: { in: extra } }] };
 }
 
+/** Activities a teacher can set for a class of this age group: the age group's activities and its journeys' lessons. */
+export async function bandActivityWhere(ageBand: AgeBand): Promise<Prisma.ActivityWhereInput> {
+  const journeys = await journeysForBand(ageBand);
+  const lessons = [...new Set(journeys.flatMap((j) => flattenLessons(j).map((l) => l.slug)))];
+  return { status: "PUBLISHED", locale: "en", OR: [{ ageBand }, { slug: { in: lessons } }] };
+}
+
 /** Stable order: by world, then younger lessons first, then path position. */
 export function byPath<T extends { subjectSlug: string; ageBand: AgeBand; pathOrder: number }>(a: T, b: T): number {
   return a.subjectSlug.localeCompare(b.subjectSlug) || BAND_RANK[a.ageBand] - BAND_RANK[b.ageBand] || a.pathOrder - b.pathOrder;

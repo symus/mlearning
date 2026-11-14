@@ -75,6 +75,9 @@ export default async function Home({ searchParams }: { searchParams: Promise<{ c
                 <a href="#how" className="inline-flex min-h-14 items-center rounded-full px-6 text-lg font-bold text-white ring-2 ring-white/30 hover:bg-white/10">See how it works</a>
               </div>
               <p className="mt-4 text-sm text-white/65">No card needed · Parents stay in control · Children never see ads or chat</p>
+              <p className="mt-2 text-sm text-white/80">
+                A teacher? <a href="/signup/teacher" className="font-bold text-white underline underline-offset-2">Set up your class</a>: login cards, assignments and class progress. Free during the school pilot.
+              </p>
             </div>
             <div className="relative mx-auto aspect-square w-full max-w-md" aria-hidden>
               <WorldArt slug="math-galaxy" float className="absolute left-0 top-2 w-[46%]" />

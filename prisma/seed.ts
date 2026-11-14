@@ -39,18 +39,19 @@ async function seedPrices() {
   }
 }
 
-async function upsertUser(email: string, password: string, displayName: string, role: "PARENT" | "ADMIN") {
+async function upsertUser(email: string, password: string, displayName: string, role: "PARENT" | "ADMIN" | "TEACHER") {
+  const teacher = role === "TEACHER";
   const passwordHash = await bcrypt.hash(password, 12);
   const parentPinHash = await bcrypt.hash("1234", 12);
   const user = await db.user.upsert({
     where: { email },
-    create: { email, passwordHash, displayName, role, country: "GB", parentPinHash },
+    create: { email, passwordHash, displayName, role, country: "GB", parentPinHash: teacher ? null : parentPinHash, schoolName: teacher ? "Hillside Primary" : null },
     update: { role },
   });
-  await db.subscription.upsert({ where: { userId: user.id }, create: { userId: user.id, plan: "FAMILY" }, update: {} });
+  await db.subscription.upsert({ where: { userId: user.id }, create: { userId: user.id, plan: teacher ? "SCHOOL" : "FAMILY", status: teacher ? "TRIALING" : "ACTIVE" }, update: {} });
   if ((await db.consentRecord.count({ where: { userId: user.id } })) === 0) {
     await db.consentRecord.createMany({
-      data: (["TERMS", "PRIVACY", "PARENTAL_CONSENT"] as const).map((type) => ({ userId: user.id, type, version: "2026-11" })),
+      data: (["TERMS", "PRIVACY", teacher ? "SCHOOL_AUTHORISATION" : "PARENTAL_CONSENT"] as const).map((type) => ({ userId: user.id, type, version: "2026-11" })),
     });
   }
   return user;
@@ -99,6 +100,29 @@ async function simulateHistory(childId: string, ageBand: AgeBand, profile: { ski
   }
 }
 
+/** A demo teacher with one class, varied progress and two assignments. */
+async function seedDemoClass() {
+  const teacher = await upsertUser(process.env.SEED_TEACHER_EMAIL ?? "teacher@example.com", process.env.SEED_TEACHER_PASSWORD ?? "Teach-demo-2026", "Ms Patel", "TEACHER");
+  if (await db.classroom.count({ where: { teacherId: teacher.id } })) return;
+  const cls = await db.classroom.create({ data: { teacherId: teacher.id, name: "Year 2 Robins", ageBand: "YOUNG_THINKERS" } });
+  const year = new Date().getFullYear();
+  const students = [
+    { nickname: "Aisha", skill: 0.92, days: 6 }, { nickname: "Ben", skill: 0.7, days: 5 }, { nickname: "Chen", skill: 0.85, days: 6 },
+    { nickname: "Dara", skill: 0.55, days: 3 }, { nickname: "Eli", skill: 0.8, days: 4 }, { nickname: "Freya", skill: 0, days: 0 },
+  ];
+  for (const s of students) {
+    const child = await db.childProfile.create({
+      data: { parentId: teacher.id, classroomId: cls.id, nickname: s.nickname, birthYear: year - 7, ageBand: "YOUNG_THINKERS", avatar: { character: "owl", colour: "sky" }, onboardedAt: new Date() },
+    });
+    if (s.days) await simulateHistory(child.id, "YOUNG_THINKERS", s); // Freya hasn't started yet
+  }
+  const setAt = new Date(Date.now() - 8 * 86_400_000);
+  for (const [slug, dueInDays] of [["number-bonds-to-10", 5], ["detail-detective", 9]] as const) {
+    const activity = await db.activity.findFirst({ where: { slug, status: "PUBLISHED" } });
+    if (activity) await db.assignment.create({ data: { classroomId: cls.id, activityId: activity.id, createdAt: setAt, dueAt: new Date(Date.now() + dueInDays * 86_400_000) } });
+  }
+}
+
 async function main() {
   console.log("Importing content…");
   const r = await importContent(db, { publish: true });
@@ -123,7 +147,9 @@ async function main() {
     await simulateHistory(child.id, k.ageBand, k);
     await db.childAchievement.createMany({ data: ["FIRST_STEP", "EXPLORER_5", "HINT_HERO"].map((code) => ({ childId: child.id, code })), skipDuplicates: true });
   }
+  await seedDemoClass();
   console.log("✓ Seed complete. Demo parent: parent@example.com / Wonder-demo-2026 (PIN 1234)");
+  console.log("  Demo teacher: teacher@example.com / Teach-demo-2026");
 }
 
 main()

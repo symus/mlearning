@@ -4,7 +4,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
 import { hashSecret, verifySecret } from "@/lib/auth/password";
 import { createSession, destroySession } from "@/lib/auth/session";
-import { childLoginSchema, fieldErrors, loginSchema, signupSchema, type FormState } from "@/lib/validation";
+import { childLoginSchema, fieldErrors, loginSchema, signupSchema, teacherSignupSchema, type FormState } from "@/lib/validation";
 import { LOCK_MINUTES, MAX_FAILED_LOGINS, isLocked } from "@/lib/auth/child-login";
 
 const CONSENT_VERSION = "2026-11";
@@ -46,6 +46,34 @@ export async function signup(_prev: FormState, formData: FormData): Promise<Form
   });
   await createSession(user.id);
   redirect("/parent/children/new?welcome=1");
+}
+
+export async function teacherSignup(_prev: FormState, formData: FormData): Promise<FormState> {
+  const raw = Object.fromEntries(formData);
+  const parsed = teacherSignupSchema.safeParse(raw);
+  const values = { displayName: String(raw.displayName ?? ""), schoolName: String(raw.schoolName ?? ""), email: String(raw.email ?? ""), country: String(raw.country ?? "GB") };
+  if (!parsed.success) return { errors: fieldErrors(parsed.error), values };
+
+  const { email, password, displayName, schoolName, country } = parsed.data;
+  const exists = await db.user.findUnique({ where: { email } });
+  if (exists) return { errors: { email: ["An account with this email already exists. Try logging in."] }, values };
+
+  const user = await db.user.create({
+    data: {
+      email,
+      displayName,
+      schoolName,
+      country,
+      role: "TEACHER",
+      passwordHash: await hashSecret(password),
+      // School pilot: full access while school billing is built (no payment taken).
+      subscription: { create: { plan: "SCHOOL", status: "TRIALING" } },
+      consents: { create: (["TERMS", "PRIVACY", "SCHOOL_AUTHORISATION"] as const).map((type) => ({ type, version: CONSENT_VERSION })) },
+      auditLogs: { create: { action: "account.created" } },
+    },
+  });
+  await createSession(user.id);
+  redirect("/teacher?welcome=1");
 }
 
 export async function login(_prev: FormState, formData: FormData): Promise<FormState> {

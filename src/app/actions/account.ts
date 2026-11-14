@@ -2,13 +2,13 @@
 
 import { redirect } from "next/navigation";
 import { db } from "@/lib/db";
-import { requireParent } from "@/lib/auth/dal";
+import { requireAdult } from "@/lib/auth/dal";
 import { hashSecret, verifySecret } from "@/lib/auth/password";
 import { destroySession } from "@/lib/auth/session";
 import { changePinSchema, fieldErrors, type FormState } from "@/lib/validation";
 
 export async function changePin(_prev: FormState, formData: FormData): Promise<FormState> {
-  const session = await requireParent();
+  const session = await requireAdult();
   const parsed = changePinSchema.safeParse(Object.fromEntries(formData));
   if (!parsed.success) return { errors: fieldErrors(parsed.error) };
   const user = await db.user.findUniqueOrThrow({ where: { id: session.userId } });
@@ -18,7 +18,7 @@ export async function changePin(_prev: FormState, formData: FormData): Promise<F
 }
 
 export async function deleteAccount(_prev: FormState, formData: FormData): Promise<FormState> {
-  const session = await requireParent();
+  const session = await requireAdult();
   const user = await db.user.findUniqueOrThrow({ where: { id: session.userId } });
   if (String(formData.get("confirm") ?? "") !== "DELETE") return { errors: { confirm: ['Type DELETE to confirm.'] } };
   if (!(await verifySecret(String(formData.get("password") ?? ""), user.passwordHash))) return { errors: { password: ["Password is incorrect."] } };

@@ -75,6 +75,16 @@
 
 `/admin` (ADMIN/REVIEWER only) → filter by status → `/admin/activity/[id]` full preview with answers, hints, wrong-answer maps, curriculum mapping, review checklist → **Approve & publish / Return to draft / Archive** (audited).
 
+## T. Teacher (working, school pilot)
+
+1. `/signup/teacher`: name, school, email, password, country, school authorisation + terms. Teachers get the **School (pilot)** plan: full library, no payment.
+2. `/teacher`: create a class (name + age group, up to 10 classes).
+3. `/teacher/classes/[id]` → **Students**: add first names (one per line or commas, up to 40 per class). No surnames, no real birth dates (the class's age group is used).
+4. **Login cards**: *Make login cards for the class* → one card per student (QR + login ID + password), printed several to a page. Making cards again cancels the old ones. Students log in at `/login/kids` or by scanning; they get a child-only session (no teacher area).
+5. **Assignments**: pick an activity for the class's age group (including its Reading Journey lessons) and an optional due date. Students see **🍎 From my teacher** first on their universe; the next unfinished one is their "Next adventure". Done = passed (60%+) since it was set; the teacher sees "N of M done" and who still needs to do it.
+6. **Ranking (teacher only)**: last 7 days or all time, sorted by skills mastered, assignments done, activities, accuracy or minutes. Equal results share a place. Students never see rankings.
+7. Teachers never reach the family area (`/parent` → `/teacher`); another teacher's class returns 404. Removing a student deletes their profile and records. `/teacher/settings`: data download and account deletion (deletes classes and students too).
+
 ## H. Later journeys (planned)
 
 - Weekly email report (Phase 4), checkout and billing portal (Phase 4), family challenges (Phase 3/4), teacher class set-up (Phase 6).

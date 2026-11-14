@@ -10,6 +10,7 @@ import { WorldArt } from "@/components/art/worlds";
 import { Starfield } from "@/components/child/starfield";
 import { journeysForBand, getJourneyView } from "@/lib/learning/journey";
 import { limitStatus } from "@/lib/learning/limits";
+import { getStudentAssignments } from "@/lib/teacher/class-data";
 
 export const metadata = { title: "Learning universe" };
 
@@ -25,6 +26,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
   ]);
   const goalMet = today.minutes >= child.dailyGoalMinutes;
   const limit = limitStatus(today.minutes, child.dailyLimitMinutes);
+  const fromTeacher = child.classroomId ? await getStudentAssignments(child.id, child.classroomId) : [];
   const stickerCount = await db.childSticker.count({ where: { childId: child.id } });
   const journeyViews = await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)));
   // Sing-along shelf: activities in this age group that open with a song or video.
@@ -41,7 +43,8 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
   const picks = (preferReading ? [reading, maths] : [maths, reading]).map((p) => p.nodes.find((n) => n.slug === p.nextSlug)).filter(Boolean);
   const next = picks[0];
   const review = paths.flatMap((p) => p.nodes).find((n) => n.state === "review" && !n.locked);
-  const featured = review ?? next;
+  const teacherPick = fromTeacher.find((a) => a.status !== "done"); // set by the teacher: comes first
+  const featured = teacherPick ?? review ?? next;
 
   return (
     <div className="space-y-10">
@@ -63,7 +66,9 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
             {goalMet
               ? "You reached today's goal. You can stop here and come back tomorrow — or explore a little more."
               : featured
-                ? review
+                ? teacherPick
+                  ? "Your teacher picked this one for you."
+                  : review
                   ? "Muchi thinks it's time to visit an old friend. A quick review helps your brain remember!"
                   : "Here's a great next adventure for you."
                 : "Pick a world to explore!"}
@@ -71,11 +76,35 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
         </div>
         {featured && (
           <Link href={`/play/activity/${featured.slug}`} className="btn-pop shrink-0 rounded-3xl bg-sun px-6 py-4 text-ink">
-            <span className="block text-xs font-bold uppercase tracking-wide">{review ? "Quick review" : "Next adventure"}</span>
+            <span className="block text-xs font-bold uppercase tracking-wide">{teacherPick ? "From my teacher" : review ? "Quick review" : "Next adventure"}</span>
             <span className="block font-display text-xl font-bold">{featured.title}</span>
           </Link>
         )}
       </section>
+
+      {fromTeacher.length > 0 && (
+        <section aria-labelledby="from-teacher" className="space-y-3">
+          <h2 id="from-teacher" className="text-2xl font-bold">🍎 From my teacher</h2>
+          <ul className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {fromTeacher.map((a) => (
+              <li key={a.id}>
+                <Link
+                  href={`/play/activity/${a.slug}`}
+                  className={clsx("flex h-full items-center gap-3 rounded-3xl p-4 ring-1 transition hover:-translate-y-0.5", a.status === "done" ? "bg-white/5 ring-white/10" : "bg-white/15 ring-white/25")}
+                >
+                  <span className="text-3xl" aria-hidden>{a.status === "done" ? "✅" : "📝"}</span>
+                  <span className="min-w-0 flex-1">
+                    <span className="block font-display text-lg font-bold leading-tight">{a.title}</span>
+                    <span className="block text-sm text-white/75">
+                      {a.status === "done" ? "Done. Well done!" : a.status === "tried" ? "Have another go!" : a.dueAt ? `Try it by ${a.dueAt.toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "short" })}` : "Your teacher set this for you"}
+                    </span>
+                  </span>
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </section>
+      )}
 
       {journeyViews.map((v) =>
         v ? (

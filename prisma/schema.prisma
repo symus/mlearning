@@ -19,6 +19,7 @@ enum Role {
   PARENT
   REVIEWER // can review and publish content
   ADMIN
+  TEACHER // manages classes of student profiles (no parent area)
 }
 
 model User {
@@ -30,6 +31,7 @@ model User {
   country       String   @default("GB") // ISO 3166-1 alpha-2, drives pricing + default curriculum
   locale        String   @default("en")
   parentPinHash String? // 4-digit PIN that lets an adult leave child mode
+  schoolName    String? // teachers only
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
@@ -39,6 +41,7 @@ model User {
   subscription  Subscription?
   auditLogs     AuditLog[]
   reviewedItems Activity[]      @relation("ActivityReviewer")
+  classrooms    Classroom[]
 }
 
 model Session {
@@ -61,6 +64,7 @@ enum ConsentType {
   TERMS
   PRIVACY
   PARENTAL_CONSENT // parent confirms they are the parent/guardian and consents to processing child data
+  SCHOOL_AUTHORISATION // teacher confirms their school authorises this use and holds the needed parental permissions
 }
 
 model ConsentRecord {
@@ -109,6 +113,7 @@ model ChildProfile {
   soundEffects      Boolean   @default(true) // gentle clicks, chimes and celebrations
   textSize          String    @default("normal") // "normal" | "large" | "xlarge" (accessibility)
   dailyLimitMinutes Int? // parent-set healthy daily limit; null = no limit
+  classroomId       String? // set for students a teacher created; parentId is then the teacher
   loginId           String?   @unique // simple login ID for the child's card, e.g. "aya4821" (made with the first card, never changes)
   onboardedAt       DateTime?
   createdAt         DateTime  @default(now())
@@ -122,8 +127,10 @@ model ChildProfile {
   journeys     JourneyProgress[]
   stickers     ChildSticker[]
   loginCards   ChildLoginCard[]
+  classroom    Classroom?         @relation(fields: [classroomId], references: [id], onDelete: SetNull)
 
   @@index([parentId])
+  @@index([classroomId])
 }
 
 // ---------- Curriculum & content ----------
@@ -205,10 +212,11 @@ model Activity {
   createdAt        DateTime      @default(now())
   updatedAt        DateTime      @updatedAt
 
-  subject    Subject   @relation(fields: [subjectSlug], references: [slug])
-  objective  Objective @relation(fields: [objectiveCode], references: [code])
-  reviewedBy User?     @relation("ActivityReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
-  attempts   Attempt[]
+  subject     Subject      @relation(fields: [subjectSlug], references: [slug])
+  objective   Objective    @relation(fields: [objectiveCode], references: [code])
+  reviewedBy  User?        @relation("ActivityReviewer", fields: [reviewedById], references: [id], onDelete: SetNull)
+  attempts    Attempt[]
+  assignments Assignment[]
 
   @@unique([slug, locale])
   @@index([subjectSlug, ageBand, status])
@@ -297,6 +305,7 @@ enum PlanCode {
   FREE
   PREMIUM
   FAMILY
+  SCHOOL // teacher accounts (pilot: free while school billing is built)
 }
 
 enum SubscriptionStatus {
@@ -393,4 +402,40 @@ model ChildLoginCard {
   child ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
 
   @@index([childId])
+}
+
+// ---------- Classes (teachers) ----------
+
+/**
+ * A teacher's class. Students are ChildProfiles the teacher created (parentId = teacher).
+ */
+model Classroom {
+  id         String    @id @default(cuid())
+  teacherId  String
+  name       String // e.g. "Year 2 Robins"
+  ageBand    AgeBand
+  createdAt  DateTime  @default(now())
+  archivedAt DateTime?
+
+  teacher     User           @relation(fields: [teacherId], references: [id], onDelete: Cascade)
+  students    ChildProfile[]
+  assignments Assignment[]
+
+  @@index([teacherId])
+}
+
+/**
+ * An activity a teacher set for the whole class, with an optional due date.
+ */
+model Assignment {
+  id          String    @id @default(cuid())
+  classroomId String
+  activityId  String
+  dueAt       DateTime?
+  createdAt   DateTime  @default(now())
+
+  classroom Classroom @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+  activity  Activity  @relation(fields: [activityId], references: [id], onDelete: Cascade)
+
+  @@unique([classroomId, activityId])
 }
