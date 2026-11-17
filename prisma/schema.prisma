@@ -113,6 +113,8 @@ model ChildProfile {
   soundEffects      Boolean   @default(true) // gentle clicks, chimes and celebrations
   textSize          String    @default("normal") // "normal" | "large" | "xlarge" (accessibility)
   dailyLimitMinutes Int? // parent-set healthy daily limit; null = no limit
+  pausedUntil       DateTime? // parent paused Arivupulla for this child until then ("lock for a while")
+  lastSeenAt        DateTime? // last time the child's screen checked in (live status for the parent)
   classroomId       String? // set for students a teacher created; parentId is then the teacher
   loginId           String?   @unique // simple login ID for the child's card, e.g. "aya4821" (made with the first card, never changes)
   onboardedAt       DateTime?

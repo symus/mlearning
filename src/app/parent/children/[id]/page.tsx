@@ -19,6 +19,10 @@ import { getJourneyView, journeysForBand } from "@/lib/learning/journey";
 import { getPlan } from "@/lib/learning/queries";
 import { resetJourney } from "@/app/actions/journey";
 import { LoginCardManager } from "@/components/parent/login-card";
+import { LiveStatus } from "@/components/parent/live-status";
+import { AutoRefresh, PauseControls } from "@/components/parent/child-controls";
+import { getPresence } from "@/lib/learning/presence";
+import { isPaused } from "@/lib/learning/pause";
 
 export const metadata = { title: "Child progress" };
 
@@ -53,6 +57,8 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
     return null;
   };
   const plan = await getPlan(session.userId);
+  const presence = await getPresence(child);
+  const paused = isPaused(child.pausedUntil);
   const activeCard = await db.childLoginCard.findFirst({ where: { childId: child.id, revokedAt: null }, orderBy: { createdAt: "desc" } });
   const journeyViews = (await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)))).filter((v) => v !== null);
   const masteryByCode = new Map(report.masteries.map((m) => [m.objectiveCode, m]));
@@ -71,6 +77,15 @@ export default async function ChildPage({ params, searchParams }: { params: Prom
         </div>
         <Link href={`/parent/children/${child.id}/report`} className="btn-pop rounded-full bg-sun px-5 py-3 font-bold text-ink">📄 Weekly report</Link>
       </div>
+
+      <Card aria-labelledby="now-title" className="space-y-4">
+        <AutoRefresh />
+        <div>
+          <h2 id="now-title" className="text-xl font-bold">Right now</h2>
+          <div className="mt-1"><LiveStatus presence={presence} nickname={child.nickname} paused={paused} /></div>
+        </div>
+        <PauseControls childId={child.id} nickname={child.nickname} pausedUntil={paused ? child.pausedUntil!.toISOString() : null} />
+      </Card>
 
       <section aria-labelledby="week-title">
         <h2 id="week-title" className="mb-3 text-xl font-bold">The last 7 days</h2>

@@ -147,7 +147,7 @@ export function Player({
     const res = await startAttempt(activity.slug, startLevel);
     setBusy(false);
     if ("error" in res) {
-      setBlocked(["limit", "locked", "daily-limit"].includes(res.error) ? res.error : res.error);
+      setBlocked(res.error);
       setPhase("blocked");
       return;
     }
@@ -161,6 +161,12 @@ export function Player({
     setBusy(true);
     const fb = await submitAnswer({ attemptId, itemId: item.id, answer, hintsUsed: hintsShown, tryNumber, timeMs: Date.now() - shownAt.current });
     setBusy(false);
+    if (fb.paused) {
+      // A grown-up paused Arivupulla: stop here; this lesson can be finished later.
+      setBlocked("paused");
+      setPhase("blocked");
+      return;
+    }
     setFeedback(fb);
     sfx(fb.correct ? "correct" : "tryAgain");
     if (fb.final) {
@@ -309,7 +315,12 @@ export function Player({
           {phase === "blocked" && (
             <div className="flex flex-col items-center gap-4 py-6 text-center">
               <Muchi className="size-24" />
-              {blocked === "daily-limit" ? (
+              {blocked === "paused" ? (
+                <>
+                  <h2 className="text-2xl font-bold">😴 Time for a break!</h2>
+                  <p className="max-w-md text-lg">A grown-up has paused Arivupulla for a while. Your lesson is saved, so you can finish it later.</p>
+                </>
+              ) : blocked === "daily-limit" ? (
                 <>
                   <h2 className="text-2xl font-bold">🌙 That&apos;s all for today!</h2>
                   <p className="max-w-md text-lg">You&apos;ve done your learning time for today. Muchi will be here tomorrow with more adventures!</p>

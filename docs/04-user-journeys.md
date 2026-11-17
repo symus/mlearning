@@ -63,6 +63,12 @@
 1. `/parent` — every child: minutes this week, activities, skills mastered, weekly goal bar, one plain-language "worth a look" item.
 2. `/parent/children/[id]` — last 7 days, strengths, needs attention (with the recurring slip and a "try at home" tip), skills by subject with curriculum references, recent activity, achievements, edit, delete.
 
+## E1. Parent controls: right now + pause (working)
+
+1. **Right now** (overview cards and the child's Progress page, refreshing every 20 s): "Playing now: *activity* · N of M questions answered · started X min ago", "On Arivupulla now" (maps, stickers, songs), "Last active *day* at *time*", or "hasn't played yet". The child's screen checks in every 45 s while it is open and visible.
+2. **Lock for a while** (Progress page): 🔒 30 minutes · 1 hour · until tomorrow morning (06:00 in the parent's time zone), and 🔓 Unlock now. It applies on every device the child uses, including login-card sessions.
+3. While paused the child sees "Arivupulla is resting 😴" with the time it opens again; the server refuses new lessons and answers. A lesson in progress stops with "Time for a break!" and can be resumed later. An open screen switches to the resting screen within about a minute, without the child doing anything.
+
 ## E2. Weekly report (working)
 
 `/parent/children/[id]/report?week=YYYY-MM-DD`: time (vs previous week), days active, activities, accuracy, minutes per day, subjects, what was learned, highlights, needs practice with "try at home" tips, stickers and achievements. Week navigation and print/PDF. Only the child's own parent can open it.

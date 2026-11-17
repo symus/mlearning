@@ -10,6 +10,8 @@ import { ACHIEVEMENTS, type AchievementCode } from "@/lib/achievements";
 import { recordJourneyResult } from "@/lib/learning/journey";
 import { limitStatus, type LimitStatus } from "@/lib/learning/limits";
 import { STICKER_ACCURACY, stickerFor } from "@/lib/rewards";
+import { isPaused } from "@/lib/learning/pause";
+import { touchSeen } from "@/lib/learning/presence";
 
 async function requireChildSession() {
   const session = await getSession();
@@ -27,6 +29,7 @@ function findItem(body: ActivityBody, itemId: string): { item: Item; level: numb
 
 export async function startAttempt(slug: string, startLevel: number): Promise<{ attemptId: string } | { error: string }> {
   const { session, child } = await requireChildSession();
+  if (isPaused(child.pausedUntil)) return { error: "paused" }; // a grown-up paused Arivupulla
   const activity = await db.activity.findFirst({ where: { slug, status: "PUBLISHED" } });
   if (!activity) return { error: "This activity isn't available." };
   const plan = await getPlan(session.userId);
@@ -44,11 +47,14 @@ export interface AnswerFeedback {
   remedy?: string; // targeted help after a first wrong try
   explanation?: string;
   correctAnswer?: string;
+  paused?: boolean; // a grown-up paused Arivupulla: the answer was not recorded
 }
 
 /** Check an answer on the server. A first wrong try returns targeted help; the second shows the explanation. */
 export async function submitAnswer(input: { attemptId: string; itemId: string; answer: Answer; hintsUsed: number; tryNumber: number; timeMs: number }): Promise<AnswerFeedback> {
   const { child } = await requireChildSession();
+  if (isPaused(child.pausedUntil)) return { correct: false, final: false, paused: true };
+  await touchSeen(child);
   const attempt = await db.attempt.findFirst({ where: { id: input.attemptId, childId: child.id, completedAt: null }, include: { activity: true } });
   if (!attempt) throw new Error("Attempt not found.");
   const body = attempt.activity.body as unknown as ActivityBody;

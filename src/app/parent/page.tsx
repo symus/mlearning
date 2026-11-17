@@ -9,6 +9,10 @@ import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { ButtonLink } from "@/components/ui/button";
 import { Muchi } from "@/components/mascot";
 import { WeeklyMinutesChart } from "@/components/parent/charts";
+import { LiveStatus } from "@/components/parent/live-status";
+import { AutoRefresh } from "@/components/parent/child-controls";
+import { getPresence } from "@/lib/learning/presence";
+import { isPaused } from "@/lib/learning/pause";
 
 export const metadata = { title: "Parent overview" };
 
@@ -19,7 +23,7 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
     db.childProfile.findMany({ where: { parentId: session.userId }, orderBy: { createdAt: "asc" } }),
     getPlan(session.userId),
   ]);
-  const reports = await Promise.all(children.map((c) => getChildReport(c.id)));
+  const [reports, presences] = await Promise.all([Promise.all(children.map((c) => getChildReport(c.id))), Promise.all(children.map((c) => getPresence(c)))]);
 
   return (
     <div className="space-y-8">
@@ -32,6 +36,7 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
         <Badge tone="brand">{PLAN_FEATURES[plan].name} plan</Badge>
       </div>
 
+      {children.length > 0 && <AutoRefresh />}
       {children.length === 0 ? (
         <Card className="flex flex-col items-center gap-4 py-12 text-center">
           <Muchi className="size-24" />
@@ -52,12 +57,14 @@ export default async function ParentHome({ searchParams }: { searchParams: Promi
                   <div className="min-w-0 flex-1">
                     <h2 className="truncate text-2xl font-bold">{child.nickname}</h2>
                     <p className="text-sm text-ink-muted">About {ageFromBirthYear(child.birthYear)} · {band.name}</p>
+                    {isPaused(child.pausedUntil) && <p className="mt-1 text-sm font-bold text-warning">🔒 Paused</p>}
                   </div>
                   <div className="flex flex-col gap-1.5 sm:flex-row">
                     <ButtonLink href={`/parent/children/${child.id}`} variant="secondary" size="sm">Progress</ButtonLink>
                     <ButtonLink href={`/parent/children/${child.id}/report`} variant="secondary" size="sm">Weekly report</ButtonLink>
                   </div>
                 </div>
+                <LiveStatus presence={presences[i]} nickname={child.nickname} paused={isPaused(child.pausedUntil)} />
                 <dl className="grid grid-cols-3 gap-3 text-center">
                   <div className="rounded-xl bg-paper p-3"><dt className="text-xs font-bold text-ink-muted">This week</dt><dd className="font-display text-2xl font-bold">{r.minutesThisWeek}<span className="text-sm"> min</span></dd></div>
                   <div className="rounded-xl bg-paper p-3"><dt className="text-xs font-bold text-ink-muted">Activities</dt><dd className="font-display text-2xl font-bold">{r.activitiesThisWeek}</dd></div>

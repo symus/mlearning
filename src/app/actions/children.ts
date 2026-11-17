@@ -7,6 +7,8 @@ import { ageBandForBirthYear } from "@/lib/age";
 import { getOwnedChild, getSession, requireParent } from "@/lib/auth/dal";
 import { verifySecret } from "@/lib/auth/password";
 import { PLAN_CHILD_LIMIT } from "@/lib/pricing";
+import { PAUSE_OPTIONS, isPaused, pauseEnd, type PauseOption } from "@/lib/learning/pause";
+import { touchSeen } from "@/lib/learning/presence";
 import { AVATAR_CHARACTERS, AVATAR_COLOURS, avatarSchema, childPrefsSchema, childSchema, fieldErrors, pinSchema, type FormState } from "@/lib/validation";
 
 function parseChildForm(formData: FormData) {
@@ -141,4 +143,35 @@ export async function updateMyPrefs(prefs: { soundEffects: boolean; narration: b
   await db.childProfile.update({ where: { id: session.activeChild.id }, data: parsed.data });
   revalidatePath("/play", "layout");
   return { ok: true };
+}
+
+/** Parent: pause Arivupulla for this child for a while (every device, including card logins). */
+export async function pauseChild(childId: string, option: string, tzOffsetMinutes: number): Promise<void> {
+  const session = await requireParent();
+  const child = await getOwnedChild(session.userId, childId);
+  if (!child || !(PAUSE_OPTIONS as readonly string[]).includes(option)) return;
+  const pausedUntil = pauseEnd(option as PauseOption, new Date(), Number(tzOffsetMinutes));
+  await db.childProfile.update({ where: { id: child.id }, data: { pausedUntil } });
+  await db.auditLog.create({ data: { userId: session.userId, action: "child.paused", targetId: child.id } });
+  revalidatePath(`/parent/children/${child.id}`);
+  revalidatePath("/parent");
+}
+
+export async function resumeChild(childId: string): Promise<void> {
+  const session = await requireParent();
+  const child = await getOwnedChild(session.userId, childId);
+  if (!child) return;
+  await db.childProfile.update({ where: { id: child.id }, data: { pausedUntil: null } });
+  await db.auditLog.create({ data: { userId: session.userId, action: "child.resumed", targetId: child.id } });
+  revalidatePath(`/parent/children/${child.id}`);
+  revalidatePath("/parent");
+}
+
+/** The child's screen checks in: updates "last seen" and says whether a grown-up has paused the app. */
+export async function heartbeat(): Promise<{ paused: boolean }> {
+  const session = await getSession();
+  const child = session?.activeChild;
+  if (!child) return { paused: false };
+  await touchSeen(child);
+  return { paused: isPaused(child.pausedUntil) };
 }
