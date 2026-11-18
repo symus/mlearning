@@ -27,6 +27,7 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
   const goalMet = today.minutes >= child.dailyGoalMinutes;
   const limit = limitStatus(today.minutes, child.dailyLimitMinutes);
   const fromTeacher = child.classroomId ? await getStudentAssignments(child.id, child.classroomId) : [];
+  const gamesOn = !!child.classroomId && !!(await db.classroom.findFirst({ where: { id: child.classroomId, gamesEnabled: true, archivedAt: null }, select: { id: true } }));
   const stickerCount = await db.childSticker.count({ where: { childId: child.id } });
   const journeyViews = await Promise.all((await journeysForBand(child.ageBand)).map((j) => getJourneyView(child.id, j.slug, plan)));
   // Sing-along shelf: activities in this age group that open with a song or video.
@@ -104,6 +105,17 @@ export default async function UniversePage({ searchParams }: { searchParams: Pro
             ))}
           </ul>
         </section>
+      )}
+
+      {gamesOn && (
+        <Link href="/play/games" className="flex items-center gap-4 rounded-[2rem] bg-gradient-to-r from-berry to-brand p-5 ring-1 ring-white/20 transition hover:-translate-y-0.5">
+          <span className="text-5xl" aria-hidden>🎮</span>
+          <span className="flex-1">
+            <span className="block font-display text-2xl font-bold">Play Memory with a classmate</span>
+            <span className="text-white/80">Take turns to find the pairs. Just for fun!</span>
+          </span>
+          <span className="rounded-full bg-sun px-5 py-2 font-bold text-ink">Play ▶</span>
+        </Link>
       )}
 
       {journeyViews.map((v) =>

@@ -129,6 +129,8 @@ model ChildProfile {
   journeys     JourneyProgress[]
   stickers     ChildSticker[]
   loginCards   ChildLoginCard[]
+  gamesAsA     MemoryGame[]       @relation("GamePlayerA")
+  gamesAsB     MemoryGame[]       @relation("GamePlayerB")
   classroom    Classroom?         @relation(fields: [classroomId], references: [id], onDelete: SetNull)
 
   @@index([parentId])
@@ -412,16 +414,18 @@ model ChildLoginCard {
  * A teacher's class. Students are ChildProfiles the teacher created (parentId = teacher).
  */
 model Classroom {
-  id         String    @id @default(cuid())
-  teacherId  String
-  name       String // e.g. "Year 2 Robins"
-  ageBand    AgeBand
-  createdAt  DateTime  @default(now())
-  archivedAt DateTime?
+  id           String    @id @default(cuid())
+  teacherId    String
+  name         String // e.g. "Year 2 Robins"
+  ageBand      AgeBand
+  gamesEnabled Boolean   @default(true) // classmates may play live 2-player games together (teacher can switch off)
+  createdAt    DateTime  @default(now())
+  archivedAt   DateTime?
 
   teacher     User           @relation(fields: [teacherId], references: [id], onDelete: Cascade)
   students    ChildProfile[]
   assignments Assignment[]
+  games       MemoryGame[]
 
   @@index([teacherId])
 }
@@ -440,4 +444,40 @@ model Assignment {
   activity  Activity  @relation(fields: [activityId], references: [id], onDelete: Cascade)
 
   @@unique([classroomId, activityId])
+}
+
+// ---------- Games (classmates, live, two devices) ----------
+
+enum GameStatus {
+  INVITED
+  PLAYING
+  FINISHED
+  ENDED // declined, cancelled, left or timed out
+}
+
+/**
+ * A live Memory game between two students of the same class. "Pure fun": never used for progress,
+ * reports or rankings, and deleted after a day. No chat: the only inputs are invite / accept / flip / leave.
+ */
+model MemoryGame {
+  id          String     @id @default(cuid())
+  classroomId String
+  playerAId   String // invited the other player; goes first
+  playerBId   String
+  status      GameStatus @default(INVITED)
+  deck        String // "animals" | "numbers" | "letters"
+  state       Json // MemoryState (server only: includes hidden card faces)
+  version     Int        @default(0) // optimistic lock: two quick flips can't both win
+  endedReason String? // "declined" | "cancelled" | "left" | "timeout"
+  endedById   String?
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+
+  classroom Classroom    @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+  playerA   ChildProfile @relation("GamePlayerA", fields: [playerAId], references: [id], onDelete: Cascade)
+  playerB   ChildProfile @relation("GamePlayerB", fields: [playerBId], references: [id], onDelete: Cascade)
+
+  @@index([playerAId, status])
+  @@index([playerBId, status])
+  @@index([updatedAt])
 }

@@ -107,3 +107,14 @@ export async function removeAssignment(classId: string, assignmentId: string): P
   await db.assignment.deleteMany({ where: { id: assignmentId, classroomId: cls.id } });
   revalidatePath(classPath(cls.id));
 }
+
+/** Let classmates play live 2-player games together (on by default; the teacher can switch it off). */
+export async function setGamesEnabled(classId: string, enabled: boolean): Promise<void> {
+  const session = await requireTeacher();
+  const cls = await getOwnedClass(session.userId, classId);
+  if (!cls) return;
+  await db.classroom.update({ where: { id: cls.id }, data: { gamesEnabled: enabled } });
+  if (!enabled) await db.memoryGame.updateMany({ where: { classroomId: cls.id, status: { in: ["INVITED", "PLAYING"] } }, data: { status: "ENDED", endedReason: "cancelled" } });
+  await db.auditLog.create({ data: { userId: session.userId, action: enabled ? "class.games_on" : "class.games_off", targetId: cls.id } });
+  revalidatePath(classPath(cls.id));
+}

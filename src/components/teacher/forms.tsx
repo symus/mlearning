@@ -1,7 +1,7 @@
 "use client";
 
-import { useActionState, useTransition } from "react";
-import { addStudents, createClass, removeAssignment, removeStudent, setAssignment } from "@/app/actions/teacher";
+import { useActionState, useOptimistic, useTransition } from "react";
+import { addStudents, createClass, removeAssignment, removeStudent, setAssignment, setGamesEnabled } from "@/app/actions/teacher";
 import { AGE_BANDS } from "@/lib/age";
 import { Button } from "@/components/ui/button";
 import { FieldError, FormMessage, SelectField, TextField } from "@/components/ui/field";
@@ -94,5 +94,30 @@ export function RemoveStudentButton({ classId, studentId, name }: { classId: str
 export function RemoveAssignmentButton({ classId, assignmentId, title }: { classId: string; assignmentId: string; title: string }) {
   return (
     <ConfirmButton label="Remove" ariaLabel={`Remove assignment ${title}`} confirm={`Remove “${title}” from the class's assignments?`} run={() => removeAssignment(classId, assignmentId)} />
+  );
+}
+
+/** Teacher switch: classmates may play live Memory together. */
+export function GamesSwitch({ classId, enabled }: { classId: string; enabled: boolean }) {
+  const [pending, start] = useTransition();
+  const [on, setOn] = useOptimistic(enabled); // flips at once; settles to the saved value
+  return (
+    <label className="flex cursor-pointer items-center gap-3">
+      <input
+        type="checkbox"
+        role="switch"
+        className="size-5 accent-brand"
+        checked={on}
+        disabled={pending}
+        onChange={(e) => {
+          const next = e.target.checked;
+          start(async () => {
+            setOn(next);
+            await setGamesEnabled(classId, next);
+          });
+        }}
+      />
+      <span className="font-bold">Classmates can play Memory together {pending && "…"}</span>
+    </label>
   );
 }

@@ -1,30 +1,5 @@
-import { expect, test, type Browser, type Page } from "@playwright/test";
-import { passActivity } from "./helpers";
-
-async function newTeacher(page: Page, name = "Ms Patel") {
-  await page.goto("/signup/teacher");
-  await page.getByLabel("Your name").fill(name);
-  await page.getByLabel("School name").fill("Hillside Primary");
-  await page.getByLabel("Email").fill(`teacher-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@example.com`);
-  await page.getByLabel("Password").fill("Teaching-path-88");
-  await page.getByText(/My school allows me/).click();
-  await page.getByText(/I accept the/).click();
-  await page.getByRole("button", { name: "Create teacher account" }).click();
-  await expect(page.getByRole("heading", { name: "My classes" })).toBeVisible();
-}
-
-/** A student types their card details and finishes the first-time welcome. */
-async function studentLogsIn(browser: Browser, loginId: string, password: string) {
-  const kid = await (await browser.newContext()).newPage();
-  await kid.goto("/login/kids");
-  await kid.getByLabel("Login ID").fill(loginId);
-  await kid.getByLabel("Password").fill(password);
-  await kid.getByRole("button", { name: /Let's go/ }).click();
-  for (let i = 0; i < 3; i++) await kid.getByRole("button", { name: "Next →" }).click();
-  await Promise.all([kid.waitForURL(/\/play\?welcome=1/), kid.getByRole("button", { name: "Start exploring!" }).click({ timeout: 5000 }).catch(() => {})]);
-  await expect(kid.getByRole("heading", { name: "Your learning universe" })).toBeVisible();
-  return kid;
-}
+import { expect, test } from "@playwright/test";
+import { newTeacher, passActivity, studentLogsIn } from "./helpers";
 
 test("teacher: class, students, login cards, assignment, teacher-only ranking", async ({ page, browser }) => {
   await newTeacher(page);

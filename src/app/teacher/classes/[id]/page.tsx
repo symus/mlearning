@@ -12,7 +12,7 @@ import { RANK_KEYS, RANK_LABEL, parseRankKey, rankStudents } from "@/lib/teacher
 import { Avatar } from "@/components/avatar";
 import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { ClassCards } from "@/components/teacher/class-cards";
-import { AddStudentsForm, AssignForm, RemoveAssignmentButton, RemoveStudentButton } from "@/components/teacher/forms";
+import { AddStudentsForm, AssignForm, GamesSwitch, RemoveAssignmentButton, RemoveStudentButton } from "@/components/teacher/forms";
 
 export const metadata = { title: "Class" };
 
@@ -118,6 +118,13 @@ export default async function ClassPage({ params, searchParams }: { params: Prom
             })}
           </ul>
         )}
+      </Card>
+
+      {/* ---------- Games ---------- */}
+      <Card id="games" className="scroll-mt-4 space-y-2">
+        <h2 className="text-2xl font-bold">Games</h2>
+        <GamesSwitch classId={cls.id} enabled={cls.gamesEnabled} />
+        <p className="text-sm text-ink-soft">A live 2-player Memory game. Students see only classmates who are online, by first name. There is no chat or typing, and games are just for fun: they don&apos;t count in progress or the ranking. Switching off ends games in progress.</p>
       </Card>
 
       {/* ---------- Ranking (teacher only) ---------- */}

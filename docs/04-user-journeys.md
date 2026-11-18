@@ -91,6 +91,17 @@
 6. **Ranking (teacher only)**: last 7 days or all time, sorted by skills mastered, assignments done, activities, accuracy or minutes. Equal results share a place. Students never see rankings.
 7. Teachers never reach the family area (`/parent` → `/teacher`); another teacher's class returns 404. Removing a student deletes their profile and records. `/teacher/settings`: data download and account deletion (deletes classes and students too).
 
+## G2. Memory with a classmate (working)
+
+Live 2-player Memory for students of the **same teacher's class**, on two devices.
+
+1. Universe → **🎮 Play Memory with a classmate** (shown only if the teacher has games on) → `/play/games`.
+2. Pick a game: **Animal friends** (same pictures), **Number match** (number ↔ dots for 3–5; sum ↔ answer for 6–12), **Big and small letters** (A ↔ a). 6 / 8 / 10 pairs by age group.
+3. **Who's here?** lists classmates who are online now (first names only). *Invite* → the classmate sees "Aya wants to play…" with **Let's play!** / **Not now**. Invites expire after a minute.
+4. Take turns flipping two cards; a pair scores and you go again; a wrong pair stays up 1.5 s for both, then the turn passes. The server keeps the hidden faces, so the browser can't peek. Kind ending: winner or tie, "Great game, both of you!", **Play again**.
+5. Safety: no chat or typing; only classmates; the teacher can switch games off on the class page (ends games in progress); parent pause ends a game ("a grown-up called a break"); the daily limit stops new games. **Pure fun:** nothing goes to progress, reports or ranking, and games are deleted after a day. Idle games end after 3 minutes.
+6. Live updates use simple polling (about once a second in a game, every 2.5 s in the lobby).
+
 ## H. Later journeys (planned)
 
 - Weekly email report (Phase 4), checkout and billing portal (Phase 4), family challenges (Phase 3/4), teacher class set-up (Phase 6).
