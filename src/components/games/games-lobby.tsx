@@ -160,6 +160,43 @@ export function GamesLobby({ initialDeck }: { initialDeck?: string }) {
         </ul>
         {away.length > 0 && <p className="text-sm text-white/60">Not here right now: {away.map((c) => c.name).join(", ")}</p>}
       </section>
+
+      <WinnersBoard winners={data.winners} decks={data.decks} />
     </div>
+  );
+}
+
+/** Recent winners in the class (last 7 days). Only winners are shown, never who lost. */
+export function WinnersBoard({ winners, decks, tone = "dark" }: { winners: LobbyView["winners"]; decks: LobbyView["decks"]; tone?: "dark" | "light" }) {
+  const when = (iso: string) => {
+    const d = new Date(iso);
+    const days = Math.floor((new Date().setHours(0, 0, 0, 0) - new Date(d).setHours(0, 0, 0, 0)) / 86_400_000);
+    return days <= 0 ? "today" : days === 1 ? "yesterday" : d.toLocaleDateString(undefined, { weekday: "long" });
+  };
+  return (
+    <section aria-labelledby="winners" className="space-y-3">
+      <h2 id="winners" className="text-2xl font-bold">🏆 Winners board</h2>
+      {winners.length === 0 ? (
+        <p className={clsx("rounded-2xl p-4", tone === "dark" ? "bg-white/10 text-white/80" : "bg-paper text-ink-soft")}>No winners yet this week. Win a game and write your name here!</p>
+      ) : (
+        <ul className="grid gap-2 sm:grid-cols-2 lg:grid-cols-3">
+          {winners.map((w) => {
+            const deck = decks.find((d) => d.id === w.deck);
+            return (
+              <li key={w.id} className={clsx("flex items-center gap-3 rounded-2xl p-3", tone === "dark" ? "bg-white/10" : "bg-paper")}>
+                <Avatar avatar={w.avatar} size="sm" />
+                <span className="min-w-0 flex-1">
+                  <span className="block font-display text-lg font-bold">{w.name}</span>
+                  <span className={clsx("text-sm", tone === "dark" ? "text-white/75" : "text-ink-soft")}>
+                    {w.tie ? "Shared a win" : "Won"} {deck ? `${deck.emoji} ${deck.name}` : "Memory"} · <span suppressHydrationWarning>{when(w.wonAt)}</span>
+                  </span>
+                </span>
+                <span aria-hidden className="text-2xl">🏆</span>
+              </li>
+            );
+          })}
+        </ul>
+      )}
+    </section>
   );
 }

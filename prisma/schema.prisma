@@ -131,6 +131,7 @@ model ChildProfile {
   loginCards   ChildLoginCard[]
   gamesAsA     MemoryGame[]       @relation("GamePlayerA")
   gamesAsB     MemoryGame[]       @relation("GamePlayerB")
+  gameWins     GameWin[]
   classroom    Classroom?         @relation(fields: [classroomId], references: [id], onDelete: SetNull)
 
   @@index([parentId])
@@ -426,6 +427,7 @@ model Classroom {
   students    ChildProfile[]
   assignments Assignment[]
   games       MemoryGame[]
+  wins        GameWin[]
 
   @@index([teacherId])
 }
@@ -480,4 +482,24 @@ model MemoryGame {
   @@index([playerAId, status])
   @@index([playerBId, status])
   @@index([updatedAt])
+}
+
+/**
+ * The class Winners board: a win appears only after the winner spells their own first name with
+ * letter tiles. Kept 7 days, then deleted. Never used for progress, reports or ranking.
+ */
+model GameWin {
+  id          String   @id @default(cuid())
+  classroomId String
+  childId     String
+  gameId      String // the game may already be deleted (games are kept 1 day)
+  deck        String
+  tie         Boolean  @default(false)
+  wonAt       DateTime @default(now())
+
+  classroom Classroom    @relation(fields: [classroomId], references: [id], onDelete: Cascade)
+  child     ChildProfile @relation(fields: [childId], references: [id], onDelete: Cascade)
+
+  @@unique([gameId, childId])
+  @@index([classroomId, wonAt])
 }

@@ -7,6 +7,8 @@ import { isPaused, ONLINE_MS } from "@/lib/learning/pause";
 import { touchSeen } from "@/lib/learning/presence";
 import { getToday } from "@/lib/learning/queries";
 import { limitStatus } from "@/lib/learning/limits";
+import { nameLetters, spellsName } from "@/lib/games/name-tiles";
+import { winnersBoard, type WinnerEntry } from "@/lib/games/winners";
 import { DECKS, flip, isOver, newGame, publicCards, settle, winner, type CardView, type DeckId, type MemoryState, type Seat } from "@/lib/games/memory";
 
 /*
@@ -20,6 +22,8 @@ import { DECKS, flip, isOver, newGame, publicCards, settle, winner, type CardVie
 const INVITE_TTL_MS = 60_000;
 const IDLE_TTL_MS = 3 * 60_000;
 const KEEP_MS = 24 * 3600_000;
+/** Extra letters mixed into the name tiles: none for the youngest (they just find their letters). */
+const DECOYS: Record<string, number> = { LITTLE_EXPLORERS: 0, YOUNG_THINKERS: 3, FUTURE_INNOVATORS: 5 };
 
 type Blocked = "no-class" | "games-off" | "paused" | "daily-limit";
 
@@ -56,19 +60,22 @@ export interface LobbyView {
   incoming: { gameId: string; from: string; deck: string }[];
   outgoing: { gameId: string; to: string; status: "waiting" | "declined" | "timeout" } | null;
   activeGameId: string | null;
+  winners: WinnerEntry[];
 }
+
 
 export async function lobby(): Promise<LobbyView> {
   const p = await player();
-  const empty = { decks: DECKS, classmates: [], incoming: [], outgoing: null, activeGameId: null };
+  const empty = { decks: DECKS, classmates: [], incoming: [], outgoing: null, activeGameId: null, winners: [] };
   if ("blocked" in p) return { blocked: p.blocked, ...empty };
   const { child, classroomId } = p;
   await Promise.all([touchSeen(child), tidy(child.id)]);
 
-  const [classmates, open, lastOut] = await Promise.all([
+  const [classmates, open, lastOut, winners] = await Promise.all([
     db.childProfile.findMany({ where: { classroomId, id: { not: child.id } }, orderBy: { nickname: "asc" }, select: { id: true, nickname: true, avatar: true, lastSeenAt: true } }),
     db.memoryGame.findMany({ where: { classroomId, status: { in: ["INVITED", "PLAYING"] } }, select: { id: true, playerAId: true, playerBId: true, status: true, deck: true } }),
     db.memoryGame.findFirst({ where: { playerAId: child.id, createdAt: { gte: new Date(Date.now() - 2 * INVITE_TTL_MS) } }, orderBy: { createdAt: "desc" }, include: { playerB: { select: { nickname: true } } } }),
+    winnersBoard(classroomId),
   ]);
   const busy = new Set(open.flatMap((g) => [g.playerAId, g.playerBId]));
   const active = open.find((g) => g.status === "PLAYING" && (g.playerAId === child.id || g.playerBId === child.id));
@@ -85,6 +92,7 @@ export async function lobby(): Promise<LobbyView> {
         ? { gameId: lastOut.id, to: nameOf(lastOut.playerB), status: lastOut.status === "INVITED" ? "waiting" : (lastOut.endedReason as "declined" | "timeout") }
         : null,
     activeGameId: active?.id ?? null,
+    winners,
   };
 }
 
@@ -145,6 +153,8 @@ export interface GameView {
   endedReason: string | null;
   endedByMe: boolean;
   deck: string;
+  /** The finished game was won (or tied) by me: I may write my name for the Winners board. */
+  sign: { signed: boolean; decoys: number } | null;
 }
 
 async function loadMine(gameId: string, childId: string) {
@@ -154,7 +164,7 @@ async function loadMine(gameId: string, childId: string) {
   });
 }
 
-function view(g: NonNullable<Awaited<ReturnType<typeof loadMine>>>, childId: string, s: MemoryState): GameView {
+function view(g: NonNullable<Awaited<ReturnType<typeof loadMine>>>, childId: string, s: MemoryState, sign: GameView["sign"] = null): GameView {
   return {
     status: g.status,
     me: g.playerAId === childId ? "A" : "B",
@@ -167,8 +177,15 @@ function view(g: NonNullable<Awaited<ReturnType<typeof loadMine>>>, childId: str
     endedReason: g.endedReason,
     endedByMe: g.endedById === childId,
     deck: g.deck,
+    sign,
   };
 }
+
+/** Did I win (or tie) this finished game? */
+const iWon = (g: MemoryGame, childId: string, s: MemoryState) => {
+  const w = winner(s);
+  return g.status === "FINISHED" && (w === "tie" || w === (g.playerAId === childId ? "A" : "B"));
+};
 
 /** Save a new state only if nobody changed the game meanwhile. */
 async function save(g: MemoryGame, s: MemoryState, extra: Prisma.MemoryGameUpdateManyMutationInput = {}) {
@@ -196,7 +213,33 @@ export async function gameState(gameId: string): Promise<GameView | null> {
     const settled = settle(s, Date.now());
     if (settled !== s && (await save(g, settled))) s = settled;
   }
+  if (iWon(g, child.id, s)) {
+    const signed = !!(await db.gameWin.findUnique({ where: { gameId_childId: { gameId: g.id, childId: child.id } }, select: { id: true } }));
+    return view(g, child.id, s, { signed, decoys: DECOYS[child.ageBand] ?? 3 });
+  }
   return view(g, child.id, s);
+}
+
+/**
+ * The winner writes their name (by tapping letter tiles) to go on the class Winners board.
+ * Only the child's own first name is accepted, so nothing else can ever appear on the board.
+ */
+export async function signWin(gameId: string, letters: string[]): Promise<{ ok: boolean; error?: string }> {
+  const session = await getSession();
+  const child = session?.activeChild;
+  if (!child?.classroomId) return { ok: false, error: "no-class" };
+  if (!Array.isArray(letters) || letters.length > 40 || !letters.every((l) => typeof l === "string" && l.length <= 8)) return { ok: false, error: "bad-name" };
+  if (!spellsName(letters, child.nickname) || nameLetters(child.nickname).length === 0) return { ok: false, error: "bad-name" };
+  const g = await db.memoryGame.findFirst({ where: { id: gameId, classroomId: child.classroomId, OR: [{ playerAId: child.id }, { playerBId: child.id }] } });
+  if (!g) return { ok: false, error: "gone" };
+  const s = g.state as unknown as MemoryState;
+  if (!iWon(g, child.id, s)) return { ok: false, error: "not-winner" };
+  await db.gameWin.upsert({
+    where: { gameId_childId: { gameId: g.id, childId: child.id } },
+    create: { gameId: g.id, childId: child.id, classroomId: g.classroomId, deck: g.deck, tie: winner(s) === "tie" },
+    update: {},
+  });
+  return { ok: true };
 }
 
 export async function flipCard(gameId: string, index: number): Promise<{ ok: boolean; error?: string }> {

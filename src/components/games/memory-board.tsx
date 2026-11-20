@@ -10,6 +10,7 @@ import { Avatar } from "@/components/avatar";
 import { Muchi } from "@/components/mascot";
 import { useSfx } from "@/components/child/prefs";
 import type { Seat } from "@/lib/games/memory";
+import { NameSigner } from "./name-signer";
 
 const POLL_MS = 900;
 const ENDED: Record<string, (other: string) => string> = {
@@ -123,6 +124,8 @@ export function MemoryBoard({ gameId, opponentId }: { gameId: string; opponentId
                 {g.winner === "tie" ? "It's a tie! What a team! 🤝" : g.winner === g.me ? "You win! 🎉" : `${g.names[other]} wins! 🎉`}
               </h2>
               <p className="text-ink-soft">You found {g.scores[g.me]} pairs and {g.names[other]} found {g.scores[other]}. Great game, both of you!</p>
+              {g.sign && !g.sign.signed && <NameSigner gameId={gameId} nickname={g.names[g.me]} decoys={g.sign.decoys} onSigned={refresh} />}
+              {g.sign?.signed && <p role="status" className="rounded-2xl bg-leaf-soft px-4 py-2 font-bold text-success">✨ Your name is on the Winners board!</p>}
             </>
           ) : (
             <h2 className="text-2xl font-bold">{g.endedByMe && g.endedReason === "left" ? "You left the game." : (ENDED[g.endedReason ?? ""] ?? (() => "Game over"))(g.names[other])}</h2>

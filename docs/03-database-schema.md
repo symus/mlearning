@@ -39,6 +39,7 @@ User (parent/admin) 1──* ChildProfile 1──* Attempt 1──* AttemptRespo
 | `Classroom` | A teacher's class | `teacherId`, `name`, `ageBand`, `archivedAt`. Students are `ChildProfile`s with `classroomId` and `parentId` = the teacher |
 | `Assignment` | An activity set for a whole class | `classroomId`, `activityId` (unique together), `dueAt` (optional) |
 | `MemoryGame` | A live 2-player Memory game between classmates (pure fun, deleted after a day) | `classroomId`, `playerAId`, `playerBId`, `status` (INVITED/PLAYING/FINISHED/ENDED), `deck`, `state` (server-only JSON with hidden faces), `version` (optimistic lock), `endedReason`. `Classroom.gamesEnabled` lets the teacher switch games off |
+| `GameWin` | The class Winners board | `classroomId`, `childId`, `gameId` (unique together), `deck`, `tie`, `wonAt`. Created only when the winner spells their own first name; deleted after 7 days |
 | `ChildLoginCard` | A child's printable login card (QR code + simple password) | `tokenHash` (SHA-256 of the QR secret), `passwordHash` (bcrypt), `failedLogins`, `lockedUntil`, `revokedAt`. `ChildProfile.loginId` (e.g. `aya4821`) is made with the first card and never changes |
 
 ## Rules built into the schema

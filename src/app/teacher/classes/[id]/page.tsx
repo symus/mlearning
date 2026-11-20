@@ -12,6 +12,9 @@ import { RANK_KEYS, RANK_LABEL, parseRankKey, rankStudents } from "@/lib/teacher
 import { Avatar } from "@/components/avatar";
 import { Badge, Card, ProgressBar } from "@/components/ui/card";
 import { ClassCards } from "@/components/teacher/class-cards";
+import { WinnersBoard } from "@/components/games/games-lobby";
+import { winnersBoard } from "@/lib/games/winners";
+import { DECKS } from "@/lib/games/memory";
 import { AddStudentsForm, AssignForm, GamesSwitch, RemoveAssignmentButton, RemoveStudentButton } from "@/components/teacher/forms";
 
 export const metadata = { title: "Class" };
@@ -27,9 +30,10 @@ export default async function ClassPage({ params, searchParams }: { params: Prom
 
   const period = parsePeriod(sp.period);
   const sort = parseRankKey(sp.sort);
-  const [{ cls, students, assignments, stats }, activities] = await Promise.all([
+  const [{ cls, students, assignments, stats }, activities, winners] = await Promise.all([
     getClassView(owned.id, period),
     bandActivityWhere(owned.ageBand).then((where) => db.activity.findMany({ where, select: { slug: true, title: true, subjectSlug: true, ageBand: true, pathOrder: true } })),
+    winnersBoard(owned.id),
   ]);
   const open = new Set(WORLDS.filter((w) => w.status === "open").map((w) => w.subject));
   const options = WORLDS.filter((w) => open.has(w.subject))
@@ -124,7 +128,8 @@ export default async function ClassPage({ params, searchParams }: { params: Prom
       <Card id="games" className="scroll-mt-4 space-y-2">
         <h2 className="text-2xl font-bold">Games</h2>
         <GamesSwitch classId={cls.id} enabled={cls.gamesEnabled} />
-        <p className="text-sm text-ink-soft">A live 2-player Memory game. Students see only classmates who are online, by first name. There is no chat or typing, and games are just for fun: they don&apos;t count in progress or the ranking. Switching off ends games in progress.</p>
+        <p className="text-sm text-ink-soft">A live 2-player Memory game. Winners spell their own first name with letter tiles to go on the class Winners board (last 7 days; only winners are shown). Students see only classmates who are online, by first name. There is no chat or typing, and games are just for fun: they don&apos;t count in progress or the ranking. Switching off ends games in progress.</p>
+        <div className="pt-3"><WinnersBoard winners={winners} decks={DECKS} tone="light" /></div>
       </Card>
 
       {/* ---------- Ranking (teacher only) ---------- */}

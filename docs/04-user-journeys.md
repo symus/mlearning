@@ -99,8 +99,9 @@ Live 2-player Memory for students of the **same teacher's class**, on two device
 2. Pick a game: **Animal friends** (same pictures), **Number match** (number ↔ dots for 3–5; sum ↔ answer for 6–12), **Big and small letters** (A ↔ a). 6 / 8 / 10 pairs by age group.
 3. **Who's here?** lists classmates who are online now (first names only). *Invite* → the classmate sees "Aya wants to play…" with **Let's play!** / **Not now**. Invites expire after a minute.
 4. Take turns flipping two cards; a pair scores and you go again; a wrong pair stays up 1.5 s for both, then the turn passes. The server keeps the hidden faces, so the browser can't peek. Kind ending: winner or tie, "Great game, both of you!", **Play again**.
-5. Safety: no chat or typing; only classmates; the teacher can switch games off on the class page (ends games in progress); parent pause ends a game ("a grown-up called a break"); the daily limit stops new games. **Pure fun:** nothing goes to progress, reports or ranking, and games are deleted after a day. Idle games end after 3 minutes.
-6. Live updates use simple polling (about once a second in a game, every 2.5 s in the lobby).
+5. **Winners board:** the winner (both players in a tie) writes their name for the class board by tapping letter tiles in order: their own first name plus a few decoy letters (none for ages 3–5, who see their name faintly as a guide; 💡 Help and ⌫ available). The server accepts only the child's real first name, so nothing else can appear. The board (games lobby and the teacher's class page) shows winners from the last 7 days; never who lost.
+6. Safety: no chat or typing; only classmates; the teacher can switch games off on the class page (ends games in progress); parent pause ends a game ("a grown-up called a break"); the daily limit stops new games. **Pure fun:** nothing goes to progress, reports or ranking; games are deleted after a day and Winners-board entries after 7 days. Idle games end after 3 minutes.
+7. Live updates use simple polling (about once a second in a game, every 2.5 s in the lobby).
 
 ## H. Later journeys (planned)
 

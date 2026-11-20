@@ -112,7 +112,7 @@ content/activities/<subject>-<age>.json   activity packs
 ## Testing
 
 ```bash
-npm test                                   # 75 unit tests
+npm test                                   # 78 unit tests
 npm run build && npm run test:e2e -- --trace off   # 30 e2e tests (15 journeys × desktop/tablet)
 ```
 

@@ -79,12 +79,40 @@ test("two classmates play Memory live on two devices; teachers can switch games 
   for (const p of [aya, ravi]) await expect(p.getByRole("heading", { name: /wins! 🎉|You win! 🎉|It's a tie/ })).toBeVisible();
   await expect(aya.getByText(/Great game, both of you!/)).toBeVisible();
 
+  // The winner (both, if it's a tie) writes their name with letter tiles for the class Winners board.
+  const winners: string[] = [];
+  for (const [p, name] of [[aya, "Aya"], [ravi, "Ravi"]] as const) {
+    const signer = p.getByText("🏆 Write your name for the Winners board!");
+    if (!(await signer.isVisible())) {
+      continue;
+    }
+    winners.push(name);
+    const tiles = (await p.getByRole("group", { name: "Letter tiles" }).getByRole("button").evaluateAll((els) => els.map((e) => e.getAttribute("aria-label")!.replace("Letter ", ""))));
+    const decoy = tiles.find((t) => !name.toLowerCase().includes(t.toLowerCase()))!;
+    await p.getByRole("button", { name: `Letter ${decoy}`, exact: true }).click(); // a wrong letter is gently refused
+    await expect(p.getByText("Not that one. Try another letter!")).toBeVisible();
+    for (const letter of name) await p.getByRole("button", { name: `Letter ${letter}`, exact: true }).click();
+    await expect(p.getByText("✨ Your name is on the Winners board!")).toBeVisible();
+  }
+  expect(winners.length).toBeGreaterThan(0);
+  const loser = winners.length === 1 ? (winners[0] === "Aya" ? ravi : aya) : null;
+  if (loser) await expect(loser.getByText("🏆 Write your name for the Winners board!")).toHaveCount(0);
+  await ravi.goto("/play/games");
+  const board = ravi.getByRole("region", { name: "🏆 Winners board" });
+  for (const w of winners) await expect(board.getByText(w, { exact: true })).toBeVisible();
+  await expect(board).toContainText("Animal friends · today");
+  if (loser) await expect(board.getByText(winners[0] === "Aya" ? "Ravi" : "Aya", { exact: true })).toHaveCount(0); // never who lost
+
   // Only the two players can open the game.
   const zoeUrl = aya.url();
   const zoe = await studentLogsIn(browser, ids[2], pws[2]);
   await zoe.goto(zoeUrl); // the child area streams (loading screen first), so check the page, not the status code
   await expect(zoe.getByRole("heading", { name: "We couldn't find that page" })).toBeVisible();
   await expect(zoe.getByRole("button", { name: /^Card \d+/ })).toHaveCount(0);
+
+  // The teacher sees the same board on the class page.
+  await page.reload();
+  await expect(page.getByRole("region", { name: "🏆 Winners board" })).toContainText(winners[0]);
 
   // The teacher switches games off: students see it straight away.
   await page.getByRole("switch", { name: /Classmates can play Memory together/ }).uncheck();
